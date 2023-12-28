@@ -5,20 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Letter emoji</title>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
       .main {
         display: flex;
         flex-direction: column;
+        align-items: center;
+      }
+      .inputs {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
       input {
         padding: 8px;
         width: 600px;
+        border: 1px solid gray;
+        border-radius: 4px;
+        outline: none;
+      }
+      input:focus {
+        outline: none;
+        border: 1px solid black;
+      }
+      textarea {
+        padding: 8px;
+        width: 600px;
+        height: 200px;
+        border-radius: 4px;
+        border: 1px solid gray;
+        outline: none;
+      }
+      textarea:focus {
+        outline: none;
+        border: 1px solid black;
+      }
+      button {
+        cursor: pointer;
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        transition: background-color 0.2s ease;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        height: 38px;
+      }
+      button:hover {
+        background-color: black;
       }
     </style>
   </head>
   <body>
     <div class="main">
-      <input id="input" />
-      <input id="output" />
+      <h1>Text to letter emoji</h1>
+      <div class="inputs">
+        <input id="input" />
+        <textarea id="output"></textarea>
+
+        <button id="btn">Copy</button>
+      </div>
     </div>
     <script>
       var replacementList = [
@@ -120,6 +176,9 @@
       const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
       const inputEL = document.getElementById('input');
+      const outputEL = document.getElementById('output');
+      const btnEL = document.getElementById('btn');
+      const successEL = document.getElementById('success');
 
       inputEL.addEventListener('input', (e) => {
         const value = removeDiacritics(e.target.value.toUpperCase());
@@ -136,7 +195,16 @@
           })
           .join('');
 
-        document.getElementById('output').value = output;
+        outputEL.value = output;
+      });
+
+      btnEL.addEventListener('click', () => {
+        outputEL.select();
+        document.execCommand('copy');
+        btnEL.innerText = '✅ Copied!';
+        setTimeout(() => {
+          btnEL.innerText = 'Copy';
+        }, 1000);
       });
     </script>
   </body>
