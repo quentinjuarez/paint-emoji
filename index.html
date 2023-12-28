@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter emoji</title>
+    <style>
+      .main {
+        display: flex;
+        flex-direction: column;
+      }
+      input {
+        padding: 8px;
+        width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <input id="input" />
+      <input id="output" />
+    </div>
+    <script>
+      const letters = [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+        '?',
+      ];
+
+      const inputEL = document.getElementById('input');
+
+      inputEL.addEventListener('input', (e) => {
+        const value = e.target.value.toUpperCase();
+        const output = value
+          .split('')
+          .map((letter) => {
+            const index = letters.indexOf(letter);
+            if (letter === ' ') return '   ';
+            if (index === -1) return undefined;
+            if (letter === '?') return ':letter-question:';
+
+            return `:letter-${letter.toLowerCase()}:`;
+          })
+          .join('');
+
+        document.getElementById('output').value = output;
+      });
+    </script>
+  </body>
+</html>
