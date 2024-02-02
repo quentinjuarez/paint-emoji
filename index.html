@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Letter emoji</title>
+    <title>Shape to emoji</title>
     <style>
       body {
         margin: 0;
@@ -23,7 +23,7 @@
       }
       input {
         padding: 8px;
-        width: 600px;
+        width: 800px;
         border: 1px solid gray;
         border-radius: 4px;
         outline: none;
@@ -34,7 +34,7 @@
       }
       textarea {
         padding: 8px;
-        width: 600px;
+        width: 800px;
         height: 200px;
         border-radius: 4px;
         border: 1px solid gray;
@@ -64,12 +64,19 @@
       button:hover {
         background-color: black;
       }
+
+      canvas {
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+      }
     </style>
   </head>
   <body>
     <div class="main">
-      <h1>Text to letter emoji</h1>
+      <h1>Shape to emoji</h1>
       <div class="inputs">
+        <canvas id="canvas" width="300px" height="300px"></canvas>
         <input id="input" />
         <textarea id="output"></textarea>
 
@@ -77,123 +84,77 @@
       </div>
     </div>
     <script>
-      var replacementList = [
-        { base: ' ', chars: ' ' },
-        { base: '0', chars: '߀' },
-        { base: 'A', chars: 'ⒶＡÀÁÂẦẤẪẨÃĀĂẰẮẴẲȦǠÄǞẢÅǺǍȀȂẠẬẶḀĄȺⱯ' },
-        { base: 'AA', chars: 'Ꜳ' },
-        { base: 'AE', chars: 'ÆǼǢ' },
-        { base: 'AO', chars: 'Ꜵ' },
-        { base: 'AU', chars: 'Ꜷ' },
-        { base: 'AV', chars: 'ꜸꜺ' },
-        { base: 'AY', chars: 'Ꜽ' },
-        { base: 'B', chars: 'ⒷＢḂḄḆɃƁ' },
-        { base: 'C', chars: 'ⒸＣꜾḈĆCĈĊČÇƇȻ' },
-        { base: 'D', chars: 'ⒹＤḊĎḌḐḒḎĐƊƉᴅꝹ' },
-        { base: 'Dh', chars: 'Ð' },
-        { base: 'DZ', chars: 'ǱǄ' },
-        { base: 'Dz', chars: 'ǲǅ' },
-        { base: 'E', chars: 'ɛⒺＥÈÉÊỀẾỄỂẼĒḔḖĔĖËẺĚȄȆẸỆȨḜĘḘḚƐƎᴇ' },
-        { base: 'F', chars: 'ꝼⒻＦḞƑꝻ' },
-        { base: 'G', chars: 'ⒼＧǴĜḠĞĠǦĢǤƓꞠꝽꝾɢ' },
-        { base: 'H', chars: 'ⒽＨĤḢḦȞḤḨḪĦⱧⱵꞍ' },
-        { base: 'I', chars: 'ⒾＩÌÍÎĨĪĬİÏḮỈǏȈȊỊĮḬƗ' },
-        { base: 'J', chars: 'ⒿＪĴɈȷ' },
-        { base: 'K', chars: 'ⓀＫḰǨḲĶḴƘⱩꝀꝂꝄꞢ' },
-        { base: 'L', chars: 'ⓁＬĿĹĽḶḸĻḼḺŁȽⱢⱠꝈꝆꞀ' },
-        { base: 'LJ', chars: 'Ǉ' },
-        { base: 'Lj', chars: 'ǈ' },
-        { base: 'M', chars: 'ⓂＭḾṀṂⱮƜϻ' },
-        { base: 'N', chars: 'ꞤȠⓃＮǸŃÑṄŇṆŅṊṈƝꞐᴎ' },
-        { base: 'NJ', chars: 'Ǌ' },
-        { base: 'Nj', chars: 'ǋ' },
-        { base: 'O', chars: 'ⓄＯÒÓÔỒỐỖỔÕṌȬṎŌṐṒŎȮȰÖȪỎŐǑȌȎƠỜỚỠỞỢỌỘǪǬØǾƆƟꝊꝌ' },
-        { base: 'OE', chars: 'Œ' },
-        { base: 'OI', chars: 'Ƣ' },
-        { base: 'OO', chars: 'Ꝏ' },
-        { base: 'OU', chars: 'Ȣ' },
-        { base: 'P', chars: 'ⓅＰṔṖƤⱣꝐꝒꝔ' },
-        { base: 'Q', chars: 'ⓆＱꝖꝘɊ' },
-        { base: 'R', chars: 'ⓇＲŔṘŘȐȒṚṜŖṞɌⱤꝚꞦꞂ' },
-        { base: 'S', chars: 'ⓈＳẞŚṤŜṠŠṦṢṨȘŞⱾꞨꞄ' },
-        { base: 'T', chars: 'ⓉＴṪŤṬȚŢṰṮŦƬƮȾꞆ' },
-        { base: 'Th', chars: 'Þ' },
-        { base: 'TZ', chars: 'Ꜩ' },
-        { base: 'U', chars: 'ⓊＵÙÚÛŨṸŪṺŬÜǛǗǕǙỦŮŰǓȔȖƯỪỨỮỬỰỤṲŲṶṴɄ' },
-        { base: 'V', chars: 'ⓋＶṼṾƲꝞɅ' },
-        { base: 'VY', chars: 'Ꝡ' },
-        { base: 'W', chars: 'ⓌＷẀẂŴẆẄẈⱲ' },
-        { base: 'X', chars: 'ⓍＸẊẌ' },
-        { base: 'Y', chars: 'ⓎＹỲÝŶỸȲẎŸỶỴƳɎỾ' },
-        { base: 'Z', chars: 'ⓏＺŹẐŻŽẒẔƵȤⱿⱫꝢ' },
-      ];
-
-      var diacriticsMap = {};
-
-      for (var i = 0; i < replacementList.length; i += 1) {
-        var chars = replacementList[i].chars;
-        for (var j = 0; j < chars.length; j += 1) {
-          diacriticsMap[chars[j]] = replacementList[i].base;
-        }
-      }
-
-      function removeDiacritics(a) {
-        return a.replace(/[^\u0000-\u007e]/g, function (a) {
-          return diacriticsMap[a] || a;
-        });
-      }
-
-      const letters = [
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-        'G',
-        'H',
-        'I',
-        'J',
-        'K',
-        'L',
-        'M',
-        'N',
-        'O',
-        'P',
-        'Q',
-        'R',
-        'S',
-        'T',
-        'U',
-        'V',
-        'W',
-        'X',
-        'Y',
-        'Z',
-        '?',
-      ];
-
-      const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
       const inputEL = document.getElementById('input');
       const outputEL = document.getElementById('output');
       const btnEL = document.getElementById('btn');
       const successEL = document.getElementById('success');
+      const canvasEL = document.getElementById('canvas');
+
+      // prettier-ignore
+      const heartTemplate = [
+        [0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,2,2,2],
+        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2],
+        [0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2],
+        [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2],
+        [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2],
+        [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+      ]
+
+      const draw = () => {
+        const ctx = canvasEL.getContext('2d');
+        ctx.clearRect(0, 0, canvasEL.width, canvasEL.height);
+        ctx.fillStyle = 'black';
+        heartTemplate.forEach((row, y) => {
+          row.forEach((col, x) => {
+            if (col === 1) {
+              ctx.fillRect(x * 10, y * 10, 10, 10);
+            }
+          });
+        });
+      };
+
+      draw();
+
+      const EMPTY = ':transparent:';
 
       inputEL.addEventListener('input', (e) => {
-        const value = removeDiacritics(e.target.value.toUpperCase());
-        const output = value
-          .split('')
-          .map((letter) => {
-            if (numbers.includes(letter)) return `:number-${letter}:`;
-            const index = letters.indexOf(letter);
-            if (letter === ' ') return '   ';
-            if (letter === '?') return ':letter-question:';
-            if (index === -1) return undefined;
+        const FILL = e.target.value;
 
-            return `:letter-${letter.toLowerCase()}:`;
+        const output = heartTemplate
+          .map((row) => {
+            return row
+              .map((col) => {
+                if (col === 1) {
+                  return FILL;
+                }
+                if (col === 2) {
+                  return null;
+                }
+                return EMPTY;
+              })
+              .filter(Boolean)
+              .join('');
           })
-          .join('');
+          .join('\n');
 
         outputEL.value = output;
       });
