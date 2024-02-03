@@ -66,9 +66,41 @@
       }
 
       canvas {
-        margin: 0 auto;
         width: 300px;
         height: 300px;
+        cursor: crosshair;
+        border: 1px solid black;
+      }
+
+      #drawing {
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      #controls {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .active {
+        border: 1px solid black;
+      }
+
+      li {
+        font-size: 24px;
+        height: 32px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        padding: 8px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        transition: border 0.2s ease;
       }
     </style>
   </head>
@@ -76,7 +108,18 @@
     <div class="main">
       <h1>Shape to emoji</h1>
       <div class="inputs">
-        <canvas id="canvas" width="300px" height="300px"></canvas>
+        <div id="drawing">
+          <canvas id="canvas" width="300px" height="300px"></canvas>
+          <ul id="controls">
+            <!-- emoji pencil -->
+            <li id="pencil" class="active">✏️</li>
+            <!-- emoji eraser -->
+            <li id="eraser">🧽</li>
+            <!-- emoji trash -->
+            <li id="trash">🗑️</li>
+          </ul>
+        </div>
+
         <input id="input" />
         <textarea id="output"></textarea>
 
@@ -90,40 +133,50 @@
       const successEL = document.getElementById('success');
       const canvasEL = document.getElementById('canvas');
 
+      const pencilEL = document.getElementById('pencil');
+      const eraserEL = document.getElementById('eraser');
+      const trashEL = document.getElementById('trash');
+
+      const ctx = canvasEL.getContext('2d');
+
       // prettier-ignore
-      const heartTemplate = [
-        [0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,2,2,2],
-        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2],
-        [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
-        [0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2],
-        [0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2],
-        [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2],
-        [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2],
-        [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+      const template = [
+        [0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2],
+        [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2],
+        [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2],
+        [0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2],
+        [0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2],
+        [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2],
+        [0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
+        [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+        [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
       ]
 
-      const draw = () => {
-        const ctx = canvasEL.getContext('2d');
+      const initDraw = () => {
         ctx.clearRect(0, 0, canvasEL.width, canvasEL.height);
         ctx.fillStyle = 'black';
-        heartTemplate.forEach((row, y) => {
+        template.forEach((row, y) => {
           row.forEach((col, x) => {
             if (col === 1) {
               ctx.fillRect(x * 10, y * 10, 10, 10);
@@ -132,19 +185,142 @@
         });
       };
 
-      draw();
+      initDraw();
+
+      // const template = Array.from({ length: 30 }, () =>
+      //   Array.from({ length: 30 }, () => 0)
+      // );
+
+      // canvas
+      let isDrawing = false;
+      let isErasing = false;
+
+      pencilEL.addEventListener('click', () => {
+        isErasing = false;
+        pencilEL.classList.add('active');
+        eraserEL.classList.remove('active');
+      });
+
+      eraserEL.addEventListener('click', () => {
+        isErasing = true;
+        eraserEL.classList.add('active');
+        pencilEL.classList.remove('active');
+      });
+
+      trashEL.addEventListener('click', () => {
+        template.forEach((row, y) => {
+          row.forEach((col, x) => {
+            template[y][x] = 0;
+          });
+        });
+        ctx.clearRect(0, 0, canvasEL.width, canvasEL.height);
+        handleOutput();
+      });
+
+      canvasEL.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        if (isErasing) {
+          erase(e);
+        } else {
+          draw(e);
+        }
+      });
+
+      canvasEL.addEventListener('mousemove', (e) => {
+        if (isDrawing) {
+          if (isErasing) {
+            erase(e);
+          } else {
+            draw(e);
+          }
+          handleOutput();
+        }
+      });
+
+      canvasEL.addEventListener('mouseup', () => {
+        isDrawing = false;
+      });
+
+      const draw = (e) => {
+        const rect = canvasEL.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(Math.floor(x / 10) * 10, Math.floor(y / 10) * 10, 10, 10);
+
+        const row = Math.floor(y / 10);
+        const col = Math.floor(x / 10);
+        template[row][col] = 1;
+      };
+
+      const erase = (e) => {
+        const rect = canvasEL.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        ctx.fillStyle = 'white';
+        ctx.fillRect(Math.floor(x / 10) * 10, Math.floor(y / 10) * 10, 10, 10);
+
+        const row = Math.floor(y / 10);
+        const col = Math.floor(x / 10);
+        template[row][col] = 0;
+      };
 
       const EMPTY = ':transparent:';
 
-      inputEL.addEventListener('input', (e) => {
-        const FILL = e.target.value;
+      const filterTemplate = (data) => {
+        // empty is 0
+        // if the row is empty, replace all with 2
+        // if end of row is empty, with no 1 until the end, replace all with 2
+        // eg [0,0,1,1,0,1,0,0,0] => [0,0,1,1,0,1,2,2,2]
 
-        const output = heartTemplate
+        const copy = [...data.map((row) => [...row])];
+
+        return copy.map((row) => {
+          if (row.every((col) => col === 0)) {
+            return row.map(() => 2);
+          }
+
+          for (let i = row.length - 1; i >= 0; i--) {
+            if (row[i] === 0) {
+              row[i] = 2;
+            } else {
+              break;
+            }
+          }
+
+          return row;
+        });
+      };
+
+      const printTemplate = (data) => {
+        console.log(
+          data
+            .map((row) => {
+              return row
+                .map((col) => {
+                  if (col === 1) {
+                    return '⬛️';
+                  }
+                  if (col === 2) {
+                    return ' ';
+                  }
+                  return '⬜️';
+                })
+                .join('');
+            })
+            .join('\n')
+        );
+      };
+
+      const handleOutput = () => {
+        const output = filterTemplate(template)
           .map((row) => {
             return row
               .map((col) => {
                 if (col === 1) {
-                  return FILL;
+                  return inputEL.value;
                 }
                 if (col === 2) {
                   return null;
@@ -154,9 +330,14 @@
               .filter(Boolean)
               .join('');
           })
+          .filter(Boolean)
           .join('\n');
 
         outputEL.value = output;
+      };
+
+      inputEL.addEventListener('input', (e) => {
+        handleOutput();
       });
 
       btnEL.addEventListener('click', () => {
