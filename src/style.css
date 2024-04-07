@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+#app {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+a {
+  display: inline-block;
+}
+
+input {
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  word-break: normal;
+}
+
+ol {
+  list-style: decimal !important;
+}
+
+code {
+  text-wrap: wrap !important;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* FADE */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 250ms ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

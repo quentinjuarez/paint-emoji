@@ -1,0 +1,51 @@
+.emoji-mart-category .emoji-mart-emoji span {
+  @apply !cursor-pointer;
+}
+
+.emoji-mart {
+  @apply !bg-slate-900 !border-slate-700;
+}
+
+.emoji-mart-bar {
+  @apply !border-slate-700;
+}
+
+.emoji-mart-no-results {
+  @apply !text-slate-300;
+}
+
+.emoji-mart-category-label h3 {
+  @apply !bg-slate-900  !text-slate-200;
+}
+
+.emoji-mart-skin-swatch-selected:after {
+  @apply !bg-slate-900;
+}
+
+.emoji-mart-anchors {
+  @apply !bg-slate-800 !text-slate-200;
+}
+
+.emoji-mart-anchor:hover {
+  @apply !text-slate-300;
+}
+
+.emoji-mart-anchor-selected {
+  @apply !text-purple-500;
+}
+
+.emoji-mart-anchor-selected:hover {
+  @apply !text-purple-500;
+}
+
+.emoji-mart-anchor-bar {
+  @apply !bg-purple-500;
+}
+
+.emoji-mart-skin-swatches {
+  @apply !bg-slate-900 !border-slate-700;
+}
+
+.emoji-mart-search input {
+  @apply !border-slate-700;
+}
