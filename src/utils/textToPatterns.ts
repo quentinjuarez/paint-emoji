@@ -1,0 +1,861 @@
+const A = `
+01110
+10001
+10001
+11111
+10001
+10001
+10001
+`;
+
+const B = `
+11110
+10001
+10001
+11110
+10001
+10001
+11110
+`;
+
+const C = `
+01110
+10001
+10000
+10000
+10000
+10001
+01110
+`;
+
+const D = `
+11110
+10001
+10001
+10001
+10001
+10001
+11110
+`;
+
+const E = `
+11111
+10000
+10000
+11110
+10000
+10000
+11111
+`;
+
+const F = `
+11111
+10000
+10000
+11110
+10000
+10000
+10000
+`;
+
+const G = `
+01110
+10001
+10000
+10000
+10011
+10001
+01110
+`;
+
+const H = `
+10001
+10001
+10001
+11111
+10001
+10001
+10001
+`;
+
+const I = `
+01110
+00100
+00100
+00100
+00100
+00100
+01110
+`;
+
+const J = `
+00111
+00010
+00010
+00010
+00010
+10010
+01100
+`;
+
+const K = `
+10001
+10010
+10100
+11000
+10100
+10010
+10001
+`;
+
+const L = `
+10000
+10000
+10000
+10000
+10000
+10000
+11111
+`;
+
+const M = `
+10001
+11011
+10101
+10101
+10001
+10001
+10001
+`;
+
+const N = `
+10001
+10001
+11001
+10101
+10011
+10001
+10001
+`;
+
+const O = `
+01110
+10001
+10001
+10001
+10001
+10001
+01110
+`;
+
+const P = `
+11110
+10001
+10001
+11110
+10000
+10000
+10000
+`;
+
+const Q = `
+01110
+10001
+10001
+10001
+10001
+10001
+01111
+`;
+
+const R = `
+11110
+10001
+10001
+11110
+10100
+10010
+10001
+`;
+
+const S = `
+01111
+10000
+10000
+01110
+00001
+00001
+11110
+`;
+
+const T = `
+11111
+00100
+00100
+00100
+00100
+00100
+00100
+`;
+
+const U = `
+10001
+10001
+10001
+10001
+10001
+10001
+01110
+`;
+
+const V = `
+10001
+10001
+10001
+10001
+10001
+01010
+00100
+`;
+
+const W = `
+10001
+10001
+10001
+10101
+10101
+10101
+01010
+`;
+
+const X = `
+10001
+10001
+01010
+00100
+01010
+10001
+10001
+`;
+
+const Y = `
+10001
+10001
+01010
+00100
+00100
+00100
+00100
+`;
+
+const Z = `
+11111
+00001
+00010
+00100
+01000
+10000
+11111
+`;
+
+const SPACE = `
+00000
+00000
+00000
+00000
+00000
+00000
+00000
+`;
+
+const NUMBER_0 = `
+01110
+10001
+10011
+10101
+11001
+10001
+01110
+`;
+
+const NUMBER_1 = `
+00100
+01100
+00100
+00100
+00100
+00100
+01110
+`;
+
+const NUMBER_2 = `
+01110
+10001
+00001
+00010
+00100
+01000
+11111
+`;
+
+const NUMBER_3 = `
+01110
+10001
+00001
+00110
+00001
+10001
+01110
+`;
+
+const NUMBER_4 = `
+00010
+00110
+01010
+10010
+11111
+00010
+00010
+`;
+
+const NUMBER_5 = `
+11111
+10000
+11110
+00001
+00001
+10001
+01110
+`;
+
+const NUMBER_6 = `
+01110
+10001
+10000
+11110
+10001
+10001
+01110
+`;
+
+const NUMBER_7 = `
+11111
+00001
+00010
+00100
+01000
+10000
+10000
+`;
+
+const NUMBER_8 = `
+01110
+10001
+10001
+01110
+10001
+10001
+01110
+`;
+
+const NUMBER_9 = `
+01110
+10001
+10001
+01111
+00001
+00010
+01100
+`;
+
+const SYMBOL_EXCLAMATION = `
+00100
+00100
+00100
+00100
+00100
+00000
+00100
+`;
+
+const SYMBOL_QUESTION = `
+01110
+10001
+00001
+00010
+00100
+00000
+00100
+`;
+
+const SYMBOL_PERIOD = `
+00000
+00000
+00000
+00000
+00000
+00000
+00100
+`;
+
+const SYMBOL_COMMA = `
+00000
+00000
+00000
+00000
+00000
+00100
+01000
+`;
+
+const SYMBOL_APOSTROPHE = `
+00100
+00100
+00000
+00000
+00000
+00000
+00000
+`;
+
+const SYMBOL_COLON = `
+00000
+00100
+00000
+00000
+00100
+00000
+00000
+`;
+
+const SYMBOL_SEMICOLON = `
+00000
+00100
+00000
+00000
+00100
+00000
+00100
+01000
+`;
+
+const SYMBOL_PLUS = `
+00000
+00100
+00100
+11111
+00100
+00100
+00000
+`;
+
+const SYMBOL_MINUS = `
+00000
+00000
+00000
+11111
+00000
+00000
+00000
+`;
+
+const SYMBOL_ASTERISK = `
+00000
+10001
+01010
+00100
+01010
+10001
+00000
+`;
+
+const SYMBOL_SLASH = `
+00001
+00010
+00100
+01000
+10000
+00000
+00000
+`;
+
+const SYMBOL_BACKSLASH = `
+10000
+01000
+00100
+00010
+00001
+00000
+00000
+`;
+
+const SYMBOL_UNDERSCORE = `
+00000
+00000
+00000
+00000
+00000
+00000
+11111
+`;
+
+const SYMBOL_EQUAL = `
+00000
+00000
+11111
+00000
+11111
+00000
+00000
+`;
+
+const SYMBOL_LESS_THAN = `
+00001
+00010
+00100
+01000
+00100
+00010
+00001
+`;
+
+const SYMBOL_GREATER_THAN = `
+10000
+01000
+00100
+00010
+00100
+01000
+10000
+`;
+
+const SYMBOL_QUOTATION_MARK = `
+01010
+01010
+00100
+00000
+00000
+00000
+00000
+`;
+
+const SYMBOL_DOUBLE_QUOTATION_MARK = `
+10101
+10101
+01010
+00000
+00000
+00000
+00000
+`;
+
+const SYMBOL_HASH = `
+01010
+11111
+01010
+11111
+01010
+01010
+00000
+`;
+
+const SYMBOL_DOLLAR = `
+00100
+01110
+10001
+01110
+00010
+11100
+00100
+`;
+
+const SYMBOL_PERCENT = `
+11001
+11010
+00100
+01001
+10011
+01011
+00100
+`;
+
+const SYMBOL_AMPERSAND = `
+01100
+10010
+10010
+01100
+10101
+11011
+01101
+`;
+
+const SYMBOL_AT = `
+01110
+10001
+10111
+10101
+10111
+10000
+01110
+`;
+
+const SYMBOL_LEFT_PARENTHESIS = `
+00010
+00100
+00100
+00100
+00100
+00100
+00010
+`;
+
+const SYMBOL_RIGHT_PARENTHESIS = `
+01000
+00100
+00100
+00100
+00100
+00100
+01000
+`;
+
+const SYMBOL_LEFT_SQUARE_BRACKET = `
+01110
+01000
+01000
+01000
+01000
+01000
+01110
+`;
+
+const SYMBOL_RIGHT_SQUARE_BRACKET = `
+01110
+00010
+00010
+00010
+00010
+00010
+01110
+`;
+
+const SYMBOL_LEFT_CURLY_BRACKET = `
+00110
+00100
+00100
+01100
+00100
+00100
+00110
+`;
+
+const SYMBOL_RIGHT_CURLY_BRACKET = `
+01100
+00100
+00100
+00110
+00100
+00100
+01100
+`;
+
+const SYMBOL_LEFT_ANGLE_BRACKET = `
+00010
+00100
+01000
+00100
+00010
+00000
+00000
+`;
+
+const SYMBOL_RIGHT_ANGLE_BRACKET = `
+01000
+00100
+00010
+00100
+01000
+00000
+00000
+`;
+
+const SYMBOL_VERTICAL_BAR = `
+00100
+00100
+00100
+00100
+00100
+00100
+00100
+`;
+
+const SYMBOL_BACKTICK = `
+00100
+00010
+00000
+00000
+00000
+00000
+00000
+`;
+
+const SYMBOL_TILDE = `
+00000
+00000
+00000
+01101
+10010
+00000
+00000
+`;
+
+const EMPTY = `
+0
+0
+0
+0
+0
+0
+0
+`;
+
+const MAP: { [key: string]: string } = {
+  A,
+  B,
+  C,
+  D,
+  E,
+  F,
+  G,
+  H,
+  I,
+  J,
+  K,
+  L,
+  M,
+  N,
+  O,
+  P,
+  Q,
+  R,
+  S,
+  T,
+  U,
+  V,
+  W,
+  X,
+  Y,
+  Z,
+  ' ': SPACE,
+  '0': NUMBER_0,
+  '1': NUMBER_1,
+  '2': NUMBER_2,
+  '3': NUMBER_3,
+  '4': NUMBER_4,
+  '5': NUMBER_5,
+  '6': NUMBER_6,
+  '7': NUMBER_7,
+  '8': NUMBER_8,
+  '9': NUMBER_9,
+  '!': SYMBOL_EXCLAMATION,
+  '?': SYMBOL_QUESTION,
+  '.': SYMBOL_PERIOD,
+  ',': SYMBOL_COMMA,
+  "'": SYMBOL_APOSTROPHE,
+  ':': SYMBOL_COLON,
+  ';': SYMBOL_SEMICOLON,
+  '+': SYMBOL_PLUS,
+  '-': SYMBOL_MINUS,
+  '*': SYMBOL_ASTERISK,
+  '/': SYMBOL_SLASH,
+  '\\': SYMBOL_BACKSLASH,
+  _: SYMBOL_UNDERSCORE,
+  '=': SYMBOL_EQUAL,
+  '<': SYMBOL_LESS_THAN,
+  '>': SYMBOL_GREATER_THAN,
+  '"': SYMBOL_QUOTATION_MARK,
+  //   '\"': SYMBOL_DOUBLE_QUOTATION_MARK,
+  '#': SYMBOL_HASH,
+  $: SYMBOL_DOLLAR,
+  '%': SYMBOL_PERCENT,
+  '&': SYMBOL_AMPERSAND,
+  '@': SYMBOL_AT,
+  '(': SYMBOL_LEFT_PARENTHESIS,
+  ')': SYMBOL_RIGHT_PARENTHESIS,
+  '[': SYMBOL_LEFT_SQUARE_BRACKET,
+  ']': SYMBOL_RIGHT_SQUARE_BRACKET,
+  '{': SYMBOL_LEFT_CURLY_BRACKET,
+  '}': SYMBOL_RIGHT_CURLY_BRACKET,
+  // '<': SYMBOL_LEFT_ANGLE_BRACKET,
+  // '>': SYMBOL_RIGHT_ANGLE_BRACKET,
+  '|': SYMBOL_VERTICAL_BAR,
+  '`': SYMBOL_BACKTICK,
+  '~': SYMBOL_TILDE,
+};
+
+const textToPatterns = (text: string) => {
+  return joinPatterns(
+    text
+      .split('')
+      .map((char) => {
+        const pattern = MAP[removeDiacritics(char.toUpperCase())];
+
+        if (!pattern) {
+          return null;
+        }
+        return pattern;
+      })
+      .filter(Boolean) as string[]
+  );
+};
+
+function removeEmptyColumns(pattern: string): string {
+  if (pattern === SPACE) {
+    return EMPTY.trim();
+  }
+  const rows = pattern.trim().split('\n');
+  const numCols = rows[0].length;
+
+  const nonEmptyCols: number[] = [];
+
+  // Check each column for emptiness
+  for (let col = 0; col < numCols; col++) {
+    let isEmpty = true;
+    for (const row of rows) {
+      if (row[col] !== '0') {
+        isEmpty = false;
+        break;
+      }
+    }
+    if (!isEmpty) {
+      nonEmptyCols.push(col);
+    }
+  }
+
+  // Generate modified rows
+  const modifiedRows = rows.map((row) => {
+    let newRow = '';
+    for (const col of nonEmptyCols) {
+      newRow += row[col];
+    }
+    return newRow;
+  });
+
+  // Join modified rows and return the result
+  return modifiedRows.join('\n');
+}
+
+const joinPatterns = (patterns: string[]) => {
+  const lines = Array.from({ length: 7 }, () => '');
+
+  patterns.forEach((pattern) => {
+    const linesPattern = removeEmptyColumns(pattern).split('\n');
+    linesPattern.forEach((linePattern, i) => {
+      lines[i] += linePattern + '0';
+    });
+  });
+
+  return lines.join('\n');
+};
+
+export default textToPatterns;
