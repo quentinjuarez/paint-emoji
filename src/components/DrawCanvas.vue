@@ -1,13 +1,24 @@
 <template>
   <div class="space-y-4">
     <div class="flex justify-center items-center">
-      <canvas
-        ref="canvasRef"
-        :width="canvasSize"
-        :height="canvasSize"
+      <div
         :style="{ width: `${canvasSize}px`, height: `${canvasSize}px` }"
-        class="bg-white cursor-crosshair"
-      ></canvas>
+        class="bg-white select-none"
+        ref="canvasRef"
+      >
+        <div v-for="(row, i) in initFrame" :key="i" class="flex">
+          <div
+            v-for="(value, j) in row"
+            :key="j"
+            :style="{ width: `${tileSize}px`, height: `${tileSize}px` }"
+          >
+            <BaseEmoji
+              v-if="value !== '0'"
+              :emoji="store.emojiSelection[valueToIndex(value)]"
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <div class="flex flex-col gap-4">
       <button @click="downloadTextFile">Save as Text</button>
@@ -28,7 +39,11 @@ const canvasSize = tilesPerRow * tileSize;
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 
-const ctx = ref<CanvasRenderingContext2D | null>(null);
+const initFrame = ref(
+  Array.from({ length: tilesPerRow }, () =>
+    Array.from({ length: tilesPerRow }, () => '0')
+  )
+);
 
 const isDrawing = ref(false);
 const isErasing = ref(false);
@@ -38,12 +53,14 @@ const reset = () => {
   store.frames = [];
 };
 
+const valueToIndex = (value: string) => {
+  return parseInt(value, 10) - 1;
+};
+
 onMounted(() => {
   if (!canvasRef.value) {
     return;
   }
-
-  ctx.value = canvasRef.value.getContext('2d');
 
   textToCanvas(store.lastFrame);
 
@@ -83,7 +100,7 @@ onMounted(() => {
 });
 
 const draw = (e: MouseEvent) => {
-  if (!canvasRef.value || !ctx.value) return;
+  if (!canvasRef.value) return;
   const rect = canvasRef.value.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -92,12 +109,14 @@ const draw = (e: MouseEvent) => {
   const tileX = Math.floor(x / tileSize) * tileSize;
   const tileY = Math.floor(y / tileSize) * tileSize;
 
-  ctx.value.fillStyle = 'black';
-  ctx.value.fillRect(tileX, tileY, tileSize, tileSize);
+  initFrame.value[tileY / tileSize][tileX / tileSize] =
+    store.selectedEmojiIndex === undefined
+      ? '0'
+      : String(store.selectedEmojiIndex + 1);
 };
 
 const erase = (e: MouseEvent) => {
-  if (!canvasRef.value || !ctx.value) return;
+  if (!canvasRef.value) return;
   const rect = canvasRef.value.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -106,32 +125,20 @@ const erase = (e: MouseEvent) => {
   const tileX = Math.floor(x / tileSize) * tileSize;
   const tileY = Math.floor(y / tileSize) * tileSize;
 
-  ctx.value.fillStyle = 'white';
-  ctx.value.fillRect(tileX, tileY, tileSize, tileSize);
+  initFrame.value[tileY / tileSize][tileX / tileSize] = '0';
 };
 
 const canvasToText = () => {
-  if (!canvasRef.value || !ctx.value) return;
+  if (!canvasRef.value) return;
   // black is 1, white is 0
   // canvasSize x canvasSize
   // with tileSize x tileSize
-  const data = ctx.value.getImageData(0, 0, canvasSize, canvasSize).data;
   let text = '';
 
-  for (let blockY = 0; blockY < canvasSize; blockY += tileSize) {
-    for (let blockX = 0; blockX < canvasSize; blockX += tileSize) {
-      const pixelIndex = (blockY * canvasSize + blockX) * 4;
-      const r = data[pixelIndex];
-      const g = data[pixelIndex + 1];
-      const b = data[pixelIndex + 2];
-      const a = data[pixelIndex + 3];
-
-      // Check if the top-left pixel of the block is black
-      if (r === 0 && g === 0 && b === 0 && a === 255) {
-        text += '1';
-      } else {
-        text += '0';
-      }
+  for (let y = 0; y < canvasSize; y += tileSize) {
+    for (let x = 0; x < canvasSize; x += tileSize) {
+      const color = initFrame.value[y / tileSize][x / tileSize];
+      text += color;
     }
     text += '\n';
   }
@@ -187,12 +194,11 @@ const maxCharactersPerRow = canvasSize / tileSize;
 const maxRows = canvasSize / tileSize;
 
 const textToCanvas = (text?: string) => {
-  if (!ctx.value) return;
-
   if (!text) {
     // Clear the canvas
-    ctx.value.fillStyle = 'white';
-    ctx.value.fillRect(0, 0, canvasSize, canvasSize);
+    initFrame.value = Array.from({ length: tilesPerRow }, () =>
+      Array.from({ length: tilesPerRow }, () => '0')
+    );
     return;
   }
   const lines = text.trim().split('\n');
@@ -216,8 +222,7 @@ const textToCanvas = (text?: string) => {
       const color = line.charAt(x);
       const blockX = x * tileSize;
       const blockY = y * tileSize;
-      ctx.value.fillStyle = color === '1' ? 'black' : 'white';
-      ctx.value.fillRect(blockX, blockY, tileSize, tileSize);
+      initFrame.value[blockY / tileSize][blockX / tileSize] = color;
     }
   }
 };

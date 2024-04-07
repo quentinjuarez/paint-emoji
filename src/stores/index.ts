@@ -5,22 +5,7 @@ export const useStore = defineStore('shape-to-emoji', {
     screenWidth: document.documentElement.clientWidth,
     screenHeight: document.documentElement.clientHeight,
     emojiSelection: [] as Emoji[],
-    colors: [
-      '#ff0000',
-      '#ff8000',
-      '#ffff00',
-      '#80ff00',
-      '#00ff00',
-      '#00ff80',
-      '#00ffff',
-      '#0080ff',
-      '#0000ff',
-      '#8000ff',
-      '#ff00ff',
-      '#ff0080',
-      '#000000',
-      '#808080',
-    ],
+    selectedEmojiIndex: undefined as number | undefined,
     frames: [] as string[],
   }),
   getters: {
@@ -30,19 +15,18 @@ export const useStore = defineStore('shape-to-emoji', {
   },
   actions: {
     selectEmoji(emoji: Emoji) {
-      // this.emojiSelection.push({
-      //   ...emoji,
-      //   color: '#000000',
-      // });
-      this.emojiSelection = [
-        {
-          ...emoji,
-          color: '#000000',
-        },
-      ];
+      if (
+        this.emojiSelection.length === 9 ||
+        this.emojiSelection.find((e) => emoji.value === e.value)
+      ) {
+        return;
+      }
+      this.emojiSelection.push(emoji);
+      this.selectedEmojiIndex = this.emojiSelection.length - 1;
     },
     removeEmoji(index: number) {
       this.emojiSelection.splice(index, 1);
+      this.selectedEmojiIndex = undefined;
     },
     addFrame(frame: string) {
       this.frames.push(frame);

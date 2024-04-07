@@ -22,6 +22,5 @@ declare global {
     name: string;
     value: string;
     type: 'slack' | 'custom';
-    color?: string;
   }
 }

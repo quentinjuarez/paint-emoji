@@ -1,14 +1,52 @@
 <template>
   <div class="flex gap-4">
-    <div class="flex gap-1">
+    <div class="flex gap-1 py-2">
       <button
         v-for="(e, index) in store.emojiSelection"
         :key="e.name"
-        class="rounded bg-white/10 h-8 w-8 border border-transparent hover:border-white transition-all"
-        @click="handleRemove(index)"
+        class="rounded bg-white/10 h-8 w-8 border border-transparent hover:border-white transition-all group relative"
+        :class="[
+          store.selectedEmojiIndex === index
+            ? '!border-purple-500 hover:!border-purple-600'
+            : '',
+        ]"
+        @click="store.selectedEmojiIndex = index"
       >
         <span v-if="e.type === 'slack'"> {{ e.value }}</span>
-        <img v-else :src="e.value" :alt="e.name" />
+        <img class="rounded" v-else :src="e.value" :alt="e.name" />
+
+        <!-- TRASH -->
+        <i
+          class="opacity-0 group-hover:opacity-100 transition-all -top-2 -right-2 absolute bg-red-500 rounded-full p-0.5 cursor-pointer"
+          @click="handleRemove(index)"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </i>
+      </button>
+
+      <button
+        class="rounded bg-white/10 h-8 w-8 border border-transparent hover:border-white transition-all group relative"
+        :class="[
+          store.selectedEmojiIndex === undefined
+            ? '!border-purple-500 hover:!border-purple-600'
+            : '',
+        ]"
+        @click="store.selectedEmojiIndex = undefined"
+      >
+        🗑️
       </button>
     </div>
     <button @click="handleCopy">COPY</button>
@@ -55,7 +93,12 @@ const handleCopy = () => {
   const copyText = trimmedLines
     .join('\n')
     .replaceAll('0', ':transparent:')
-    .replaceAll('1', store.emojiSelection[0].name);
+    .replace(/\d/g, (match) => {
+      const index = parseInt(match) - 1;
+      return index < store.emojiSelection.length
+        ? store.emojiSelection[index].name
+        : '';
+    });
 
   navigator.clipboard.writeText(copyText);
 };
