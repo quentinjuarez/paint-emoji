@@ -16,6 +16,7 @@ export default () => {
     server: {
       port: 5175,
     },
+    base: isDev ? '/' : '/shape-to-emoji',
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
