@@ -1,1 +1,1 @@
-# Vue 3 Template
+# PaintEmoji
