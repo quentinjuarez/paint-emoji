@@ -22,6 +22,10 @@
           </button>
         </div>
       </div>
+
+      <h2 class="text-xl font-bold">Text</h2>
+
+      <TextEmoji />
     </div>
   </Col>
 </template>
