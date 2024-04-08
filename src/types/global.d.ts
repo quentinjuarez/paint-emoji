@@ -3,6 +3,7 @@ export {};
 declare global {
   const __DEV__: boolean;
   const __VERSION__: string;
+  const __BASE_URL__: string;
 
   interface CustomEmoji {
     name: string;

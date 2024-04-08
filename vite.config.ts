@@ -11,20 +11,22 @@ import { version } from './package.json';
 // https://vitejs.dev/config/
 export default () => {
   const isDev = process.env.NODE_ENV !== 'production';
+  const baseUrl = isDev ? '/' : '/shape-to-emoji';
 
   return defineConfig({
     server: {
       port: 5175,
     },
-    base: isDev ? '/' : '/shape-to-emoji',
+    base: baseUrl,
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src'),
       },
     },
     define: {
+      __BASE_URL__: `'${baseUrl}'`,
       __DEV__: isDev,
-      __VERSION__: String(version),
+      __VERSION__: `'${version}'`,
     },
     build: {
       outDir: 'docs',

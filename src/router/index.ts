@@ -4,7 +4,7 @@ import globalMiddleware from '@/middlewares/global';
 
 export default () => {
   const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(__BASE_URL__),
     routes: routes,
   });
 

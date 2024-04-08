@@ -45,7 +45,7 @@ const signatureHeader = () => {
   const project = 'shape-to-emoji';
   const name = 'Created By: Quentin Juarez';
   const github = 'GitHub: https://github.com/quentinjuarez/shape-to-emoji';
-  const version = `Version: __VERSION__\n`;
+  const version = `Version: ${__VERSION__}\n`;
   return [project, name, github, version].join('\n');
 };
 
