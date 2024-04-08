@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue';
+import { version } from './package.json';
 
 // https://vitejs.dev/config/
 export default () => {
@@ -22,7 +23,10 @@ export default () => {
     },
     define: {
       __DEV__: isDev,
-      VERSION: JSON.stringify(require('./package.json').version),
+      __VERSION__: String(version),
+    },
+    build: {
+      outDir: 'docs',
     },
     plugins: [
       AutoImport({

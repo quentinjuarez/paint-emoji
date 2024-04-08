@@ -17,16 +17,17 @@
   </BaseModal>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import data from 'emoji-mart-vue-fast/data/google.json';
 import 'emoji-mart-vue-fast/css/emoji-mart.css';
+// @ts-ignore
 import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src';
 
 // Create emoji data index.
 // We can change it (for example, filter by category) before passing to the component.
 let emojiIndex = new EmojiIndex(data);
 
-const selectEmoji = (emoji) => {
+const selectEmoji = (emoji: { native: string; colons: string }) => {
   return emit('select', {
     value: emoji.native,
     name: emoji.colons,

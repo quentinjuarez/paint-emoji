@@ -8,12 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BaseEmoji: typeof import('./../components/BaseEmoji.vue')['default']
-    BaseEmojiModal: typeof import('./../components/BaseEmojiModal.vue')['default']
     BaseModal: typeof import('./../components/BaseModal.vue')['default']
-    BaseTooltip: typeof import('./../components/Base/BaseTooltip.vue')['default']
-    ClassicEmoji: typeof import('./../components/ClassicEmoji.vue')['default']
     Col: typeof import('./../components/Layout/Col.vue')['default']
-    DrawCanva: typeof import('./../components/DrawCanva.vue')['default']
     DrawCanvas: typeof import('./../components/DrawCanvas.vue')['default']
     DrawPanel: typeof import('./../components/DrawPanel.vue')['default']
     DrawTools: typeof import('./../components/DrawTools.vue')['default']
@@ -21,8 +17,6 @@ declare module 'vue' {
     EmojiList: typeof import('./../components/EmojiList.vue')['default']
     EmojiSelection: typeof import('./../components/EmojiSelection.vue')['default']
     Header: typeof import('./../components/Header.vue')['default']
-    NotoEmoji: typeof import('./../components/NotoEmoji.vue')['default']
-    NotoEmojiModal: typeof import('./../components/NotoEmojiModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SlackEmojiModal: typeof import('./../components/SlackEmojiModal.vue')['default']
