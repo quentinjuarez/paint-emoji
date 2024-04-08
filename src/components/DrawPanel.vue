@@ -1,10 +1,8 @@
 <template>
-  <div class="w-full space-y-4 p-2">
+  <div class="w-full h-[calc(100vh-164px)] space-y-4 mt-12">
     <EmojiSelection />
 
-    <div class="h-full w-full flex justify-center items-center">
-      <DrawCanvas />
-    </div>
+    <DrawCanvas />
   </div>
 </template>
 

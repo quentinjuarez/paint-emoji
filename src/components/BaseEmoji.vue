@@ -1,6 +1,8 @@
 <template>
   <div class="select-none">
-    <span v-if="displayEmoji.type === 'slack'"> {{ displayEmoji.value }}</span>
+    <span class="text-sm h-4" v-if="displayEmoji.type === 'slack'">
+      {{ displayEmoji.value }}</span
+    >
     <img
       :draggable="false"
       class="select-none"

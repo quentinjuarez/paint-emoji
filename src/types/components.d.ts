@@ -17,6 +17,7 @@ declare module 'vue' {
     DrawCanvas: typeof import('./../components/DrawCanvas.vue')['default']
     DrawPanel: typeof import('./../components/DrawPanel.vue')['default']
     DrawTools: typeof import('./../components/DrawTools.vue')['default']
+    EmojiFiles: typeof import('./../components/EmojiFiles.vue')['default']
     EmojiList: typeof import('./../components/EmojiList.vue')['default']
     EmojiSelection: typeof import('./../components/EmojiSelection.vue')['default']
     Header: typeof import('./../components/Header.vue')['default']
@@ -25,5 +26,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SlackEmojiModal: typeof import('./../components/SlackEmojiModal.vue')['default']
+    TextEmoji: typeof import('./../components/TextEmoji.vue')['default']
   }
 }

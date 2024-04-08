@@ -51,8 +51,6 @@
 
 <script setup lang="ts">
 import tippy from 'tippy.js';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/themes/light.css';
 
 import Fuse from 'fuse.js';
 
