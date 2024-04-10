@@ -6,7 +6,7 @@
       :href="`#${tab.name}`"
       class="w-full p-1 rounded bg-white/10 text-center flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
       :class="{
-        'bg-purple-500 hover:!bg-purple-600': tab.name === props.tab,
+        '!bg-purple-500 hover:!bg-purple-600': tab.name === props.tab,
       }"
     >
       {{ tab.label }}
