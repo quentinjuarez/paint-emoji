@@ -22,12 +22,13 @@ export const useStore = defineStore('shape-to-emoji', {
   },
   actions: {
     selectEmoji(emoji: Emoji) {
-      if (
-        this.emojiSelection.length === 9 ||
-        this.emojiSelection.find((e) => emoji.value === e.value)
-      ) {
+      if (this.emojiSelection.find((e) => emoji.value === e.value)) {
         return;
       }
+      if (this.emojiSelection.length === 9) {
+        this.emojiSelection.shift();
+      }
+
       this.emojiSelection.push(emoji);
       this.selectedEmojiIndex = this.emojiSelection.length - 1;
     },
