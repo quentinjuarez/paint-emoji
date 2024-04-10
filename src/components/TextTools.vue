@@ -3,7 +3,11 @@
     <h2 class="text-xl font-bold">Text</h2>
 
     <div class="flex items-center gap-2">
-      <input id="tight-mode" type="checkbox" v-model="isTight" />
+      <input
+        id="tight-mode"
+        type="checkbox"
+        v-model="store.textSettings.tight"
+      />
       <label for="tight-mode">Tight</label>
     </div>
 
@@ -21,13 +25,15 @@
 </template>
 
 <script setup lang="ts">
-const isTight = ref(false);
 const copy = ref(false);
 
 const store = useStore();
 
 const patterns = computed(() => {
-  return textToPatterns(store.text, isTight.value ? 'tight' : 'normal');
+  return textToPatterns(
+    store.text,
+    store.textSettings.tight ? 'tight' : 'normal'
+  );
 });
 
 const handleCopyText = () => {

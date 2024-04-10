@@ -18,6 +18,9 @@ export const useStore = defineStore('shape-to-emoji', {
     textEmoji: undefined as Emoji | undefined,
     tab: 'draw',
     text: '',
+    textSettings: {
+      tight: false,
+    },
   }),
   getters: {
     lastFrame(state) {

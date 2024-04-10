@@ -41,9 +41,32 @@
       v-model="store.text"
       class="w-full bg-white/10 rounded p-2"
     />
+
+    <div
+      v-if="patterns[0].length"
+      class="w-fit p-4"
+      :style="{
+        backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
+      }"
+    >
+      <div v-for="(line, index) in patterns" :key="index" class="flex w-fit">
+        <div v-for="(char, index) in line" :key="index" class="w-4 h-4">
+          <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const store = useStore();
+
+const patterns = computed(() => {
+  return textToPatterns(
+    store.text,
+    store.textSettings.tight ? 'tight' : 'normal'
+  )
+    .split('\n')
+    .map((line) => line.split(''));
+});
 </script>
