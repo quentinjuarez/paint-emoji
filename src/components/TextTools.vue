@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-2">
-    <input type="text" v-model="text" class="w-full bg-white/10 rounded p-2" />
+    <h2 class="text-xl font-bold">Text</h2>
 
     <div class="flex items-center gap-2">
       <input id="tight-mode" type="checkbox" v-model="isTight" />
@@ -8,8 +8,12 @@
     </div>
 
     <button
+      :disabled="!store.textEmoji"
       @click="handleCopyText"
       class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-full"
+      :class="{
+        'cursor-not-allowed hover:!bg-white/10': !store.textEmoji,
+      }"
     >
       {{ copy ? '✅ Copied!' : 'Copy' }}
     </button>
@@ -17,19 +21,18 @@
 </template>
 
 <script setup lang="ts">
-const text = ref('');
 const isTight = ref(false);
 const copy = ref(false);
 
 const store = useStore();
 
 const patterns = computed(() => {
-  return textToPatterns(text.value, isTight.value ? 'tight' : 'normal');
+  return textToPatterns(store.text, isTight.value ? 'tight' : 'normal');
 });
 
 const handleCopyText = () => {
-  if (store.selectedEmojiIndex === undefined) return;
-  const emoji = store.emojiSelection[store.selectedEmojiIndex];
+  if (!store.textEmoji) return;
+  const emoji = store.textEmoji;
 
   if (!emoji) return;
 

@@ -1,0 +1,49 @@
+<template>
+  <div class="mt-8 space-y-4">
+    <button
+      v-if="store.textEmoji"
+      class="draggable rounded bg-white/10 h-8 w-8 transition-all group relative !border-purple-500 border-2"
+    >
+      <span v-if="store.textEmoji.type === 'slack'">
+        {{ store.textEmoji.value }}</span
+      >
+      <img
+        class="rounded"
+        v-else
+        :src="store.textEmoji.value"
+        :alt="store.textEmoji.name"
+      />
+
+      <!-- TRASH -->
+      <i
+        class="opacity-0 group-hover:opacity-100 transition-all -top-2 -right-2 absolute bg-red-500 rounded-full p-0.5 cursor-pointer"
+        @click="store.removeEmoji(0)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </i>
+    </button>
+
+    <input
+      type="text"
+      v-model="store.text"
+      class="w-full bg-white/10 rounded p-2"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+const store = useStore();
+</script>

@@ -15,6 +15,9 @@ export const useStore = defineStore('shape-to-emoji', {
       tilesPerRow: 24,
     },
     darkMode: false,
+    textEmoji: undefined as Emoji | undefined,
+    tab: 'draw',
+    text: '',
   }),
   getters: {
     lastFrame(state) {
@@ -23,6 +26,11 @@ export const useStore = defineStore('shape-to-emoji', {
   },
   actions: {
     selectEmoji(emoji: Emoji) {
+      if (this.tab === 'text') {
+        this.textEmoji = emoji;
+        return;
+      }
+
       if (this.emojiSelection.find((e) => emoji.value === e.value)) {
         return;
       }
@@ -34,6 +42,10 @@ export const useStore = defineStore('shape-to-emoji', {
       this.selectedEmojiIndex = this.emojiSelection.length - 1;
     },
     removeEmoji(index: number) {
+      if (this.tab === 'text') {
+        this.textEmoji = undefined;
+      }
+
       this.emojiSelection.splice(index, 1);
       this.selectedEmojiIndex = undefined;
     },

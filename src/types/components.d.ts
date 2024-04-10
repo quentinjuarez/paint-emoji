@@ -21,6 +21,10 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SlackEmojiModal: typeof import('./../components/SlackEmojiModal.vue')['default']
-    TextEmoji: typeof import('./../components/TextEmoji.vue')['default']
+    TextEmoji: (typeof import('../components/TextTools.vue'))['default']
+    TextPanel: typeof import('./../components/TextPanel.vue')['default']
+    TextTools: typeof import('./../components/TextTools.vue')['default']
+    ThemeTools: typeof import('./../components/ThemeTools.vue')['default']
+    Tools: typeof import('./../components/Tools.vue')['default']
   }
 }

@@ -1,39 +1,27 @@
 <template>
-  <Col>
-    <div class="flex flex-col space-y-4">
-      <h2 class="text-xl font-bold">Tools</h2>
+  <div v-show="store.tab === 'draw'" class="space-y-4">
+    <h2 class="text-xl font-bold">Tools</h2>
 
-      <div class="space-y-2">
-        <EmojiFiles />
+    <div class="space-y-2">
+      <EmojiFiles />
 
-        <div class="flex flex-col justify-center gap-2">
-          <button
-            @click="reset"
-            class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors"
-          >
-            Clear Canvas
-          </button>
+      <div class="flex flex-col justify-center gap-2">
+        <button
+          @click="reset"
+          class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors"
+        >
+          Clear Canvas
+        </button>
 
-          <button
-            @click="handleCopy"
-            class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors"
-          >
-            {{ copy ? '✅ Copied!' : 'Copy' }}
-          </button>
-        </div>
-      </div>
-
-      <h2 class="text-xl font-bold">Text</h2>
-
-      <TextEmoji />
-
-      <h2 class="text-xl font-bold">Slack Theme</h2>
-      <div class="flex items-center gap-2">
-        <input id="dark-mode" type="checkbox" v-model="store.darkMode" />
-        <label for="dark-mode">Dark mode</label>
+        <button
+          @click="handleCopy"
+          class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors"
+        >
+          {{ copy ? '✅ Copied!' : 'Copy' }}
+        </button>
       </div>
     </div>
-  </Col>
+  </div>
 </template>
 
 <script setup lang="ts">

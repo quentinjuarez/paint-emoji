@@ -3,30 +3,30 @@
     <EmojiList />
 
     <div class="mt-4 w-full">
-      <HeaderTabs :tab="tab" />
+      <HeaderTabs :tab="store.tab" />
 
-      <DrawPanel v-show="tab === 'draw'" />
-      <TextPanel v-show="tab === 'text'" />
+      <DrawPanel v-show="store.tab === 'draw'" />
+      <TextPanel v-show="store.tab === 'text'" />
     </div>
 
-    <DrawTools />
+    <Tools />
   </div>
 </template>
 
 <script setup lang="ts">
-const tab = ref('draw');
+const store = useStore();
 
 const handleHashChange = () => {
   const hash = window.location.hash;
 
   if (!hash) {
-    tab.value = 'draw';
+    store.tab = 'draw';
     return;
   }
 
   const id = hash.slice(1);
 
-  tab.value = id;
+  store.tab = id;
 };
 
 const route = useRoute();
