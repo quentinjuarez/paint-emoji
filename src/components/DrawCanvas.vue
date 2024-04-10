@@ -1,8 +1,12 @@
 <template>
   <div class="flex justify-center items-center h-full">
     <div
-      :style="{ width: `${CANVAS_SIZE}px`, height: `${CANVAS_SIZE}px` }"
-      class="bg-white select-none"
+      :style="{
+        width: `${CANVAS_SIZE}px`,
+        height: `${CANVAS_SIZE}px`,
+        backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
+      }"
+      class="select-none"
       ref="canvasRef"
     >
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">

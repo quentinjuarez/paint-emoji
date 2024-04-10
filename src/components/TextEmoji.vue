@@ -2,10 +2,10 @@
   <div class="space-y-2">
     <input type="text" v-model="text" class="w-full bg-white/10 rounded p-2" />
 
-    <label class="flex items-center gap-2">
-      <input type="checkbox" v-model="isTight" />
-      <span>Tight</span>
-    </label>
+    <div class="flex items-center gap-2">
+      <input id="tight-mode" type="checkbox" v-model="isTight" />
+      <label for="tight-mode">Tight</label>
+    </div>
 
     <button
       @click="handleCopyText"

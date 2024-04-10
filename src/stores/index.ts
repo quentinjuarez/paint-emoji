@@ -14,6 +14,7 @@ export const useStore = defineStore('shape-to-emoji', {
       tileSize: 16,
       tilesPerRow: 24,
     },
+    darkMode: false,
   }),
   getters: {
     lastFrame(state) {
