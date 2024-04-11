@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center h-full">
+  <div class="flex flex-col justify-center items-center h-full gap-4">
     <div
       :style="{
         width: `${CANVAS_SIZE}px`,
@@ -22,6 +22,7 @@
         </div>
       </div>
     </div>
+    <slot></slot>
   </div>
 </template>
 

@@ -5,8 +5,8 @@
     <div class="mt-4 w-full">
       <HeaderTabs :tab="store.tab" />
 
-      <DrawPanel v-show="store.tab === 'draw'" />
-      <TextPanel v-show="store.tab === 'text'" />
+      <DrawPanel v-if="store.tab === 'draw'" />
+      <TextPanel v-if="store.tab === 'text'" />
     </div>
 
     <Tools />
