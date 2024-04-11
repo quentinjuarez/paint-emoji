@@ -36,20 +36,36 @@
       </i>
     </button>
 
-    <input
-      type="text"
-      v-model="store.text"
-      class="w-full bg-white/10 rounded p-2"
-    />
+    <div class="flex items-center gap-4">
+      <input
+        type="text"
+        v-model="store.text"
+        class="w-full bg-white/10 rounded px-2 py-1"
+      />
+      <button
+        :disabled="!store.textEmoji"
+        @click="handleCopyText"
+        class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-28"
+        :class="{
+          'cursor-not-allowed hover:!bg-white/10': !store.textEmoji,
+        }"
+      >
+        {{ copy ? '✅ Copied!' : 'Copy' }}
+      </button>
+    </div>
 
     <div
-      v-if="patterns[0].length"
+      v-if="displayPatterns[0].length"
       class="w-fit p-4"
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
       }"
     >
-      <div v-for="(line, index) in patterns" :key="index" class="flex w-fit">
+      <div
+        v-for="(line, index) in displayPatterns"
+        :key="index"
+        class="flex w-fit"
+      >
         <div v-for="(char, index) in line" :key="index" class="w-4 h-4">
           <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" />
         </div>
@@ -65,8 +81,49 @@ const patterns = computed(() => {
   return textToPatterns(
     store.text,
     store.textSettings.tight ? 'tight' : 'normal'
-  )
-    .split('\n')
-    .map((line) => line.split(''));
+  );
+});
+
+const displayPatterns = computed(() => {
+  return patterns.value.split('\n').map((line) => line.split(''));
+});
+
+const copy = ref(false);
+
+const handleCopyText = () => {
+  if (!store.textEmoji) return;
+  const emoji = store.textEmoji;
+
+  if (!emoji) return;
+
+  copy.value = true;
+
+  const copyText = patterns.value
+    .replaceAll('0', ':transparent:')
+    .replaceAll('1', emoji.name);
+
+  navigator.clipboard.writeText(copyText);
+
+  setTimeout(() => {
+    copy.value = false;
+  }, 1000);
+};
+
+const onKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Enter') {
+    handleCopyText();
+  }
+
+  if (event.key === 'c' && (event.ctrlKey || event.metaKey)) {
+    handleCopyText();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown);
 });
 </script>
