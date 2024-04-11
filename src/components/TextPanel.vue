@@ -100,7 +100,7 @@ const splittedText = computed(() => {
   let currentLine = '';
 
   for (const word of words) {
-    if (currentLine.length + word.length > 8) {
+    if (currentLine.length + word.length > 9) {
       lines.push(currentLine);
       currentLine = word + ' ';
     } else {
@@ -123,7 +123,7 @@ const handleCopyText = () => {
 
   const copyText = splittedTextPatterns.value
     .join('\n\n')
-    .replaceAll('0', ':transparent:')
+    .replaceAll('0', ':_:')
     .replaceAll('1', emoji.name);
 
   navigator.clipboard.writeText(copyText);

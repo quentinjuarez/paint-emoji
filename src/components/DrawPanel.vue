@@ -63,7 +63,7 @@ const handleCopy = () => {
 
     const copyText = trimmedLines
       .join('\n')
-      .replaceAll('0', ':transparent:')
+      .replaceAll('0', ':_:')
       .replace(/\d/g, (match) => {
         const index = parseInt(match) - 1;
         return index < store.emojiSelection.length
