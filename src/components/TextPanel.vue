@@ -59,16 +59,19 @@
     </div>
 
     <div
-      v-if="displayPatterns[0].length"
-      class="w-fit p-4"
+      v-if="displaySplittedPatterns[0].length"
+      class="w-fit p-4 overflow-auto max-w-[65vw]"
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
       }"
     >
       <div
-        v-for="(line, index) in displayPatterns"
+        v-for="(line, index) in displaySplittedPatterns"
         :key="index"
         class="flex w-fit"
+        :class="{
+          'mb-4': (index + 1) % 7 === 0,
+        }"
       >
         <div v-for="(char, index) in line" :key="index" class="w-4 h-4">
           <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" />
@@ -81,18 +84,34 @@
 <script setup lang="ts">
 const store = useStore();
 
-const patterns = computed(() => {
-  return textToPatterns(
-    store.text,
-    store.textSettings.tight ? 'tight' : 'normal'
-  );
-});
-
-const displayPatterns = computed(() => {
-  return patterns.value.split('\n').map((line) => line.split(''));
+const displaySplittedPatterns = computed(() => {
+  return splittedTextPatterns.value
+    .join('\n')
+    .split('\n')
+    .map((line) => line.split(''));
 });
 
 const copy = ref(false);
+
+const splittedText = computed(() => {
+  // i want to split words if the line is too long to fit in the screen
+  const words = store.text.split(' ');
+  const lines = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    if (currentLine.length + word.length > 8) {
+      lines.push(currentLine);
+      currentLine = word + ' ';
+    } else {
+      currentLine += word + ' ';
+    }
+  }
+
+  lines.push(currentLine);
+
+  return lines;
+});
 
 const handleCopyText = () => {
   if (!store.textEmoji) return;
@@ -102,7 +121,8 @@ const handleCopyText = () => {
 
   copy.value = true;
 
-  const copyText = patterns.value
+  const copyText = splittedTextPatterns.value
+    .join('\n\n')
     .replaceAll('0', ':transparent:')
     .replaceAll('1', emoji.name);
 
@@ -112,4 +132,10 @@ const handleCopyText = () => {
     copy.value = false;
   }, 1000);
 };
+
+const splittedTextPatterns = computed(() => {
+  return splittedText.value.map((line) => {
+    return textToPatterns(line, store.textSettings.tight ? 'tight' : 'normal');
+  });
+});
 </script>
