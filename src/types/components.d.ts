@@ -19,6 +19,7 @@ declare module 'vue' {
     HeaderTabs: typeof import('./../components/HeaderTabs.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Shortcut: typeof import('./../components/Shortcut.vue')['default']
     SlackEmojiModal: typeof import('./../components/SlackEmojiModal.vue')['default']
     TextPanel: typeof import('./../components/TextPanel.vue')['default']
     TextTools: typeof import('./../components/TextTools.vue')['default']

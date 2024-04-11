@@ -45,12 +45,16 @@
       <button
         :disabled="!store.textEmoji"
         @click="handleCopyText"
-        class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-28"
+        class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-48 flex items-center gap-2 justify-center"
         :class="{
           'cursor-not-allowed hover:!bg-white/10': !store.textEmoji,
         }"
       >
-        {{ copy ? '✅ Copied!' : 'Copy' }}
+        <span>
+          {{ copy ? '✅ Copied!' : 'Copy' }}
+        </span>
+
+        <Shortcut shortcut="c" ctrl @confirm="handleCopyText" />
       </button>
     </div>
 
@@ -108,22 +112,4 @@ const handleCopyText = () => {
     copy.value = false;
   }, 1000);
 };
-
-const onKeydown = (event: KeyboardEvent) => {
-  if (event.key === 'Enter') {
-    handleCopyText();
-  }
-
-  if (event.key === 'c' && (event.ctrlKey || event.metaKey)) {
-    handleCopyText();
-  }
-};
-
-onMounted(() => {
-  window.addEventListener('keydown', onKeydown);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('keydown', onKeydown);
-});
 </script>
