@@ -6722,6 +6722,76 @@
             "avatar_hash": "36478f948e64",
             "can_delete": true,
             "synonyms": []
+        },
+        {
+            "name": "pet-the-lauryne",
+            "is_alias": 0,
+            "alias_for": "",
+            "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/pet-the-lauryne\/7ef4177a639b568a.gif",
+            "team_id": "TSTD7B5L5",
+            "user_id": "U0329SYSH09",
+            "created": 1712824416,
+            "is_bad": false,
+            "user_display_name": "Quentin",
+            "avatar_hash": "36478f948e64",
+            "can_delete": true,
+            "synonyms": []
+        },
+        {
+            "name": "monkey-on-liane",
+            "is_alias": 0,
+            "alias_for": "",
+            "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/monkey-on-liane\/32ec20e74648e49e.png",
+            "team_id": "TSTD7B5L5",
+            "user_id": "U02MYLC3U4F",
+            "created": 1712750078,
+            "is_bad": false,
+            "user_display_name": "Henri",
+            "avatar_hash": "8dc3aba5718e",
+            "can_delete": false,
+            "synonyms": []
+        },
+        {
+            "name": "pinched-fingers-2",
+            "is_alias": 0,
+            "alias_for": "",
+            "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/pinched-fingers-2\/5c426da97b276633.png",
+            "team_id": "TSTD7B5L5",
+            "user_id": "U0329SYSH09",
+            "created": 1712650560,
+            "is_bad": false,
+            "user_display_name": "Quentin",
+            "avatar_hash": "36478f948e64",
+            "can_delete": true,
+            "synonyms": []
+        },
+        {
+            "name": "dust-cry",
+            "is_alias": 0,
+            "alias_for": "",
+            "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/dust-cry\/c4846706cf9671e8.png",
+            "team_id": "TSTD7B5L5",
+            "user_id": "U0329SYSH09",
+            "created": 1712241282,
+            "is_bad": false,
+            "user_display_name": "Quentin",
+            "avatar_hash": "36478f948e64",
+            "can_delete": true,
+            "synonyms": []
+        },
+        {
+            "name": "pet-the-marketeam",
+            "is_alias": 0,
+            "alias_for": "",
+            "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/pet-the-marketeam\/822104aa5b178103.gif",
+            "team_id": "TSTD7B5L5",
+            "user_id": "U02HN41TFG9",
+            "created": 1712237626,
+            "is_bad": false,
+            "user_display_name": "Victor",
+            "avatar_hash": "ce21da38bf4e",
+            "can_delete": false,
+            "synonyms": []
         }
     ]
 }
