@@ -24,7 +24,7 @@
           <BaseEmoji :emoji="element" size="lg" />
           <!-- TRASH -->
           <i
-            v-if="!disabledHover || element.type !== 'empty'"
+            v-if="!disabledHover && element.type !== 'empty'"
             class="opacity-0 group-hover:opacity-100 transition-all -top-2 -right-2 absolute bg-red-500 rounded-full p-0.5 cursor-pointer"
             @click="handleRemove(index)"
           >

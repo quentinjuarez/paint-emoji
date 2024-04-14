@@ -70,7 +70,8 @@ export const useStore = defineStore("shape-to-emoji", {
       },
     ] as Emoji[],
     selectedEmojiIndex: 0 as number,
-    frames: [] as string[],
+    history: [] as string[],
+    historyIndex: -1 as number,
     displayedFrame: Array.from({ length: 24 }, () =>
       Array.from({ length: 24 }, () => "0")
     ),
@@ -92,7 +93,8 @@ export const useStore = defineStore("shape-to-emoji", {
   }),
   getters: {
     lastFrame(state) {
-      return state.frames[state.frames.length - 1];
+      if (state.historyIndex < -1) return;
+      return state.history[state.historyIndex];
     },
   },
   actions: {
@@ -114,11 +116,19 @@ export const useStore = defineStore("shape-to-emoji", {
       this.emojiSelection[index] = emptyEmoji(index);
     },
     addFrame(frame: string) {
-      this.frames.push(frame);
+      this.history = this.history.slice(0, this.historyIndex + 1);
+      this.history.push(frame);
+      this.historyIndex++;
     },
     undoFrame() {
-      if (this.frames.length === 0) return;
-      this.frames.pop();
+      if (this.historyIndex === -1) return null;
+      this.historyIndex--;
+
+      return this.lastFrame;
+    },
+    redoFrame() {
+      if (this.historyIndex === this.history.length - 1) return null;
+      this.historyIndex++;
 
       return this.lastFrame;
     },
@@ -176,7 +186,7 @@ export const useStore = defineStore("shape-to-emoji", {
       }
     },
     resetStore() {
-      if (this.version === __VERSION__) return;
+      if (this.version) return;
       this.$reset();
     },
   },

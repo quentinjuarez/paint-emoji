@@ -13,6 +13,7 @@ declare module 'vue' {
     DrawCanvas: typeof import('./../components/DrawCanvas.vue')['default']
     DrawPanel: typeof import('./../components/DrawPanel.vue')['default']
     DrawTools: typeof import('./../components/DrawTools.vue')['default']
+    DrawUndoRedo: typeof import('./../components/DrawUndoRedo.vue')['default']
     EmojiFiles: typeof import('./../components/EmojiFiles.vue')['default']
     EmojiList: typeof import('./../components/EmojiList.vue')['default']
     EmojiSelection: typeof import('./../components/EmojiSelection.vue')['default']

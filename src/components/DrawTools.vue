@@ -2,6 +2,8 @@
   <div v-show="store.tab === 'draw'" class="space-y-4">
     <h2 class="text-xl font-bold">Tools</h2>
 
+    <DrawUndoRedo />
+
     <EmojiFiles />
 
     <button
@@ -43,7 +45,8 @@ const store = useStore();
 
 const handleClear = () => {
   store.textToCanvas();
-  store.frames = [];
+  store.history = [];
+  store.historyIndex = -1;
 
   fileInputRef.value!.value = "";
   devSrc.value = "";

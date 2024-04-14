@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-2 justify-center">
     <button
-      id="files-button"
+      id="download-button"
       class="rounded p-1 bg-white/10 hover:bg-white/20 transition-colors"
       :data-tooltip="'Save as file'"
       @click="downloadTextFile"
@@ -10,7 +10,7 @@
     </button>
 
     <button
-      id="files-button"
+      id="upload-button"
       class="rounded p-1 bg-white/10 hover:bg-white/20 transition-colors"
       :data-tooltip="'Load from file'"
       @click="clickFileInput"
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import tippy from 'tippy.js';
+import tippy from "tippy.js";
 const store = useStore();
 
 const fileRef = ref<HTMLInputElement>();
@@ -42,21 +42,21 @@ const signatureHeader = () => {
   // DrawMoji;
   // PaintMoji;
   // EmojiPaint;
-  const project = 'shape-to-emoji';
-  const name = 'Created By: Quentin Juarez';
-  const github = 'GitHub: https://github.com/quentinjuarez/shape-to-emoji';
+  const project = "shape-to-emoji";
+  const name = "Created By: Quentin Juarez";
+  const github = "GitHub: https://github.com/quentinjuarez/shape-to-emoji";
   const version = `Version: ${__VERSION__}\n`;
-  return [project, name, github, version].join('\n');
+  return [project, name, github, version].join("\n");
 };
 
 const downloadTextFile = () => {
   const text = `${signatureHeader()}\n${store.canvasToText()}`;
-  const blob = new Blob([text], { type: 'text/plain' });
+  const blob = new Blob([text], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
   const random = Math.random().toString(36).substring(7);
-  a.download = random + '.emoji';
+  a.download = random + ".emoji";
   a.click();
   URL.revokeObjectURL(url);
 };
@@ -70,25 +70,25 @@ const loadTextFile = (event: Event) => {
 
   reader.onload = async (e: any) => {
     let text = e.target.result;
-    if (!text || typeof text !== 'string') {
-      console.warn('Invalid file content.');
+    if (!text || typeof text !== "string") {
+      console.warn("Invalid file content.");
       return;
     }
 
     console.log(text);
 
-    if (!text.startsWith('shape-to-emoji')) {
-      console.warn('Invalid file signature.');
+    if (!text.startsWith("shape-to-emoji")) {
+      console.warn("Invalid file signature.");
       return;
     }
     // remove 4 first line
-    text = text.split('\n').slice(4).join('\n');
+    text = text.split("\n").slice(4).join("\n");
     console.log(text);
     store.textToCanvas(text);
   };
 
   reader.onerror = (error) => {
-    console.error('Error reading the file:', error);
+    console.error("Error reading the file:", error);
   };
 
   reader.readAsText(file);
@@ -106,13 +106,13 @@ function initializeTooltips() {
   tooltips = [];
 
   // Initialize new tooltips
-  document.querySelectorAll('#files-button').forEach((element) => {
+  ["upload-button", "download-button"].forEach((id) => {
     // @ts-ignore
-    const tooltip = tippy(element, {
+    const tooltip = tippy(document.getElementById(id), {
       content(reference) {
-        return reference.getAttribute('data-tooltip');
+        return reference.getAttribute("data-tooltip");
       },
-      theme: 'light', // Specify the theme as 'light'
+      theme: "light", // Specify the theme as 'light'
     });
     tooltips.push(tooltip);
   });
