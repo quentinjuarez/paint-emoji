@@ -1,4 +1,9 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run version && git add docs/ && git commit -m "Bump version to $(node -p "require('./package.json').version")" && git push
+# Redirect stdin to /dev/tty
+exec < /dev/tty
+
+yarn patch && git add docs/ && git commit -m "Bump version to $(node -p "require('./package.json').version")" && git push
+
+exit 1
