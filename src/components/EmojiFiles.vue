@@ -75,16 +75,19 @@ const loadTextFile = (event: Event) => {
       return;
     }
 
-    console.log(text);
-
     if (!text.startsWith("shape-to-emoji")) {
       console.warn("Invalid file signature.");
       return;
     }
     // remove 4 first line
     text = text.split("\n").slice(4).join("\n");
-    console.log(text);
+
+    if (!text) return;
+    store.addFrame(text);
     store.textToCanvas(text);
+
+    // Reset the file input
+    target.value = "";
   };
 
   reader.onerror = (error) => {

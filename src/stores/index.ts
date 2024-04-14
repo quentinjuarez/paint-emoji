@@ -185,6 +185,11 @@ export const useStore = defineStore("shape-to-emoji", {
         }
       }
     },
+    clearCanvas() {
+      this.textToCanvas();
+      this.history = [];
+      this.historyIndex = -1;
+    },
     resetStore() {
       if (this.version) return;
       this.$reset();

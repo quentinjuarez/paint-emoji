@@ -44,9 +44,7 @@
 const store = useStore();
 
 const handleClear = () => {
-  store.textToCanvas();
-  store.history = [];
-  store.historyIndex = -1;
+  store.clearCanvas();
 
   fileInputRef.value!.value = "";
   devSrc.value = "";
@@ -115,7 +113,7 @@ const handleUpload = (e: Event) => {
           var canvas = document.createElement("canvas");
           canvas.width = CANVAS_SIZE;
           canvas.height = CANVAS_SIZE;
-          var context = canvas.getContext("2d");
+          var context = canvas.getContext("2d", { willReadFrequently: true });
           context?.drawImage(image, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
           for (let i = 0; i < TILES_PER_ROW; i++) {
             for (let j = 0; j < TILES_PER_ROW; j++) {
@@ -134,6 +132,8 @@ const handleUpload = (e: Event) => {
               }
             }
           }
+
+          fileInputRef.value!.value = "";
 
           const text = store.canvasToText();
 
