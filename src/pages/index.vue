@@ -20,7 +20,7 @@ const handleHashChange = () => {
   const hash = window.location.hash;
 
   if (!hash) {
-    store.tab = 'draw';
+    store.tab = "draw";
     return;
   }
 
