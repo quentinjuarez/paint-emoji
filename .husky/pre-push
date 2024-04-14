@@ -4,4 +4,4 @@
 # Redirect stdin to /dev/tty
 exec < /dev/tty
 
-yarn patch && git add docs/ && git commit -m "Bump version to $(node -p "require('./package.json').version")"
+yarn patch && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"

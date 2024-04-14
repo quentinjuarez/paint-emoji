@@ -42,6 +42,7 @@ const onKeydown = (event: KeyboardEvent) => {
     (props.shift ? event.shiftKey : true)
   ) {
     emit("confirm");
+    event.preventDefault();
   }
 };
 

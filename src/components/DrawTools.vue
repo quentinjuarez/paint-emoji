@@ -2,22 +2,18 @@
   <div v-show="store.tab === 'draw'" class="space-y-4">
     <h2 class="text-xl font-bold">Tools</h2>
 
-    <div class="space-y-2">
-      <EmojiFiles />
+    <EmojiFiles />
 
-      <div class="flex flex-col justify-center gap-2">
-        <button
-          @click="reset"
-          class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors"
-        >
-          Clear Canvas
-        </button>
-      </div>
-    </div>
+    <button
+      @click="handleClear"
+      class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-full"
+    >
+      Clear Canvas
+    </button>
 
     <button
       @click="handleClick"
-      class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors"
+      class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-full"
     >
       Upload Image
     </button>
@@ -31,16 +27,26 @@
     />
 
     <!-- DEV MODE -->
-    <img :src="devSrc" alt="placeholder" class="w-24 h-24" />
+    <div class="w-full">
+      <img
+        v-if="devSrc"
+        :src="devSrc"
+        alt="placeholder"
+        class="w-24 h-24 mx-auto"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const store = useStore();
 
-const reset = () => {
+const handleClear = () => {
   store.textToCanvas();
   store.frames = [];
+
+  fileInputRef.value!.value = "";
+  devSrc.value = "";
 };
 
 // Handle file upload
@@ -125,6 +131,11 @@ const handleUpload = (e: Event) => {
               }
             }
           }
+
+          const text = store.canvasToText();
+
+          if (!text) return;
+          store.addFrame(text);
         };
 
         image.onerror = function (error) {

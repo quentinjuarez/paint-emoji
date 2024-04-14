@@ -1,6 +1,6 @@
 <template>
   <div
-    class="select-none"
+    class="select-none leading-none m-0 p-0"
     :class="style"
     :data-name="emoji?.name"
     :data-value="emoji?.value"
@@ -15,7 +15,7 @@
     <img
       v-else-if="displayEmoji.type === 'custom'"
       :draggable="false"
-      class="select-none my-auto"
+      class="my-auto select-none"
       :src="displayEmoji.value"
       :alt="displayEmoji.name"
     />
@@ -42,7 +42,7 @@ const style = computed(() => {
 const fontSize = computed(() => {
   switch (props.size) {
     case "sm":
-      return "text-[14px] leading-[16px]";
+      return "text-[13px] leading-[16px]";
     case "md":
       return "text-[20px]  leading-[24px]";
     case "lg":

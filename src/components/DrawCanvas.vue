@@ -6,7 +6,7 @@
         height: `${CANVAS_SIZE}px`,
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
       }"
-      class="select-none"
+      class="select-none relative"
       ref="canvasRef"
     >
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">
@@ -21,6 +21,24 @@
             size="sm"
           />
         </div>
+      </div>
+
+      <!-- TOOLS -->
+      <div class="absolute -right-12 top-40 z-10 flex flex-col gap-2">
+        <button
+          class="w-8 h-8 rounded bg-white/10 border-2 border-transparent"
+          :class="{ '!border-purple-500': !isErasing }"
+          @click="isErasing = !isErasing"
+        >
+          ✏️
+        </button>
+        <button
+          class="w-8 h-8 rounded bg-white/10 border-2 border-transparent"
+          :class="{ '!border-purple-500': isErasing }"
+          @click="isErasing = !isErasing"
+        >
+          🧽
+        </button>
       </div>
     </div>
     <slot></slot>

@@ -11,7 +11,11 @@ const emptyEmoji = (index: number): Emoji => ({
 // 0.0.1 - Added emoji selection
 // 0.1.0 - Initial release
 // 0.1.1 - Added text to emoji
-// 0.2.0 -
+// 0.2.0 - Split text and draw tabs
+// 0.2.1 - Split words
+// 0.3.0 - Init upload
+// 0.3.1 - Rework ux
+// 0.3.2 - Rework ui
 
 export const useStore = defineStore("shape-to-emoji", {
   state: () => ({

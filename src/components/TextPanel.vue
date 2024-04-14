@@ -38,7 +38,7 @@
     </div>
 
     <div
-      v-if="displaySplittedPatterns[0].length"
+      v-if="displaySplittedPatterns[0].length > 2"
       class="w-fit p-4 overflow-auto max-w-[65vw]"
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
