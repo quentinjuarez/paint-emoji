@@ -7,13 +7,16 @@
 </template>
 
 <script setup lang="ts">
-import DesktopLayout from '@/layouts/DesktopLayout.vue';
+import DesktopLayout from "@/layouts/DesktopLayout.vue";
 
 const { handleResize } = useScreen();
 
+const store = useStore();
+
 onMounted(() => {
-  window.addEventListener('resize', handleResize);
+  store.resetStore();
+  window.addEventListener("resize", handleResize);
   handleResize();
 });
-onUnmounted(() => window.removeEventListener('resize', handleResize));
+onUnmounted(() => window.removeEventListener("resize", handleResize));
 </script>

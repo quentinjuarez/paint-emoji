@@ -1,12 +1,21 @@
 <template>
-  <div class="select-none h-4 leading-none">
-    <span class="text-sm h-4 leading-none" v-if="displayEmoji.type === 'slack'">
+  <div
+    class="select-none"
+    :class="style"
+    :data-name="emoji?.name"
+    :data-value="emoji?.value"
+  >
+    <span
+      class="text-center"
+      :class="fontSize"
+      v-if="displayEmoji.type === 'slack'"
+    >
       {{ displayEmoji.value }}
     </span>
     <img
+      v-else-if="displayEmoji.type === 'custom'"
       :draggable="false"
-      class="select-none"
-      v-else
+      class="select-none my-auto"
       :src="displayEmoji.value"
       :alt="displayEmoji.name"
     />
@@ -16,7 +25,30 @@
 <script setup lang="ts">
 const props = defineProps<{
   emoji?: Emoji;
+  size: "sm" | "md" | "lg";
 }>();
+
+const style = computed(() => {
+  switch (props.size) {
+    case "sm":
+      return "h-4 w-4";
+    case "md":
+      return "h-6 w-6";
+    case "lg":
+      return "h-7 w-7";
+  }
+});
+
+const fontSize = computed(() => {
+  switch (props.size) {
+    case "sm":
+      return "text-[14px] leading-[16px]";
+    case "md":
+      return "text-[20px]  leading-[24px]";
+    case "lg":
+      return "text-[22px]  leading-[28px]";
+  }
+});
 
 const displayEmoji = computed(() => {
   return props.emoji || { name: ":question:", value: "❓", type: "slack" };

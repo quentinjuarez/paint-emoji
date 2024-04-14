@@ -22,6 +22,6 @@ declare global {
   interface Emoji {
     name: string;
     value: string;
-    type: 'slack' | 'custom';
+    type: "slack" | "custom" | "empty";
   }
 }

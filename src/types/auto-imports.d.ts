@@ -47,7 +47,6 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const stringColor: typeof import('../utils/stringColor')['default']
-  const textToPattern: (typeof import('../utils/textToPatterns'))['default']
   const textToPatterns: typeof import('../utils/textToPatterns')['default']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']

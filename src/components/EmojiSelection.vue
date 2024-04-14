@@ -12,26 +12,19 @@
     >
       <template #item="{ element, index }">
         <button
-          class="draggable rounded bg-white/10 h-8 w-8 border border-transparent hover:border-white transition-all group relative"
+          class="draggable rounded bg-white/10 h-8 w-8 border-2 border-transparent hover:border-white transition-all group relative"
           :class="[
             store.selectedEmojiIndex === index
-              ? '!border-purple-500 hover:!border-purple-600 !border-2'
+              ? '!border-purple-500 hover:!border-purple-600'
               : '',
             { 'hover:!border-transparent': disabledHover },
           ]"
           @click="store.selectedEmojiIndex = index"
         >
-          <span v-if="element.type === 'slack'"> {{ element.value }}</span>
-          <img
-            class="rounded"
-            v-else
-            :src="element.value"
-            :alt="element.name"
-          />
-
+          <BaseEmoji :emoji="element" size="lg" />
           <!-- TRASH -->
           <i
-            v-if="!disabledHover"
+            v-if="!disabledHover || element.type !== 'empty'"
             class="opacity-0 group-hover:opacity-100 transition-all -top-2 -right-2 absolute bg-red-500 rounded-full p-0.5 cursor-pointer"
             @click="handleRemove(index)"
           >
@@ -55,15 +48,15 @@
     </Sortable>
 
     <button
-      id="erase-button"
+      id="clear-button"
       class="rounded bg-white/10 h-8 w-8 border border-transparent hover:border-white transition-all group relative flex justify-center items-center"
       :class="[
         store.selectedEmojiIndex === undefined
           ? '!border-purple-500 hover:!border-purple-600'
           : '',
       ]"
-      @click="store.selectedEmojiIndex = undefined"
-      data-tooltip="Erase"
+      @click="store.clearEmojiSelection()"
+      data-tooltip="Clear"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -84,12 +77,12 @@
 </template>
 
 <script setup lang="ts">
-import { Sortable } from 'sortablejs-vue3';
-import tippy from 'tippy.js';
+import { Sortable } from "sortablejs-vue3";
+import tippy from "tippy.js";
 
 const disabledHover = ref(false);
 const options = ref({
-  draggable: '.draggable',
+  draggable: ".draggable",
   animation: 250,
 });
 
@@ -120,13 +113,13 @@ function initializeTooltips() {
   tooltips = [];
 
   // Initialize new tooltips
-  document.querySelectorAll('#erase-button').forEach((element) => {
+  document.querySelectorAll("#clear-button").forEach((element) => {
     // @ts-ignore
     const tooltip = tippy(element, {
       content(reference) {
-        return reference.getAttribute('data-tooltip');
+        return reference.getAttribute("data-tooltip");
       },
-      theme: 'light', // Specify the theme as 'light'
+      theme: "light", // Specify the theme as 'light'
     });
     tooltips.push(tooltip);
   });

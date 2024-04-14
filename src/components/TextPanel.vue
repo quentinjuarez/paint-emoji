@@ -13,27 +13,6 @@
         :src="store.textEmoji.value"
         :alt="store.textEmoji.name"
       />
-
-      <!-- TRASH -->
-      <i
-        class="opacity-0 group-hover:opacity-100 transition-all -top-2 -right-2 absolute bg-red-500 rounded-full p-0.5 cursor-pointer"
-        @click="store.removeEmoji(0)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </i>
     </button>
 
     <div class="flex items-center gap-4">
@@ -51,7 +30,7 @@
         }"
       >
         <span>
-          {{ copy ? '✅ Copied!' : 'Copy' }}
+          {{ copy ? "✅ Copied!" : "Copy" }}
         </span>
 
         <Shortcut shortcut="c" ctrl @confirm="handleCopyText" />
@@ -74,7 +53,7 @@
         }"
       >
         <div v-for="(char, index) in line" :key="index" class="w-4 h-4">
-          <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" />
+          <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" size="sm" />
         </div>
       </div>
     </div>
@@ -86,25 +65,25 @@ const store = useStore();
 
 const displaySplittedPatterns = computed(() => {
   return splittedTextPatterns.value
-    .join('\n')
-    .split('\n')
-    .map((line) => line.split(''));
+    .join("\n")
+    .split("\n")
+    .map((line) => line.split(""));
 });
 
 const copy = ref(false);
 
 const splittedText = computed(() => {
   // i want to split words if the line is too long to fit in the screen
-  const words = store.text.split(' ');
+  const words = store.text.split(" ");
   const lines = [];
-  let currentLine = '';
+  let currentLine = "";
 
   for (const word of words) {
     if (currentLine.length + word.length > 9) {
       lines.push(currentLine);
-      currentLine = word + ' ';
+      currentLine = word + " ";
     } else {
-      currentLine += word + ' ';
+      currentLine += word + " ";
     }
   }
 
@@ -122,9 +101,9 @@ const handleCopyText = () => {
   copy.value = true;
 
   const copyText = splittedTextPatterns.value
-    .join('\n\n')
-    .replaceAll('0', ':_:')
-    .replaceAll('1', emoji.name);
+    .join("\n\n")
+    .replaceAll("0", ":_:")
+    .replaceAll("1", emoji.name);
 
   navigator.clipboard.writeText(copyText);
 
@@ -135,7 +114,7 @@ const handleCopyText = () => {
 
 const splittedTextPatterns = computed(() => {
   return splittedText.value.map((line) => {
-    return textToPatterns(line, store.textSettings.tight ? 'tight' : 'normal');
+    return textToPatterns(line, store.textSettings.tight ? "tight" : "normal");
   });
 });
 </script>

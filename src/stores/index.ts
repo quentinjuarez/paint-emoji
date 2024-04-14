@@ -1,23 +1,87 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useStore = defineStore('shape-to-emoji', {
+const emptyEmoji = (index: number): Emoji => ({
+  name: `:_:`,
+  value: String(index + 1),
+  type: "empty",
+});
+
+// VERSION HISTORY
+// 0.0.0 - Init
+// 0.0.1 - Added emoji selection
+// 0.1.0 - Initial release
+// 0.1.1 - Added text to emoji
+// 0.2.0 -
+
+export const useStore = defineStore("shape-to-emoji", {
   state: () => ({
+    version: __VERSION__,
     screenWidth: document.documentElement.clientWidth,
     screenHeight: document.documentElement.clientHeight,
-    emojiSelection: [] as Emoji[],
-    selectedEmojiIndex: undefined as number | undefined,
+    emojiSelection: [
+      {
+        name: ":white_large_square:",
+        value: "⬜",
+        type: "slack",
+      },
+      {
+        name: ":black_large_square:",
+        value: "⬛",
+        type: "slack",
+      },
+      {
+        name: ":red_square:",
+        value: "🟥",
+        type: "slack",
+      },
+      {
+        name: ":orange_square:",
+        value: "🟧",
+        type: "slack",
+      },
+      {
+        name: ":yellow_square:",
+        value: "🟨",
+        type: "slack",
+      },
+      {
+        name: ":green_square:",
+        value: "🟩",
+        type: "slack",
+      },
+      {
+        name: ":blue_square:",
+        value: "🟦",
+        type: "slack",
+      },
+      {
+        name: ":purple_square:",
+        value: "🟪",
+        type: "slack",
+      },
+      {
+        name: ":brown_square:",
+        value: "🟫",
+        type: "slack",
+      },
+    ] as Emoji[],
+    selectedEmojiIndex: 0 as number,
     frames: [] as string[],
     displayedFrame: Array.from({ length: 24 }, () =>
-      Array.from({ length: 24 }, () => '0')
+      Array.from({ length: 24 }, () => "0")
     ),
     settings: {
       tileSize: 16,
       tilesPerRow: 24,
     },
     darkMode: false,
-    textEmoji: undefined as Emoji | undefined,
-    tab: 'draw',
-    text: '',
+    textEmoji: {
+      name: ":red_square:",
+      value: "🟥",
+      type: "slack",
+    } as Emoji,
+    tab: "draw",
+    text: "",
     textSettings: {
       tight: false,
     },
@@ -29,28 +93,21 @@ export const useStore = defineStore('shape-to-emoji', {
   },
   actions: {
     selectEmoji(emoji: Emoji) {
-      if (this.tab === 'text') {
+      if (this.tab === "text") {
         this.textEmoji = emoji;
         return;
       }
 
-      if (this.emojiSelection.find((e) => emoji.value === e.value)) {
-        return;
-      }
-      if (this.emojiSelection.length === 9) {
-        this.emojiSelection.shift();
-      }
-
-      this.emojiSelection.push(emoji);
-      this.selectedEmojiIndex = this.emojiSelection.length - 1;
+      this.emojiSelection[this.selectedEmojiIndex] = emoji;
+    },
+    clearEmojiSelection() {
+      this.emojiSelection = this.emojiSelection.map((_, index) =>
+        emptyEmoji(index)
+      );
+      this.selectedEmojiIndex = 0;
     },
     removeEmoji(index: number) {
-      if (this.tab === 'text') {
-        this.textEmoji = undefined;
-      }
-
-      this.emojiSelection.splice(index, 1);
-      this.selectedEmojiIndex = undefined;
+      this.emojiSelection[index] = emptyEmoji(index);
     },
     addFrame(frame: string) {
       this.frames.push(frame);
@@ -66,14 +123,14 @@ export const useStore = defineStore('shape-to-emoji', {
       const TILE_SIZE = this.settings.tileSize;
       const TILES_PER_ROW = this.settings.tilesPerRow;
       const CANVAS_SIZE = TILE_SIZE * TILES_PER_ROW;
-      let text = '';
+      let text = "";
 
       for (let y = 0; y < CANVAS_SIZE; y += TILE_SIZE) {
         for (let x = 0; x < CANVAS_SIZE; x += TILE_SIZE) {
           const color = this.displayedFrame[y / TILE_SIZE][x / TILE_SIZE];
           text += color;
         }
-        text += '\n';
+        text += "\n";
       }
 
       return text;
@@ -85,17 +142,17 @@ export const useStore = defineStore('shape-to-emoji', {
       if (!text) {
         // Clear the canvas
         this.displayedFrame = Array.from({ length: TILES_PER_ROW }, () =>
-          Array.from({ length: TILES_PER_ROW }, () => '0')
+          Array.from({ length: TILES_PER_ROW }, () => "0")
         );
         return;
       }
-      const lines = text.trim().split('\n');
+      const lines = text.trim().split("\n");
 
       if (lines.length > TILES_PER_ROW) {
         console.warn(
           `Text file contains too many rows. Truncating to ${TILES_PER_ROW} rows.`
         );
-        text = lines.slice(0, TILES_PER_ROW).join('\n');
+        text = lines.slice(0, TILES_PER_ROW).join("\n");
       }
 
       for (let y = 0; y < lines.length; y++) {
@@ -113,6 +170,10 @@ export const useStore = defineStore('shape-to-emoji', {
           this.displayedFrame[blockY / TILE_SIZE][blockX / TILE_SIZE] = color;
         }
       }
+    },
+    resetStore() {
+      if (this.version === __VERSION__) return;
+      this.$reset();
     },
   },
   persist: {

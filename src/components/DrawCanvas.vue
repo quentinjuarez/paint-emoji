@@ -18,6 +18,7 @@
           <BaseEmoji
             v-if="value !== '0'"
             :emoji="store.emojiSelection[valueToIndex(value)]"
+            size="sm"
           />
         </div>
       </div>
@@ -49,7 +50,7 @@ onMounted(() => {
 
   store.textToCanvas(store.lastFrame);
 
-  canvasRef.value.addEventListener('mousedown', (e) => {
+  canvasRef.value.addEventListener("mousedown", (e) => {
     isDrawing.value = true;
     if (isErasing.value) {
       erase(e);
@@ -58,7 +59,7 @@ onMounted(() => {
     }
   });
 
-  canvasRef.value.addEventListener('mousemove', (e) => {
+  canvasRef.value.addEventListener("mousemove", (e) => {
     if (isDrawing.value) {
       if (isErasing.value) {
         erase(e);
@@ -68,7 +69,7 @@ onMounted(() => {
     }
   });
 
-  canvasRef.value.addEventListener('mouseup', () => {
+  canvasRef.value.addEventListener("mouseup", () => {
     isDrawing.value = false;
     const text = store.canvasToText();
 
@@ -76,8 +77,8 @@ onMounted(() => {
     store.addFrame(text);
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'z' && (e.ctrlKey || e.metaKey)) {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "z" && (e.ctrlKey || e.metaKey)) {
       const text = store.undoFrame();
       store.textToCanvas(text);
     }
@@ -94,9 +95,12 @@ const draw = (e: MouseEvent) => {
   const tileX = Math.floor(x / TILE_SIZE) * TILE_SIZE;
   const tileY = Math.floor(y / TILE_SIZE) * TILE_SIZE;
 
+  if (tileX < 0 || tileY < 0) return;
+  if (tileX >= CANVAS_SIZE || tileY >= CANVAS_SIZE) return;
+
   store.displayedFrame[tileY / TILE_SIZE][tileX / TILE_SIZE] =
     store.selectedEmojiIndex === undefined
-      ? '0'
+      ? "0"
       : String(store.selectedEmojiIndex + 1);
 };
 
@@ -110,6 +114,6 @@ const erase = (e: MouseEvent) => {
   const tileX = Math.floor(x / TILE_SIZE) * TILE_SIZE;
   const tileY = Math.floor(y / TILE_SIZE) * TILE_SIZE;
 
-  store.displayedFrame[tileY / TILE_SIZE][tileX / TILE_SIZE] = '0';
+  store.displayedFrame[tileY / TILE_SIZE][tileX / TILE_SIZE] = "0";
 };
 </script>

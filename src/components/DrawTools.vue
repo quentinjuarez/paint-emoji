@@ -46,9 +46,9 @@ const reset = () => {
 // Handle file upload
 const fileInputRef = ref<HTMLInputElement>();
 
-const CONTRASTS = 10;
-
 const EMOJI = [
+  "white_large_square",
+  "black_large_square",
   "large_red_square",
   "large_orange_square",
   "large_yellow_square",
@@ -56,11 +56,11 @@ const EMOJI = [
   "large_blue_square",
   "large_purple_square",
   "large_brown_square",
-  "black_large_square",
-  "white_large_square",
 ];
 
 const PALLETTE = {
+  white_large_square: [255, 255, 255],
+  black_large_square: [0, 0, 0],
   large_red_square: [255, 0, 0],
   large_orange_square: [255, 165, 0],
   large_yellow_square: [255, 255, 0],
@@ -68,8 +68,6 @@ const PALLETTE = {
   large_blue_square: [0, 0, 255],
   large_purple_square: [128, 0, 128],
   large_brown_square: [165, 42, 42],
-  black_large_square: [0, 0, 0],
-  white_large_square: [255, 255, 255],
 };
 
 const handleClick = () => {
@@ -119,10 +117,7 @@ const handleUpload = (e: Event) => {
                 1
               ).data;
               const [r, g, b, a] = pixelData || [0, 0, 0, 0]; // Default values if no pixel data found
-              // console.log(
-              //   `Pixel at (${i}, ${j}): R=${r}, G=${g}, B=${b}, A=${a}`
-              // );
-              console.log("Pallette index:", rgbToPallette(r, g, b));
+
               if (a === 0) {
                 store.displayedFrame[j][i] = "0";
               } else {
