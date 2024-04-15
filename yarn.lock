@@ -630,6 +630,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/vue@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@types/vue@npm:2.0.0"
+  dependencies:
+    vue: "*"
+  checksum: c5e6f7281d25f951ed7e160c12e88738ec65691b01648987428ee65730e69bc6f7aa50e6218e86ebf662ade8b6ae274a59e54047f83609af805db9c64b858f39
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^5.59.1":
   version: 5.62.0
   resolution: "@typescript-eslint/eslint-plugin@npm:5.62.0"
@@ -4621,6 +4630,7 @@ __metadata:
     "@types/lodash.debounce": ^4.0.9
     "@types/node": ^20.6.0
     "@types/uuid": ^9.0.4
+    "@types/vue": ^2.0.0
     "@vitejs/plugin-vue": ^4.2.3
     "@vue/eslint-config-prettier": ^7.1.0
     "@vue/eslint-config-typescript": ^11.0.2
@@ -4658,6 +4668,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"vue@npm:*, vue@npm:^3.3.7":
+  version: 3.4.21
+  resolution: "vue@npm:3.4.21"
+  dependencies:
+    "@vue/compiler-dom": 3.4.21
+    "@vue/compiler-sfc": 3.4.21
+    "@vue/runtime-dom": 3.4.21
+    "@vue/server-renderer": 3.4.21
+    "@vue/shared": 3.4.21
+  peerDependencies:
+    typescript: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3c477982a0a9aadfa512eb625b67f35809f123e98a268ace52e3ee738b23a9b8d9461cfc1f2b314fb098047ab3aab50f8beea657a2d3ebe5aae0e02aa4f903d2
+  languageName: node
+  linkType: hard
+
 "vue@npm:^3.3.4":
   version: 3.4.15
   resolution: "vue@npm:3.4.15"
@@ -4673,24 +4701,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 6e9ff02c9bd46cb47ff2225e7b51b75b00343b7f52076a56c2a90ce15de88c1de1aaa6b176ac39ca324479ee208b7f7e7992f54a353b0ee6b303081ac5ab30b0
-  languageName: node
-  linkType: hard
-
-"vue@npm:^3.3.7":
-  version: 3.4.21
-  resolution: "vue@npm:3.4.21"
-  dependencies:
-    "@vue/compiler-dom": 3.4.21
-    "@vue/compiler-sfc": 3.4.21
-    "@vue/runtime-dom": 3.4.21
-    "@vue/server-renderer": 3.4.21
-    "@vue/shared": 3.4.21
-  peerDependencies:
-    typescript: "*"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 3c477982a0a9aadfa512eb625b67f35809f123e98a268ace52e3ee738b23a9b8d9461cfc1f2b314fb098047ab3aab50f8beea657a2d3ebe5aae0e02aa4f903d2
   languageName: node
   linkType: hard
 
