@@ -1,8 +1,8 @@
 <template>
-  <div class="flex gap-2 justify-center">
+  <div class="flex justify-center gap-2">
     <button
       id="download-button"
-      class="rounded p-1 bg-white/10 hover:bg-white/20 transition-colors"
+      class="rounded bg-white/10 p-1 transition-colors hover:bg-white/20"
       :data-tooltip="'Save as file'"
       @click="downloadTextFile"
     >
@@ -11,7 +11,7 @@
 
     <button
       id="upload-button"
-      class="rounded p-1 bg-white/10 hover:bg-white/20 transition-colors"
+      class="rounded bg-white/10 p-1 transition-colors hover:bg-white/20"
       :data-tooltip="'Load from file'"
       @click="clickFileInput"
     >

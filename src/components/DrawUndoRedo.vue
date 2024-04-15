@@ -1,8 +1,8 @@
 <template>
-  <div class="flex gap-2 justify-center">
+  <div class="flex justify-center gap-2">
     <button
       id="undo-button"
-      class="rounded p-1 bg-white/10 hover:bg-white/20 transition-colors flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:!bg-white/10"
+      class="flex items-center gap-2 rounded bg-white/10 p-1 transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:!bg-white/10"
       :class="{ 'bg-white/20': active === 'undo' }"
       :data-tooltip="'Undo'"
       :disabled="store.historyIndex === -1"
@@ -14,7 +14,7 @@
 
     <button
       id="redo-button"
-      class="rounded p-1 bg-white/10 hover:bg-white/20 transition-colors flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:!bg-white/10"
+      class="flex items-center gap-2 rounded bg-white/10 p-1 transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:!bg-white/10"
       :class="{ 'bg-white/20': active === 'redo' }"
       :data-tooltip="'Redo'"
       :disabled="store.historyIndex === store.history.length - 1"

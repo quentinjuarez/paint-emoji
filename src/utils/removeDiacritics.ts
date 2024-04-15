@@ -1,4 +1,4 @@
-var replacementList = [
+const replacementList = [
   { base: ' ', chars: ' ' },
   { base: '0', chars: '߀' },
   { base: 'A', chars: 'ⒶＡÀÁÂẦẤẪẨÃĀĂẰẮẴẲȦǠÄǞẢÅǺǍȀȂẠẬẶḀĄȺⱯ' },
@@ -46,22 +46,23 @@ var replacementList = [
   { base: 'W', chars: 'ⓌＷẀẂŴẆẄẈⱲ' },
   { base: 'X', chars: 'ⓍＸẊẌ' },
   { base: 'Y', chars: 'ⓎＹỲÝŶỸȲẎŸỶỴƳɎỾ' },
-  { base: 'Z', chars: 'ⓏＺŹẐŻŽẒẔƵȤⱿⱫꝢ' },
-];
+  { base: 'Z', chars: 'ⓏＺŹẐŻŽẒẔƵȤⱿⱫꝢ' }
+]
 
-var diacriticsMap = {} as Record<string, string>;
+const diacriticsMap = {} as Record<string, string>
 
-for (var i = 0; i < replacementList.length; i += 1) {
-  var chars = replacementList[i].chars;
-  for (var j = 0; j < chars.length; j += 1) {
-    diacriticsMap[chars[j]] = replacementList[i].base;
+for (let i = 0; i < replacementList.length; i += 1) {
+  const chars = replacementList[i].chars
+  for (let j = 0; j < chars.length; j += 1) {
+    diacriticsMap[chars[j]] = replacementList[i].base
   }
 }
 
 function removeDiacritics(a: string) {
+  // eslint-disable-next-line no-control-regex
   return a.replace(/[^\u0000-\u007e]/g, function (a) {
-    return diacriticsMap[a] || a;
-  });
+    return diacriticsMap[a] || a
+  })
 }
 
-export default removeDiacritics;
+export default removeDiacritics

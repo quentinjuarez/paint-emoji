@@ -1,9 +1,9 @@
 <template>
   <div
-    class="bg-black/40 !m-0 flex justify-center items-center fixed inset-0 z-50 p-10 cursor-pointer"
+    class="fixed inset-0 z-50 !m-0 flex cursor-pointer items-center justify-center bg-black/40 p-10"
     @mousedown.left.self="emit('close')"
   >
-    <div class="flex justify-center items-center cursor-default">
+    <div class="flex cursor-default items-center justify-center">
       <slot></slot>
     </div>
   </div>

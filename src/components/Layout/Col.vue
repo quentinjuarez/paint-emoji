@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 w-1/4">
+  <div class="w-1/4 p-4">
     <slot></slot>
   </div>
 </template>

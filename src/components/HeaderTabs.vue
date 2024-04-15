@@ -1,10 +1,10 @@
 <template>
-  <nav class="flex items-center gap-2 mx-auto w-1/2">
+  <nav class="mx-auto flex w-1/2 items-center gap-2">
     <a
       v-for="tab in tabs"
       :key="tab.name"
       :href="`#${tab.name}`"
-      class="w-full p-1 rounded bg-white/10 text-center flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
+      class="flex w-full cursor-pointer items-center justify-center rounded bg-white/10 p-1 text-center transition-colors hover:bg-white/20"
       :class="{
         '!bg-purple-500 hover:!bg-purple-600': tab.name === props.tab,
       }"

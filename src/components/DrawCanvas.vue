@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-col justify-center items-center h-full gap-4">
+  <div class="flex h-full flex-col items-center justify-center gap-4">
     <div
       :style="{
         width: `${CANVAS_SIZE}px`,
         height: `${CANVAS_SIZE}px`,
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
       }"
-      class="select-none relative"
+      class="relative select-none"
       ref="canvasRef"
     >
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">
@@ -26,14 +26,14 @@
       <!-- TOOLS -->
       <div class="absolute -right-12 top-40 z-10 flex flex-col gap-2">
         <button
-          class="w-8 h-8 rounded bg-white/10 border-2 border-transparent"
+          class="size-8 rounded border-2 border-transparent bg-white/10"
           :class="{ '!border-purple-500': !isErasing }"
           @click="isErasing = !isErasing"
         >
           ✏️
         </button>
         <button
-          class="w-8 h-8 rounded bg-white/10 border-2 border-transparent"
+          class="size-8 rounded border-2 border-transparent bg-white/10"
           :class="{ '!border-purple-500': isErasing }"
           @click="isErasing = !isErasing"
         >

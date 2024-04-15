@@ -2,6 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # Redirect stdin to /dev/tty
-exec < /dev/tty
+# exec < /dev/tty
 
 yarn patch && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"

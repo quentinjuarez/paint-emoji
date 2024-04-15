@@ -1,12 +1,12 @@
 <template>
-  <div class="w-full h-[calc(100vh-164px)] space-y-4 mt-4">
+  <div class="mt-4 h-[calc(100vh-164px)] w-full space-y-4">
     <EmojiSelection />
 
     <DrawCanvas>
       <div class="flex justify-center">
         <button
           @click="handleCopy"
-          class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-48 flex items-center gap-2 justify-center"
+          class="flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
         >
           <span>
             {{ copy ? "✅ Copied!" : "Copy" }}

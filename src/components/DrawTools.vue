@@ -8,14 +8,14 @@
 
     <button
       @click="handleClear"
-      class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-full"
+      class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
     >
       Clear Canvas
     </button>
 
     <button
       @click="handleClick"
-      class="bg-white/10 rounded px-2 py-1 hover:bg-white/20 transition-colors w-full"
+      class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
     >
       Upload Image
     </button>
@@ -34,7 +34,7 @@
         v-if="devSrc"
         :src="devSrc"
         alt="placeholder"
-        class="w-24 h-24 mx-auto"
+        class="mx-auto size-24"
       />
     </div>
   </div>

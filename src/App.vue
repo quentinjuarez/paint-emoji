@@ -1,37 +1,37 @@
 <template>
   <div>
     <div
-      class="min-h-screen bg-slate-900 font-custom selection:bg-purple-500 selection:text-white text-slate-50"
+      class="min-h-screen bg-slate-900 font-custom text-slate-50 selection:bg-purple-500 selection:text-white"
     >
       <DesktopLayout />
     </div>
 
     <div
       v-if="store.error"
-      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
     >
-      <div class="bg-white p-4 rounded-lg">
+      <div class="rounded-lg bg-white p-4">
         <div class="flex items-center justify-between">
           <h1 class="text-red-500">An error occurred</h1>
         </div>
 
         <div></div>
 
-        <pre class="text-xs text-red-500 overflow-auto">
+        <pre class="overflow-auto text-xs text-red-500">
             {{ error?.stack }}
         </pre>
 
-        <div class="flex justify-between items-center">
+        <div class="flex items-center justify-between">
           <button
             @click="copyError"
-            class="bg-red-500 text-white rounded px-2 py-1 mt-2"
+            class="mt-2 rounded bg-red-500 px-2 py-1 text-white"
           >
             📝 Copy Error
           </button>
 
           <button
             @click="hardRefresh"
-            class="bg-red-500 text-white rounded px-2 py-1"
+            class="rounded bg-red-500 px-2 py-1 text-white"
           >
             <span>⟳ Refresh</span>
           </button>

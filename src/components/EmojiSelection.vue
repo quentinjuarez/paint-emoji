@@ -1,18 +1,18 @@
 <template>
-  <div class="flex gap-2 justify-center">
+  <div class="flex justify-center gap-2">
     <Sortable
       :list="store.emojiSelection"
       :options="options"
       item-key="name"
       tag="div"
-      class="flex gap-2 justify-center"
+      class="flex justify-center gap-2"
       @move="disabledHover = true"
       @end="disabledHover = false"
       @update="onUpdate"
     >
       <template #item="{ element, index }">
         <button
-          class="draggable rounded bg-white/10 h-8 w-8 border-2 border-transparent hover:border-white transition-all group relative"
+          class="draggable group relative size-8 rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
           :class="[
             store.selectedEmojiIndex === index
               ? '!border-purple-500 hover:!border-purple-600'
@@ -25,12 +25,12 @@
           <!-- TRASH -->
           <i
             v-if="!disabledHover && element.type !== 'empty'"
-            class="opacity-0 group-hover:opacity-100 transition-all -top-2 -right-2 absolute bg-red-500 rounded-full p-0.5 cursor-pointer"
+            class="absolute -right-2 -top-2 cursor-pointer rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
             @click="handleRemove(index)"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4 text-white"
+              class="size-4 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -49,7 +49,7 @@
 
     <button
       id="clear-button"
-      class="rounded bg-white/10 h-8 w-8 border border-transparent hover:border-white transition-all group relative flex justify-center items-center"
+      class="group relative flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
       :class="[
         store.selectedEmojiIndex === undefined
           ? '!border-purple-500 hover:!border-purple-600'
@@ -60,7 +60,7 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 text-white"
+        class="size-6 text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

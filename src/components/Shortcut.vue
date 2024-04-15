@@ -2,20 +2,20 @@
   <div class="flex items-center gap-1 text-xs">
     <div
       v-if="props.ctrl"
-      class="rounded bg-slate-300 text-slate-800 text-center h-4 min-w-4 px-1"
+      class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800"
     >
       <span v-if="isWindows" class="">Ctrl</span>
       <span v-else-if="isApple" class="">⌘</span>
     </div>
     <div
       v-if="props.shift"
-      class="rounded bg-slate-300 text-slate-800 text-center h-4 min-w-4 px-1"
+      class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800"
     >
       <span v-if="isWindows" class="">Shift</span>
       <span v-else-if="isApple" class="">⇧</span>
     </div>
     <div
-      class="rounded bg-slate-300 text-slate-800 text-center h-4 min-w-4 px-1"
+      class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800"
     >
       {{ props.shortcut.toUpperCase() }}
     </div>

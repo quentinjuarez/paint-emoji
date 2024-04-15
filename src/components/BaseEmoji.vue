@@ -1,6 +1,6 @@
 <template>
   <div
-    class="select-none leading-none m-0 p-0"
+    class="m-0 select-none p-0 leading-none"
     :class="style"
     :data-name="emoji?.name"
     :data-value="emoji?.value"
