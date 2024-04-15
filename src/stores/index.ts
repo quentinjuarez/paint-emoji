@@ -237,6 +237,7 @@ export const useStore = defineStore('shape-to-emoji', {
     resetStore() {
       if (this.version !== __VERSION__) return
       this.$reset()
+      this.version = __VERSION__
     }
   },
   persist: {
