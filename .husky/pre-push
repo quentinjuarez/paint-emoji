@@ -6,4 +6,4 @@
 
 set -x
 
-yarn patch && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"
+yarn version-patch && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"

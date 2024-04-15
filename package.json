@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "format": "prettier --write src/",
-    "patch": "yarn version --patch && yarn build",
+    "version-patch": "yarn version --patch && yarn build",
     "prepare": "husky install"
   },
   "dependencies": {
