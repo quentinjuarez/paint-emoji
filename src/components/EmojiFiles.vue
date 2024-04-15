@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import tippy from 'tippy.js'
 const store = useStore()
 
 const fileRef = ref<HTMLInputElement>()
@@ -90,32 +89,4 @@ const loadTextFile = (event: Event) => {
 
   reader.readAsText(file)
 }
-
-let tooltips = [] as any[]
-
-onMounted(() => {
-  initializeTooltips()
-})
-
-function initializeTooltips() {
-  // Destroy existing tooltips
-  tooltips.forEach((tooltip) => tooltip.destroy())
-  tooltips = []
-
-  // Initialize new tooltips
-  ;['upload-button', 'download-button'].forEach((id) => {
-    // @ts-ignore
-    const tooltip = tippy(document.getElementById(id), {
-      content(reference) {
-        return reference.getAttribute('data-tooltip')
-      },
-      theme: 'light' // Specify the theme as 'light'
-    })
-    tooltips.push(tooltip)
-  })
-}
-
-onUnmounted(() => {
-  tooltips.forEach((tooltip) => tooltip.destroy())
-})
 </script>

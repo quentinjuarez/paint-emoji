@@ -109,6 +109,55 @@ export const useStore = defineStore('shape-to-emoji', {
       this.emojiSelection = this.emojiSelection.map((_, index) => emptyEmoji(index))
       this.selectedEmojiIndex = 0
     },
+    resetEmojiSelection() {
+      this.emojiSelection = [
+        {
+          name: ':white_large_square:',
+          value: '⬜',
+          type: 'slack'
+        },
+        {
+          name: ':black_large_square:',
+          value: '⬛',
+          type: 'slack'
+        },
+        {
+          name: ':red_square:',
+          value: '🟥',
+          type: 'slack'
+        },
+        {
+          name: ':orange_square:',
+          value: '🟧',
+          type: 'slack'
+        },
+        {
+          name: ':yellow_square:',
+          value: '🟨',
+          type: 'slack'
+        },
+        {
+          name: ':green_square:',
+          value: '🟩',
+          type: 'slack'
+        },
+        {
+          name: ':blue_square:',
+          value: '🟦',
+          type: 'slack'
+        },
+        {
+          name: ':purple_square:',
+          value: '🟪',
+          type: 'slack'
+        },
+        {
+          name: ':brown_square:',
+          value: '🟫',
+          type: 'slack'
+        }
+      ] as Emoji[]
+    },
     removeEmoji(index: number) {
       this.emojiSelection[index] = emptyEmoji(index)
     },

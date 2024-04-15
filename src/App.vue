@@ -41,6 +41,8 @@ const store = useStore()
 
 const error = ref<Error>()
 
+useTooltips()
+
 onMounted(() => {
   store.error = false
 

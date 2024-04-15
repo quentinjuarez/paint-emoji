@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import tippy from 'tippy.js'
 const store = useStore()
 
 const active = ref<undefined | 'undo' | 'redo'>()
@@ -55,32 +54,4 @@ const handleRedo = () => {
     active.value = undefined
   }, 500)
 }
-
-let tooltips = [] as any[]
-
-onMounted(() => {
-  initializeTooltips()
-})
-
-function initializeTooltips() {
-  // Destroy existing tooltips
-  tooltips.forEach((tooltip) => tooltip.destroy())
-  tooltips = []
-
-  // Initialize new tooltips
-  ;['undo-button', 'redo-button'].forEach((id) => {
-    // @ts-ignore
-    const tooltip = tippy(document.getElementById(id), {
-      content(reference) {
-        return reference.getAttribute('data-tooltip')
-      },
-      theme: 'light' // Specify the theme as 'light'
-    })
-    tooltips.push(tooltip)
-  })
-}
-
-onUnmounted(() => {
-  tooltips.forEach((tooltip) => tooltip.destroy())
-})
 </script>

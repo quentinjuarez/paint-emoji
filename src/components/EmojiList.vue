@@ -52,12 +52,11 @@
         <h3 class="text-lg font-bold">Custom</h3>
         <div class="flex flex-wrap gap-1">
           <button
-            id="emoji-button"
             v-for="e in filteredEmoji"
             :key="e.name"
             :tooltip="e.name"
             class="size-8 rounded border border-transparent bg-white/10 transition-all hover:border-white"
-            :data-tooltip="e.name"
+            :data-tooltip-list="e.name"
             @click="handleCustom(e)"
           >
             <img :src="e.url" :alt="e.name" class="mx-auto h-full w-auto" />
@@ -111,13 +110,13 @@ function initializeTooltips() {
   tooltips = []
 
   // Initialize new tooltips
-  document.querySelectorAll('#emoji-button').forEach((element) => {
+  document.querySelectorAll('[data-tooltip-list]').forEach((element) => {
     // @ts-ignore
     const tooltip = tippy(element, {
       content(reference) {
-        return reference.getAttribute('data-tooltip')
+        return reference.getAttribute('data-tooltip-list')
       },
-      theme: 'light' // Specify the theme as 'light'
+      theme: 'light'
     })
     tooltips.push(tooltip)
   })
