@@ -14,10 +14,8 @@
         <button
           class="draggable group relative size-8 rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
           :class="[
-            store.selectedEmojiIndex === index
-              ? '!border-purple-500 hover:!border-purple-600'
-              : '',
-            { 'hover:!border-transparent': disabledHover },
+            store.selectedEmojiIndex === index ? '!border-purple-500 hover:!border-purple-600' : '',
+            { 'hover:!border-transparent': disabledHover }
           ]"
           @click="store.selectedEmojiIndex = index"
         >
@@ -51,9 +49,7 @@
       id="clear-button"
       class="group relative flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
       :class="[
-        store.selectedEmojiIndex === undefined
-          ? '!border-purple-500 hover:!border-purple-600'
-          : '',
+        store.selectedEmojiIndex === undefined ? '!border-purple-500 hover:!border-purple-600' : ''
       ]"
       @click="store.clearEmojiSelection()"
       data-tooltip="Clear"
@@ -77,55 +73,55 @@
 </template>
 
 <script setup lang="ts">
-import { Sortable } from "sortablejs-vue3";
-import tippy from "tippy.js";
+import { Sortable } from 'sortablejs-vue3'
+import tippy from 'tippy.js'
 
-const disabledHover = ref(false);
+const disabledHover = ref(false)
 const options = ref({
-  draggable: ".draggable",
-  animation: 250,
-});
+  draggable: '.draggable',
+  animation: 250
+})
 
-const store = useStore();
+const store = useStore()
 
 const handleRemove = (index: number) => {
-  store.removeEmoji(index);
-};
-
-function onUpdate(event: any): void {
-  if (event.oldIndex === undefined || event.newIndex === undefined) return;
-
-  // switch the elements in the array
-  const element = store.emojiSelection[event.oldIndex];
-  store.emojiSelection.splice(event.oldIndex, 1);
-  store.emojiSelection.splice(event.newIndex, 0, element);
+  store.removeEmoji(index)
 }
 
-let tooltips = [] as any[];
+function onUpdate(event: any): void {
+  if (event.oldIndex === undefined || event.newIndex === undefined) return
+
+  // switch the elements in the array
+  const element = store.emojiSelection[event.oldIndex]
+  store.emojiSelection.splice(event.oldIndex, 1)
+  store.emojiSelection.splice(event.newIndex, 0, element)
+}
+
+let tooltips = [] as any[]
 
 onMounted(() => {
-  initializeTooltips();
-});
+  initializeTooltips()
+})
 
 function initializeTooltips() {
   // Destroy existing tooltips
-  tooltips.forEach((tooltip) => tooltip.destroy());
-  tooltips = [];
+  tooltips.forEach((tooltip) => tooltip.destroy())
+  tooltips = []
 
   // Initialize new tooltips
-  document.querySelectorAll("#clear-button").forEach((element) => {
+  document.querySelectorAll('#clear-button').forEach((element) => {
     // @ts-ignore
     const tooltip = tippy(element, {
       content(reference) {
-        return reference.getAttribute("data-tooltip");
+        return reference.getAttribute('data-tooltip')
       },
-      theme: "light", // Specify the theme as 'light'
-    });
-    tooltips.push(tooltip);
-  });
+      theme: 'light' // Specify the theme as 'light'
+    })
+    tooltips.push(tooltip)
+  })
 }
 
 onUnmounted(() => {
-  tooltips.forEach((tooltip) => tooltip.destroy());
-});
+  tooltips.forEach((tooltip) => tooltip.destroy())
+})
 </script>

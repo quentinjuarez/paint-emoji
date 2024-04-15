@@ -11,20 +11,20 @@
 
 <script setup lang="ts">
 const emit = defineEmits<{
-  (e: 'close'): void;
-}>();
+  (e: 'close'): void
+}>()
 
 const handleEscape = (e: KeyboardEvent) => {
-  if (e.key === 'Escape') emit('close');
-};
+  if (e.key === 'Escape') emit('close')
+}
 
 onMounted(() => {
-  window.addEventListener('keydown', handleEscape);
-  document.body.classList.add('overflow-hidden');
-});
+  window.addEventListener('keydown', handleEscape)
+  document.body.classList.add('overflow-hidden')
+})
 
 onUnmounted(() => {
-  window.removeEventListener('keydown', handleEscape);
-  document.body.classList.remove('overflow-hidden');
-});
+  window.removeEventListener('keydown', handleEscape)
+  document.body.classList.remove('overflow-hidden')
+})
 </script>

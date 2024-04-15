@@ -4,7 +4,7 @@
       :style="{
         width: `${CANVAS_SIZE}px`,
         height: `${CANVAS_SIZE}px`,
-        backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white',
+        backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"
       class="relative select-none"
       ref="canvasRef"
@@ -46,64 +46,64 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore();
+const store = useStore()
 
-const TILE_SIZE = store.settings.tileSize;
-const TILES_PER_ROW = store.settings.tilesPerRow;
-const CANVAS_SIZE = TILE_SIZE * TILES_PER_ROW;
+const TILE_SIZE = store.settings.tileSize
+const TILES_PER_ROW = store.settings.tilesPerRow
+const CANVAS_SIZE = TILE_SIZE * TILES_PER_ROW
 
-const canvasRef = ref<HTMLCanvasElement | null>(null);
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 
-const isDrawing = ref(false);
-const isErasing = ref(false);
+const isDrawing = ref(false)
+const isErasing = ref(false)
 
 const valueToIndex = (value: string) => {
-  return parseInt(value, 10) - 1;
-};
+  return parseInt(value, 10) - 1
+}
 
 onMounted(() => {
   if (!canvasRef.value) {
-    return;
+    return
   }
 
-  store.textToCanvas(store.lastFrame);
+  store.textToCanvas(store.lastFrame)
 
-  canvasRef.value.addEventListener("mousedown", (e) => {
-    isDrawing.value = true;
-    draw(e);
-  });
+  canvasRef.value.addEventListener('mousedown', (e) => {
+    isDrawing.value = true
+    draw(e)
+  })
 
-  canvasRef.value.addEventListener("mousemove", (e) => {
+  canvasRef.value.addEventListener('mousemove', (e) => {
     if (isDrawing.value) {
-      draw(e);
+      draw(e)
     }
-  });
+  })
 
-  canvasRef.value.addEventListener("mouseup", () => {
-    isDrawing.value = false;
-    const text = store.canvasToText();
+  canvasRef.value.addEventListener('mouseup', () => {
+    isDrawing.value = false
+    const text = store.canvasToText()
 
-    if (!text) return;
-    store.addFrame(text);
-  });
-});
+    if (!text) return
+    store.addFrame(text)
+  })
+})
 
 const draw = (e: MouseEvent) => {
-  if (!canvasRef.value) return;
-  const rect = canvasRef.value.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  if (!canvasRef.value) return
+  const rect = canvasRef.value.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
 
   // Adjust x and y coordinates to align with the closest tile
-  const tileX = Math.floor(x / TILE_SIZE) * TILE_SIZE;
-  const tileY = Math.floor(y / TILE_SIZE) * TILE_SIZE;
+  const tileX = Math.floor(x / TILE_SIZE) * TILE_SIZE
+  const tileY = Math.floor(y / TILE_SIZE) * TILE_SIZE
 
-  if (tileX < 0 || tileY < 0) return;
-  if (tileX >= CANVAS_SIZE || tileY >= CANVAS_SIZE) return;
+  if (tileX < 0 || tileY < 0) return
+  if (tileX >= CANVAS_SIZE || tileY >= CANVAS_SIZE) return
 
   store.displayedFrame[tileY / TILE_SIZE][tileX / TILE_SIZE] =
     store.selectedEmojiIndex === undefined || isErasing.value
-      ? "0"
-      : String(store.selectedEmojiIndex + 1);
-};
+      ? '0'
+      : String(store.selectedEmojiIndex + 1)
+}
 </script>

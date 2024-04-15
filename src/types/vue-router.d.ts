@@ -1,8 +1,7 @@
 export {}
 
 declare module 'vue-router' {
-  interface RouteMeta {
-  }
+  interface RouteMeta {}
 
   interface RouteRecordRaw {
     meta?: RouteMeta

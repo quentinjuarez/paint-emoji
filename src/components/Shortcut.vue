@@ -1,9 +1,6 @@
 <template>
   <div class="flex items-center gap-1 text-xs">
-    <div
-      v-if="props.ctrl"
-      class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800"
-    >
+    <div v-if="props.ctrl" class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800">
       <span v-if="isWindows" class="">Ctrl</span>
       <span v-else-if="isApple" class="">⌘</span>
     </div>
@@ -14,9 +11,7 @@
       <span v-if="isWindows" class="">Shift</span>
       <span v-else-if="isApple" class="">⇧</span>
     </div>
-    <div
-      class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800"
-    >
+    <div class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800">
       {{ props.shortcut.toUpperCase() }}
     </div>
   </div>
@@ -24,16 +19,16 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  shortcut: string;
-  ctrl?: boolean;
-  shift?: boolean;
-}>();
+  shortcut: string
+  ctrl?: boolean
+  shift?: boolean
+}>()
 
-const emit = defineEmits(["confirm"]);
+const emit = defineEmits(['confirm'])
 
-const { isWindows, isApple } = useDevice();
+const { isWindows, isApple } = useDevice()
 
-const ctrlKey = computed(() => (isApple.value ? "metaKey" : "ctrlKey"));
+const ctrlKey = computed(() => (isApple.value ? 'metaKey' : 'ctrlKey'))
 
 const onKeydown = (event: KeyboardEvent) => {
   if (
@@ -41,16 +36,16 @@ const onKeydown = (event: KeyboardEvent) => {
     (props.ctrl ? event[ctrlKey.value] : true) &&
     (props.shift ? event.shiftKey : true)
   ) {
-    emit("confirm");
-    event.preventDefault();
+    emit('confirm')
+    event.preventDefault()
   }
-};
+}
 
 onMounted(() => {
-  window.addEventListener("keydown", onKeydown);
-});
+  window.addEventListener('keydown', onKeydown)
+})
 
 onUnmounted(() => {
-  window.removeEventListener("keydown", onKeydown);
-});
+  window.removeEventListener('keydown', onKeydown)
+})
 </script>

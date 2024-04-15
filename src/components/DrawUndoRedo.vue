@@ -27,60 +27,60 @@
 </template>
 
 <script setup lang="ts">
-import tippy from "tippy.js";
-const store = useStore();
+import tippy from 'tippy.js'
+const store = useStore()
 
-const active = ref<undefined | "undo" | "redo">();
+const active = ref<undefined | 'undo' | 'redo'>()
 
 const handleUndo = () => {
-  const text = store.undoFrame();
-  if (text === null) return;
+  const text = store.undoFrame()
+  if (text === null) return
 
-  store.textToCanvas(text);
+  store.textToCanvas(text)
 
-  active.value = "undo";
+  active.value = 'undo'
   setTimeout(() => {
-    active.value = undefined;
-  }, 500);
-};
+    active.value = undefined
+  }, 500)
+}
 
 const handleRedo = () => {
-  const text = store.redoFrame();
-  if (text === null) return;
+  const text = store.redoFrame()
+  if (text === null) return
 
-  store.textToCanvas(text);
+  store.textToCanvas(text)
 
-  active.value = "redo";
+  active.value = 'redo'
   setTimeout(() => {
-    active.value = undefined;
-  }, 500);
-};
+    active.value = undefined
+  }, 500)
+}
 
-let tooltips = [] as any[];
+let tooltips = [] as any[]
 
 onMounted(() => {
-  initializeTooltips();
-});
+  initializeTooltips()
+})
 
 function initializeTooltips() {
   // Destroy existing tooltips
-  tooltips.forEach((tooltip) => tooltip.destroy());
-  tooltips = [];
+  tooltips.forEach((tooltip) => tooltip.destroy())
+  tooltips = []
 
   // Initialize new tooltips
-  ["undo-button", "redo-button"].forEach((id) => {
+  ;['undo-button', 'redo-button'].forEach((id) => {
     // @ts-ignore
     const tooltip = tippy(document.getElementById(id), {
       content(reference) {
-        return reference.getAttribute("data-tooltip");
+        return reference.getAttribute('data-tooltip')
       },
-      theme: "light", // Specify the theme as 'light'
-    });
-    tooltips.push(tooltip);
-  });
+      theme: 'light' // Specify the theme as 'light'
+    })
+    tooltips.push(tooltip)
+  })
 }
 
 onUnmounted(() => {
-  tooltips.forEach((tooltip) => tooltip.destroy());
-});
+  tooltips.forEach((tooltip) => tooltip.destroy())
+})
 </script>

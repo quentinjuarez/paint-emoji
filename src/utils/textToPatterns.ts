@@ -1,22 +1,22 @@
-import bigPatterns from './patterns.json';
-import smallPatterns from './small-patterns.json';
+import bigPatterns from './patterns.json'
+import smallPatterns from './small-patterns.json'
 
 const getPatterns = (size: 'normal' | 'tight' = 'normal') => {
-  return size === 'normal' ? bigPatterns : smallPatterns;
-};
+  return size === 'normal' ? bigPatterns : smallPatterns
+}
 
 const textToPatterns = (text: string, size: 'normal' | 'tight' = 'normal') => {
   const letters = text
     .split('')
     .map((char) => {
-      const pattern = MAP(size)[removeDiacritics(char.toUpperCase())];
+      const pattern = MAP(size)[removeDiacritics(char.toUpperCase())]
 
       if (!pattern) {
-        return null;
+        return null
       }
-      return pattern;
+      return pattern
     })
-    .filter(Boolean) as string[];
+    .filter(Boolean) as string[]
 
   // pretty print
   // console.log(
@@ -32,68 +32,60 @@ const textToPatterns = (text: string, size: 'normal' | 'tight' = 'normal') => {
   //     .join('\n\n')
   // );
 
-  return joinPatterns(letters, size);
-};
+  return joinPatterns(letters, size)
+}
 
-const joinPatterns = (
-  patterns: string[],
-  size: 'normal' | 'tight' = 'normal'
-) => {
-  const lines = Array.from({ length: 7 }, () => '');
+const joinPatterns = (patterns: string[], size: 'normal' | 'tight' = 'normal') => {
+  const lines = Array.from({ length: 7 }, () => '')
 
   patterns.forEach((pattern) => {
-    const linesPattern = removeEmptyColumns(pattern, size).split('\n');
+    const linesPattern = removeEmptyColumns(pattern, size).split('\n')
     linesPattern.forEach((linePattern, i) => {
-      lines[i] += linePattern + '0';
-    });
-  });
+      lines[i] += linePattern + '0'
+    })
+  })
 
-  return lines.join('\n');
-};
+  return lines.join('\n')
+}
 
-function removeEmptyColumns(
-  pattern: string,
-  size: 'normal' | 'tight' = 'normal'
-): string {
+function removeEmptyColumns(pattern: string, size: 'normal' | 'tight' = 'normal'): string {
   if (pattern === getPatterns(size).SPACE) {
-    return getPatterns(size).EMPTY.trim();
+    return getPatterns(size).EMPTY.trim()
   }
-  const rows = pattern.trim().split('\n');
-  const numCols = rows[0].length;
+  const rows = pattern.trim().split('\n')
+  const numCols = rows[0].length
 
-  const nonEmptyCols: number[] = [];
+  const nonEmptyCols: number[] = []
 
   // Check each column for emptiness
   for (let col = 0; col < numCols; col++) {
-    let isEmpty = true;
+    let isEmpty = true
     for (const row of rows) {
       if (row[col] !== '0') {
-        isEmpty = false;
-        break;
+        isEmpty = false
+        break
       }
     }
     if (!isEmpty) {
-      nonEmptyCols.push(col);
+      nonEmptyCols.push(col)
     }
   }
 
   // Generate modified rows
   const modifiedRows = rows.map((row) => {
-    let newRow = '';
+    let newRow = ''
     for (const col of nonEmptyCols) {
-      newRow += row[col];
+      newRow += row[col]
     }
-    return newRow;
-  });
+    return newRow
+  })
 
   // Join modified rows and return the result
-  return modifiedRows.join('\n');
+  return modifiedRows.join('\n')
 }
 
-const MAP = (
-  size: 'normal' | 'tight' = 'normal'
-): { [key: string]: string } => {
-  const patterns = getPatterns(size);
+const MAP = (size: 'normal' | 'tight' = 'normal'): { [key: string]: string } => {
+  const patterns = getPatterns(size)
   return {
     A: patterns.A,
     B: patterns.B,
@@ -162,8 +154,8 @@ const MAP = (
     '}': patterns.SYMBOL_RIGHT_CURLY_BRACKET,
     '|': patterns.SYMBOL_VERTICAL_BAR,
     '`': patterns.SYMBOL_BACKTICK,
-    '~': patterns.SYMBOL_TILDE,
-  };
-};
+    '~': patterns.SYMBOL_TILDE
+  }
+}
 
-export default textToPatterns;
+export default textToPatterns

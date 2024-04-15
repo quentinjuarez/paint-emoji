@@ -38,9 +38,8 @@
 }
 
 .emoji-type-native {
-  font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI',
-    'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color',
-    'Android Emoji';
+  font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji',
+    'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
   word-break: keep-all;
 }
 
@@ -419,24 +418,16 @@
   left: 0;
   will-change: transform;
 }
-.emoji-mart
-  .vue-recycle-scroller.direction-vertical
-  .vue-recycle-scroller__item-wrapper {
+.emoji-mart .vue-recycle-scroller.direction-vertical .vue-recycle-scroller__item-wrapper {
   width: 100%;
 }
-.emoji-mart
-  .vue-recycle-scroller.direction-horizontal
-  .vue-recycle-scroller__item-wrapper {
+.emoji-mart .vue-recycle-scroller.direction-horizontal .vue-recycle-scroller__item-wrapper {
   height: 100%;
 }
-.emoji-mart
-  .vue-recycle-scroller.ready.direction-vertical
-  .vue-recycle-scroller__item-view {
+.emoji-mart .vue-recycle-scroller.ready.direction-vertical .vue-recycle-scroller__item-view {
   width: 100%;
 }
-.emoji-mart
-  .vue-recycle-scroller.ready.direction-horizontal
-  .vue-recycle-scroller__item-view {
+.emoji-mart .vue-recycle-scroller.ready.direction-horizontal .vue-recycle-scroller__item-view {
   height: 100%;
 }
 .emoji-mart .resize-observer[data-v-b329ee4c] {

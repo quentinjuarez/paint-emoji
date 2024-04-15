@@ -63,8 +63,8 @@ export const SPACING = {
   64: '256px',
   72: '288px',
   80: '320px',
-  96: '384px',
-};
+  96: '384px'
+}
 
 export const EXTENDED_FONT_FAMILIES = {
   custom: [
@@ -72,14 +72,14 @@ export const EXTENDED_FONT_FAMILIES = {
     '"Apple Color Emoji"',
     '"Segoe UI Emoji"',
     '"Segoe UI Symbol"',
-    '"Noto Color Emoji"',
-  ],
-};
+    '"Noto Color Emoji"'
+  ]
+}
 
 export const EXTENDED_TRANSITION = {
   height: 'height, max-height, min-height',
-  width: 'width, max-width, min-width',
-};
+  width: 'width, max-width, min-width'
+}
 
 export const EXTENDED_BORDER_RADIUS = {
   xs: '1px',
@@ -88,12 +88,12 @@ export const EXTENDED_BORDER_RADIUS = {
   md: '6px',
   lg: '8px',
   xl: '10px',
-  '2xl': '12px',
-};
+  '2xl': '12px'
+}
 
 export const EXTENDED_COLORS = {
   transparent: 'transparent',
   current: 'currentColor',
   black: '#000000',
-  white: '#ffffff',
-};
+  white: '#ffffff'
+}

@@ -1,13 +1,13 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router'
 
 const baseRoutes: RouteRecordRaw[] = [
   {
     path: '',
     name: 'index',
     component: () => import('@/pages/index.vue'),
-    meta: {},
-  },
-];
+    meta: {}
+  }
+]
 
 const routes = [
   ...baseRoutes,
@@ -15,8 +15,8 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import('@/pages/error.vue'),
-  },
-];
+    component: () => import('@/pages/error.vue')
+  }
+]
 
-export default routes;
+export default routes

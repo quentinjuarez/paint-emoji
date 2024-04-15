@@ -6,7 +6,7 @@
       :href="`#${tab.name}`"
       class="flex w-full cursor-pointer items-center justify-center rounded bg-white/10 p-1 text-center transition-colors hover:bg-white/20"
       :class="{
-        '!bg-purple-500 hover:!bg-purple-600': tab.name === props.tab,
+        '!bg-purple-500 hover:!bg-purple-600': tab.name === props.tab
       }"
     >
       {{ tab.label }}
@@ -16,17 +16,17 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  tab: string;
-}>();
+  tab: string
+}>()
 
 const tabs = [
   {
     name: 'draw',
-    label: 'Draw',
+    label: 'Draw'
   },
   {
     name: 'text',
-    label: 'Text',
-  },
-];
+    label: 'Text'
+  }
+]
 </script>

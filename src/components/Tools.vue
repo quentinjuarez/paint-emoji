@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore();
+const store = useStore()
 </script>

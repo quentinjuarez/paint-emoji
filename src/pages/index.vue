@@ -19,30 +19,30 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore();
+const store = useStore()
 
 const handleHashChange = () => {
-  const hash = window.location.hash;
+  const hash = window.location.hash
 
   if (!hash) {
-    store.tab = 'draw';
-    return;
+    store.tab = 'draw'
+    return
   }
 
-  const id = hash.slice(1);
+  const id = hash.slice(1)
 
-  store.tab = id;
-};
+  store.tab = id
+}
 
-const route = useRoute();
+const route = useRoute()
 
 watch(
   () => route.hash,
   () => {
-    handleHashChange();
+    handleHashChange()
   },
   {
-    immediate: true,
+    immediate: true
   }
-);
+)
 </script>

@@ -1,5 +1,5 @@
-@import url("tippy.js/dist/tippy.css");
-@import url("tippy.js/themes/light.css");
+@import url('tippy.js/dist/tippy.css');
+@import url('tippy.js/themes/light.css');
 
 @tailwind base;
 @tailwind components;
@@ -66,13 +66,13 @@ code {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 2px theme("colors.slate.800");
+  box-shadow: inset 0 0 2px theme('colors.slate.800');
   border-radius: 8px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: theme("colors.slate.700");
+  background-color: theme('colors.slate.700');
   border-radius: 8px;
   transition: background-color 250ms ease-in-out;
   cursor: pointer;
@@ -80,5 +80,5 @@ code {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: theme("colors.slate.800");
+  background-color: theme('colors.slate.800');
 }

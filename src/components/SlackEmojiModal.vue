@@ -11,31 +11,31 @@
         'rgba(247,233,34,.7)',
         'rgba(238,166,252,.7)',
         'rgba(255,213,143,.7)',
-        'rgba(211,209,255,.7)',
+        'rgba(211,209,255,.7)'
       ]"
     />
   </BaseModal>
 </template>
 
 <script setup lang="ts">
-import data from 'emoji-mart-vue-fast/data/google.json';
-import 'emoji-mart-vue-fast/css/emoji-mart.css';
+import data from 'emoji-mart-vue-fast/data/google.json'
+import 'emoji-mart-vue-fast/css/emoji-mart.css'
 // @ts-ignore
-import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src';
+import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src'
 
 // Create emoji data index.
 // We can change it (for example, filter by category) before passing to the component.
-let emojiIndex = new EmojiIndex(data);
+let emojiIndex = new EmojiIndex(data)
 
 const selectEmoji = (emoji: { native: string; colons: string }) => {
   return emit('select', {
     value: emoji.native,
     name: emoji.colons,
-    type: 'slack',
-  });
-};
+    type: 'slack'
+  })
+}
 
-const emit = defineEmits(['close', 'select']);
+const emit = defineEmits(['close', 'select'])
 </script>
 
 <style>

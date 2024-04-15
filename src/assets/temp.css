@@ -3,7 +3,7 @@
 }
 
 .emoji-mart {
-  @apply !bg-slate-900 !border-slate-700;
+  @apply !border-slate-700 !bg-slate-900;
 }
 
 .emoji-mart-bar {
@@ -43,7 +43,7 @@
 }
 
 .emoji-mart-skin-swatches {
-  @apply !bg-slate-900 !border-slate-700;
+  @apply !border-slate-700 !bg-slate-900;
 }
 
 .emoji-mart-search input {
