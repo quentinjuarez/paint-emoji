@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # silent linting and formatting
-yarn lint --quiet && yarn format --quiet
+yarn lint --quiet
