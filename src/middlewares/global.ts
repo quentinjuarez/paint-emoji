@@ -1,7 +1,5 @@
-import { applyMiddlewares } from './utils'
+import { applyMiddlewares } from './utils';
 
+const globalMiddleware = applyMiddlewares([]);
 
-
-const globalMiddleware = applyMiddlewares([])
-
-export default globalMiddleware
+export default globalMiddleware;

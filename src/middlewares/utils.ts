@@ -1,4 +1,8 @@
-import { NavigationGuardWithThis, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import {
+  NavigationGuardWithThis,
+  RouteLocationNormalized,
+  NavigationGuardNext,
+} from 'vue-router';
 
 function evaluateGuards(
   guards: NavigationGuardWithThis<any>[],
@@ -6,29 +10,29 @@ function evaluateGuards(
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) {
-  const guardsLeft = guards.slice(0) // clone the array so we do not accidentally modify it
-  const nextGuard = guardsLeft.shift()
+  const guardsLeft = guards.slice(0); // clone the array so we do not accidentally modify it
+  const nextGuard = guardsLeft.shift();
 
   if (!nextGuard) {
-    next()
-    return
+    next();
+    return;
   }
 
   const applyNext = (nextArg: any) => {
     if (!nextArg) {
-      evaluateGuards(guardsLeft, to, from, next)
-      return
+      evaluateGuards(guardsLeft, to, from, next);
+      return;
     }
 
-    next(nextArg)
-  }
+    next(nextArg);
+  };
 
-  nextGuard(to, from, applyNext as NavigationGuardNext)
+  nextGuard(to, from, applyNext as NavigationGuardNext);
 }
 
 export const applyMiddlewares = (guards: NavigationGuardWithThis<any>[]) => {
   if (!Array.isArray(guards)) {
-    throw new Error('You must specify an array of guards')
+    throw new Error('You must specify an array of guards');
   }
 
   return (
@@ -44,8 +48,8 @@ export const applyMiddlewares = (guards: NavigationGuardWithThis<any>[]) => {
         JSON.stringify(to.query) === JSON.stringify(from.query)) ||
       to.query.silent === 'true'
     )
-      return next()
+      return next();
 
-    return evaluateGuards(guards, to, from, next)
-  }
-}
+    return evaluateGuards(guards, to, from, next);
+  };
+};
