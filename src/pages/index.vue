@@ -10,6 +10,11 @@
     </div>
 
     <Tools />
+
+    <!-- VERSION -->
+    <div class="fixed bottom-0 m-1">
+      <p class="text-xs text-gray-500">v{{ store.version }}</p>
+    </div>
   </div>
 </template>
 
@@ -20,7 +25,7 @@ const handleHashChange = () => {
   const hash = window.location.hash;
 
   if (!hash) {
-    store.tab = "draw";
+    store.tab = 'draw';
     return;
   }
 

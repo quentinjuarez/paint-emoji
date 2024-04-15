@@ -3,7 +3,7 @@
     <div
       class="min-h-screen bg-slate-900 font-custom selection:bg-purple-500 selection:text-white text-slate-50"
     >
-      <DesktopLayout> </DesktopLayout>
+      <DesktopLayout />
     </div>
 
     <div
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import DesktopLayout from "@/layouts/DesktopLayout.vue";
+import DesktopLayout from '@/layouts/DesktopLayout.vue';
 
 const { handleResize } = useScreen();
 
@@ -54,7 +54,7 @@ onMounted(() => {
   store.error = false;
 
   store.resetStore();
-  window.addEventListener("resize", handleResize);
+  window.addEventListener('resize', handleResize);
   handleResize();
 
   // Error handling
@@ -66,7 +66,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", handleResize);
+  window.removeEventListener('resize', handleResize);
   window.onerror = null;
 });
 
@@ -76,7 +76,7 @@ const hardRefresh = () => {
 };
 
 const copyError = () => {
-  const text = error.value?.stack ?? "";
+  const text = error.value?.stack ?? '';
   navigator.clipboard.writeText(text);
 };
 </script>
