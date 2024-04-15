@@ -4,4 +4,6 @@
 # Redirect stdin to /dev/tty
 # exec < /dev/tty
 
+set -x
+
 yarn patch && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"

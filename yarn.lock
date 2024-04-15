@@ -2441,12 +2441,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:5.2.0":
-  version: 5.2.0
-  resolution: "husky@npm:5.2.0"
+"husky@npm:7.0.0":
+  version: 7.0.0
+  resolution: "husky@npm:7.0.0"
   bin:
     husky: lib/bin.js
-  checksum: 80af5b882c3f37d72d775f15dc8d5a74f27856881f92338278ac017ab447695ee0d958cffec22ba4d0ae96532fb8ee5f99f4ca7b869bc91285e5adc0b8cdfeb3
+  checksum: 2b9848c6365ad43110e19cffbf715ef695f2bcd8c98ee263b67389b492fe6b4045cad7be2af393b89c2d5effe3b97a6ff0443f869e9407d954bb93e17dade8a0
   languageName: node
   linkType: hard
 
@@ -4632,7 +4632,7 @@ __metadata:
     eslint-plugin-tailwindcss: ^3.13.1
     eslint-plugin-vue: ^9.9.0
     fuse.js: ^7.0.0
-    husky: 5.2.0
+    husky: 7.0.0
     lint-staged: 12.0.2
     lodash.debounce: ^4.0.8
     pinia: ^2.1.6
