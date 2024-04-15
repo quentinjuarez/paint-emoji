@@ -2,7 +2,13 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
-  ignorePatterns: ['docs/*', '.husky/*', '.gitignore'],
+  ignorePatterns: [
+    'docs/*',
+    '.husky/*',
+    '.gitignore',
+    'src/types/components.d.ts',
+    'src/types/auto-import.d.ts'
+  ],
   root: true,
   extends: [
     'plugin:vue/vue3-essential',
