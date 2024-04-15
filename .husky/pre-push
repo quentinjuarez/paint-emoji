@@ -6,4 +6,4 @@
 
 set -x
 
-npm version --patch && yarn build && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"
+npm version patch --no-git && yarn build && git add docs/ && git commit -m "deploy: v$(node -p "require('./package.json').version")"
