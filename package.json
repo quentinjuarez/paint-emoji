@@ -10,8 +10,9 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "format": "prettier --write src/",
-    "version-patch": "yarn version --patch && yarn build",
-    "prepare": "husky install"
+    "version-patch": "npm version --patch && yarn build",
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -59,6 +60,8 @@
   "lint-staged": {
     "package.json": [
       "git add"
-    ]
+    ],
+    "*.{ts,tsx,js}": "yarn lint",
+    "*.css": "yarn format"
   }
 }
