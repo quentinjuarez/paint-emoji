@@ -61,8 +61,6 @@
   "lint-staged": {
     "package.json": [
       "git add"
-    ],
-    "*.{ts,tsx,js,vue}": "yarn lint",
-    "*.{ts,tsx,js,vue,css}": "yarn format"
+    ]
   }
 }
