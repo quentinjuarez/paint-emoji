@@ -238,9 +238,20 @@ export const useStore = defineStore('shape-to-emoji', {
     },
     resetStore() {
       // if (this.version !== __VERSION__) return
-      if (this.version === '0.4.8') return
-      this.$reset()
-      this.version = __VERSION__
+      const [major, minor] = getVersion(__VERSION__)
+      const [storedMajor, storedMinor] = getVersion(this.version)
+
+      if (major > storedMajor) {
+        this.$reset()
+        this.version = __VERSION__
+        return
+      }
+
+      if (minor > storedMinor) {
+        this.$reset()
+        this.version = __VERSION__
+        return
+      }
     }
   },
   persist: {
