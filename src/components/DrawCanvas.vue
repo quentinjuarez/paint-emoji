@@ -2,19 +2,13 @@
   <div class="flex h-full flex-col items-center justify-center gap-4">
     <div
       :style="{
-        width: `${CANVAS_SIZE}px`,
-        height: `${CANVAS_SIZE}px`,
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"
-      class="relative select-none"
+      class="relative size-[calc(32*8px)] select-none md:size-[calc(32*12px)] lg:size-[calc(32*16px)]"
       ref="canvasRef"
     >
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">
-        <div
-          v-for="(value, j) in row"
-          :key="j"
-          :style="{ width: `${TILE_SIZE}px`, height: `${TILE_SIZE}px` }"
-        >
+        <div v-for="(value, j) in row" :key="j" class="size-2 md:size-3 lg:size-4">
           <BaseEmoji
             v-if="value !== '0'"
             :emoji="store.emojiSelection[valueToIndex(value)]"
@@ -33,7 +27,7 @@
           ✏️
         </button>
         <button
-          class="size-8 rounded border-2 border-transparent bg-white/10"
+          class="rounded border-2 border-transparent bg-white/10"
           :class="{ '!border-purple-500': isErasing }"
           @click="isErasing = !isErasing"
         >

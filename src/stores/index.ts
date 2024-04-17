@@ -237,7 +237,8 @@ export const useStore = defineStore('shape-to-emoji', {
       this.historyIndex = -1
     },
     resetStore() {
-      if (this.version !== __VERSION__) return
+      // if (this.version !== __VERSION__) return
+      if (this.version === '0.4.8') return
       this.$reset()
       this.version = __VERSION__
     }
