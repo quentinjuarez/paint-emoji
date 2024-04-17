@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run yarn version-patch and update package.json
-yarn version-patch && git add package.json
+yarn version-patch
 
 # Build the project
 yarn build
@@ -10,6 +10,7 @@ yarn build
 if [ $? -eq 0 ]; then
   # Build successful, add docs/ and commit changes
   git add docs/ && \
+  git add package.json && \
   git commit -m "deploy: v$(node -p "require('./package.json').version")" && \
   git push
 else
