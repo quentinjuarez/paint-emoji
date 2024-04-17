@@ -73,10 +73,12 @@ export const useStore = defineStore('shape-to-emoji', {
     selectedEmojiIndex: 0 as number,
     history: [] as string[],
     historyIndex: -1 as number,
-    displayedFrame: Array.from({ length: 24 }, () => Array.from({ length: 24 }, () => '0')),
+    displayedFrame: Array.from({ length: __TILES_PER_ROW__ }, () =>
+      Array.from({ length: __TILES_PER_ROW__ }, () => '0')
+    ),
     settings: {
-      tileSize: 16,
-      tilesPerRow: 24
+      tileSize: __TILE_SIZE__,
+      tilesPerRow: __TILES_PER_ROW__
     },
     darkMode: false,
     textEmoji: {

@@ -41,7 +41,7 @@ const handleCopy = () => {
 
     // Find the first non-empty row from the start
     for (let i = 0; i < lines.length; i++) {
-      if (lines[i].trim() !== '0'.repeat(24)) {
+      if (lines[i].trim() !== '0'.repeat(__TILES_PER_ROW__)) {
         start = i
         break
       }
@@ -49,7 +49,7 @@ const handleCopy = () => {
 
     // Find the last non-empty row from the end
     for (let i = lines.length - 1; i >= 0; i--) {
-      if (lines[i].trim() !== '0'.repeat(24)) {
+      if (lines[i].trim() !== '0'.repeat(__TILES_PER_ROW__)) {
         end = i
         break
       }
