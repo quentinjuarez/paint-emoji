@@ -26,9 +26,7 @@ export default () => {
     define: {
       __BASE_URL__: `'${baseUrl}'`,
       __DEV__: isDev,
-      __VERSION__: `'${version}'`,
-      __TILE_SIZE__: 16,
-      __TILES_PER_ROW__: 32
+      __VERSION__: `'${version}'`
     },
     build: {
       outDir: 'docs'

@@ -6,6 +6,9 @@ const emptyEmoji = (index: number): Emoji => ({
   type: 'empty'
 })
 
+const __TILES_PER_ROW__ = 32
+const __TILE_SIZE__ = 16
+
 // VERSION HISTORY
 // 0.0.0 - Init
 // 0.0.1 - Added emoji selection
