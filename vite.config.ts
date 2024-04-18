@@ -11,7 +11,7 @@ import { version } from './package.json'
 // https://vitejs.dev/config/
 export default () => {
   const isDev = process.env.NODE_ENV !== 'production'
-  const baseUrl = isDev ? '/' : '/shape-to-emoji'
+  const baseUrl = '/shape-to-emoji'
 
   return defineConfig({
     server: {

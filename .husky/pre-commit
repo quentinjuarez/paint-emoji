@@ -1,5 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# silent linting and formatting
-yarn lint --quiet
+echo "Running linting and formatting checks..."
+
+yarn lint --quiet && yarn format --log-level silent
+
+echo "Linting and formatting checks completed."
