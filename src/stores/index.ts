@@ -38,37 +38,37 @@ export const useStore = defineStore('shape-to-emoji', {
         type: 'slack'
       },
       {
-        name: ':red_square:',
+        name: ':large_red_square:',
         value: '🟥',
         type: 'slack'
       },
       {
-        name: ':orange_square:',
+        name: ':large_orange_square:',
         value: '🟧',
         type: 'slack'
       },
       {
-        name: ':yellow_square:',
+        name: ':large_yellow_square:',
         value: '🟨',
         type: 'slack'
       },
       {
-        name: ':green_square:',
+        name: ':large_green_square:',
         value: '🟩',
         type: 'slack'
       },
       {
-        name: ':blue_square:',
+        name: ':large_blue_square:',
         value: '🟦',
         type: 'slack'
       },
       {
-        name: ':purple_square:',
+        name: ':large_purple_square:',
         value: '🟪',
         type: 'slack'
       },
       {
-        name: ':brown_square:',
+        name: ':large_brown_square:',
         value: '🟫',
         type: 'slack'
       }

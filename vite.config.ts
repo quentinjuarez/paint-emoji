@@ -9,9 +9,9 @@ import vue from '@vitejs/plugin-vue'
 import { version } from './package.json'
 
 // https://vitejs.dev/config/
-export default () => {
-  const isDev = process.env.NODE_ENV !== 'production'
-  const baseUrl = '/shape-to-emoji'
+export default ({ command }) => {
+  const isDev = command === 'serve'
+  const baseUrl = isDev ? '/' : '/shape-to-emoji'
 
   return defineConfig({
     server: {
