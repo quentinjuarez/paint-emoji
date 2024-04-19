@@ -6,6 +6,54 @@ const emptyEmoji = (index: number): Emoji => ({
   type: 'empty'
 })
 
+const initEmojis = (): Emoji[] => [
+  {
+    name: ':white_large_square:',
+    value: '⬜',
+    type: 'slack'
+  },
+  {
+    name: ':black_large_square:',
+    value: '⬛',
+    type: 'slack'
+  },
+  {
+    name: ':large_red_square:',
+    value: '🟥',
+    type: 'slack'
+  },
+  {
+    name: ':large_orange_square:',
+    value: '🟧',
+    type: 'slack'
+  },
+  {
+    name: ':large_yellow_square:',
+    value: '🟨',
+    type: 'slack'
+  },
+  {
+    name: ':large_green_square:',
+    value: '🟩',
+    type: 'slack'
+  },
+  {
+    name: ':large_blue_square:',
+    value: '🟦',
+    type: 'slack'
+  },
+  {
+    name: ':large_purple_square:',
+    value: '🟪',
+    type: 'slack'
+  },
+  {
+    name: ':large_brown_square:',
+    value: '🟫',
+    type: 'slack'
+  }
+]
+
 const __TILES_PER_ROW__ = 32
 const __TILE_SIZE__ = 16
 
@@ -26,53 +74,7 @@ export const useStore = defineStore('shape-to-emoji', {
     version: __VERSION__,
     screenWidth: document.documentElement.clientWidth,
     screenHeight: document.documentElement.clientHeight,
-    emojiSelection: [
-      {
-        name: ':white_large_square:',
-        value: '⬜',
-        type: 'slack'
-      },
-      {
-        name: ':black_large_square:',
-        value: '⬛',
-        type: 'slack'
-      },
-      {
-        name: ':large_red_square:',
-        value: '🟥',
-        type: 'slack'
-      },
-      {
-        name: ':large_orange_square:',
-        value: '🟧',
-        type: 'slack'
-      },
-      {
-        name: ':large_yellow_square:',
-        value: '🟨',
-        type: 'slack'
-      },
-      {
-        name: ':large_green_square:',
-        value: '🟩',
-        type: 'slack'
-      },
-      {
-        name: ':large_blue_square:',
-        value: '🟦',
-        type: 'slack'
-      },
-      {
-        name: ':large_purple_square:',
-        value: '🟪',
-        type: 'slack'
-      },
-      {
-        name: ':large_brown_square:',
-        value: '🟫',
-        type: 'slack'
-      }
-    ] as Emoji[],
+    emojiSelection: initEmojis(),
     selectedEmojiIndex: 0 as number,
     history: [] as string[],
     historyIndex: -1 as number,
@@ -115,53 +117,7 @@ export const useStore = defineStore('shape-to-emoji', {
       this.selectedEmojiIndex = 0
     },
     resetEmojiSelection() {
-      this.emojiSelection = [
-        {
-          name: ':white_large_square:',
-          value: '⬜',
-          type: 'slack'
-        },
-        {
-          name: ':black_large_square:',
-          value: '⬛',
-          type: 'slack'
-        },
-        {
-          name: ':red_square:',
-          value: '🟥',
-          type: 'slack'
-        },
-        {
-          name: ':orange_square:',
-          value: '🟧',
-          type: 'slack'
-        },
-        {
-          name: ':yellow_square:',
-          value: '🟨',
-          type: 'slack'
-        },
-        {
-          name: ':green_square:',
-          value: '🟩',
-          type: 'slack'
-        },
-        {
-          name: ':blue_square:',
-          value: '🟦',
-          type: 'slack'
-        },
-        {
-          name: ':purple_square:',
-          value: '🟪',
-          type: 'slack'
-        },
-        {
-          name: ':brown_square:',
-          value: '🟫',
-          type: 'slack'
-        }
-      ] as Emoji[]
+      this.emojiSelection = initEmojis()
     },
     removeEmoji(index: number) {
       this.emojiSelection[index] = emptyEmoji(index)
