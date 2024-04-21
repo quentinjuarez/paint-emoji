@@ -10,7 +10,11 @@
 
     <h2 class="text-xl font-bold">Community</h2>
 
-    <CommunityTools />
+    <CommunityTools v-if="useOnlineStore().isAuthenticated" />
+
+    <div v-else>
+      <p class="text-sm">Sign in to access community tools.</p>
+    </div>
 
     <h2 class="text-xl font-bold">Canvas</h2>
 
