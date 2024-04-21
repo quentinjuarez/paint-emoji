@@ -85,6 +85,27 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
       } catch (error) {
         return false
       }
+    },
+    async getMineDrawings() {
+      try {
+        const { items } = await this.$api.drawings.getMineDrawings()
+        this.drawings = items
+
+        return true
+      } catch (error) {
+        return false
+      }
+    },
+    async deleteDrawing(id: string) {
+      try {
+        await this.$api.drawings.deleteDrawing(id)
+
+        await this.getMineDrawings()
+
+        return true
+      } catch (error) {
+        return false
+      }
     }
   },
   persist: {
