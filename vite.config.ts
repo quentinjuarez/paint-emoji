@@ -12,6 +12,7 @@ import { version } from './package.json'
 export default ({ command }) => {
   const isDev = command === 'serve'
   const baseUrl = isDev ? '/' : '/shape-to-emoji'
+  const apiUrl = isDev ? 'http://localhost:4001' : 'https://quentinjuarez.alwaysdata.net'
 
   return defineConfig({
     server: {
@@ -26,7 +27,8 @@ export default ({ command }) => {
     define: {
       __BASE_URL__: `'${baseUrl}'`,
       __DEV__: isDev,
-      __VERSION__: `'${version}'`
+      __VERSION__: `'${version}'`,
+      __API_URL__: `'${apiUrl}'`
     },
     build: {
       outDir: 'docs'

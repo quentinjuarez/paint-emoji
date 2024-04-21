@@ -1,6 +1,8 @@
 <template>
   <Col>
     <div class="flex flex-col space-y-4">
+      <UserMenu />
+
       <DrawTools v-show="store.tab === 'draw'" />
 
       <TextTools v-show="store.tab === 'text'" />

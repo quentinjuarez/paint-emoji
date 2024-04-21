@@ -4,6 +4,7 @@ declare global {
   const __DEV__: boolean
   const __VERSION__: string
   const __BASE_URL__: string
+  const __API_URL__: string
 
   interface CustomEmoji {
     name: string
@@ -23,5 +24,23 @@ declare global {
     name: string
     value: string
     type: 'slack' | 'custom' | 'empty'
+  }
+
+  interface User {
+    _id: string
+    username: string
+    firstName: string
+    lastName: string
+    email: string
+    profilePicture: string
+    coverPicture: string
+    description: string
+    isDemo: boolean
+    isAdmin: boolean
+    source: string
+    externalId: string
+    createdAt: string
+    updatedAt: string
+    __v: number
   }
 }

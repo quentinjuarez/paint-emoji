@@ -6,6 +6,18 @@ const baseRoutes: RouteRecordRaw[] = [
     name: 'index',
     component: () => import('@/pages/index.vue'),
     meta: {}
+  },
+  {
+    path: '/oauth/google',
+    name: 'oauth-google',
+    component: () => import('@/pages/oauth/google.vue'),
+    meta: {}
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('@/pages/logout.vue'),
+    meta: {}
   }
 ]
 

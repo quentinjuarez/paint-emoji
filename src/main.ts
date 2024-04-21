@@ -4,7 +4,7 @@ import App from './App.vue'
 import initRouter from './router'
 import initPinia from './stores/plugin'
 import initI18n from './i18n'
-import vClickOutside from './plugins/vClickOutside'
+import vClickOutside from './directives/vClickOutside'
 
 const app = createApp(App)
 

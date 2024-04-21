@@ -1,5 +1,5 @@
-import bigPatterns from './patterns.json'
-import smallPatterns from './small-patterns.json'
+import bigPatterns from '../assets/data/patterns.json'
+import smallPatterns from '../assets/data/small-patterns.json'
 
 const getPatterns = (size: 'normal' | 'tight' = 'normal') => {
   return size === 'normal' ? bigPatterns : smallPatterns

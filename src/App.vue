@@ -38,12 +38,14 @@ import DesktopLayout from '@/layouts/DesktopLayout.vue'
 const { handleResize } = useScreen()
 
 const store = useStore()
+const onlineStore = useOnlineStore()
 
 const error = ref<Error>()
 
 useTooltips()
 
 onMounted(() => {
+  onlineStore.getMe()
   store.error = false
 
   store.resetStore()

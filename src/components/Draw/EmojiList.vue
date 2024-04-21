@@ -75,7 +75,7 @@ import tippy from 'tippy.js'
 
 import Fuse from 'fuse.js'
 
-import { emoji } from '@/assets/slack-emoji.json'
+import { emoji } from '@/assets/data/slack-emoji.json'
 
 const searchInputRef = ref<HTMLInputElement>()
 const focus = ref(false)
