@@ -4,21 +4,31 @@
 
     <DrawUndoRedo />
 
+    <h2 class="text-xl font-bold">Files</h2>
+
     <EmojiFiles />
 
-    <button
-      @click="handleClear"
-      class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-    >
-      Clear Canvas
-    </button>
+    <h2 class="text-xl font-bold">Community</h2>
 
-    <button
-      @click="handleClick"
-      class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-    >
-      Upload Image
-    </button>
+    <CommunityTools />
+
+    <h2 class="text-xl font-bold">Canvas</h2>
+
+    <div class="flex flex-col gap-2">
+      <button
+        @click="handleClear"
+        class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+      >
+        Clear Canvas
+      </button>
+
+      <button
+        @click="handleClick"
+        class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+      >
+        Upload Image
+      </button>
+    </div>
 
     <input class="hidden" type="file" accept="image/*" ref="fileInputRef" @change="handleUpload" />
 

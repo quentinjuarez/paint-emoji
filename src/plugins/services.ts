@@ -1,10 +1,12 @@
 import axios from 'axios'
 import UserService from '../services/api/user'
 import AuthService from '../services/api/auth'
+import DrawingService from '../services/api/drawing'
 
 export interface ApiInterface {
   auth: AuthService
   users: UserService
+  drawings: DrawingService
 }
 
 const initServices = () => {
@@ -35,7 +37,8 @@ const initServices = () => {
   // services
   const api = {
     auth: new AuthService(apiClient),
-    users: new UserService(apiClient)
+    users: new UserService(apiClient),
+    drawings: new DrawingService(apiClient)
   }
 
   return api

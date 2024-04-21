@@ -1,14 +1,8 @@
-import { AxiosInstance } from 'axios'
+import Service from '..'
 
-class DrawingService {
-  private axiosClient: AxiosInstance
-
-  constructor(axiosClient: AxiosInstance) {
-    this.axiosClient = axiosClient
-  }
-
-  async findDrawingById(id: string) {
-    return this.axiosClient.get(`/drawings/${id}`)
+class DrawingService extends Service {
+  async saveDrawing(drawing: DrawingDTO) {
+    return this.client.post('/drawings/save', drawing)
   }
 }
 

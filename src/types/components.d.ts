@@ -8,8 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BaseEmoji: typeof import('./../components/Base/BaseEmoji.vue')['default']
+    BaseLoader: typeof import('./../components/Base/BaseLoader.vue')['default']
     BaseModal: typeof import('./../components/Base/BaseModal.vue')['default']
     Col: typeof import('./../components/Layout/Col.vue')['default']
+    CommunityBrowseModal: typeof import('./../components/Draw/CommunityBrowseModal.vue')['default']
+    CommunityFiles: typeof import('./../components/Draw/CommunityFiles.vue')['default']
+    CommunitySaveModal: typeof import('./../components/Draw/CommunitySaveModal.vue')['default']
+    CommunityTools: typeof import('./../components/Draw/CommunityTools.vue')['default']
     DrawCanvas: typeof import('./../components/Draw/DrawCanvas.vue')['default']
     DrawPanel: typeof import('./../components/Draw/DrawPanel.vue')['default']
     DrawTools: typeof import('./../components/Draw/DrawTools.vue')['default']

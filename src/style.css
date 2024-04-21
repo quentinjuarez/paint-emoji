@@ -22,6 +22,10 @@ input {
   outline: none;
 }
 
+textarea {
+  outline: none;
+}
+
 *,
 *::before,
 *::after {

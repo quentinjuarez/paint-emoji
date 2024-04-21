@@ -1,6 +1,7 @@
 <template>
   <div class="flex h-full flex-col items-center justify-center gap-4">
     <div
+      id="canvas"
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"

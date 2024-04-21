@@ -43,4 +43,29 @@ declare global {
     updatedAt: string
     __v: number
   }
+
+  interface Drawing {
+    _id: string
+    title: string
+    description?: string
+    emojis: Emoji[]
+    canvas: string
+    version: string
+    authorId: string
+    isPublic: boolean
+    preview: string
+    createdAt: string
+    updatedAt: string
+    __v: number
+  }
+
+  interface DrawingDTO {
+    title: string
+    description?: string
+    emojis: Emoji[]
+    canvas: string
+    version: string
+    isPublic?: boolean
+    preview?: string
+  }
 }

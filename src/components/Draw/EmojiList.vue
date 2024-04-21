@@ -11,6 +11,7 @@
         :class="{ 'border-purple-500': focus }"
       >
         <input
+          name="search"
           class="m-0 w-full bg-transparent p-0 outline-none"
           ref="searchInputRef"
           v-model="query"

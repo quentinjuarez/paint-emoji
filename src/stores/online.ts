@@ -36,6 +36,11 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
       } catch (error) {
         return false
       }
+    },
+    // DRAWINGS
+    async saveDrawing(drawing: DrawingDTO) {
+      const savedDrawing = await this.$api.drawings.saveDrawing(drawing)
+      return savedDrawing
     }
   },
   persist: {
