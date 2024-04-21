@@ -3,7 +3,14 @@ import { defineStore } from 'pinia'
 export const useOnlineStore = defineStore('shape-to-emoji-online', {
   state: () => ({
     accessToken: undefined as string | undefined,
-    me: undefined as any | undefined
+    me: undefined as any | undefined,
+    search: {
+      items: [] as Drawing[],
+      total: 0,
+      prev: null as number | null,
+      next: null as number | null
+    },
+    drawings: [] as Drawing[]
   }),
   getters: {
     isAuthenticated: (state) => !!state.accessToken
@@ -39,8 +46,45 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     },
     // DRAWINGS
     async saveDrawing(drawing: DrawingDTO) {
-      const savedDrawing = await this.$api.drawings.saveDrawing(drawing)
-      return savedDrawing
+      try {
+        await this.$api.drawings.saveDrawing(drawing)
+
+        return true
+      } catch (error) {
+        return false
+      }
+    },
+    async getDrawings() {
+      try {
+        const search = await this.$api.drawings.getDrawings()
+        this.search = search
+
+        return true
+      } catch (error) {
+        return false
+      }
+    },
+    async searchDrawings({
+      query,
+      limit,
+      offset
+    }: {
+      query: string
+      limit: number
+      offset: number
+    }) {
+      try {
+        const search = await this.$api.drawings.searchDrawings({
+          query,
+          limit,
+          offset
+        })
+        this.search = search
+
+        return true
+      } catch (error) {
+        return false
+      }
     }
   },
   persist: {

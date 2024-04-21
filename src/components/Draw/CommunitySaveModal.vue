@@ -99,7 +99,11 @@ const exportAsPNG = async () => {
 
   if (!canvas) return
 
-  const data = await html2canvas(canvas)
+  const data = await html2canvas(canvas, {
+    backgroundColor: 'transparent',
+    scale: 1,
+    useCORS: true
+  })
   preview.value = data.toDataURL('image/png')
 }
 </script>
