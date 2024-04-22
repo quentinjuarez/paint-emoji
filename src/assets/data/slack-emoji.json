@@ -3400,7 +3400,10 @@
       "user_display_name": "Alex",
       "avatar_hash": "a0a0c4e86b14",
       "can_delete": false,
-      "synonyms": ["eggplant", "marc-antoine"]
+      "synonyms": [
+        "eggplant",
+        "marc-antoine"
+      ]
     },
     {
       "name": "mario-tennis",
@@ -6763,20 +6766,6 @@
       "synonyms": []
     },
     {
-      "name": "dust-cry",
-      "is_alias": 0,
-      "alias_for": "",
-      "url": "https://emoji.slack-edge.com/TSTD7B5L5/dust-cry/c4846706cf9671e8.png",
-      "team_id": "TSTD7B5L5",
-      "user_id": "U0329SYSH09",
-      "created": 1712241282,
-      "is_bad": false,
-      "user_display_name": "Quentin",
-      "avatar_hash": "36478f948e64",
-      "can_delete": true,
-      "synonyms": []
-    },
-    {
       "name": "weed",
       "is_alias": 0,
       "alias_for": "",
@@ -6875,20 +6864,6 @@
       "synonyms": []
     },
     {
-      "name": "pet-the-lauryne",
-      "is_alias": 0,
-      "alias_for": "",
-      "url": "https://emoji.slack-edge.com/TSTD7B5L5/pet-the-lauryne/7ef4177a639b568a.gif",
-      "team_id": "TSTD7B5L5",
-      "user_id": "U0329SYSH09",
-      "created": 1712824416,
-      "is_bad": false,
-      "user_display_name": "Quentin",
-      "avatar_hash": "36478f948e64",
-      "can_delete": true,
-      "synonyms": []
-    },
-    {
       "name": "monkey-on-liane",
       "is_alias": 0,
       "alias_for": "",
@@ -6927,6 +6902,76 @@
       "is_bad": false,
       "user_display_name": "Victor",
       "avatar_hash": "ce21da38bf4e",
+      "can_delete": false,
+      "synonyms": []
+    },
+    {
+      "name": "cat-tongue",
+      "is_alias": 0,
+      "alias_for": "",
+      "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/cat-tongue\/3d56214680047d53.png",
+      "team_id": "TSTD7B5L5",
+      "user_id": "U0329SYSH09",
+      "created": 1713800670,
+      "is_bad": false,
+      "user_display_name": "Quentin",
+      "avatar_hash": "36478f948e64",
+      "can_delete": true,
+      "synonyms": []
+    },
+    {
+      "name": "cat-lick",
+      "is_alias": 0,
+      "alias_for": "",
+      "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/cat-lick\/dae189d607c3e7cb.png",
+      "team_id": "TSTD7B5L5",
+      "user_id": "U0329SYSH09",
+      "created": 1713800666,
+      "is_bad": false,
+      "user_display_name": "Quentin",
+      "avatar_hash": "36478f948e64",
+      "can_delete": true,
+      "synonyms": []
+    },
+    {
+      "name": "alien-dance",
+      "is_alias": 0,
+      "alias_for": "",
+      "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/alien-dance\/43e76044f7cd48e1.png",
+      "team_id": "TSTD7B5L5",
+      "user_id": "U0329SYSH09",
+      "created": 1713800655,
+      "is_bad": false,
+      "user_display_name": "Quentin",
+      "avatar_hash": "36478f948e64",
+      "can_delete": true,
+      "synonyms": []
+    },
+    {
+      "name": "butt",
+      "is_alias": 0,
+      "alias_for": "",
+      "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/butt\/50b643c1cc6a45f2.gif",
+      "team_id": "TSTD7B5L5",
+      "user_id": "U04HKF3821X",
+      "created": 1713800433,
+      "is_bad": false,
+      "user_display_name": "Lucas",
+      "avatar_hash": "cf2f231a23e3",
+      "can_delete": false,
+      "synonyms": []
+    },
+    {
+      "name": "dancing_jesus",
+      "is_alias": 0,
+      "alias_for": "",
+      "url": "https:\/\/emoji.slack-edge.com\/TSTD7B5L5\/dancing_jesus\/ee8e04370fadf597.gif",
+      "team_id": "TSTD7B5L5",
+      "user_id": "U04HKF3821X",
+      "created": 1713800409,
+      "is_bad": false,
+      "user_display_name": "Lucas",
+      "avatar_hash": "cf2f231a23e3",
       "can_delete": false,
       "synonyms": []
     }
