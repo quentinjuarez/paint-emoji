@@ -14,6 +14,8 @@ yarn $version_script
 # Build the project
 yarn build
 
+sh scripts/404.sh
+
 # Check if the build was successful
 if [ $? -eq 0 ]; then
   # Build successful, add docs/ and commit changes
