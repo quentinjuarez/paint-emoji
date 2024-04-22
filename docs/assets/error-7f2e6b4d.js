@@ -1,0 +1,1 @@
+import{d as r,M as o,f as s,c as t,o as n,_ as a}from"./index-6ae0881e.js";const u=r({__name:"error",setup(c){const e=o();return s(()=>{e.push("/")}),(_,p)=>(n(),t("div",null,"ok"))}}),f=a(u,[["__file","/Users/quentinjuarez/Documents/Perso/shape-emoji-vue/src/pages/error.vue"]]);export{f as default};
