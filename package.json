@@ -2,7 +2,7 @@
   "name": "vue3-template",
   "private": true,
   "packageManager": "yarn@3.2.3",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -28,6 +28,7 @@
     "sortablejs": "^1.15.2",
     "sortablejs-vue3": "^1.2.11",
     "tippy.js": "^6.3.7",
+    "vite-plugin-ssr": "^0.4.142",
     "vue": "^3.3.4",
     "vue-i18n": "9",
     "vue-router": "^4.2.4"
