@@ -11,7 +11,7 @@ import { version } from './package.json'
 // https://vitejs.dev/config/
 export default ({ command }) => {
   const isDev = command === 'serve'
-  const baseUrl = isDev ? '/' : '/shape-to-emoji'
+  const baseUrl = '/' //isDev ? '/' : '/shape-to-emoji'
   const apiUrl = isDev ? 'http://localhost:4001' : 'https://quentinjuarez.alwaysdata.net'
 
   return defineConfig({
@@ -31,7 +31,7 @@ export default ({ command }) => {
       __API_URL__: `'${apiUrl}'`
     },
     build: {
-      outDir: 'docs'
+      outDir: 'dist'
     },
     plugins: [
       AutoImport({
