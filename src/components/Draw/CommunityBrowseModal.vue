@@ -16,7 +16,10 @@
           :key="item._id"
           class="h-[216px] shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
         >
-          <button class="rounded-lg p-2 text-left transition-colors hover:bg-slate-800">
+          <button
+            class="rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
+            @click="handleClick($event, item._id)"
+          >
             <img :src="item.preview" class="w-full rounded-lg" />
             <div class="flex flex-col gap-1">
               <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
@@ -66,11 +69,27 @@
         </button>
       </div>
     </div>
+
+    <div ref="tooltipRef" class="hidden space-y-4 p-2" id="browse-tooltip">
+      <h3 class="text-lg font-bold">Import this drawing?</h3>
+      <div>
+        <label class="text-sm">
+          <input v-model="importEmojis" type="checkbox" class="mr-2" />
+          <span>Import emojis</span>
+        </label>
+      </div>
+      <div class="flex items-center justify-center gap-2">
+        <button @click="handleSelect" class="rounded-lg bg-green-500 p-2 text-white">Yes</button>
+        <button @click="handleCancel" class="rounded-lg bg-red-500 p-2 text-white">No</button>
+      </div>
+    </div>
   </BaseModal>
 </template>
 
 <script setup lang="ts">
+import tippy from 'tippy.js'
 import debounce from 'lodash.debounce'
+import lzString from 'lz-string'
 
 const emit = defineEmits(['close'])
 
@@ -106,4 +125,63 @@ const handleNext = () => {
     handleSearch()
   }
 }
+
+const tooltip = ref<any>(null)
+const tooltipRef = ref(null)
+const tooltipId = ref<string>()
+
+const handleClick = (e: Event, id: string) => {
+  tooltip.value?.destroy()
+  tooltipId.value = id
+
+  if (!tooltipRef.value || !e.target) return
+
+  tooltip.value = tippy(e.target as HTMLElement, {
+    content: tooltipRef.value,
+    trigger: 'click',
+    interactive: true,
+    appendTo: document.body,
+    onHidden: () => {
+      tooltip.value?.destroy()
+    }
+  })
+
+  e.target.dispatchEvent(new Event('click'))
+}
+
+const importEmojis = ref(false)
+const store = useStore()
+
+const handleSelect = () => {
+  const drawing = onlineStore.search.items.find((item) => item._id === tooltipId.value)
+
+  if (!drawing) return
+
+  if (importEmojis.value) {
+    store.emojiSelection = drawing.emojis
+  }
+
+  const decodedText = lzString.decompressFromUTF16(drawing.canvas)
+
+  store.addFrame(decodedText)
+  store.textToCanvas(decodedText)
+
+  tooltip.value?.destroy()
+  importEmojis.value = false
+  tooltipId.value = undefined
+  emit('close')
+}
+
+const handleCancel = () => {
+  tooltip.value?.destroy()
+  importEmojis.value = false
+  tooltipId.value = undefined
+}
 </script>
+
+<style>
+/* Update the tooltip display property to block */
+div[data-tippy-root] > div.tippy-box > div.tippy-content > #browse-tooltip {
+  display: block !important;
+}
+</style>
