@@ -42,6 +42,7 @@
 </template>
 
 <script setup lang="ts">
+import lzString from 'lz-string'
 import html2canvas from 'html2canvas'
 
 const store = useStore()
@@ -60,7 +61,7 @@ const payload = computed(() => ({
   title: title.value,
   description: description.value,
   emojis: store.emojiSelection,
-  canvas: store.lastFrame || '',
+  canvas: lzString.compressToUTF16(store.lastFrame || ''),
   preview: preview.value,
   isPublic: isPublic.value,
   version: store.version
