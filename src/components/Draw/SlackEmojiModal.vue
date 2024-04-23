@@ -28,9 +28,13 @@ import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src'
 let emojiIndex = new EmojiIndex(data)
 
 const selectEmoji = (emoji: { native: string; colons: string }) => {
+  const splittedColons = emoji.colons.split(':')
+
+  const parsedColons = `:${splittedColons[1]}:`
+
   return emit('select', {
     value: emoji.native,
-    name: emoji.colons,
+    name: parsedColons,
     type: 'slack'
   })
 }
