@@ -196,7 +196,6 @@ export const useStore = defineStore('shape-to-emoji', {
       this.historyIndex = -1
     },
     resetStore() {
-      // if (this.version !== __VERSION__) return
       const [major, minor] = getVersion(__VERSION__)
       const [storedMajor, storedMinor] = getVersion(this.version)
 
@@ -211,6 +210,9 @@ export const useStore = defineStore('shape-to-emoji', {
         this.version = __VERSION__
         return
       }
+    },
+    getEmojiData(emojiUrls: string[]) {
+      return this.$api.drawings.getEmojiData(emojiUrls)
     }
   },
   persist: {

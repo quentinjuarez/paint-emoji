@@ -47,34 +47,61 @@ const generateCanvas = () => {
   })
 }
 
-const emojiSelectionPixels = () => {
-  return Promise.all(
-    store.emojiSelection.map(async (emoji) => {
-      if (emoji.type === 'slack') {
-        return emoji.value
-      } else {
-        const response = await fetch(emoji.value, {
-          mode: 'no-cors'
-        })
-        const imageBuffer = await response.arrayBuffer()
+const emojiSelectionPixels = async () => {
+  const emojiUrls = store.emojiSelection
+    .filter((emoji) => emoji.type === 'custom')
+    .map((emoji) => emoji.value)
 
-        const image = await createImageBitmap(new Blob([imageBuffer]))
+  const dataUrls = await store.getEmojiData(emojiUrls)
 
-        const fakeCanvas = document.createElement('canvas')
-        const fakeCtx = fakeCanvas.getContext('2d')
+  if (!dataUrls) return
 
-        fakeCanvas.width = 16
-        fakeCanvas.height = 16
+  console.log('dataUrls', dataUrls)
 
-        fakeCtx!.drawImage(image, 0, 0, 16, 16)
-        // Get image data
-        const imageData = fakeCtx!.getImageData(0, 0, 16, 16)
-        const pixels = imageData.data
+  // dataUrl
+  // data:image/png;base64,R0lGODlhaABgAP0AAAA...
 
-        console.log('Image loaded!', pixels)
-      }
+  dataUrls.map((dataUrl) => {
+    const image = new Image()
+    image.src = dataUrl
+    image.onload = () => {
+      getPixels(image)
+    }
+  })
+
+  return true
+}
+
+const getPixels = (image: any) => {
+  const fakeCanvas = document.createElement('canvas')
+  fakeCanvas.style.position = 'absolute'
+  fakeCanvas.style.top = '0'
+  fakeCanvas.style.left = '0'
+  const fakeCtx = fakeCanvas.getContext('2d')
+
+  if (!fakeCtx) {
+    throw new Error('Failed to create canvas context')
+  }
+
+  fakeCanvas.width = 16
+  fakeCanvas.height = 16
+
+  fakeCtx.drawImage(image, 0, 0, 16, 16)
+
+  // print image
+  document.body.appendChild(fakeCanvas)
+
+  //    pixelMap => hex[][]
+  const pixelMap = Array.from({ length: 16 }, (_, y) =>
+    Array.from({ length: 16 }, (_, x) => {
+      const [r, g, b, a] = fakeCtx.getImageData(x, y, 1, 1).data
+      return a === 0
+        ? 'transparent'
+        : `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
     })
   )
+
+  console.log('pixelMap', pixelMap)
 }
 
 onMounted(() => {

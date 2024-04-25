@@ -51,6 +51,10 @@ class DrawingService extends Service {
   async deleteDrawing(id: string) {
     return this.client.delete<boolean>(`/drawings/${id}`).then((res) => res.data)
   }
+
+  async getEmojiData(emojiUrls: string[]) {
+    return this.client.post<any[]>('/drawings/emoji-data', { emojiUrls }).then((res) => res.data)
+  }
 }
 
 export default DrawingService
