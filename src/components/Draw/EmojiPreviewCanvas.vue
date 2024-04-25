@@ -64,8 +64,8 @@ const emojiSelectionPixels = async () => {
   dataUrls.map((dataUrl) => {
     const image = new Image()
     image.src = dataUrl
-    image.onload = () => {
-      getPixels(image)
+    image.onload = function () {
+      return getPixels(image)
     }
   })
 
@@ -74,10 +74,10 @@ const emojiSelectionPixels = async () => {
 
 const getPixels = (image: any) => {
   const fakeCanvas = document.createElement('canvas')
-  fakeCanvas.style.position = 'absolute'
-  fakeCanvas.style.top = '0'
-  fakeCanvas.style.left = '0'
-  const fakeCtx = fakeCanvas.getContext('2d')
+  //   fakeCanvas.style.position = 'absolute'
+  //   fakeCanvas.style.top = '0'
+  //   fakeCanvas.style.left = '0'
+  const fakeCtx = fakeCanvas.getContext('2d', { willReadFrequently: true })
 
   if (!fakeCtx) {
     throw new Error('Failed to create canvas context')
@@ -87,19 +87,23 @@ const getPixels = (image: any) => {
   fakeCanvas.height = 16
 
   fakeCtx.drawImage(image, 0, 0, 16, 16)
+  const imageData = fakeCtx.getImageData(0, 0, fakeCanvas.width, fakeCanvas.height)
 
-  // print image
-  document.body.appendChild(fakeCanvas)
+  const pixelMap = []
 
-  //    pixelMap => hex[][]
-  const pixelMap = Array.from({ length: 16 }, (_, y) =>
-    Array.from({ length: 16 }, (_, x) => {
-      const [r, g, b, a] = fakeCtx.getImageData(x, y, 1, 1).data
-      return a === 0
-        ? 'transparent'
-        : `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
-    })
-  )
+  for (let y = 0; y < fakeCanvas.height; y++) {
+    const row = []
+    for (let x = 0; x < fakeCanvas.width; x++) {
+      const index = (y * fakeCanvas.width + x) * 4 // Each pixel takes 4 array elements: RGBA
+      const [r, g, b, a] = imageData.data.slice(index, index + 4)
+      row.push(
+        a === 0
+          ? 'transparent'
+          : `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+      )
+    }
+    pixelMap.push(row)
+  }
 
   console.log('pixelMap', pixelMap)
 }
