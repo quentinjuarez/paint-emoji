@@ -103,6 +103,10 @@ onMounted(() => {
   onlineStore.getDrawings()
 })
 
+onUnmounted(() => {
+  tooltip.value?.destroy()
+})
+
 const handleSearch = () => {
   return onlineStore.searchDrawings({ query: query.value, limit: LIMIT, offset: offset.value })
 }
