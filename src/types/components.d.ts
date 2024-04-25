@@ -21,6 +21,7 @@ declare module 'vue' {
     DrawUndoRedo: typeof import('./../components/Draw/DrawUndoRedo.vue')['default']
     EmojiFiles: typeof import('./../components/Draw/EmojiFiles.vue')['default']
     EmojiList: typeof import('./../components/Draw/EmojiList.vue')['default']
+    EmojiPreviewCanvas: typeof import('./../components/Draw/EmojiPreviewCanvas.vue')['default']
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
     HeaderTabs: typeof import('./../components/Layout/HeaderTabs.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

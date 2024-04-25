@@ -1,6 +1,8 @@
 <template>
   <BaseModal @close="emit('close')">
-    <div class="w-96 rounded-lg bg-slate-900 p-4">
+    <div class="relative size-[544px] rounded-lg bg-slate-900 p-4">
+      <EmojiPreviewCanvas class="absolute inset-0 -z-10" />
+
       <h2 class="text-xl font-bold">Save</h2>
       <div class="mt-4 flex flex-col gap-2">
         <label class="text-sm" for="title">Title <span class="text-red-500">*</span></label>
@@ -43,7 +45,6 @@
 
 <script setup lang="ts">
 import lzString from 'lz-string'
-import html2canvas from 'html2canvas'
 
 const store = useStore()
 const onlineStore = useOnlineStore()
@@ -96,15 +97,10 @@ const handleSave = async () => {
 }
 
 const exportAsPNG = async () => {
-  const canvas = document.getElementById('canvas')
+  const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
 
   if (!canvas) return
 
-  const data = await html2canvas(canvas, {
-    backgroundColor: 'transparent',
-    scale: 1,
-    useCORS: true
-  })
-  preview.value = data.toDataURL('image/png')
+  preview.value = canvas.toDataURL('image/png')
 }
 </script>

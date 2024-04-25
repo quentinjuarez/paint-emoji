@@ -18,7 +18,7 @@
 
           <!-- DELETE -->
           <i
-            class="absolute -right-2 -top-2 cursor-pointer rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
+            class="absolute -right-2 -top-2 z-10 cursor-pointer rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
             @click="onlineStore.deleteDrawing(drawing._id)"
           >
             <svg
