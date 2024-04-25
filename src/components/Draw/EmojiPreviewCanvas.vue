@@ -42,26 +42,6 @@ const generateCanvas = () => {
         ctx.fillText(emoji.value, x, y + 16)
       } else {
         // image
-        // const img = new Image()
-        // img.src = emoji.value
-        // img.crossOrigin = 'anonymous'
-        // console.log('Image loading...')
-        // img.onload = () => {
-        //   console.log('Image loaded!')
-        //   const fakeCanvas = document.createElement('canvas')
-        //   const fakeCtx = canvas.getContext('2d')
-        //   // Set canvas size to 16x16 pixels
-        //   fakeCanvas.width = 16
-        //   fakeCanvas.height = 16
-        //   // Draw the image onto the canvas at 0,0 position
-        //   //   fakeCtx!.drawImage(img, 0, 0, 16, 16)
-        //   // Get image data
-        //   //   const imageData = fakeCtx!.getImageData(0, 0, 16, 16)
-        //   //   const pixels = imageData.data
-        //   // Now you can manipulate the pixels or use them for whatever purpose you need
-        //   // For demonstration purposes, let's log the pixel data to the console
-        //   //   console.log(pixels)
-        // }
       }
     })
   })
@@ -80,7 +60,18 @@ const emojiSelectionPixels = () => {
 
         const image = await createImageBitmap(new Blob([imageBuffer]))
 
-        console.log('Image loaded!', image)
+        const fakeCanvas = document.createElement('canvas')
+        const fakeCtx = fakeCanvas.getContext('2d')
+
+        fakeCanvas.width = 16
+        fakeCanvas.height = 16
+
+        fakeCtx!.drawImage(image, 0, 0, 16, 16)
+        // Get image data
+        const imageData = fakeCtx!.getImageData(0, 0, 16, 16)
+        const pixels = imageData.data
+
+        console.log('Image loaded!', pixels)
       }
     })
   )
