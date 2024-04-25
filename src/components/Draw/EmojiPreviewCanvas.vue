@@ -74,7 +74,7 @@ const emojiSelectionPixels = () => {
         return emoji.value
       } else {
         const response = await fetch(emoji.value, {
-          mode: 'cors'
+          mode: 'no-cors'
         })
         const imageBuffer = await response.arrayBuffer()
 
