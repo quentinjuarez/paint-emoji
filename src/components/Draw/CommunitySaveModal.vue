@@ -25,10 +25,16 @@
           rows="4"
         ></textarea>
 
-        <label class="flex cursor-pointer items-center gap-2" for="isPublic">
-          <input type="checkbox" class="cursor-pointer" id="isPublic" v-model="isPublic" />
-          <span class="text-sm">Public</span>
-        </label>
+        <button @click="isPublic = !isPublic">
+          <label
+            class="pointer-events-none flex cursor-pointer items-center gap-2"
+            for="isPublic"
+            aria-hidden="true"
+          >
+            <input type="checkbox" class="cursor-pointer" id="isPublic" v-model="isPublic" />
+            <span class="text-sm">Public</span>
+          </label>
+        </button>
 
         <button
           class="flex w-full items-center justify-center gap-2 rounded bg-slate-800 px-2 py-1 transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:!bg-slate-800"
