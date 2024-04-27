@@ -6,7 +6,7 @@ const emptyEmoji = (index: number): Emoji => ({
   type: 'empty'
 })
 
-const initEmojis = (): Emoji[] => [
+export const initEmojis = (): Emoji[] => [
   {
     name: ':white_large_square:',
     value: '⬜',
@@ -210,9 +210,6 @@ export const useStore = defineStore('shape-to-emoji', {
         this.version = __VERSION__
         return
       }
-    },
-    getEmojiData(emojiUrls: string[]) {
-      return this.$api.drawings.getEmojiData(emojiUrls)
     }
   },
   persist: {

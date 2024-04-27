@@ -20,7 +20,7 @@
             class="rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
             @click="handleClick($event, item._id)"
           >
-            <img :src="item.preview" class="w-full rounded-lg" />
+            <img :src="item.preview" class="w-full rounded-lg bg-white" />
             <div class="flex flex-col gap-1">
               <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
               <!-- <p class="line-clamp-4 h-20 text-sm">{{ item.description }}</p> -->
@@ -73,14 +73,13 @@
     <div ref="tooltipRef" class="hidden space-y-4 p-2" id="browse-tooltip">
       <h3 class="text-lg font-bold">Import this drawing?</h3>
       <div>
-        <label class="text-sm">
+        <label class="cursor-pointer items-center text-sm">
           <input v-model="importEmojis" type="checkbox" class="mr-2" />
           <span>Import emojis</span>
         </label>
       </div>
       <div class="flex items-center justify-center gap-2">
-        <button @click="handleSelect" class="rounded-lg bg-green-500 p-2 text-white">Yes</button>
-        <button @click="handleCancel" class="rounded-lg bg-red-500 p-2 text-white">No</button>
+        <button @click="handleSelect" class="rounded-lg bg-green-500 p-2 text-white">Import</button>
       </div>
     </div>
   </BaseModal>
@@ -174,12 +173,6 @@ const handleSelect = () => {
   importEmojis.value = false
   tooltipId.value = undefined
   emit('close')
-}
-
-const handleCancel = () => {
-  tooltip.value?.destroy()
-  importEmojis.value = false
-  tooltipId.value = undefined
 }
 </script>
 
