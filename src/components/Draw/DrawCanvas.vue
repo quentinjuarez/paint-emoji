@@ -5,11 +5,15 @@
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"
-      class="relative size-[calc(32*8px)] select-none md:size-[calc(32*12px)] lg:size-[calc(32*16px)]"
+      class="relative size-[calc(32*8px)] cursor-cell select-none md:size-[calc(32*12px)] lg:size-[calc(32*16px)]"
       ref="canvasRef"
     >
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">
-        <div v-for="(value, j) in row" :key="j" class="size-2 md:size-3 lg:size-4">
+        <div
+          v-for="(value, j) in row"
+          :key="j"
+          class="size-2 border border-transparent hover:border-purple-500 md:size-3 lg:size-4"
+        >
           <BaseEmoji
             v-if="value !== '0'"
             :emoji="store.emojiSelection[valueToIndex(value)]"
@@ -51,6 +55,7 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 const isDrawing = ref(false)
 const isErasing = ref(false)
+const isRightClick = ref(false)
 
 const valueToIndex = (value: string) => {
   return parseInt(value, 10) - 1
@@ -63,8 +68,18 @@ onMounted(() => {
 
   store.textToCanvas(store.lastFrame)
 
+  canvasRef.value.addEventListener('contextmenu', (e) => {
+    e.preventDefault() // Prevent the default right-click context menu
+  })
+
   canvasRef.value.addEventListener('mousedown', (e) => {
     isDrawing.value = true
+    if (e.button === 2) {
+      isRightClick.value = true
+    } else {
+      isRightClick.value = false
+    }
+
     draw(e)
   })
 
@@ -76,6 +91,7 @@ onMounted(() => {
 
   canvasRef.value.addEventListener('mouseup', () => {
     isDrawing.value = false
+    isRightClick.value = false
     const text = store.canvasToText()
 
     if (!text) return
@@ -84,7 +100,9 @@ onMounted(() => {
 })
 
 const draw = (e: MouseEvent) => {
+  e.preventDefault()
   if (!canvasRef.value) return
+
   const rect = canvasRef.value.getBoundingClientRect()
   const x = e.clientX - rect.left
   const y = e.clientY - rect.top
@@ -97,7 +115,7 @@ const draw = (e: MouseEvent) => {
   if (tileX >= CANVAS_SIZE || tileY >= CANVAS_SIZE) return
 
   store.displayedFrame[tileY / TILE_SIZE][tileX / TILE_SIZE] =
-    store.selectedEmojiIndex === undefined || isErasing.value
+    store.selectedEmojiIndex === undefined || isErasing.value || isRightClick.value
       ? '0'
       : String(store.selectedEmojiIndex + 1)
 }

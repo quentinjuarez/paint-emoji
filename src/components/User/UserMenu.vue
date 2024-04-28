@@ -1,5 +1,6 @@
 <template>
-  <div v-click-outside="handleClose" class="relative">
+  <UserLogin v-if="!onlineStore.isAuthenticated" />
+  <div v-else v-click-outside="handleClose" class="relative">
     <UserAvatar @click="open = !open" />
 
     <Transition name="fade">
@@ -7,8 +8,7 @@
         v-if="open"
         class="absolute right-0 top-[calc(100%+0.5rem)] z-10 flex w-80 items-center gap-2 rounded bg-slate-800 p-2 shadow-lg"
       >
-        <UserLogin v-if="!onlineStore.isAuthenticated" />
-        <div v-else class="w-full">
+        <div class="w-full">
           <div>{{ onlineStore.me?.username }}</div>
 
           <hr class="my-2 border-slate-700" />
