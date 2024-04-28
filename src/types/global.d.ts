@@ -26,13 +26,16 @@ declare global {
     type: 'slack' | 'custom' | 'empty'
   }
 
-  interface User {
+  interface LightUser {
     _id: string
     username: string
     firstName: string
     lastName: string
-    email: string
     profilePicture: string
+  }
+
+  interface User extends LightUser {
+    email: string
     coverPicture: string
     description: string
     isDemo: boolean
@@ -52,6 +55,7 @@ declare global {
     canvas: string
     version: string
     authorId: string
+    author?: LightUser
     isPublic: boolean
     preview: string
     createdAt: string

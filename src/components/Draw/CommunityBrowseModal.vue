@@ -21,9 +21,12 @@
             @click="handleClick($event, item._id)"
           >
             <img :src="item.preview" class="w-full rounded-lg bg-white" />
-            <div class="flex flex-col gap-1">
-              <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
-              <!-- <p class="line-clamp-4 h-20 text-sm">{{ item.description }}</p> -->
+            <div class="mt-1 flex items-start gap-2">
+              <BaseAvatar v-if="item.author" v-bind="item.author" />
+              <div class="flex flex-col gap-1">
+                <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
+                <!-- <p class="line-clamp-4 h-20 text-sm">{{ item.description }}</p> -->
+              </div>
             </div>
           </button>
         </div>
@@ -146,6 +149,7 @@ const handleClick = (e: Event, id: string) => {
     appendTo: document.body,
     onHidden: () => {
       tooltip.value?.destroy()
+      tooltipId.value = undefined
     }
   })
 
