@@ -1,5 +1,5 @@
 <template>
-  <div class="flex size-6 items-center justify-center" ref="avatarRef">
+  <div class="flex size-6 flex-none items-center justify-center" ref="avatarRef">
     <img
       v-if="props.profilePicture"
       :src="props.profilePicture"

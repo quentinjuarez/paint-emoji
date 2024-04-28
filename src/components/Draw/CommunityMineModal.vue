@@ -1,21 +1,21 @@
 <template>
   <BaseModal @close="emit('close')">
-    <div class="h-[700px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
+    <div class="h-[530px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">My drawings</h2>
-      <div class="flex h-[calc(216px+216px+16px)] flex-wrap gap-4 overflow-auto">
+      <div class="flex h-[calc(216px+216px+24px)] flex-wrap gap-4 overflow-auto">
         <div
           v-for="drawing in onlineStore.drawings"
           :key="drawing._id"
-          class="group relative h-[216px] shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
+          class="group relative h-[216px] w-[168px] shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
         >
           <button
-            class="rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
+            class="w-[168px] rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
             @click="handleClick($event, drawing._id)"
           >
             <img :src="drawing.preview" class="w-full rounded-lg bg-white" />
-            <div class="flex flex-col gap-1">
+            <div class="mt-1 flex items-start gap-2">
+              <BaseAvatar v-if="drawing.author" v-bind="drawing.author" />
               <h3 class="line-clamp-2 h-12 text-base font-bold">{{ drawing.title }}</h3>
-              <!-- <p class="line-clamp-4 h-20 text-sm">{{ item.description }}</p> -->
             </div>
           </button>
 
@@ -99,7 +99,7 @@ const handleClick = (e: Event, id: string) => {
     interactive: true,
     appendTo: document.body,
     onHidden: () => {
-      tooltip.value?.destroy()
+      tooltipId.value = undefined
     }
   })
 
