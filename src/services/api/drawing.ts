@@ -37,14 +37,7 @@ class DrawingService extends Service {
       .get<{
         items: Drawing[]
         total: number
-        prev: number | null
-        next: number | null
-      }>('/drawings/me', {
-        params: {
-          limit: 100,
-          offset: 0
-        }
-      })
+      }>('/drawings/me')
       .then((res) => res.data)
   }
 
