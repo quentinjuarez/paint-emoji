@@ -7,6 +7,7 @@
 
       <DrawPanel v-if="store.tab === 'draw'" />
       <TextPanel v-if="store.tab === 'text'" />
+      <WritePanel v-if="store.tab === 'write'" />
     </div>
 
     <Tools />

@@ -36,5 +36,6 @@ declare module 'vue' {
     UserAvatar: typeof import('./../components/User/UserAvatar.vue')['default']
     UserLogin: typeof import('./../components/User/UserLogin.vue')['default']
     UserMenu: typeof import('./../components/User/UserMenu.vue')['default']
+    WritePanel: typeof import('./../components/Write/WritePanel.vue')['default']
   }
 }
