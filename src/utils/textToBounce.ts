@@ -65,7 +65,7 @@ const MAP: { [key: string]: string } = {
   '/': ':bounce-slash:',
   '\\': ':bounce-backslash:',
   _: ':bounce-underscore:',
-  '=': ':bounce-equal:',
+  '=': ':bounce-equals:',
   '<': ':bounce-less-than:',
   '>': ':bounce-greater-than:',
   '"': ':bounce-quote:',
