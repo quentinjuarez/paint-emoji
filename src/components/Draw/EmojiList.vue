@@ -41,6 +41,20 @@
 
       <!-- WRAPPER -->
       <div class="max-h-[calc(100vh-164px)] overflow-auto">
+        <div v-if="frequentEmojisCategory.emojis.length > 0 && !query">
+          <h3 class="text-lg font-bold">{{ frequentEmojisCategory.name }}</h3>
+          <div class="flex flex-wrap gap-1">
+            <button
+              v-for="e in frequentEmojisCategory.emojis"
+              :key="e.name"
+              class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
+              @click="handleSelect(e)"
+            >
+              <BaseEmoji :emoji="e" size="md" />
+            </button>
+          </div>
+        </div>
+
         <div
           v-for="category in filteredCategories"
           :key="category.key"
@@ -51,7 +65,6 @@
             <button
               v-for="e in category.emojis"
               :key="e.name"
-              :tooltip="e.name"
               class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
               @click="handleSelect(e)"
               v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
@@ -116,6 +129,16 @@ const slackEmojisCategories = slackCategories.map((category) => ({
   )
 }))
 
+const store = useStore()
+
+const frequentEmojisCategory = computed(() => {
+  return {
+    key: 'latest',
+    name: 'Latest used',
+    emojis: store.frequentEmojis
+  }
+})
+
 const categories = [customEmojisCategory, ...slackEmojisCategories]
 
 // Fuse instance should be created once
@@ -167,8 +190,6 @@ watch(query, initializeTooltips)
 onUnmounted(() => {
   tooltips.forEach((tooltip) => tooltip.destroy())
 })
-
-const store = useStore()
 
 const handleSelect = (emoji: Emoji) => {
   store.selectEmoji(emoji)

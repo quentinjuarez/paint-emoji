@@ -22,6 +22,8 @@ export const useStore = defineStore('shape-to-emoji', {
     screenHeight: document.documentElement.clientHeight,
     emojiSelection: initEmojis(),
     selectedEmojiIndex: 0 as number,
+    frequentEmojis: [] as Emoji[],
+    maxFrequentEmojis: 10 as number,
     history: [] as string[],
     historyIndex: -1 as number,
     displayedFrame: Array.from({ length: __TILES_PER_ROW__ }, () =>
@@ -57,6 +59,19 @@ export const useStore = defineStore('shape-to-emoji', {
       }
 
       this.emojiSelection[this.selectedEmojiIndex] = emoji
+
+      // Add emoji to frequent emojis
+      const index = this.frequentEmojis.findIndex((e) => e.value === emoji.value)
+
+      if (index !== -1) {
+        this.frequentEmojis = this.frequentEmojis.filter((e) => e.value !== emoji.value)
+      }
+
+      if (this.frequentEmojis.length >= this.maxFrequentEmojis) {
+        this.frequentEmojis = this.frequentEmojis.slice(0, this.maxFrequentEmojis - 1)
+      }
+
+      this.frequentEmojis = [emoji, ...this.frequentEmojis]
     },
     clearEmojiSelection() {
       this.emojiSelection = initEmojis('empty')
