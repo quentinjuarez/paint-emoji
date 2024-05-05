@@ -1,59 +1,5 @@
 import { defineStore } from 'pinia'
 
-const emptyEmoji = (index: number): Emoji => ({
-  name: `:_:`,
-  value: String(index + 1),
-  type: 'empty'
-})
-
-export const initEmojis = (): Emoji[] => [
-  {
-    name: ':white_large_square:',
-    value: '⬜',
-    type: 'slack'
-  },
-  {
-    name: ':black_large_square:',
-    value: '⬛',
-    type: 'slack'
-  },
-  {
-    name: ':large_red_square:',
-    value: '🟥',
-    type: 'slack'
-  },
-  {
-    name: ':large_orange_square:',
-    value: '🟧',
-    type: 'slack'
-  },
-  {
-    name: ':large_yellow_square:',
-    value: '🟨',
-    type: 'slack'
-  },
-  {
-    name: ':large_green_square:',
-    value: '🟩',
-    type: 'slack'
-  },
-  {
-    name: ':large_blue_square:',
-    value: '🟦',
-    type: 'slack'
-  },
-  {
-    name: ':large_purple_square:',
-    value: '🟪',
-    type: 'slack'
-  },
-  {
-    name: ':large_brown_square:',
-    value: '🟫',
-    type: 'slack'
-  }
-]
-
 const __TILES_PER_ROW__ = 32
 const __TILE_SIZE__ = 16
 
@@ -113,14 +59,18 @@ export const useStore = defineStore('shape-to-emoji', {
       this.emojiSelection[this.selectedEmojiIndex] = emoji
     },
     clearEmojiSelection() {
-      this.emojiSelection = this.emojiSelection.map((_, index) => emptyEmoji(index))
+      this.emojiSelection = initEmojis('empty')
       this.selectedEmojiIndex = 0
     },
-    resetEmojiSelection() {
-      this.emojiSelection = initEmojis()
+    resetEmojiSelection(pattern?: 'largeSquares' | 'hearts' | 'circles' | 'empty') {
+      this.emojiSelection = initEmojis(pattern)
     },
     removeEmoji(index: number) {
-      this.emojiSelection[index] = emptyEmoji(index)
+      this.emojiSelection[index] = {
+        name: `:_:`,
+        value: String(index + 1),
+        type: 'empty'
+      }
     },
     addFrame(frame: string) {
       this.history = this.history.slice(0, this.historyIndex + 1)

@@ -41,7 +41,11 @@
 
       <!-- WRAPPER -->
       <div class="max-h-[calc(100vh-164px)] overflow-auto">
-        <div v-for="category in filteredCategories" :key="category.key">
+        <div
+          v-for="category in filteredCategories"
+          :key="category.key"
+          v-show="category.emojis.length > 0"
+        >
           <h3 class="text-lg font-bold">{{ category.name }}</h3>
           <div class="flex flex-wrap gap-1">
             <button

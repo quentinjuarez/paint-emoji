@@ -16,7 +16,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getVersion: typeof import('../utils/getVersion')['default']
   const h: typeof import('vue')['h']
-  const initEmojis: typeof import('../stores/index')['initEmojis']
+  const initEmojis: typeof import('../utils/initEmojis')['default']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
@@ -97,7 +97,7 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getVersion: UnwrapRef<typeof import('../utils/getVersion')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly initEmojis: UnwrapRef<typeof import('../stores/index')['initEmojis']>
+    readonly initEmojis: UnwrapRef<typeof import('../utils/initEmojis')['default']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
@@ -170,7 +170,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getVersion: UnwrapRef<typeof import('../utils/getVersion')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly initEmojis: UnwrapRef<typeof import('../stores/index')['initEmojis']>
+    readonly initEmojis: UnwrapRef<typeof import('../utils/initEmojis')['default']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
