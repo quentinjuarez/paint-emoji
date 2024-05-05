@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-center gap-2">
     <Sortable
-      :list="store.emojiSelection"
+      :list="list"
       :options="options"
-      item-key="value"
+      item-key="index"
       tag="div"
       class="flex justify-center gap-2"
       @move="disabledHover = true"
@@ -149,6 +149,13 @@ onMounted(() => {
 onUnmounted(() => {
   paintTooltip.value?.destroy()
 })
+
+const list = computed(() =>
+  store.emojiSelection.map((e, index) => ({
+    ...e,
+    index
+  }))
+)
 </script>
 
 <style>
