@@ -24,6 +24,13 @@ declare global {
     name: string
     value: string
     type: 'slack' | 'custom' | 'empty'
+    search?: string
+  }
+
+  interface EmojiCategory {
+    key: string
+    name: string
+    emojis: Emoji[]
   }
 
   interface LightUser {

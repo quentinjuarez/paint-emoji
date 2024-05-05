@@ -11,7 +11,7 @@
     <img
       v-else-if="displayEmoji.type === 'custom'"
       :draggable="false"
-      class="my-auto select-none"
+      class="select-none object-contain"
       :class="imageSize"
       :src="displayEmoji.value"
       :alt="displayEmoji.name"
@@ -23,7 +23,6 @@
 const props = defineProps<{
   emoji?: Emoji
   size: 'sm' | 'md' | 'lg'
-  write?: boolean
 }>()
 
 const style = computed(() => {
@@ -40,7 +39,7 @@ const style = computed(() => {
 const fontSize = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'text-[6px] leading-[8px] md:text-[10px] md:leading-[12px] lg:text-[13px] lg:leading-[16px]'
+      return 'text-[6px] leading-[8px] md:text-[10px] md:leading-[12px] lg:text-[13px] lg:leading-[16px] align-center'
     case 'md':
       return 'text-[20px]  leading-[24px]'
     case 'lg':
@@ -49,14 +48,13 @@ const fontSize = computed(() => {
 })
 
 const imageSize = computed(() => {
-  if (!props.write) return ''
   switch (props.size) {
     case 'sm':
-      return 'h-4 mx-auto'
+      return 'size-4'
     case 'md':
-      return 'h-6 mx-auto'
+      return 'size-6'
     case 'lg':
-      return 'h-7 mx-auto'
+      return 'size-7'
   }
 })
 

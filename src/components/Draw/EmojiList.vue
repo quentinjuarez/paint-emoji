@@ -41,115 +41,133 @@
 
       <!-- WRAPPER -->
       <div class="max-h-[calc(100vh-164px)] overflow-auto">
-        <!-- SLACK -->
-        <h3 class="text-lg font-bold">Slack</h3>
-        <button
-          class="size-8 rounded border border-transparent bg-white/10 transition-all hover:border-white"
-          @click="openModal"
-        >
-          +
-        </button>
-        <!-- CUSTOM -->
-        <h3 class="text-lg font-bold">Custom</h3>
-        <div class="flex flex-wrap gap-1">
-          <button
-            v-for="e in filteredEmoji"
-            :key="e.name"
-            :tooltip="e.name"
-            class="size-8 rounded border border-transparent bg-white/10 transition-all hover:border-white"
-            :data-tooltip-list="e.name"
-            @click="handleCustom(e)"
-          >
-            <img :src="e.url" :alt="e.name" class="mx-auto h-full w-auto" />
-          </button>
+        <div v-for="category in filteredCategories" :key="category.key">
+          <h3 class="text-lg font-bold">{{ category.name }}</h3>
+          <div class="flex flex-wrap gap-1">
+            <button
+              v-for="e in category.emojis"
+              :key="e.name"
+              :tooltip="e.name"
+              class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
+              @click="handleSelect(e)"
+              v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
+            >
+              <BaseEmoji :emoji="e" size="md" />
+            </button>
 
-          <p v-if="filteredEmoji.length === 0" class="text-sm text-gray-500">No emoji found</p>
+            <!-- <p v-if="filteredEmoji.length === 0" class="text-sm text-gray-500">No emoji found</p> -->
+          </div>
         </div>
       </div>
     </div>
   </Col>
-  <SlackEmojiModal v-if="modal" @close="modal = false" @select="handleBase" />
 </template>
 
 <script setup lang="ts">
 import tippy from 'tippy.js'
-
 import Fuse from 'fuse.js'
+import customEmojisRaw from '@/assets/data/custom-emojis.json'
+import slackEmojisRaw from '@/assets/data/slack-emojis.json'
 
-import { emoji } from '@/assets/data/slack-emoji.json'
+function codesToValue(unified: string) {
+  const codePoints = [`0x${unified.split('-')[0]}`]
+  // @ts-ignore
+  return String.fromCodePoint.apply(null, codePoints)
+}
+
+// Destructure imported data directly
+const { emojis: customEmojisData } = customEmojisRaw
+const { emojis: slackEmojisData, categories: slackCategories } = slackEmojisRaw
 
 const searchInputRef = ref<HTMLInputElement>()
 const focus = ref(false)
-
 const query = ref('')
 
-const customEmoji = emoji.map((e) => ({
-  name: `:${e.name}:`,
-  url: e.url
+// Transform emoji data into standardized format
+const customEmojisCategory = {
+  key: 'custom',
+  name: 'Custom',
+  emojis: customEmojisData.map(
+    (e) =>
+      ({
+        name: `:${e.name}:`,
+        value: e.url,
+        type: 'custom',
+        search: `:${e.name}:`
+      }) as Emoji
+  )
+}
+
+const slackEmojisCategories = slackCategories.map((category) => ({
+  key: category.id,
+  name: category.name,
+  emojis: category.emojis.map(
+    (emoji) =>
+      ({
+        name: `:${emoji}:`,
+        value: codesToValue(slackEmojisData[emoji as keyof typeof slackEmojisData].b),
+        type: 'slack',
+        search: slackEmojisData[emoji as keyof typeof slackEmojisData].j.join(',')
+      }) as Emoji
+  )
 }))
 
-const fuse = new Fuse(customEmoji, {
-  keys: ['name']
-})
+const categories = [customEmojisCategory, ...slackEmojisCategories]
 
-const filteredEmoji = computed(() => {
-  if (!query.value) {
-    return customEmoji
+// Fuse instance should be created once
+const fuse = new Fuse(
+  categories.flatMap((c) => c.emojis),
+  {
+    keys: [
+      { name: 'name', weight: 0.7 },
+      { name: 'search', weight: 0.3 }
+    ],
+    threshold: 0.3,
+    distance: 100
   }
-  return fuse.search(query.value).map((result) => result.item)
+)
+
+// Use a reactive computed property to avoid re-filtering on every query change
+const filteredCategories = computed(() => {
+  if (!query.value) return categories
+
+  const items = fuse.search(query.value).map((r) => r.item)
+  const itemsNames = new Set(items.map((i) => i.name))
+
+  return categories.map((category) => ({
+    ...category,
+    emojis: category.emojis.filter((emoji) => itemsNames.has(emoji.name))
+  }))
 })
 
-let tooltips = [] as any[]
+// Handle tooltip initialization and destruction more efficiently
+let tooltips: any[] = []
 
-onMounted(() => {
-  initializeTooltips()
-})
-
-function initializeTooltips() {
-  // Destroy existing tooltips
+const initializeTooltips = () => {
   tooltips.forEach((tooltip) => tooltip.destroy())
   tooltips = []
 
-  // Initialize new tooltips
   document.querySelectorAll('[data-tooltip-list]').forEach((element) => {
-    // @ts-ignore
     const tooltip = tippy(element, {
-      content(reference) {
-        return reference.getAttribute('data-tooltip-list')
-      },
+      content: (reference) => reference.getAttribute('data-tooltip-list') as string,
       theme: 'light'
     })
     tooltips.push(tooltip)
   })
 }
 
-watch(query, () => {
-  initializeTooltips()
-})
+onMounted(initializeTooltips)
+
+watch(query, initializeTooltips)
 
 onUnmounted(() => {
   tooltips.forEach((tooltip) => tooltip.destroy())
 })
 
-const modal = ref(false)
-
-const openModal = () => {
-  modal.value = true
-}
-
 const store = useStore()
 
-const handleBase = (emoji: Emoji) => {
-  modal.value = false
+const handleSelect = (emoji: Emoji) => {
   store.selectEmoji(emoji)
-}
-
-const handleCustom = (emoji: CustomEmoji) => {
-  store.selectEmoji({
-    value: emoji.url,
-    name: emoji.name,
-    type: 'custom'
-  })
 }
 
 const handleFocus = () => {

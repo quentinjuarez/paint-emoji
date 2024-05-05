@@ -49,6 +49,7 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const stringColor: typeof import('../utils/stringColor')['default']
+  const stringFromCodePoint: typeof import('../utils/stringFromCodePoint')['default']
   const textToBounce: typeof import('../utils/textToBounce')['default']
   const textToPatterns: typeof import('../utils/textToPatterns')['default']
   const toRaw: typeof import('vue')['toRaw']
@@ -129,6 +130,7 @@ declare module 'vue' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly stringColor: UnwrapRef<typeof import('../utils/stringColor')['default']>
+    readonly stringFromCodePoint: UnwrapRef<typeof import('../utils/stringFromCodePoint')['default']>
     readonly textToBounce: UnwrapRef<typeof import('../utils/textToBounce')['default']>
     readonly textToPatterns: UnwrapRef<typeof import('../utils/textToPatterns')['default']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -201,6 +203,7 @@ declare module '@vue/runtime-core' {
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly stringColor: UnwrapRef<typeof import('../utils/stringColor')['default']>
+    readonly stringFromCodePoint: UnwrapRef<typeof import('../utils/stringFromCodePoint')['default']>
     readonly textToBounce: UnwrapRef<typeof import('../utils/textToBounce')['default']>
     readonly textToPatterns: UnwrapRef<typeof import('../utils/textToPatterns')['default']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>

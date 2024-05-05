@@ -26,16 +26,16 @@
       }"
     >
       <div v-for="(el, index) in displayWriteArr" :key="index" class="size-7">
-        <BaseEmoji :emoji="el" size="lg" write />
+        <BaseEmoji :emoji="el" size="lg" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { emoji } from '@/assets/data/slack-emoji.json'
+import { emojis } from '@/assets/data/custom-emojis.json'
 
-const customEmoji = emoji.map((e) => ({
+const customEmojis = emojis.map((e) => ({
   name: `:${e.name}:`,
   value: e.url,
   type: 'custom'
@@ -48,7 +48,7 @@ const writeArr = computed(() => {
 })
 
 const displayWriteArr = computed(() => {
-  return writeArr.value.map((el) => customEmoji.find((e) => e.name === el)) as unknown as Emoji[]
+  return writeArr.value.map((el) => customEmojis.find((e) => e.name === el)) as unknown as Emoji[]
 })
 
 const copy = ref(false)

@@ -12,7 +12,7 @@
         <div
           v-for="(value, j) in row"
           :key="j"
-          class="size-2 border border-transparent hover:border-purple-500 md:size-3 lg:size-4"
+          class="size-2 ring-1 ring-transparent hover:ring-purple-500 md:size-3 lg:size-4"
         >
           <BaseEmoji
             v-if="value !== '0'"
