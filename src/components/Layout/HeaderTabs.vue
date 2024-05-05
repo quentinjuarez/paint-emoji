@@ -1,5 +1,5 @@
 <template>
-  <nav class="mx-auto flex w-1/2 items-center gap-2">
+  <nav class="mx-auto flex w-2/3 items-center gap-2 lg:w-1/2">
     <a
       v-for="tab in tabs"
       :key="tab.name"

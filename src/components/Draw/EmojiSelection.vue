@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center gap-2">
+  <div class="flex flex-wrap justify-center gap-2 lg:flex-nowrap">
     <Sortable
       :list="list"
       :options="options"

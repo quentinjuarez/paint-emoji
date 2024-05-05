@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 h-[calc(100vh-164px)] w-full space-y-4">
+  <div class="mt-4 w-full space-y-4 lg:h-[calc(100vh-164px)]">
     <EmojiSelection />
 
     <DrawCanvas>

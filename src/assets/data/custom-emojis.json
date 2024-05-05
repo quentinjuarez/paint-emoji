@@ -6861,20 +6861,6 @@
       "synonyms": []
     },
     {
-      "name": "monkey-on-liane",
-      "is_alias": 0,
-      "alias_for": "",
-      "url": "https://emoji.slack-edge.com/TSTD7B5L5/monkey-on-liane/32ec20e74648e49e.png",
-      "team_id": "TSTD7B5L5",
-      "user_id": "U02MYLC3U4F",
-      "created": 1712750078,
-      "is_bad": false,
-      "user_display_name": "Henri",
-      "avatar_hash": "8dc3aba5718e",
-      "can_delete": false,
-      "synonyms": []
-    },
-    {
       "name": "dust-cry",
       "is_alias": 0,
       "alias_for": "",

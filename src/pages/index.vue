@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4">
+  <div class="flex flex-col gap-0 lg:flex-row lg:gap-4">
     <EmojiList />
 
     <div class="mt-4 w-full">

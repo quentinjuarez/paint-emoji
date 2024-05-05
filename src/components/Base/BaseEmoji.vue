@@ -28,7 +28,7 @@ const props = defineProps<{
 const style = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'size-2 md:size-3 lg:size-4'
+      return 'size-3 md:size-4 lg:size-4'
     case 'md':
       return 'h-6 w-6'
     case 'lg':
@@ -39,7 +39,7 @@ const style = computed(() => {
 const fontSize = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'text-[6px] leading-[8px] md:text-[10px] md:leading-[12px] lg:text-[13px] lg:leading-[16px] align-center'
+      return 'text-[10px] leading-[12px] md:text-[13px] md:leading-[16px] lg:text-[13px] lg:leading-[16px] align-center'
     case 'md':
       return 'text-[20px]  leading-[24px]'
     case 'lg':

@@ -5,14 +5,14 @@
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"
-      class="relative size-[calc(32*8px)] cursor-cell select-none md:size-[calc(32*12px)] lg:size-[calc(32*16px)]"
+      class="relative size-[calc(32*12px)] cursor-cell select-none md:size-[calc(32*16px)] lg:size-[calc(32*16px)]"
       ref="canvasRef"
     >
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">
         <div
           v-for="(value, j) in row"
           :key="j"
-          class="size-2 ring-1 ring-transparent hover:ring-purple-500 md:size-3 lg:size-4"
+          class="size-3 ring-1 ring-transparent hover:ring-purple-500 md:size-4 lg:size-4"
         >
           <BaseEmoji
             v-if="value !== '0'"
@@ -23,7 +23,7 @@
       </div>
 
       <!-- TOOLS -->
-      <div class="absolute -right-12 top-40 z-10 flex flex-col gap-2">
+      <div class="absolute -right-12 top-22 z-10 flex flex-col gap-2 lg:top-40">
         <button
           class="size-8 rounded border-2 border-transparent bg-white/10"
           :class="{ '!border-purple-500': !isErasing }"
@@ -110,9 +110,9 @@ const draw = (e: MouseEvent) => {
   const y = e.clientY - rect.top
 
   // lg -> 1
-  // md -> 0.75
-  // sm -> 0.5
-  const ratio = isLarge.value ? 1 : isMedium.value ? 0.75 : 0.5
+  // md -> 1
+  // sm -> 0.75
+  const ratio = isLarge.value ? 1 : isMedium.value ? 1 : 0.75
   const tileSize = TILE_SIZE * ratio
   const canvasSize = CANVAS_SIZE * ratio
 

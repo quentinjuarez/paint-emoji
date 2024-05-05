@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-1 text-xs">
+  <div v-show="!isMobile" class="flex items-center gap-1 text-xs">
     <div v-if="props.ctrl" class="h-4 min-w-4 rounded bg-slate-300 px-1 text-center text-slate-800">
       <span v-if="isWindows" class="">Ctrl</span>
       <span v-else-if="isApple" class="">⌘</span>
@@ -26,7 +26,7 @@ const props = defineProps<{
 
 const emit = defineEmits(['confirm'])
 
-const { isWindows, isApple } = useDevice()
+const { isWindows, isApple, isMobile } = useDevice()
 
 const ctrlKey = computed(() => (isApple.value ? 'metaKey' : 'ctrlKey'))
 

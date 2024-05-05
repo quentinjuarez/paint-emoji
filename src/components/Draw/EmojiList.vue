@@ -1,6 +1,6 @@
 <template>
   <Col>
-    <div class="flex w-[calc(176px+15px)] flex-col space-y-4">
+    <div class="relative flex w-full flex-col space-y-4 lg:w-[calc(176px+15px)]">
       <div class="flex items-center justify-between">
         <h2 class="text-xl font-bold">Emoji</h2>
         <Shortcut shortcut="k" ctrl @confirm="handleFocus" />
@@ -19,6 +19,7 @@
           placeholder="Search emoji"
           @focus="focus = true"
           @blur="focus = false"
+          @keydown.escape="focus = false"
         />
 
         <button v-if="query" @click="query = ''">
@@ -40,7 +41,17 @@
       </div>
 
       <!-- WRAPPER -->
-      <div class="max-h-[calc(100vh-164px)] overflow-auto">
+      <div
+        class="overflow-auto"
+        :class="[
+          {
+            'max-h-[calc(100vh-164px)]': isLarge,
+            'absolute inset-x-0 top-20 z-50 max-h-[50vh] rounded bg-slate-950 p-2 shadow':
+              !isLarge && focus,
+            'pointer-events-none !h-0 opacity-0': !isLarge && !focus
+          }
+        ]"
+      >
         <div v-if="frequentEmojisCategory.emojis.length > 0 && !query">
           <h3 class="text-lg font-bold">{{ frequentEmojisCategory.name }}</h3>
           <div class="flex flex-wrap gap-1">
@@ -48,7 +59,7 @@
               v-for="e in frequentEmojisCategory.emojis"
               :key="e.name"
               class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
-              @click="handleSelect(e)"
+              @click.prevent.stop="handleSelect(e)"
             >
               <BaseEmoji :emoji="e" size="md" />
             </button>
@@ -66,7 +77,7 @@
               v-for="e in category.emojis"
               :key="e.name"
               class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
-              @click="handleSelect(e)"
+              @click.prevent.stop="handleSelect(e)"
               v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
             >
               <BaseEmoji :emoji="e" size="md" />
@@ -198,4 +209,6 @@ const handleSelect = (emoji: Emoji) => {
 const handleFocus = () => {
   searchInputRef.value?.focus()
 }
+
+const { isLarge } = useScreen()
 </script>
