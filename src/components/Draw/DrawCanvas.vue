@@ -61,6 +61,8 @@ const valueToIndex = (value: string) => {
   return parseInt(value, 10) - 1
 }
 
+const { isMedium, isLarge } = useScreen()
+
 onMounted(() => {
   if (!canvasRef.value) {
     return
@@ -107,14 +109,21 @@ const draw = (e: MouseEvent) => {
   const x = e.clientX - rect.left
   const y = e.clientY - rect.top
 
+  // lg -> 1
+  // md -> 0.75
+  // sm -> 0.5
+  const ratio = isLarge.value ? 1 : isMedium.value ? 0.75 : 0.5
+  const tileSize = TILE_SIZE * ratio
+  const canvasSize = CANVAS_SIZE * ratio
+
   // Adjust x and y coordinates to align with the closest tile
-  const tileX = Math.floor(x / TILE_SIZE) * TILE_SIZE
-  const tileY = Math.floor(y / TILE_SIZE) * TILE_SIZE
+  const tileX = Math.floor(x / tileSize) * tileSize
+  const tileY = Math.floor(y / tileSize) * tileSize
 
   if (tileX < 0 || tileY < 0) return
-  if (tileX >= CANVAS_SIZE || tileY >= CANVAS_SIZE) return
+  if (tileX >= canvasSize || tileY >= canvasSize) return
 
-  store.displayedFrame[tileY / TILE_SIZE][tileX / TILE_SIZE] =
+  store.displayedFrame[tileY / tileSize][tileX / tileSize] =
     store.selectedEmojiIndex === undefined || isErasing.value || isRightClick.value
       ? '0'
       : String(store.selectedEmojiIndex + 1)
