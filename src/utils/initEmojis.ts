@@ -143,16 +143,6 @@ const circles = [
   }
 ] as Emoji[]
 
-const empty = Array.from(
-  { length: 9 },
-  (_, index) =>
-    ({
-      name: `:_:`,
-      value: String(index + 1),
-      type: 'empty'
-    }) as Emoji
-)
-
 const initEmojis = (pattern?: 'largeSquares' | 'hearts' | 'circles' | 'empty'): Emoji[] => {
   switch (pattern) {
     case 'largeSquares':
@@ -162,7 +152,15 @@ const initEmojis = (pattern?: 'largeSquares' | 'hearts' | 'circles' | 'empty'): 
     case 'circles':
       return circles
     case 'empty':
-      return empty
+      return Array.from(
+        { length: 9 },
+        (_, index) =>
+          ({
+            name: `:_:`,
+            value: String(index + 1),
+            type: 'empty'
+          }) as Emoji
+      )
     default:
       return largeSquares
   }
