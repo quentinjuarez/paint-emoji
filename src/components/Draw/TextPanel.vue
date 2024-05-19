@@ -61,22 +61,53 @@ const displaySplittedPatterns = computed(() => {
 
 const copy = ref(false)
 
+const MAX_LENGTH = 9
+
+const splitLongWord = (word: string): string[] => {
+  const chunks = []
+  for (let i = 0; i < word.length; i += MAX_LENGTH) {
+    chunks.push(word.slice(i, i + MAX_LENGTH))
+  }
+  return chunks
+}
+
 const splittedText = computed(() => {
-  // i want to split words if the line is too long to fit in the screen
   const words = store.text.split(' ')
   const lines = []
   let currentLine = ''
 
   for (const word of words) {
-    if (currentLine.length + word.length > 9) {
-      lines.push(currentLine)
-      currentLine = word + ' '
+    // Line with a long word
+    if (word.length > 9) {
+      // Split long words into chunks
+      const chunks = splitLongWord(word)
+      for (const chunk of chunks) {
+        if (currentLine.length + chunk.length > MAX_LENGTH) {
+          if (currentLine.trim()) {
+            lines.push(currentLine.trim())
+          }
+          currentLine = chunk + ' '
+        } else {
+          currentLine += chunk + ' '
+        }
+      }
+      // Line with a normal word and an another word
     } else {
-      currentLine += word + ' '
+      if (currentLine.length + word.length > MAX_LENGTH) {
+        if (currentLine.trim()) {
+          lines.push(currentLine.trim())
+        }
+        currentLine = word + ' '
+      } else {
+        currentLine += word + ' '
+      }
     }
   }
 
-  lines.push(currentLine)
+  // Add any remaining text in the current line
+  if (currentLine.trim()) {
+    lines.push(currentLine.trim())
+  }
 
   return lines
 })
