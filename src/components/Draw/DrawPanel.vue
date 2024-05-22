@@ -24,6 +24,15 @@ const store = useStore()
 
 const copy = ref(false)
 
+// const transpose = (text: string) => {
+//   const matrix = text.split('\n').map((line) => line.split(''))
+
+//   return matrix[0]
+//     .map((_, i) => matrix.map((line) => line[i]))
+//     .map((line) => line.join(''))
+//     .join('\n')
+// }
+
 const handleCopy = () => {
   try {
     const text = store.lastFrame
@@ -74,7 +83,34 @@ const handleCopy = () => {
       return line.slice(0, line.length - emptySpaceLength)
     })
 
-    const copyText = optimizedEndLines
+    let minEmptySpaceLength = 0
+
+    optimizedEndLines.forEach((line, index) => {
+      let emptySpaceLength = 0
+
+      // loop through the line from left to right
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i]
+
+        if (char !== '0') {
+          break
+        }
+
+        emptySpaceLength++
+      }
+
+      if (index === 0) {
+        minEmptySpaceLength = emptySpaceLength
+      } else {
+        minEmptySpaceLength = Math.min(minEmptySpaceLength, emptySpaceLength)
+      }
+    })
+
+    const optimizedStartLines = optimizedEndLines.map((line) => {
+      return line.slice(minEmptySpaceLength)
+    })
+
+    const copyText = optimizedStartLines
       .join('\n')
       .replaceAll('0', ':_:')
       .replace(/\d/g, (match) => {
