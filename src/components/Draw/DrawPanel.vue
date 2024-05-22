@@ -57,11 +57,24 @@ const handleCopy = () => {
 
     const trimmedLines = lines.slice(start, end + 1)
 
-    // const optimizedLines = trimmedLines.map((line) =>
-    //   line.replace(/1.*0+$/g, '1').replace(/.*0+$/g, '0')
-    // );
+    const optimizedEndLines = trimmedLines.map((line) => {
+      let emptySpaceLength = 0
 
-    const copyText = trimmedLines
+      // loop through the line from right to left
+      for (let i = line.length - 1; i >= 0; i--) {
+        const char = line[i]
+
+        if (char !== '0') {
+          break
+        }
+
+        emptySpaceLength++
+      }
+
+      return line.slice(0, line.length - emptySpaceLength)
+    })
+
+    const copyText = optimizedEndLines
       .join('\n')
       .replaceAll('0', ':_:')
       .replace(/\d/g, (match) => {
