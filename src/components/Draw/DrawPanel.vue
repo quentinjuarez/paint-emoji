@@ -24,14 +24,81 @@ const store = useStore()
 
 const copy = ref(false)
 
-// const transpose = (text: string) => {
-//   const matrix = text.split('\n').map((line) => line.split(''))
+const optimizedTop = (lines: string[]) => {
+  let start = 0
 
-//   return matrix[0]
-//     .map((_, i) => matrix.map((line) => line[i]))
-//     .map((line) => line.join(''))
-//     .join('\n')
-// }
+  // Find the first non-empty row from the start
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim() !== '0'.repeat(store.settings.tilesPerRow)) {
+      start = i
+      break
+    }
+  }
+
+  return lines.slice(start)
+}
+
+const optimizedBottom = (lines: string[]) => {
+  let end = lines.length - 1
+
+  // Find the last non-empty row from the end
+  for (let i = lines.length - 1; i >= 0; i--) {
+    if (lines[i].trim() !== '0'.repeat(store.settings.tilesPerRow)) {
+      end = i
+      break
+    }
+  }
+
+  return lines.slice(0, end + 1)
+}
+
+const optimizedRight = (lines: string[]) => {
+  return lines.map((line) => {
+    let emptySpaceLength = 0
+
+    // loop through the line from right to left
+    for (let i = line.length - 1; i >= 0; i--) {
+      const char = line[i]
+
+      if (char !== '0') {
+        break
+      }
+
+      emptySpaceLength++
+    }
+
+    return line.slice(0, line.length - emptySpaceLength)
+  })
+}
+
+const optimizedLeft = (lines: string[]) => {
+  let minEmptySpaceLength = 0
+
+  lines.forEach((line, index) => {
+    let emptySpaceLength = 0
+
+    // loop through the line from left to right
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i]
+
+      if (char !== '0') {
+        break
+      }
+
+      emptySpaceLength++
+    }
+
+    if (index === 0) {
+      minEmptySpaceLength = emptySpaceLength
+    } else {
+      minEmptySpaceLength = Math.min(minEmptySpaceLength, emptySpaceLength)
+    }
+  })
+
+  return lines.map((line) => {
+    return line.slice(minEmptySpaceLength)
+  })
+}
 
 const handleCopy = () => {
   try {
@@ -45,72 +112,12 @@ const handleCopy = () => {
 
     const lines = text.trim().split('\n')
 
-    let start = 0
-    let end = lines.length - 1
+    const optimizedTopLines = optimizedTop(lines)
+    const optimizedBottomLines = optimizedBottom(optimizedTopLines)
+    const optimizedRightLines = optimizedRight(optimizedBottomLines)
+    const optimizedLeftLines = optimizedLeft(optimizedRightLines)
 
-    // Find the first non-empty row from the start
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].trim() !== '0'.repeat(store.settings.tilesPerRow)) {
-        start = i
-        break
-      }
-    }
-
-    // Find the last non-empty row from the end
-    for (let i = lines.length - 1; i >= 0; i--) {
-      if (lines[i].trim() !== '0'.repeat(store.settings.tilesPerRow)) {
-        end = i
-        break
-      }
-    }
-
-    const trimmedLines = lines.slice(start, end + 1)
-
-    const optimizedEndLines = trimmedLines.map((line) => {
-      let emptySpaceLength = 0
-
-      // loop through the line from right to left
-      for (let i = line.length - 1; i >= 0; i--) {
-        const char = line[i]
-
-        if (char !== '0') {
-          break
-        }
-
-        emptySpaceLength++
-      }
-
-      return line.slice(0, line.length - emptySpaceLength)
-    })
-
-    let minEmptySpaceLength = 0
-
-    optimizedEndLines.forEach((line, index) => {
-      let emptySpaceLength = 0
-
-      // loop through the line from left to right
-      for (let i = 0; i < line.length; i++) {
-        const char = line[i]
-
-        if (char !== '0') {
-          break
-        }
-
-        emptySpaceLength++
-      }
-
-      if (index === 0) {
-        minEmptySpaceLength = emptySpaceLength
-      } else {
-        minEmptySpaceLength = Math.min(minEmptySpaceLength, emptySpaceLength)
-      }
-    })
-
-    const optimizedStartLines = optimizedEndLines.map((line) => {
-      return line.slice(minEmptySpaceLength)
-    })
-
-    const copyText = optimizedStartLines
+    const copyText = optimizedLeftLines
       .join('\n')
       .replaceAll('0', ':_:')
       .replace(/\d/g, (match) => {
