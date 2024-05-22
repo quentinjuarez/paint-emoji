@@ -33,6 +33,12 @@ export const useStore = defineStore('shape-to-emoji', {
       tileSize: __TILE_SIZE__,
       tilesPerRow: __TILES_PER_ROW__
     },
+    options: {
+      optimizeTop: true,
+      optimizeRight: false,
+      optimizeBottom: true,
+      optimizeLeft: false
+    },
     darkMode: false,
     textEmoji: {
       name: ':red_square:',

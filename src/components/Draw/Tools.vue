@@ -7,6 +7,8 @@
 
       <TextTools v-show="store.tab === 'text'" />
 
+      <OptionsTools v-show="store.tab === 'draw'" />
+
       <ThemeTools />
     </div>
   </Col>

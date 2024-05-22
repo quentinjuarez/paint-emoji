@@ -110,14 +110,25 @@ const handleCopy = () => {
 
     copy.value = true
 
-    const lines = text.trim().split('\n')
+    let lines = text.trim().split('\n')
 
-    const optimizedTopLines = optimizedTop(lines)
-    const optimizedBottomLines = optimizedBottom(optimizedTopLines)
-    const optimizedRightLines = optimizedRight(optimizedBottomLines)
-    const optimizedLeftLines = optimizedLeft(optimizedRightLines)
+    if (store.options.optimizeTop) {
+      lines = optimizedTop(lines)
+    }
 
-    const copyText = optimizedLeftLines
+    if (store.options.optimizeBottom) {
+      lines = optimizedBottom(lines)
+    }
+
+    if (store.options.optimizeRight) {
+      lines = optimizedRight(lines)
+    }
+
+    if (store.options.optimizeLeft) {
+      lines = optimizedLeft(lines)
+    }
+
+    const copyText = lines
       .join('\n')
       .replaceAll('0', ':_:')
       .replace(/\d/g, (match) => {
