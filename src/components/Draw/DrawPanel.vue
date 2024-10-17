@@ -2,7 +2,7 @@
   <div class="mt-4 w-full space-y-4 lg:h-[calc(100vh-164px)]">
     <EmojiSelection />
 
-    <DrawCanvas>
+    <DrawCanvas :sliceStyle="sliceStyle">
       <div class="flex justify-center">
         <button
           @click="handleCopy"
@@ -24,7 +24,35 @@ const store = useStore()
 
 const copy = ref(false)
 
+const sliceDimensions = ref({
+  top: 0,
+  left: 0
+})
+
+const sliceStyle = computed(() => {
+  const size = store.settings.tileSize
+
+  const dimX = optimizedFrame.value?.length || 0
+  const dimY = optimizedFrame.value?.reduce((acc, line) => Math.max(acc, line.length), 0) || 0
+
+  const top = sliceDimensions.value.top
+  const left = sliceDimensions.value.left
+
+  return {
+    top: `${top * size}px`,
+    left: `${left * size}px`,
+    width: `${dimY * size}px`,
+    height: `${dimX * size}px`
+  }
+})
+
 const optimizedTop = (lines: string[]) => {
+  if (!store.options.optimizeTop) {
+    sliceDimensions.value.top = 0
+
+    return lines
+  }
+
   let start = 0
 
   // Find the first non-empty row from the start
@@ -35,10 +63,14 @@ const optimizedTop = (lines: string[]) => {
     }
   }
 
+  sliceDimensions.value.top = start
+
   return lines.slice(start)
 }
 
 const optimizedBottom = (lines: string[]) => {
+  if (!store.options.optimizeBottom) return lines
+
   let end = lines.length - 1
 
   // Find the last non-empty row from the end
@@ -53,6 +85,8 @@ const optimizedBottom = (lines: string[]) => {
 }
 
 const optimizedRight = (lines: string[]) => {
+  if (!store.options.optimizeRight) return lines
+
   return lines.map((line) => {
     let emptySpaceLength = 0
 
@@ -72,6 +106,12 @@ const optimizedRight = (lines: string[]) => {
 }
 
 const optimizedLeft = (lines: string[]) => {
+  if (!store.options.optimizeLeft) {
+    sliceDimensions.value.left = 0
+
+    return lines
+  }
+
   let minEmptySpaceLength = 0
 
   lines.forEach((line, index) => {
@@ -95,40 +135,36 @@ const optimizedLeft = (lines: string[]) => {
     }
   })
 
+  sliceDimensions.value.left = minEmptySpaceLength
+
   return lines.map((line) => {
     return line.slice(minEmptySpaceLength)
   })
 }
 
+const optimizedFrame = computed(() => {
+  if (!store.lastFrame) return null
+
+  let lines = store.lastFrame.trim().split('\n')
+
+  lines = optimizedTop(lines)
+
+  lines = optimizedBottom(lines)
+
+  lines = optimizedRight(lines)
+
+  lines = optimizedLeft(lines)
+
+  return lines
+})
+
 const handleCopy = () => {
   try {
-    const text = store.lastFrame
-
-    if (!text) {
-      return
-    }
+    if (!optimizedFrame.value) return
 
     copy.value = true
 
-    let lines = text.trim().split('\n')
-
-    if (store.options.optimizeTop) {
-      lines = optimizedTop(lines)
-    }
-
-    if (store.options.optimizeBottom) {
-      lines = optimizedBottom(lines)
-    }
-
-    if (store.options.optimizeRight) {
-      lines = optimizedRight(lines)
-    }
-
-    if (store.options.optimizeLeft) {
-      lines = optimizedLeft(lines)
-    }
-
-    const copyText = lines
+    const copyText = optimizedFrame.value
       .join('\n')
       .replaceAll('0', ':_:')
       .replace(/\d/g, (match) => {

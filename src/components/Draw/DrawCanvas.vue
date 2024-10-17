@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full flex-col items-center justify-center gap-4">
+  <div class="relative flex h-full flex-col items-center justify-center gap-4">
     <div
       id="canvas"
       :style="{
@@ -8,6 +8,10 @@
       class="relative size-[calc(32*12px)] cursor-cell select-none md:size-[calc(32*16px)] lg:size-[calc(32*16px)]"
       ref="canvasRef"
     >
+      <div
+        :style="props.sliceStyle"
+        class="pointer-events-none absolute ring-1 ring-purple-700"
+      ></div>
       <div v-for="(row, i) in store.displayedFrame" :key="i" class="flex">
         <div
           v-for="(value, j) in row"
@@ -45,6 +49,10 @@
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{
+  sliceStyle: any
+}>()
+
 const store = useStore()
 
 const TILE_SIZE = store.settings.tileSize
