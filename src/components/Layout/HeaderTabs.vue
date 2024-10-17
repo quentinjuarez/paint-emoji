@@ -31,6 +31,10 @@ const tabs = [
   {
     name: 'write',
     label: 'Write'
+  },
+  {
+    name: 'icant',
+    label: 'ICANT'
   }
 ]
 </script>

@@ -25,6 +25,7 @@ declare module 'vue' {
     EmojiPreviewCanvas: typeof import('./../components/Draw/EmojiPreviewCanvas.vue')['default']
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
     HeaderTabs: typeof import('./../components/Layout/HeaderTabs.vue')['default']
+    IcantGenerator: typeof import('./../components/Icant/IcantGenerator.vue')['default']
     OptionsTools: typeof import('./../components/Draw/OptionsTools.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

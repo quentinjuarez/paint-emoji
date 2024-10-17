@@ -1,0 +1,170 @@
+<template>
+  <div class="flex h-full items-center justify-center gap-8">
+    <!-- CANVAS -->
+    <canvas id="canvas" class="border border-gray-300" width="512" height="512"></canvas>
+    <div class="space-y-8">
+      <input type="file" accept="image/*" @change="onFileChange" />
+      <!-- SETTINGS - Zoom, Translation X,Y, Rotate -->
+      <div class="space-y-2">
+        <div>
+          <label>Zoom: </label>
+          <input
+            class="accent-purple-500"
+            type="range"
+            min="0.5"
+            max="2"
+            step="0.01"
+            v-model="zoom"
+            @input="drawImage"
+          />
+        </div>
+
+        <div>
+          <label>Translate X: </label>
+          <input
+            class="accent-purple-500"
+            type="range"
+            min="-128"
+            max="128"
+            step="1"
+            v-model="translateX"
+            @input="drawImage"
+          />
+        </div>
+
+        <div>
+          <label>Translate Y: </label>
+          <input
+            class="accent-purple-500"
+            type="range"
+            min="-128"
+            max="128"
+            step="1"
+            v-model="translateY"
+            @input="drawImage"
+          />
+        </div>
+
+        <div>
+          <label>Rotate: </label>
+          <input
+            class="accent-purple-500"
+            type="range"
+            min="0"
+            max="360"
+            step="1"
+            v-model="rotation"
+            @input="drawImage"
+          />
+        </div>
+      </div>
+      <!-- DOWNLOAD -->
+      <button
+        @click="downloadImage"
+        class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+      >
+        <span> Download </span>
+
+        <Shortcut shortcut="d" ctrl @confirm="downloadImage" />
+      </button>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import icant from '@/assets/masks/icant.png'
+
+const zoom = ref(1)
+const translateX = ref('0')
+const translateY = ref('0')
+const rotation = ref(0)
+
+let uploadedImg: HTMLImageElement | null = null
+let icantMask: HTMLImageElement | null = null
+
+// Load the uploaded image
+const onFileChange = (e: any) => {
+  const file = e.target.files[0]
+  const reader = new FileReader()
+
+  reader.onload = (e: any) => {
+    uploadedImg = new Image()
+    uploadedImg.src = e.target.result
+
+    uploadedImg.onload = () => {
+      drawImage()
+    }
+  }
+
+  reader.readAsDataURL(file)
+}
+
+// Function to draw the image and mask with transformations
+const drawImage = () => {
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+  // If no uploaded image, do nothing
+  if (!uploadedImg) return
+
+  ctx.save() // Save the current state
+
+  // Move the origin to the center of the canvas, apply translation
+  console.log(
+    canvas.width / 2 + parseInt(translateX.value),
+    canvas.height / 2 + parseInt(translateY.value)
+  )
+  ctx.translate(
+    canvas.width / 2 + parseInt(translateX.value),
+    canvas.height / 2 + parseInt(translateY.value)
+  )
+
+  // Rotate the canvas around the center
+  ctx.rotate((rotation.value * Math.PI) / 180)
+
+  // Apply zoom
+  ctx.scale(zoom.value, zoom.value)
+
+  // Draw the image centered at the new origin
+  ctx.drawImage(uploadedImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height)
+
+  ctx.restore() // Restore the state after transformations
+
+  // Draw the mask image over the entire canvas (no transformation)
+  if (icantMask) {
+    ctx.drawImage(icantMask, 0, 0, canvas.width, canvas.height)
+  }
+}
+
+// Load the 'icant' mask image once on mount
+onMounted(() => {
+  icantMask = new Image()
+  icantMask.src = icant
+  icantMask.onload = () => {
+    drawImage() // Ensure the mask is drawn even if no uploaded image
+  }
+})
+
+// Download the canvas image as PNG
+const downloadImage = () => {
+  if (!uploadedImg) return
+
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+
+  const link = document.createElement('a')
+
+  link.download = 'icant.png'
+  link.href = canvas.toDataURL('image/png')
+  link.click()
+}
+</script>
+
+<style scoped>
+input[type='range'] {
+  width: 100%;
+}
+</style>
