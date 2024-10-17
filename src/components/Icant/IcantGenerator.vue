@@ -26,7 +26,6 @@
             class="flex items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
           >
             <span> Reset </span>
-            <Shortcut shortcut="r" ctrl @confirm="reset" />
           </button>
         </div>
         <div>

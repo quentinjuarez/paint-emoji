@@ -9,7 +9,7 @@
 
       <OptionsTools v-show="store.tab === 'draw'" />
 
-      <ThemeTools />
+      <ThemeTools v-show="store.tab !== 'icant'" />
     </div>
   </Col>
 </template>
