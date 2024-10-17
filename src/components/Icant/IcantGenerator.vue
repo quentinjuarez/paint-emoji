@@ -13,7 +13,7 @@
         >
           <span v-if="!file"> Upload Image </span>
           <span v-else> Change Image </span>
-          <Shortcut shortcut="k" ctrl @confirm="browseFiles" />
+          <Shortcut shortcut="f" ctrl @confirm="browseFiles" />
         </button>
         <p class="text-center text-white">{{ file?.name }}</p>
       </div>
