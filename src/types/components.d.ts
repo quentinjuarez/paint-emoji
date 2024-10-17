@@ -16,6 +16,7 @@ declare module 'vue' {
     CommunityMineModal: typeof import('./../components/Draw/CommunityMineModal.vue')['default']
     CommunitySaveModal: typeof import('./../components/Draw/CommunitySaveModal.vue')['default']
     CommunityTools: typeof import('./../components/Draw/CommunityTools.vue')['default']
+    DragAndDrop: typeof import('./../components/Layout/DragAndDrop.vue')['default']
     DrawCanvas: typeof import('./../components/Draw/DrawCanvas.vue')['default']
     DrawPanel: typeof import('./../components/Draw/DrawPanel.vue')['default']
     DrawTools: typeof import('./../components/Draw/DrawTools.vue')['default']

@@ -3,7 +3,9 @@
     <!-- CANVAS -->
     <canvas id="canvas" class="border border-gray-300" width="512" height="512"></canvas>
     <div class="space-y-8">
-      <input type="file" accept="image/*" @change="onFileChange" />
+      <DragAndDrop accept="image/*" @file="onFileChange" />
+
+      <input type="file" accept="image/*" @change="onFilesChange" />
       <!-- SETTINGS - Zoom, Translation X,Y, Rotate -->
       <div class="space-y-2">
         <div>
@@ -78,14 +80,21 @@ import icant from '@/assets/masks/icant.png'
 const zoom = ref(1)
 const translateX = ref('0')
 const translateY = ref('0')
-const rotation = ref(0)
+const rotation = ref(25)
 
 let uploadedImg: HTMLImageElement | null = null
 let icantMask: HTMLImageElement | null = null
 
-// Load the uploaded image
-const onFileChange = (e: any) => {
+const file = ref<File>()
+
+const onFilesChange = (e: any) => {
   const file = e.target.files[0]
+  onFileChange(file)
+}
+
+// Load the uploaded image
+const onFileChange = (newFile: File) => {
+  file.value = newFile
   const reader = new FileReader()
 
   reader.onload = (e: any) => {
@@ -97,7 +106,7 @@ const onFileChange = (e: any) => {
     }
   }
 
-  reader.readAsDataURL(file)
+  reader.readAsDataURL(file.value!)
 }
 
 // Function to draw the image and mask with transformations
@@ -114,10 +123,6 @@ const drawImage = () => {
   ctx.save() // Save the current state
 
   // Move the origin to the center of the canvas, apply translation
-  console.log(
-    canvas.width / 2 + parseInt(translateX.value),
-    canvas.height / 2 + parseInt(translateY.value)
-  )
   ctx.translate(
     canvas.width / 2 + parseInt(translateX.value),
     canvas.height / 2 + parseInt(translateY.value)
@@ -157,7 +162,11 @@ const downloadImage = () => {
 
   const link = document.createElement('a')
 
-  link.download = 'icant.png'
+  console.log(uploadedImg)
+
+  const fileName = file.value?.name.split('.')[0] || ''
+
+  link.download = `icant-${fileName}.png`
   link.href = canvas.toDataURL('image/png')
   link.click()
 }
