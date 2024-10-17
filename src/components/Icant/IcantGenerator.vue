@@ -3,11 +3,32 @@
     <!-- CANVAS -->
     <canvas id="canvas" class="border border-gray-300" width="512" height="512"></canvas>
     <div class="space-y-8">
-      <DragAndDrop accept="image/*" @file="onFileChange" />
+      <DragAndDrop accept="image/*" @file="onDropChange" />
 
-      <input type="file" accept="image/*" @change="onFilesChange" />
+      <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onFilesChange" />
+      <div>
+        <button
+          @click="browseFiles"
+          class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+        >
+          <span v-if="!file"> Upload Image </span>
+          <span v-else> Change Image </span>
+          <Shortcut shortcut="k" ctrl @confirm="browseFiles" />
+        </button>
+        <p class="text-center text-white">{{ file?.name }}</p>
+      </div>
       <!-- SETTINGS - Zoom, Translation X,Y, Rotate -->
-      <div class="space-y-2">
+      <div class="w-full space-y-2">
+        <div class="flex items-center justify-between">
+          <h2>Settings</h2>
+          <button
+            @click="reset"
+            class="flex items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+          >
+            <span> Reset </span>
+            <Shortcut shortcut="r" ctrl @confirm="reset" />
+          </button>
+        </div>
         <div>
           <label>Zoom: </label>
           <input
@@ -77,18 +98,41 @@
 import { ref, onMounted } from 'vue'
 import icant from '@/assets/masks/icant.png'
 
-const zoom = ref(1)
-const translateX = ref('0')
-const translateY = ref('0')
-const rotation = ref(25)
+const DEFAULT = {
+  ZOOM: 1,
+  TRANSLATE_X: '0',
+  TRANSLATE_Y: '0',
+  ROTATION: 25
+}
+
+const zoom = ref(DEFAULT.ZOOM)
+const translateX = ref(DEFAULT.TRANSLATE_X)
+const translateY = ref(DEFAULT.TRANSLATE_Y)
+const rotation = ref(DEFAULT.ROTATION)
+
+const reset = () => {
+  zoom.value = DEFAULT.ZOOM
+  translateX.value = DEFAULT.TRANSLATE_X
+  translateY.value = DEFAULT.TRANSLATE_Y
+  rotation.value = DEFAULT.ROTATION
+  drawImage()
+}
 
 let uploadedImg: HTMLImageElement | null = null
 let icantMask: HTMLImageElement | null = null
 
 const file = ref<File>()
 
+const browseFiles = () => {
+  inputRef.value?.click()
+}
+
 const onFilesChange = (e: any) => {
   const file = e.target.files[0]
+  onFileChange(file)
+}
+
+const onDropChange = (file: File) => {
   onFileChange(file)
 }
 
@@ -170,6 +214,8 @@ const downloadImage = () => {
   link.href = canvas.toDataURL('image/png')
   link.click()
 }
+
+const inputRef = ref<HTMLInputElement | null>(null)
 </script>
 
 <style scoped>

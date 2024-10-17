@@ -1,8 +1,13 @@
 <template>
+  <!-- Drag overlay -->
   <div
-    class="fixed inset-0 z-50 hidden rounded-lg bg-white/50 transition-colors"
-    :class="{ '!block': isDragging }"
-  ></div>
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-md transition-all duration-300 ease-in-out"
+    :class="{ '!flex': isDragging }"
+  >
+    <div class="p-8 text-center">
+      <p class="text-xl font-semibold text-white">Drop your file here</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -41,7 +46,6 @@ function isFileTypeAccepted(accept: string, fileType: string): boolean {
 
   return acceptArray.some((type) => {
     if (type.endsWith('/*')) {
-      // If the accepted type ends with '/*', check if it's a valid prefix for dropped file type
       const acceptedPrefix = type.slice(0, -2)
       return fileType.startsWith(acceptedPrefix)
     }
@@ -62,13 +66,11 @@ const handleDrop = (event: DragEvent) => {
   if (files && files.length > 0) {
     const file = files[0]
 
-    // Check if the file type is accepted
     if (!isFileTypeAccepted(props.accept, file.type)) {
       emit('error', true)
       return
     }
 
-    // Emit the valid file
     emit('file', file)
   }
 }
