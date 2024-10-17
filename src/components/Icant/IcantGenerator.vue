@@ -99,16 +99,20 @@ import { ref, onMounted } from 'vue'
 import icant from '@/assets/masks/icant.png'
 
 const DEFAULT = {
-  ZOOM: 1,
+  ZOOM: '1',
   TRANSLATE_X: '0',
   TRANSLATE_Y: '0',
-  ROTATION: 25
+  ROTATION: '25'
 }
 
 const zoom = ref(DEFAULT.ZOOM)
 const translateX = ref(DEFAULT.TRANSLATE_X)
 const translateY = ref(DEFAULT.TRANSLATE_Y)
 const rotation = ref(DEFAULT.ROTATION)
+
+const isDragging = ref(false)
+const dragStart = ref({ x: 0, y: 0 })
+const initialTranslate = ref({ x: 0, y: 0 })
 
 const reset = () => {
   zoom.value = DEFAULT.ZOOM
@@ -173,10 +177,10 @@ const drawImage = () => {
   )
 
   // Rotate the canvas around the center
-  ctx.rotate((rotation.value * Math.PI) / 180)
+  ctx.rotate((parseInt(rotation.value) * Math.PI) / 180)
 
   // Apply zoom
-  ctx.scale(zoom.value, zoom.value)
+  ctx.scale(parseFloat(zoom.value), parseFloat(zoom.value))
 
   // Draw the image centered at the new origin
   ctx.drawImage(uploadedImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height)
@@ -196,6 +200,16 @@ onMounted(() => {
   icantMask.onload = () => {
     drawImage() // Ensure the mask is drawn even if no uploaded image
   }
+
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+
+  // Mousewheel event for zoom and rotate
+  canvas.addEventListener('wheel', onWheel)
+
+  // Mouse events for drag and drop
+  canvas.addEventListener('mousedown', onMouseDown)
+  window.addEventListener('mousemove', onMouseMove)
+  window.addEventListener('mouseup', onMouseUp)
 })
 
 // Download the canvas image as PNG
@@ -206,8 +220,6 @@ const downloadImage = () => {
 
   const link = document.createElement('a')
 
-  console.log(uploadedImg)
-
   const fileName = file.value?.name.split('.')[0] || ''
 
   link.download = `icant-${fileName}.png`
@@ -216,6 +228,46 @@ const downloadImage = () => {
 }
 
 const inputRef = ref<HTMLInputElement | null>(null)
+
+// Handle mouse drag for translation
+const onMouseDown = (e: MouseEvent) => {
+  isDragging.value = true
+  dragStart.value = { x: e.clientX, y: e.clientY }
+  initialTranslate.value = { x: parseInt(translateX.value), y: parseInt(translateY.value) }
+}
+
+const onMouseMove = (e: MouseEvent) => {
+  if (!isDragging.value) return
+
+  const deltaX = e.clientX - dragStart.value.x
+  const deltaY = e.clientY - dragStart.value.y
+
+  translateX.value = (initialTranslate.value.x + deltaX).toString()
+  translateY.value = (initialTranslate.value.y + deltaY).toString()
+
+  drawImage()
+}
+
+const onMouseUp = () => {
+  isDragging.value = false
+}
+
+// Handle mousewheel for zoom and rotation
+const onWheel = (e: WheelEvent) => {
+  e.preventDefault()
+
+  if (e.ctrlKey || e.metaKey) {
+    // Rotate
+    rotation.value = String(Math.min(360, Math.max(0, parseInt(rotation.value) + e.deltaY * 0.1)))
+  } else {
+    // Zoom
+    const zoomDelta = -e.deltaY * 0.001
+    const roundedNewVal = Math.round((parseFloat(zoom.value) + zoomDelta) * 100) / 100
+    zoom.value = String(Math.min(2, Math.max(0.5, roundedNewVal)))
+  }
+
+  drawImage()
+}
 </script>
 
 <style scoped>
