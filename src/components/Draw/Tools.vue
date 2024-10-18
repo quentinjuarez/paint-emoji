@@ -10,6 +10,8 @@
       <OptionsTools v-show="store.tab === 'draw'" />
 
       <ThemeTools v-show="store.tab !== 'icant'" />
+
+      <MaskTools v-show="store.tab === 'icant'" />
     </div>
   </Col>
 </template>

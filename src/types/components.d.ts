@@ -27,6 +27,7 @@ declare module 'vue' {
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
     HeaderTabs: typeof import('./../components/Layout/HeaderTabs.vue')['default']
     IcantGenerator: typeof import('./../components/Icant/IcantGenerator.vue')['default']
+    MaskTools: typeof import('./../components/Icant/MaskTools.vue')['default']
     OptionsTools: typeof import('./../components/Draw/OptionsTools.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -40,6 +41,7 @@ declare module 'vue' {
     UserAvatar: typeof import('./../components/User/UserAvatar.vue')['default']
     UserLogin: typeof import('./../components/User/UserLogin.vue')['default']
     UserMenu: typeof import('./../components/User/UserMenu.vue')['default']
+    WebpTest: typeof import('./../components/Icant/WebpTest.vue')['default']
     WritePanel: typeof import('./../components/Write/WritePanel.vue')['default']
   }
 }

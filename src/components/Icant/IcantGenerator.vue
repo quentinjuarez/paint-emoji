@@ -37,7 +37,7 @@
             max="2"
             step="0.01"
             v-model="zoom"
-            @input="drawImage"
+            @input="drawPreview"
           />
         </div>
 
@@ -50,7 +50,7 @@
             max="128"
             step="1"
             v-model="translateX"
-            @input="drawImage"
+            @input="drawPreview"
           />
         </div>
 
@@ -63,7 +63,7 @@
             max="128"
             step="1"
             v-model="translateY"
-            @input="drawImage"
+            @input="drawPreview"
           />
         </div>
 
@@ -76,7 +76,7 @@
             max="360"
             step="1"
             v-model="rotation"
-            @input="drawImage"
+            @input="drawPreview"
           />
         </div>
       </div>
@@ -94,8 +94,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import icant from '@/assets/masks/icant.png'
+import clean from '@/assets/masks/clean.gif'
+import { GifReader } from 'omggif'
+
+const masks = [
+  { name: 'icant', src: icant, animated: false },
+  { name: 'clean', src: clean, animated: true }
+]
+
+const store = useStore()
+
+// const currentMaskImageElement = computed<HTMLImageElement>(() => {
+//   const mask = masks.find((mask) => mask.name === store.currentMask)
+
+//   if (!mask) return new Image()
+
+//   const image = new Image()
+//   image.src = mask.src
+
+//   return image
+// })
+
+const currentMaskImageElement = ref<HTMLImageElement>()
+const uploadedImageElement = ref<HTMLImageElement>()
 
 const DEFAULT = {
   ZOOM: '1',
@@ -118,11 +140,8 @@ const reset = () => {
   translateX.value = DEFAULT.TRANSLATE_X
   translateY.value = DEFAULT.TRANSLATE_Y
   rotation.value = DEFAULT.ROTATION
-  drawImage()
+  drawPreview()
 }
-
-let uploadedImg: HTMLImageElement | null = null
-let icantMask: HTMLImageElement | null = null
 
 const file = ref<File>()
 
@@ -145,27 +164,22 @@ const onFileChange = (newFile: File) => {
   const reader = new FileReader()
 
   reader.onload = (e: any) => {
-    uploadedImg = new Image()
-    uploadedImg.src = e.target.result
+    const image = new Image()
+    image.src = e.target.result
 
-    uploadedImg.onload = () => {
-      drawImage()
+    uploadedImageElement.value = image
+
+    image.onload = () => {
+      drawPreview()
     }
   }
 
   reader.readAsDataURL(file.value!)
 }
 
-// Function to draw the image and mask with transformations
-const drawImage = () => {
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement
-  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
-
-  // Clear the canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+const drawUploadedImage = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
   // If no uploaded image, do nothing
-  if (!uploadedImg) return
+  if (!uploadedImageElement.value) return
 
   ctx.save() // Save the current state
 
@@ -182,24 +196,35 @@ const drawImage = () => {
   ctx.scale(parseFloat(zoom.value), parseFloat(zoom.value))
 
   // Draw the image centered at the new origin
-  ctx.drawImage(uploadedImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height)
+  ctx.drawImage(
+    uploadedImageElement.value,
+    -canvas.width / 2,
+    -canvas.height / 2,
+    canvas.width,
+    canvas.height
+  )
 
   ctx.restore() // Restore the state after transformations
+}
+
+// Function to draw the image and mask with transformations
+const drawPreview = () => {
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+  // Draw the uploaded image with transformations
+  drawUploadedImage(canvas, ctx)
 
   // Draw the mask image over the entire canvas (no transformation)
-  if (icantMask) {
-    ctx.drawImage(icantMask, 0, 0, canvas.width, canvas.height)
+  if (currentMaskImageElement.value && uploadedImageElement.value) {
+    ctx.drawImage(currentMaskImageElement.value, 0, 0, canvas.width, canvas.height)
   }
 }
 
-// Load the 'icant' mask image once on mount
 onMounted(() => {
-  icantMask = new Image()
-  icantMask.src = icant
-  icantMask.onload = () => {
-    drawImage() // Ensure the mask is drawn even if no uploaded image
-  }
-
   const canvas = document.getElementById('canvas') as HTMLCanvasElement
 
   // Mousewheel event for zoom and rotate
@@ -210,21 +235,6 @@ onMounted(() => {
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseup', onMouseUp)
 })
-
-// Download the canvas image as PNG
-const downloadImage = () => {
-  if (!uploadedImg) return
-
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement
-
-  const link = document.createElement('a')
-
-  const fileName = file.value?.name.split('.')[0] || ''
-
-  link.download = `icant-${fileName}.png`
-  link.href = canvas.toDataURL('image/png')
-  link.click()
-}
 
 const inputRef = ref<HTMLInputElement | null>(null)
 
@@ -244,7 +254,7 @@ const onMouseMove = (e: MouseEvent) => {
   translateX.value = (initialTranslate.value.x + deltaX).toString()
   translateY.value = (initialTranslate.value.y + deltaY).toString()
 
-  drawImage()
+  drawPreview()
 }
 
 const onMouseUp = () => {
@@ -265,7 +275,65 @@ const onWheel = (e: WheelEvent) => {
     zoom.value = String(Math.min(2, Math.max(0.5, roundedNewVal)))
   }
 
-  drawImage()
+  drawPreview()
+}
+
+watch(
+  () => store.currentMask,
+  (newVal) => {
+    const mask = masks.find((mask) => mask.name === newVal)
+
+    if (!mask) return
+
+    const image = new Image()
+    image.src = mask.src
+
+    currentMaskImageElement.value = image
+
+    image.onload = () => {
+      drawPreview()
+    }
+  },
+  { immediate: true }
+)
+
+const getFrames = () => {
+  const mask = masks.find((mask) => mask.name === store.currentMask)
+  if (!mask || !mask.animated) return []
+
+  const reader = new GifReader(mask.src)
+  const frames = []
+
+  for (let i = 0; i < reader.numFrames(); i++) {
+    const frame = reader.decodeAndBlitFrameRGBA(i, new Uint8Array(reader.width * reader.height * 4))
+    const imageData = new ImageData(new Uint8ClampedArray(frame), reader.width, reader.height)
+    frames.push(imageData)
+  }
+
+  return frames
+}
+
+const downloadImage = async () => {
+  if (!uploadedImageElement.value) return
+
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+  const mask = masks.find((mask) => mask.name === store.currentMask)
+  const fileName = file.value?.name.split('.')[0] || ''
+
+  if (!mask) return
+
+  // Case 1: Download as PNG
+  if (mask.animated === false) {
+    const link = document.createElement('a')
+    link.download = `${store.currentMask}-${fileName}.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+  } else {
+    // Case 2: Download as GIF using omggif
+    const frames = getFrames()
+
+    console.log(frames)
+  }
 }
 </script>
 
