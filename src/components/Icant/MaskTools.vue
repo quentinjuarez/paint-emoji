@@ -20,11 +20,11 @@
 
 <script setup lang="ts">
 import icant from '@/assets/masks/icant.png'
-import clean from '@/assets/masks/clean.gif'
+// import clean from '@/assets/masks/clean.gif'
 
 const masks = [
-  { name: 'icant', src: icant },
-  { name: 'clean', src: clean }
+  { name: 'icant', src: icant }
+  // { name: 'clean', src: clean }
 ]
 
 const store = useStore()

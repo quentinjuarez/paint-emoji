@@ -1,0 +1,148 @@
+<template>
+  <div>
+    <h2>Original GIF</h2>
+    <img :src="clean" alt="Original GIF" />
+
+    <h2>Processed GIF</h2>
+    <img :src="processedGifUrl" alt="Processed GIF" v-if="processedGifUrl" />
+  </div>
+</template>
+
+<script lang="ts" setup>
+import clean from '@/assets/masks/clean.gif'
+import icant from '@/assets/masks/icant.png'
+import { GifReader, GifWriter } from 'omggif'
+import { ref, onMounted } from 'vue'
+
+// Helper function to get the palette
+function getPalette(pixels: Uint8ClampedArray): number[] {
+  const colorMap = new Map<string, number>()
+  const palette: number[] = []
+
+  for (let i = 0; i < pixels.length; i += 4) {
+    const r = pixels[i]
+    const g = pixels[i + 1]
+    const b = pixels[i + 2]
+    const colorKey = `${r},${g},${b}`
+
+    if (!colorMap.has(colorKey)) {
+      colorMap.set(colorKey, palette.length)
+      palette.push((r << 16) | (g << 8) | b) // Create the color in RGB format
+    }
+
+    // Limit the palette size to 256 colors (GIF standard)
+    if (palette.length >= 256) break
+  }
+
+  // Ensure the palette size is a power of 2 for compatibility
+  let pow2 = 1
+  while (pow2 < palette.length) pow2 <<= 1
+  while (palette.length < pow2) palette.push(0) // Fill remaining slots with black
+
+  return palette
+}
+
+// Vue component setup
+const processedGifUrl = ref<string>('') // URL for the new processed GIF
+
+onMounted(async () => {
+  try {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+
+    if (!ctx) {
+      console.error('Failed to get 2D context from canvas')
+      return
+    }
+
+    // Fetch original GIF and decode it
+    const gifBlob = await fetch(clean).then((res) => res.blob())
+    const arrayBuffer = await gifBlob.arrayBuffer()
+    const reader = new GifReader(new Uint8Array(arrayBuffer))
+
+    const width = reader.width
+    const height = reader.height
+
+    // Set up canvas with transparency
+    canvas.width = width
+    canvas.height = height
+
+    // Buffer for the new GIF
+    const buffer = new Uint8Array(width * height * reader.numFrames() * 5)
+    const writer = new GifWriter(buffer, width, height, { loop: 0 })
+
+    // Iterate through frames
+    for (let i = 0; i < reader.numFrames(); i++) {
+      const pixels = new Uint8Array(width * height * 4) // RGBA pixels array
+      reader.decodeAndBlitFrameRGBA(i, pixels)
+
+      // Get frame delay from the original GIF (in hundredths of a second)
+      const frameInfo = reader.frameInfo(i)
+      const frameDelay = frameInfo.delay
+
+      // Custom drawing (red background)
+      ctx.clearRect(0, 0, width, height) // Clear the canvas first
+      //   ctx.fillStyle = 'red' // Example: Red background
+      //   ctx.fillRect(0, 0, width, height) // Fill the entire canvas with red
+
+      // set icant image
+      const maskImage = new Image()
+      maskImage.src = icant
+      maskImage.onload = () => {
+        ctx.drawImage(maskImage, 0, 0, width, height)
+      }
+
+      // Now, draw the GIF frame onto the canvas, but skip transparent pixels
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const idx = (y * width + x) * 4
+          const r = pixels[idx]
+          const g = pixels[idx + 1]
+          const b = pixels[idx + 2]
+          const alpha = pixels[idx + 3]
+
+          // Only draw the pixel if it's not transparent
+          if (alpha !== 0) {
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha / 255})`
+            ctx.fillRect(x, y, 1, 1)
+          }
+        }
+      }
+
+      // Extract the rendered pixel data (needed for GifWriter)
+      const renderedImageData = ctx.getImageData(0, 0, width, height)
+      const framePixels = new Uint8ClampedArray(renderedImageData.data)
+
+      // Generate the palette from the frame pixels
+      const palette = getPalette(framePixels)
+
+      // Prepare indexed pixels array (map RGBA to palette index)
+      const indexedPixels = new Uint8Array(width * height)
+      for (let j = 0; j < framePixels.length; j += 4) {
+        const r = framePixels[j]
+        const g = framePixels[j + 1]
+        const b = framePixels[j + 2]
+        const colorKey = (r << 16) | (g << 8) | b
+        indexedPixels[j / 4] = palette.indexOf(colorKey)
+      }
+
+      // Add frame to the new GIF, using the palette and original frame delay
+      writer.addFrame(
+        0,
+        0,
+        width,
+        height,
+        indexedPixels,
+        { palette: new Uint32Array(palette), delay: frameDelay } // Use original frame delay
+      )
+    }
+
+    // Finalize and create a blob for the new GIF
+    writer.end()
+    const processedGifBlob = new Blob([buffer.subarray(0, writer.end())], { type: 'image/gif' })
+    processedGifUrl.value = URL.createObjectURL(processedGifBlob)
+  } catch (error) {
+    console.error('Error processing GIF:', error)
+  }
+})
+</script>

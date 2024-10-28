@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full items-center justify-center gap-8">
     <!-- CANVAS -->
-    <canvas id="canvas" class="border border-gray-300" width="512" height="512"></canvas>
+    <canvas id="canvas" class="border border-gray-300" :width="SIZE" :height="SIZE"></canvas>
     <div class="space-y-8">
       <DragAndDrop accept="image/*" @file="onDropChange" />
 
@@ -95,26 +95,16 @@
 
 <script setup lang="ts">
 import icant from '@/assets/masks/icant.png'
-import clean from '@/assets/masks/clean.gif'
-import { GifReader } from 'omggif'
+// import clean from '@/assets/masks/clean.gif'
+
+const SIZE = 512
 
 const masks = [
-  { name: 'icant', src: icant, animated: false },
-  { name: 'clean', src: clean, animated: true }
+  { name: 'icant', src: icant, animated: false }
+  // { name: 'clean', src: clean, animated: true }
 ]
 
 const store = useStore()
-
-// const currentMaskImageElement = computed<HTMLImageElement>(() => {
-//   const mask = masks.find((mask) => mask.name === store.currentMask)
-
-//   if (!mask) return new Image()
-
-//   const image = new Image()
-//   image.src = mask.src
-
-//   return image
-// })
 
 const currentMaskImageElement = ref<HTMLImageElement>()
 const uploadedImageElement = ref<HTMLImageElement>()
@@ -224,7 +214,7 @@ const drawPreview = () => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement
 
   // Mousewheel event for zoom and rotate
@@ -297,42 +287,31 @@ watch(
   { immediate: true }
 )
 
-const getFrames = () => {
-  const mask = masks.find((mask) => mask.name === store.currentMask)
-  if (!mask || !mask.animated) return []
-
-  const reader = new GifReader(mask.src)
-  const frames = []
-
-  for (let i = 0; i < reader.numFrames(); i++) {
-    const frame = reader.decodeAndBlitFrameRGBA(i, new Uint8Array(reader.width * reader.height * 4))
-    const imageData = new ImageData(new Uint8ClampedArray(frame), reader.width, reader.height)
-    frames.push(imageData)
-  }
-
-  return frames
-}
+// GENERATE OUTPUT
 
 const downloadImage = async () => {
   if (!uploadedImageElement.value) return
 
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement
   const mask = masks.find((mask) => mask.name === store.currentMask)
   const fileName = file.value?.name.split('.')[0] || ''
 
   if (!mask) return
 
-  // Case 1: Download as PNG
-  if (mask.animated === false) {
+  if (mask.animated) {
+    const frames = await extractGifFrames(mask.src)
+
+    if (!frames) return
+
+    // const link = document.createElement('a')
+    // link.download = `${store.currentMask}-${fileName}.gif`
+    // link.href = url
+    // link.click()
+  } else {
+    const canvas = document.getElementById('canvas') as HTMLCanvasElement
     const link = document.createElement('a')
     link.download = `${store.currentMask}-${fileName}.png`
     link.href = canvas.toDataURL('image/png')
     link.click()
-  } else {
-    // Case 2: Download as GIF using omggif
-    const frames = getFrames()
-
-    console.log(frames)
   }
 }
 </script>

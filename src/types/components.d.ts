@@ -33,7 +33,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Shortcut: typeof import('./../components/Draw/Shortcut.vue')['default']
     SlackEmojiModal: typeof import('./../components/Draw/SlackEmojiModal.vue')['default']
-    Test: typeof import('./../components/Draw/Test.vue')['default']
     TextPanel: typeof import('./../components/Draw/TextPanel.vue')['default']
     TextTools: typeof import('./../components/Draw/TextTools.vue')['default']
     ThemeTools: typeof import('./../components/Draw/ThemeTools.vue')['default']
@@ -41,7 +40,6 @@ declare module 'vue' {
     UserAvatar: typeof import('./../components/User/UserAvatar.vue')['default']
     UserLogin: typeof import('./../components/User/UserLogin.vue')['default']
     UserMenu: typeof import('./../components/User/UserMenu.vue')['default']
-    WebpTest: typeof import('./../components/Icant/WebpTest.vue')['default']
     WritePanel: typeof import('./../components/Write/WritePanel.vue')['default']
   }
 }
