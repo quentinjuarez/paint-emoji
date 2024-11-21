@@ -154,7 +154,8 @@ const MAP = (size: 'normal' | 'tight' = 'normal'): { [key: string]: string } => 
     '}': patterns.SYMBOL_RIGHT_CURLY_BRACKET,
     '|': patterns.SYMBOL_VERTICAL_BAR,
     '`': patterns.SYMBOL_BACKTICK,
-    '~': patterns.SYMBOL_TILDE
+    '~': patterns.SYMBOL_TILDE,
+    '^': patterns.SYMBOL_CIRCUMFLEX
   }
 }
 
