@@ -19,6 +19,9 @@
     "axios": "^0.21.1",
     "emoji-mart-vue-fast": "^15.0.1",
     "fuse.js": "^7.0.0",
+    "gif.js": "^0.2.0",
+    "gifencoder": "^2.0.1",
+    "gifuct-js": "^2.1.2",
     "html2canvas": "^1.4.1",
     "lodash.debounce": "^4.0.8",
     "lz-string": "^1.5.0",
@@ -37,6 +40,7 @@
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "^1.2.0",
     "@rushstack/eslint-patch": "^1.2.0",
+    "@types/gif.js": "^0.2.5",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.6.0",
     "@types/uuid": "^9.0.4",
@@ -67,5 +71,6 @@
     "package.json": [
       "git add"
     ]
-  }
+  },
+  "packageManager": "yarn@3.8.6+sha512.a1c3a781c248a6d957eacd53f9b965663af89ef777982d7d9086af6de00cab8724cb75bade6b0cdfcaa04f63e20767fc435aade5489be976a5745d6ee03c7932"
 }

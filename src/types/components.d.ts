@@ -33,6 +33,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Shortcut: typeof import('./../components/Draw/Shortcut.vue')['default']
     SlackEmojiModal: typeof import('./../components/Draw/SlackEmojiModal.vue')['default']
+    Test: typeof import('./../components/Icant/Test.vue')['default']
     TextPanel: typeof import('./../components/Draw/TextPanel.vue')['default']
     TextTools: typeof import('./../components/Draw/TextTools.vue')['default']
     ThemeTools: typeof import('./../components/Draw/ThemeTools.vue')['default']

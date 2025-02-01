@@ -9,6 +9,7 @@
       <TextPanel v-if="store.tab === 'text'" />
       <WritePanel v-if="store.tab === 'write'" />
       <IcantGenerator v-if="store.tab === 'icant'" />
+      <Test v-if="store.tab === 'test'" />
     </div>
 
     <Tools />
