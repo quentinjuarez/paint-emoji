@@ -3,7 +3,7 @@
     <!-- CANVAS -->
     <canvas
       id="preview-canvas"
-      class="border border-gray-300"
+      class="mr-32 scale-[3] rounded border border-gray-300"
       :width="options.size"
       :height="options.size"
     ></canvas>
@@ -20,6 +20,18 @@
           <Shortcut shortcut="f" ctrl @confirm="browseFiles" />
         </button>
         <p class="text-center text-white">{{ file?.name }}</p>
+        <div>
+          <label>DELAY: {{ options.delay }}</label>
+          <input
+            class="accent-purple-500"
+            type="range"
+            min="0"
+            max="200"
+            step="10"
+            v-model="options.delay"
+          />
+        </div>
+
         <button
           v-if="file"
           @click="handleGenerateGif"
@@ -30,39 +42,27 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap">
+    <!-- <div class="flex flex-wrap">
       <img
         v-for="frame in gifFrames"
         :key="frame.src"
         :src="frame.src"
         class="size-2 border border-gray-300"
       />
-    </div>
-
-    <div>
-      <label>DELAY: {{ options.delay }}</label>
-      <input
-        class="accent-purple-500"
-        type="range"
-        min="0"
-        max="200"
-        step="10"
-        v-model="options.delay"
-      />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import clean from '@/assets/masks/clean.gif'
-
 const inputRef = ref<HTMLInputElement | null>(null)
 const file = ref<File>()
 const gifFrames = ref<HTMLImageElement[]>([])
 
 const options = ref({
-  size: 256,
-  delay: 10
+  size: 128,
+  delay: 50,
+  input: '',
+  mask: 'clean'
 })
 
 const browseFiles = () => {
@@ -83,6 +83,7 @@ const image = ref<HTMLImageElement>(new Image())
 const onFileChange = (newFile: File) => {
   resetPreview()
   file.value = newFile
+  options.value.input = newFile.name.split('.')[0]
   const reader = new FileReader()
 
   reader.onload = (e: any) => {
@@ -91,7 +92,6 @@ const onFileChange = (newFile: File) => {
 
     img.onload = () => {
       image.value = img
-      previewing.value = true
       processImage()
     }
   }
@@ -102,10 +102,14 @@ const onFileChange = (newFile: File) => {
 const previewing = ref(false)
 
 const processImage = async () => {
+  resetPreview()
+  await sleep(500)
+  previewing.value = true
+
   const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
   const ctx = canvas.getContext('2d')
 
-  if (!ctx || !image.value || !file.value || !canvas || !gifFrames.value?.length) {
+  if (!ctx || !image.value || !file.value || !gifFrames.value?.length) {
     console.error('Missing context or image')
     return
   }
@@ -133,7 +137,22 @@ const handleGenerateGif = async () => {
   generateGif(image.value, gifFrames.value, options.value)
 }
 
+const store = useStore()
+
+const { currentMask } = storeToRefs(store)
+
+const handleExtractGifFrames = () => {
+  if (!currentMask.value || !currentMask.value.animate) return
+  gifFrames.value = []
+  extractGifFrames(currentMask.value.src, gifFrames)
+}
+
 onMounted(() => {
-  extractGifFrames(clean, gifFrames)
+  handleExtractGifFrames()
+})
+
+watch(currentMask, () => {
+  handleExtractGifFrames()
+  processImage()
 })
 </script>

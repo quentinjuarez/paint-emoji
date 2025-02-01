@@ -50,7 +50,7 @@ export const useStore = defineStore('shape-to-emoji', {
     textSettings: {
       tight: false
     },
-    currentMask: 'icant'
+    currentMask: undefined as any | undefined
   }),
   getters: {
     lastFrame(state) {

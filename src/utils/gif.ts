@@ -65,7 +65,7 @@ export const generateGif = (image: any, frames: any, options: any) => {
   })
 
   gifRenderer.on('finished', (blob: Blob) => {
-    download(blob, name, 'gif')
+    download(blob, `${options.mask}-${options.input}`, 'gif')
   })
 
   for (const frame of frames) {

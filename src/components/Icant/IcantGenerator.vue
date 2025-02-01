@@ -1,7 +1,12 @@
 <template>
   <div class="flex h-full items-center justify-center gap-8">
     <!-- CANVAS -->
-    <canvas id="canvas" class="border border-gray-300" :width="SIZE" :height="SIZE"></canvas>
+    <canvas
+      id="canvas"
+      class="rounded border border-gray-300"
+      :width="SIZE"
+      :height="SIZE"
+    ></canvas>
     <div class="space-y-8">
       <DragAndDrop accept="image/*" @file="onDropChange" />
 
@@ -95,14 +100,8 @@
 
 <script setup lang="ts">
 import icant from '@/assets/masks/icant.png'
-// import clean from '@/assets/masks/clean.gif'
 
 const SIZE = 512
-
-const masks = [
-  { name: 'icant', src: icant, animated: false }
-  // { name: 'clean', src: clean, animated: true }
-]
 
 const store = useStore()
 
@@ -270,13 +269,9 @@ const onWheel = (e: WheelEvent) => {
 
 watch(
   () => store.currentMask,
-  (newVal) => {
-    const mask = masks.find((mask) => mask.name === newVal)
-
-    if (!mask) return
-
+  () => {
     const image = new Image()
-    image.src = mask.src
+    image.src = icant
 
     currentMaskImageElement.value = image
 
@@ -292,27 +287,13 @@ watch(
 const downloadImage = async () => {
   if (!uploadedImageElement.value) return
 
-  const mask = masks.find((mask) => mask.name === store.currentMask)
   const fileName = file.value?.name.split('.')[0] || ''
 
-  if (!mask) return
-
-  if (mask.animated) {
-    const frames = await extractGifFrames(mask.src)
-
-    if (!frames) return
-
-    // const link = document.createElement('a')
-    // link.download = `${store.currentMask}-${fileName}.gif`
-    // link.href = url
-    // link.click()
-  } else {
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement
-    const link = document.createElement('a')
-    link.download = `${store.currentMask}-${fileName}.png`
-    link.href = canvas.toDataURL('image/png')
-    link.click()
-  }
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement
+  const link = document.createElement('a')
+  link.download = `${store.currentMask}-${fileName}.png`
+  link.href = canvas.toDataURL('image/png')
+  link.click()
 }
 </script>
 

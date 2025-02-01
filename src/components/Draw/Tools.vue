@@ -9,9 +9,9 @@
 
       <OptionsTools v-show="store.tab === 'draw'" />
 
-      <ThemeTools v-show="store.tab !== 'icant'" />
+      <ThemeTools v-show="store.tab !== 'icant' && store.tab !== 'gif'" />
 
-      <MaskTools v-show="store.tab === 'icant'" />
+      <MaskTools v-show="store.tab === 'gif'" />
     </div>
   </Col>
 </template>
