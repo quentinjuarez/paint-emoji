@@ -25,6 +25,7 @@ declare module 'vue' {
     EmojiList: typeof import('./../components/Draw/EmojiList.vue')['default']
     EmojiPreviewCanvas: typeof import('./../components/Draw/EmojiPreviewCanvas.vue')['default']
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
+    Gif: typeof import('./../components/Gif/Gif.vue')['default']
     HeaderTabs: typeof import('./../components/Layout/HeaderTabs.vue')['default']
     IcantGenerator: typeof import('./../components/Icant/IcantGenerator.vue')['default']
     MaskTools: typeof import('./../components/Icant/MaskTools.vue')['default']

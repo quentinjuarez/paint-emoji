@@ -4,12 +4,11 @@
     <canvas
       id="preview-canvas"
       class="border border-gray-300"
-      :width="SIZE"
-      :height="SIZE"
+      :width="options.size"
+      :height="options.size"
     ></canvas>
     <div class="space-y-8">
       <DragAndDrop accept="image/*" @file="onDropChange" />
-
       <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onFilesChange" />
       <div class="space-y-2">
         <button
@@ -36,19 +35,17 @@
         v-for="frame in gifFrames"
         :key="frame.src"
         :src="frame.src"
-        class="size-10 border border-gray-300"
-        :width="SIZE"
-        :height="SIZE"
+        class="size-2 border border-gray-300"
       />
     </div>
 
     <div>
-      <label>DELAY: </label>
+      <label>DELAY: {{ options.delay }}</label>
       <input
         class="accent-purple-500"
         type="range"
-        min="10"
-        max="1000"
+        min="0"
+        max="200"
         step="10"
         v-model="options.delay"
       />
@@ -57,17 +54,15 @@
 </template>
 
 <script setup lang="ts">
-import { extractGifFrames, generateGif } from '.'
 import clean from '@/assets/masks/clean.gif'
 
-const SIZE = 128
 const inputRef = ref<HTMLInputElement | null>(null)
 const file = ref<File>()
 const gifFrames = ref<HTMLImageElement[]>([])
-const outputGifUrl = ref<string | null>(null)
 
 const options = ref({
-  delay: 100
+  size: 256,
+  delay: 10
 })
 
 const browseFiles = () => {
@@ -83,42 +78,48 @@ const onDropChange = (file: File) => {
   onFileChange(file)
 }
 
-const imgEl = ref<HTMLImageElement>()
+const image = ref<HTMLImageElement>(new Image())
 
 const onFileChange = (newFile: File) => {
+  resetPreview()
   file.value = newFile
   const reader = new FileReader()
 
   reader.onload = (e: any) => {
-    const image = new Image()
-    image.src = e.target.result
+    const img = new Image()
+    img.src = e.target.result
 
-    image.onload = () => {
-      imgEl.value = image
-      processImage(image)
+    img.onload = () => {
+      image.value = img
+      previewing.value = true
+      processImage()
     }
   }
 
   reader.readAsDataURL(file.value!)
 }
 
-const processImage = (image: HTMLImageElement) => {
+const previewing = ref(false)
+
+const processImage = async () => {
   const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
   const ctx = canvas.getContext('2d')
 
-  if (!ctx) return
-  ctx.clearRect(0, 0, SIZE, SIZE)
-  ctx.drawImage(image, 0, 0, SIZE, SIZE)
-
-  if (gifFrames.value.length > 0) {
-    let frameIndex = 0
-    const interval = setInterval(() => {
-      ctx.clearRect(0, 0, SIZE, SIZE)
-      ctx.drawImage(image, 0, 0, SIZE, SIZE)
-      ctx.drawImage(gifFrames.value[frameIndex], 0, 0, SIZE, SIZE)
-      frameIndex = (frameIndex + 1) % gifFrames.value.length
-    }, options.value.delay)
+  if (!ctx || !image.value || !file.value || !canvas || !gifFrames.value?.length) {
+    console.error('Missing context or image')
+    return
   }
+
+  let frameIndex = 0
+  while (previewing.value) {
+    renderFrame(ctx, image.value, gifFrames.value[frameIndex])
+    frameIndex = (frameIndex + 1) % gifFrames.value.length
+    await sleep(Number(options.value.delay))
+  }
+}
+
+const resetPreview = () => {
+  previewing.value = false
 }
 
 const handleGenerateGif = async () => {
@@ -129,7 +130,7 @@ const handleGenerateGif = async () => {
     return
   }
 
-  generateGif(imgEl.value, gifFrames.value, options.value)
+  generateGif(image.value, gifFrames.value, options.value)
 }
 
 onMounted(() => {

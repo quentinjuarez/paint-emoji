@@ -33,7 +33,7 @@ export const extractGifFrames = async (gifUrl: string, gifFrames: any) => {
   }
 }
 
-const renderCachedFrame = (ctx: CanvasRenderingContext2D, image: any, frame: any) => {
+export const renderFrame = (ctx: CanvasRenderingContext2D, image: any, frame: any) => {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
   ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height)
   ctx.drawImage(frame, 0, 0, ctx.canvas.width, ctx.canvas.height)
@@ -44,11 +44,11 @@ export const generateGif = (image: any, frames: any, options: any) => {
     console.error('GIF library not loaded')
     return
   }
+  console.log(options)
 
   const gifOutputCanvas = document.createElement('canvas')
-
-  const width = 128
-  const height = 128
+  gifOutputCanvas.width = options.size
+  gifOutputCanvas.height = options.size
 
   const outputProcessingCtx = gifOutputCanvas.getContext('2d')
   if (!outputProcessingCtx) {
@@ -56,26 +56,21 @@ export const generateGif = (image: any, frames: any, options: any) => {
   }
 
   const gifRenderer = new window.GIF({
+    quality: 10,
     workers: 4,
     workerScript: `/vendor/gifjs/gif.worker.js`,
-    width,
-    height,
+    width: options.size,
+    height: options.size,
     transparent: 0x00000000
   })
 
   gifRenderer.on('finished', (blob: Blob) => {
-    console.log('GIF finished rendering')
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'my-gif.gif'
-    a.click()
-    URL.revokeObjectURL(url)
+    download(blob, name, 'gif')
   })
 
   for (const frame of frames) {
-    renderCachedFrame(outputProcessingCtx, image, frame)
-    gifRenderer.addFrame(outputProcessingCtx, { delay: options.delay, copy: true })
+    renderFrame(outputProcessingCtx, image, frame)
+    gifRenderer.addFrame(outputProcessingCtx, { delay: Number(options.delay), copy: true })
   }
 
   gifRenderer.render()

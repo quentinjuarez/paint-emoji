@@ -45,13 +45,14 @@ const signatureHeader = () => {
 const downloadTextFile = () => {
   const text = `${signatureHeader()}\n${store.canvasToText()}`
   const blob = new Blob([text], { type: 'text/plain' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  const random = Math.random().toString(36).substring(7)
-  a.download = random + '.emoji'
-  a.click()
-  URL.revokeObjectURL(url)
+  // const url = URL.createObjectURL(blob)
+  // const a = document.createElement('a')
+  // a.href = url
+  // const random = Math.random().toString(36).substring(7)
+  // a.download = random + '.emoji'
+  // a.click()
+  // URL.revokeObjectURL(url)
+  download(blob, 'config', 'emoji')
 }
 
 const loadTextFile = (event: Event) => {

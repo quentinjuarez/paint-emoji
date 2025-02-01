@@ -11,9 +11,11 @@ declare global {
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const download: typeof import('../utils/download')['default']
   const effectScope: typeof import('vue')['effectScope']
   const extractFrames: (typeof import('../utils/extractGifFrames'))['default']
-  const extractGifFrames: typeof import('../utils/extractGifFrames')['default']
+  const extractGifFrames: typeof import('../utils/gif')['extractGifFrames']
+  const generateGif: typeof import('../utils/gif')['generateGif']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getVersion: typeof import('../utils/getVersion')['default']
@@ -45,10 +47,12 @@ declare global {
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
   const removeDiacritics: typeof import('../utils/removeDiacritics')['default']
+  const renderFrame: typeof import('../utils/gif')['renderFrame']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
+  const sleep: typeof import('../utils/sleep')['default']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const stringColor: typeof import('../utils/stringColor')['default']
   const stringFromCodePoint: typeof import('../utils/stringFromCodePoint')['default']
@@ -94,7 +98,10 @@ declare module 'vue' {
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly download: UnwrapRef<typeof import('../utils/download')['default']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly extractGifFrames: UnwrapRef<typeof import('../utils/gif')['extractGifFrames']>
+    readonly generateGif: UnwrapRef<typeof import('../utils/gif')['generateGif']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getVersion: UnwrapRef<typeof import('../utils/getVersion')['default']>
@@ -126,10 +133,12 @@ declare module 'vue' {
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly removeDiacritics: UnwrapRef<typeof import('../utils/removeDiacritics')['default']>
+    readonly renderFrame: UnwrapRef<typeof import('../utils/gif')['renderFrame']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly sleep: UnwrapRef<typeof import('../utils/sleep')['default']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly stringColor: UnwrapRef<typeof import('../utils/stringColor')['default']>
     readonly stringFromCodePoint: UnwrapRef<typeof import('../utils/stringFromCodePoint')['default']>
@@ -167,7 +176,10 @@ declare module '@vue/runtime-core' {
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly download: UnwrapRef<typeof import('../utils/download')['default']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly extractGifFrames: UnwrapRef<typeof import('../utils/gif')['extractGifFrames']>
+    readonly generateGif: UnwrapRef<typeof import('../utils/gif')['generateGif']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getVersion: UnwrapRef<typeof import('../utils/getVersion')['default']>
@@ -199,10 +211,12 @@ declare module '@vue/runtime-core' {
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly removeDiacritics: UnwrapRef<typeof import('../utils/removeDiacritics')['default']>
+    readonly renderFrame: UnwrapRef<typeof import('../utils/gif')['renderFrame']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly sleep: UnwrapRef<typeof import('../utils/sleep')['default']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly stringColor: UnwrapRef<typeof import('../utils/stringColor')['default']>
     readonly stringFromCodePoint: UnwrapRef<typeof import('../utils/stringFromCodePoint')['default']>

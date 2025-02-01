@@ -37,8 +37,8 @@ const tabs = [
     label: 'ICANT'
   },
   {
-    name: 'test',
-    label: 'Test'
+    name: 'gif',
+    label: 'Gif'
   }
 ]
 </script>
