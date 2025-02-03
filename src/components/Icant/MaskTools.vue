@@ -7,7 +7,7 @@
           v-for="mask in masks"
           :key="mask.name"
           class="flex size-30 flex-col items-center justify-center rounded border-2 border-transparent transition-colors hover:bg-white/10"
-          :class="{ '!border-purple-500': mask.name === currentMask.name }"
+          :class="{ '!border-purple-500': mask.name === currentMask?.name }"
           @click="currentMask = mask"
         >
           <img :src="mask.src" class="size-18" />
