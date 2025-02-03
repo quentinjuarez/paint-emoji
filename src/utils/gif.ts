@@ -61,7 +61,7 @@ export const generateGif = (image: any, frames: any, options: any) => {
     workerScript: `/vendor/gifjs/gif.worker.js`,
     width: options.size,
     height: options.size,
-    transparent: 0x00000000
+    transparent: 0x00000000 as any
   })
 
   gifRenderer.on('finished', (blob: Blob) => {
