@@ -220,6 +220,8 @@ const handleExtractGifFrames = () => {
 onMounted(() => {
   handleExtractGifFrames()
 
+  options.value.mask = currentMask.value?.name || 'clean'
+
   const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
 
   // Mousewheel event for zoom and rotate
@@ -281,6 +283,7 @@ const onWheel = (e: WheelEvent) => {
 }
 
 watch(currentMask, () => {
+  options.value.mask = currentMask.value?.name || 'clean'
   handleExtractGifFrames()
   processImage()
 })
