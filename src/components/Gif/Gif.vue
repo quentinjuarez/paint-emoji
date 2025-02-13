@@ -20,16 +20,76 @@
           <Shortcut shortcut="f" ctrl @confirm="browseFiles" />
         </button>
         <p class="text-center text-white">{{ file?.name }}</p>
-        <div>
-          <label>DELAY: {{ options.delay }}</label>
-          <input
-            class="accent-purple-500"
-            type="range"
-            min="0"
-            max="200"
-            step="10"
-            v-model="options.delay"
-          />
+
+        <!-- SETTINGS - Zoom, Translation X,Y, Rotate -->
+        <div class="w-full space-y-2">
+          <div class="flex items-center justify-between">
+            <h2>Settings</h2>
+            <button
+              @click="reset"
+              class="flex items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+            >
+              <span> Reset </span>
+            </button>
+          </div>
+          <div>
+            <label>Delay: </label>
+            <input
+              class="accent-purple-500"
+              type="range"
+              min="0"
+              max="200"
+              step="10"
+              v-model="options.delay"
+            />
+          </div>
+          <div>
+            <label>Zoom: </label>
+            <input
+              class="accent-purple-500"
+              type="range"
+              min="0.5"
+              max="2"
+              step="0.01"
+              v-model="options.zoom"
+            />
+          </div>
+
+          <div>
+            <label>Translate X: </label>
+            <input
+              class="accent-purple-500"
+              type="range"
+              min="-128"
+              max="128"
+              step="1"
+              v-model="options.translateX"
+            />
+          </div>
+
+          <div>
+            <label>Translate Y: </label>
+            <input
+              class="accent-purple-500"
+              type="range"
+              min="-128"
+              max="128"
+              step="1"
+              v-model="options.translateY"
+            />
+          </div>
+
+          <div>
+            <label>Rotate: </label>
+            <input
+              class="accent-purple-500"
+              type="range"
+              min="0"
+              max="360"
+              step="1"
+              v-model="options.rotation"
+            />
+          </div>
         </div>
 
         <button
@@ -58,12 +118,22 @@ const inputRef = ref<HTMLInputElement | null>(null)
 const file = ref<File>()
 const gifFrames = ref<HTMLImageElement[]>([])
 
-const options = ref({
+const DEFAULT_OPTIONS = {
   size: 128,
   delay: 50,
+  zoom: '1',
+  translateX: '0',
+  translateY: '0',
+  rotation: '0',
   input: '',
   mask: 'clean'
-})
+}
+
+const options = ref({ ...DEFAULT_OPTIONS })
+
+const reset = () => {
+  options.value = { ...DEFAULT_OPTIONS }
+}
 
 const browseFiles = () => {
   inputRef.value?.click()
@@ -116,7 +186,7 @@ const processImage = async () => {
 
   let frameIndex = 0
   while (previewing.value) {
-    renderFrame(ctx, image.value, gifFrames.value[frameIndex])
+    renderFrame(ctx, image.value, gifFrames.value[frameIndex], options.value)
     frameIndex = (frameIndex + 1) % gifFrames.value.length
     await sleep(Number(options.value.delay))
   }
@@ -149,7 +219,66 @@ const handleExtractGifFrames = () => {
 
 onMounted(() => {
   handleExtractGifFrames()
+
+  const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
+
+  // Mousewheel event for zoom and rotate
+  canvas.addEventListener('wheel', onWheel)
+
+  // Mouse events for drag and drop
+  canvas.addEventListener('mousedown', onMouseDown)
+  window.addEventListener('mousemove', onMouseMove)
+  window.addEventListener('mouseup', onMouseUp)
 })
+
+const isDragging = ref(false)
+const dragStart = ref({ x: 0, y: 0 })
+const initialTranslate = ref({ x: 0, y: 0 })
+
+// Handle mouse drag for translation
+const onMouseDown = (e: MouseEvent) => {
+  isDragging.value = true
+  dragStart.value = { x: e.clientX, y: e.clientY }
+  initialTranslate.value = {
+    x: parseInt(options.value.translateX),
+    y: parseInt(options.value.translateY)
+  }
+}
+
+const onMouseMove = (e: MouseEvent) => {
+  if (!isDragging.value) return
+
+  const deltaX = e.clientX - dragStart.value.x
+  const deltaY = e.clientY - dragStart.value.y
+
+  options.value.translateX = (initialTranslate.value.x + deltaX).toString()
+  options.value.translateY = (initialTranslate.value.y + deltaY).toString()
+
+  processImage()
+}
+
+const onMouseUp = () => {
+  isDragging.value = false
+}
+
+// Handle mousewheel for zoom and rotation
+const onWheel = (e: WheelEvent) => {
+  e.preventDefault()
+
+  if (e.ctrlKey || e.metaKey) {
+    // Rotate
+    options.value.rotation = String(
+      Math.min(360, Math.max(0, parseInt(options.value.rotation) + e.deltaY * 0.1))
+    )
+  } else {
+    // Zoom
+    const zoomDelta = -e.deltaY * 0.001
+    const roundedNewVal = Math.round((parseFloat(options.value.zoom) + zoomDelta) * 100) / 100
+    options.value.zoom = String(Math.min(2, Math.max(0.5, roundedNewVal)))
+  }
+
+  processImage()
+}
 
 watch(currentMask, () => {
   handleExtractGifFrames()

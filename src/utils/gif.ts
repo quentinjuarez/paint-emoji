@@ -33,10 +33,36 @@ export const extractGifFrames = async (gifUrl: string, gifFrames: any) => {
   }
 }
 
-export const renderFrame = (ctx: CanvasRenderingContext2D, image: any, frame: any) => {
+export const renderFrame = (
+  ctx: CanvasRenderingContext2D,
+  image: any,
+  frame: any,
+  options: any
+) => {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-  ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height)
+  drawImage(ctx, image, options)
   ctx.drawImage(frame, 0, 0, ctx.canvas.width, ctx.canvas.height)
+}
+
+const drawImage = (ctx: CanvasRenderingContext2D, image: any, options: any) => {
+  ctx.save() // Save the current state
+
+  // Move the origin to the center of the canvas, apply translation
+  ctx.translate(
+    options.size / 2 + parseInt(options.translateX),
+    options.size / 2 + parseInt(options.translateY)
+  )
+
+  // Rotate the canvas around the center
+  ctx.rotate((parseInt(options.rotation) * Math.PI) / 180)
+
+  // Apply zoom
+  ctx.scale(parseFloat(options.zoom), parseFloat(options.zoom))
+
+  // Draw the image centered at the new origin
+  ctx.drawImage(image, -options.size / 2, -options.size / 2, options.size, options.size)
+
+  ctx.restore() // Restore the state after transformations
 }
 
 export const generateGif = (image: any, frames: any, options: any) => {
@@ -44,7 +70,6 @@ export const generateGif = (image: any, frames: any, options: any) => {
     console.error('GIF library not loaded')
     return
   }
-  console.log(options)
 
   const gifOutputCanvas = document.createElement('canvas')
   gifOutputCanvas.width = options.size
@@ -69,7 +94,7 @@ export const generateGif = (image: any, frames: any, options: any) => {
   })
 
   for (const frame of frames) {
-    renderFrame(outputProcessingCtx, image, frame)
+    renderFrame(outputProcessingCtx, image, frame, options)
     gifRenderer.addFrame(outputProcessingCtx, { delay: Number(options.delay), copy: true })
   }
 
