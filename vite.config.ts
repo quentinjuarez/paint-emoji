@@ -12,7 +12,7 @@ import { version } from './package.json'
 export default ({ command }) => {
   const isDev = command === 'serve'
   const baseUrl = '/' //isDev ? '/' : '/shape-to-emoji'
-  const apiUrl = isDev ? 'http://localhost:4001' : 'https://quentinjuarez.alwaysdata.net'
+  const apiUrl = isDev ? 'http://localhost:4001' : 'http://88.223.92.39/server' //'https://quentinjuarez.alwaysdata.net'
 
   return defineConfig({
     server: {
