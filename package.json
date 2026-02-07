@@ -72,5 +72,5 @@
       "git add"
     ]
   },
-  "packageManager": "yarn@3.8.6+sha512.a1c3a781c248a6d957eacd53f9b965663af89ef777982d7d9086af6de00cab8724cb75bade6b0cdfcaa04f63e20767fc435aade5489be976a5745d6ee03c7932"
+  "packageManager": "yarn@3.5.0"
 }
