@@ -1,35 +1,38 @@
 <template>
   <div class="flex h-full items-center justify-center gap-8">
-    <!-- CANVAS -->
+    <!-- CANVAS PREVIEW -->
     <canvas
-      id="preview-canvas"
+      ref="canvasRef"
       class="mr-32 scale-[3] rounded border border-gray-300"
       :width="options.size"
       :height="options.size"
-    ></canvas>
+      @wheel.prevent="onWheel"
+      @mousedown="onMouseDown"
+    />
+
     <div class="space-y-8">
-      <DragAndDrop accept="image/*" @file="onDropChange" />
-      <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onFilesChange" />
+      <DragAndDrop accept="image/*" @file="onDropFile" />
+      <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onInputChange" />
+
       <div class="space-y-2">
         <button
           @click="browseFiles"
           class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
         >
-          <span v-if="!file"> Upload Image </span>
-          <span v-else> Change Image </span>
+          <span>{{ file ? 'Change Image' : 'Upload Image' }}</span>
           <Shortcut shortcut="f" ctrl @confirm="browseFiles" />
         </button>
         <p class="text-center text-white">{{ file?.name }}</p>
 
-        <!-- SETTINGS - Zoom, Translation X,Y, Rotate -->
+        <!-- SETTINGS -->
         <div class="w-full space-y-2">
           <div class="flex items-center justify-between">
             <h2>Settings</h2>
             <button
-              @click="reset"
+              @click="resetOptions"
               class="flex items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
             >
-              <span> Reset </span>
+              <span>Reset</span>
             </button>
           </div>
           <div>
@@ -37,10 +40,10 @@
             <input
               class="accent-purple-500"
               type="range"
-              min="0"
+              min="10"
               max="200"
               step="10"
-              v-model="options.delay"
+              v-model.number="options.delay"
             />
           </div>
           <div>
@@ -51,10 +54,9 @@
               min="0.5"
               max="2"
               step="0.01"
-              v-model="options.zoom"
+              v-model.number="options.zoom"
             />
           </div>
-
           <div>
             <label>Translate X: </label>
             <input
@@ -63,10 +65,9 @@
               min="-128"
               max="128"
               step="1"
-              v-model="options.translateX"
+              v-model.number="options.translateX"
             />
           </div>
-
           <div>
             <label>Translate Y: </label>
             <input
@@ -75,10 +76,9 @@
               min="-128"
               max="128"
               step="1"
-              v-model="options.translateY"
+              v-model.number="options.translateY"
             />
           </div>
-
           <div>
             <label>Rotate: </label>
             <input
@@ -87,204 +87,207 @@
               min="0"
               max="360"
               step="1"
-              v-model="options.rotation"
+              v-model.number="options.rotation"
             />
           </div>
         </div>
 
         <button
           v-if="file"
-          @click="handleGenerateGif"
-          class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+          @click="handleGenerate"
+          :disabled="generating || !gifFrames.length"
+          class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20 disabled:opacity-50"
         >
-          <span> Generate GIF </span>
+          <span>{{ generating ? 'Generating...' : 'Generate GIF' }}</span>
         </button>
       </div>
     </div>
-
-    <!-- <div class="flex flex-wrap">
-      <img
-        v-for="frame in gifFrames"
-        :key="frame.src"
-        :src="frame.src"
-        class="size-2 border border-gray-300"
-      />
-    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
+import type { GifFrame, GifOptions } from '@/utils/gif'
+
+const PREVIEW_SCALE = 3
+
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 const inputRef = ref<HTMLInputElement | null>(null)
 const file = ref<File>()
-const gifFrames = ref<HTMLImageElement[]>([])
+const image = ref<HTMLImageElement | null>(null)
+const gifFrames = ref<GifFrame[]>([])
+const generating = ref(false)
 
-const DEFAULT_OPTIONS = {
-  size: 128,
-  delay: 50,
-  zoom: '1',
-  translateX: '0',
-  translateY: '0',
-  rotation: '0',
-  input: '',
-  mask: 'clean'
+const options = ref<GifOptions>({ ...DEFAULT_GIF_OPTIONS })
+
+// ---- Store ----
+
+const store = useStore()
+const { currentMask } = storeToRefs(store)
+
+// ---- File handling ----
+
+const browseFiles = () => inputRef.value?.click()
+
+const onInputChange = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  if (target.files?.[0]) loadImage(target.files[0])
 }
 
-const options = ref({ ...DEFAULT_OPTIONS })
+const onDropFile = (droppedFile: File) => loadImage(droppedFile)
 
-const reset = () => {
-  options.value = { ...DEFAULT_OPTIONS }
-}
-
-const browseFiles = () => {
-  inputRef.value?.click()
-}
-
-const onFilesChange = (e: any) => {
-  const file = e.target.files[0]
-  onFileChange(file)
-}
-
-const onDropChange = (file: File) => {
-  onFileChange(file)
-}
-
-const image = ref<HTMLImageElement>(new Image())
-
-const onFileChange = (newFile: File) => {
-  resetPreview()
+const loadImage = (newFile: File) => {
   file.value = newFile
-  options.value.input = newFile.name.split('.')[0]
+  options.value.input = newFile.name.replace(/\.[^.]+$/, '')
+
   const reader = new FileReader()
-
-  reader.onload = (e: any) => {
+  reader.onload = (e) => {
     const img = new Image()
-    img.src = e.target.result
-
     img.onload = () => {
       image.value = img
-      processImage()
+    }
+    img.src = e.target?.result as string
+  }
+  reader.readAsDataURL(newFile)
+}
+
+// ---- Options ----
+
+const resetOptions = () => {
+  const { mask, input } = options.value
+  options.value = { ...DEFAULT_GIF_OPTIONS, mask, input }
+}
+
+// ---- Mask frames ----
+
+const loadMaskFrames = async () => {
+  if (!currentMask.value?.animate || !currentMask.value?.src) {
+    gifFrames.value = []
+    return
+  }
+  try {
+    gifFrames.value = await extractGifFrames(currentMask.value.src)
+    frameIndex = 0
+    lastFrameTime = 0
+  } catch (err) {
+    console.error('Failed to extract GIF frames:', err)
+    gifFrames.value = []
+  }
+}
+
+// ---- Animation loop (requestAnimationFrame) ----
+
+let animFrameId: number | null = null
+let frameIndex = 0
+let lastFrameTime = 0
+
+const animate = (timestamp: number) => {
+  const canvas = canvasRef.value
+  if (!canvas) {
+    animFrameId = requestAnimationFrame(animate)
+    return
+  }
+
+  const ctx = canvas.getContext('2d')!
+  const { size } = options.value
+  const frames = gifFrames.value
+  const img = image.value
+
+  if (frames.length > 0) {
+    // Advance frame based on elapsed time
+    const elapsed = timestamp - lastFrameTime
+    if (elapsed >= options.value.delay) {
+      lastFrameTime = timestamp - (elapsed % options.value.delay)
+      frameIndex = (frameIndex + 1) % frames.length
+    }
+    renderFrame(ctx, img, frames[frameIndex], options.value)
+  } else {
+    // No mask frames loaded yet — show static image preview
+    ctx.clearRect(0, 0, size, size)
+    if (img?.complete && img.naturalWidth > 0) {
+      drawUserImage(ctx, img, options.value)
     }
   }
 
-  reader.readAsDataURL(file.value!)
+  animFrameId = requestAnimationFrame(animate)
 }
 
-const previewing = ref(false)
+// ---- Mouse interaction ----
 
-const processImage = async () => {
-  resetPreview()
-  await sleep(500)
-  previewing.value = true
+let isDragging = false
+const dragStart = { x: 0, y: 0 }
+const dragInitial = { x: 0, y: 0 }
 
-  const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
-  const ctx = canvas.getContext('2d')
-
-  if (!ctx || !image.value || !file.value || !gifFrames.value?.length) {
-    console.error('Missing context or image')
-    return
-  }
-
-  let frameIndex = 0
-  while (previewing.value) {
-    renderFrame(ctx, image.value, gifFrames.value[frameIndex], options.value)
-    frameIndex = (frameIndex + 1) % gifFrames.value.length
-    await sleep(Number(options.value.delay))
-  }
-}
-
-const resetPreview = () => {
-  previewing.value = false
-}
-
-const handleGenerateGif = async () => {
-  if (!file.value) return
-
-  if (gifFrames.value.length === 0) {
-    console.error('No frames to generate GIF')
-    return
-  }
-
-  generateGif(image.value, gifFrames.value, options.value)
-}
-
-const store = useStore()
-
-const { currentMask } = storeToRefs(store)
-
-const handleExtractGifFrames = () => {
-  if (!currentMask.value || !currentMask.value.animate) return
-  gifFrames.value = []
-  extractGifFrames(currentMask.value.src, gifFrames)
-}
-
-onMounted(() => {
-  handleExtractGifFrames()
-
-  options.value.mask = currentMask.value?.name || 'clean'
-
-  const canvas = document.getElementById('preview-canvas') as HTMLCanvasElement
-
-  // Mousewheel event for zoom and rotate
-  canvas.addEventListener('wheel', onWheel)
-
-  // Mouse events for drag and drop
-  canvas.addEventListener('mousedown', onMouseDown)
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('mouseup', onMouseUp)
-})
-
-const isDragging = ref(false)
-const dragStart = ref({ x: 0, y: 0 })
-const initialTranslate = ref({ x: 0, y: 0 })
-
-// Handle mouse drag for translation
 const onMouseDown = (e: MouseEvent) => {
-  isDragging.value = true
-  dragStart.value = { x: e.clientX, y: e.clientY }
-  initialTranslate.value = {
-    x: parseInt(options.value.translateX),
-    y: parseInt(options.value.translateY)
-  }
+  isDragging = true
+  dragStart.x = e.clientX
+  dragStart.y = e.clientY
+  dragInitial.x = options.value.translateX
+  dragInitial.y = options.value.translateY
 }
 
 const onMouseMove = (e: MouseEvent) => {
-  if (!isDragging.value) return
-
-  const deltaX = e.clientX - dragStart.value.x
-  const deltaY = e.clientY - dragStart.value.y
-
-  options.value.translateX = (initialTranslate.value.x + deltaX).toString()
-  options.value.translateY = (initialTranslate.value.y + deltaY).toString()
-
-  processImage()
+  if (!isDragging) return
+  const dx = (e.clientX - dragStart.x) / PREVIEW_SCALE
+  const dy = (e.clientY - dragStart.y) / PREVIEW_SCALE
+  options.value.translateX = Math.round(dragInitial.x + dx)
+  options.value.translateY = Math.round(dragInitial.y + dy)
 }
 
 const onMouseUp = () => {
-  isDragging.value = false
+  isDragging = false
 }
 
-// Handle mousewheel for zoom and rotation
 const onWheel = (e: WheelEvent) => {
-  e.preventDefault()
-
   if (e.ctrlKey || e.metaKey) {
     // Rotate
-    options.value.rotation = String(
-      Math.min(360, Math.max(0, parseInt(options.value.rotation) + e.deltaY * 0.1))
-    )
+    const newRotation = options.value.rotation + e.deltaY * 0.1
+    options.value.rotation = Math.round(Math.min(360, Math.max(0, newRotation)))
   } else {
     // Zoom
-    const zoomDelta = -e.deltaY * 0.001
-    const roundedNewVal = Math.round((parseFloat(options.value.zoom) + zoomDelta) * 100) / 100
-    options.value.zoom = String(Math.min(2, Math.max(0.5, roundedNewVal)))
+    const delta = -e.deltaY * 0.001
+    const newZoom = Math.round((options.value.zoom + delta) * 100) / 100
+    options.value.zoom = Math.min(2, Math.max(0.5, newZoom))
   }
-
-  processImage()
 }
 
+// ---- Generate GIF ----
+
+const handleGenerate = async () => {
+  if (!file.value || gifFrames.value.length === 0 || generating.value) return
+  generating.value = true
+  try {
+    await generateAndDownloadGif(image.value, gifFrames.value, options.value)
+  } catch (err) {
+    console.error('Failed to generate GIF:', err)
+  } finally {
+    generating.value = false
+  }
+}
+
+// ---- Lifecycle ----
+
+onMounted(() => {
+  if (currentMask.value) {
+    options.value.mask = currentMask.value.name
+  }
+  loadMaskFrames()
+
+  window.addEventListener('mousemove', onMouseMove)
+  window.addEventListener('mouseup', onMouseUp)
+
+  animFrameId = requestAnimationFrame(animate)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseup', onMouseUp)
+  if (animFrameId !== null) cancelAnimationFrame(animFrameId)
+})
+
 watch(currentMask, () => {
-  options.value.mask = currentMask.value?.name || 'clean'
-  handleExtractGifFrames()
-  processImage()
+  if (currentMask.value) {
+    options.value.mask = currentMask.value.name
+  }
+  loadMaskFrames()
 })
 </script>

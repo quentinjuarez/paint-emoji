@@ -50,6 +50,7 @@ import touchGrass from '@/assets/masks/touch-grass.gif'
 import wave from '@/assets/masks/wave.gif'
 import yap from '@/assets/masks/yap.gif'
 import zzz from '@/assets/masks/zzz.gif'
+import sixSeven from '@/assets/masks/67.gif'
 
 const masks = [
   // { name: 'icant', src: icant, animate: false },
@@ -81,7 +82,8 @@ const masks = [
   { name: 'touchGrass', src: touchGrass, animate: true },
   { name: 'wave', src: wave, animate: true },
   { name: 'yap', src: yap, animate: true },
-  { name: 'zzz', src: zzz, animate: true }
+  { name: 'zzz', src: zzz, animate: true },
+  { name: '67', src: sixSeven, animate: true }
 ]
 
 const store = useStore()
