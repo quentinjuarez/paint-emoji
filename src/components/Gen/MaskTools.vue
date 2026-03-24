@@ -13,7 +13,7 @@
           class="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
           @click="search = ''"
         >
-          ✕
+          <X class="size-3.5" />
         </button>
       </div>
       <!-- Scale selector -->
@@ -61,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { X } from 'lucide-vue-next'
 import masksData from '@/assets/data/masks.json'
 
 type Mask = {

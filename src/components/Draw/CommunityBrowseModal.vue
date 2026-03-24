@@ -29,9 +29,9 @@
       </div>
 
       <div class="flex items-center justify-center gap-2 py-4">
-        <UiButton size="icon" :disabled="offset === 0" @click="handlePrev">←</UiButton>
+        <UiButton size="icon" :disabled="offset === 0" @click="handlePrev"><ChevronLeft class="size-4" /></UiButton>
         <span class="text-sm">{{ page }} / {{ pages }}</span>
-        <UiButton size="icon" :disabled="offset + LIMIT >= onlineStore.search.total" @click="handleNext">→</UiButton>
+        <UiButton size="icon" :disabled="offset + LIMIT >= onlineStore.search.total" @click="handleNext"><ChevronRight class="size-4" /></UiButton>
       </div>
     </div>
 
@@ -46,6 +46,7 @@
 </template>
 
 <script setup lang="ts">
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import tippy from 'tippy.js'
 import debounce from 'lodash.debounce'
 import lzString from 'lz-string'

@@ -31,16 +31,18 @@
         <UiButton
           size="icon"
           :class="{ 'ring-2 ring-purple-500': !isErasing }"
-          @click="isErasing = !isErasing"
+          :data-tooltip="'Pencil'"
+          @click="isErasing = false"
         >
-          ✏️
+          <Pencil class="size-4" />
         </UiButton>
         <UiButton
           size="icon"
           :class="{ 'ring-2 ring-purple-500': isErasing }"
-          @click="isErasing = !isErasing"
+          :data-tooltip="'Eraser'"
+          @click="isErasing = true"
         >
-          🧽
+          <Eraser class="size-4" />
         </UiButton>
       </div>
     </div>
@@ -49,6 +51,8 @@
 </template>
 
 <script setup lang="ts">
+import { Pencil, Eraser } from 'lucide-vue-next'
+
 const props = defineProps<{
   sliceStyle: any
 }>()

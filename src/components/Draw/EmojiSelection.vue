@@ -14,33 +14,20 @@
         <button
           class="draggable group relative size-8 rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
           :class="[
-            store.selectedEmojiIndex === index ? '!border-purple-500 hover:!border-purple-600' : '',
-            { 'hover:!border-transparent': disabledHover }
+            store.selectedEmojiIndex === index ? 'border-purple-500! hover:border-purple-600!' : '',
+            { 'hover:border-transparent!': disabledHover }
           ]"
           @click="store.selectedEmojiIndex = index"
         >
           <BaseEmoji :emoji="element" size="lg" />
           <!-- TRASH -->
-          <i
+          <button
             v-if="!disabledHover && element.type !== 'empty'"
-            class="absolute -right-2 -top-2 cursor-pointer rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
-            @click="handleRemove(index)"
+            class="absolute -right-2 -top-2 flex cursor-pointer items-center justify-center rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
+            @click.stop="handleRemove(index)"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="size-4 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </i>
+            <X class="size-3 text-white" />
+          </button>
         </button>
       </template>
     </Sortable>
@@ -50,7 +37,7 @@
       class="group relative flex size-8 items-center justify-center rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
       data-tooltip="Paint"
     >
-      🎨
+      <Palette class="size-4 text-white" />
     </button>
 
     <div ref="paintTooltipRef" class="hidden space-y-2 p-1" id="paint-tooltip">
@@ -81,30 +68,18 @@
       id="clear-button"
       class="group relative flex size-8 items-center justify-center rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
       :class="[
-        store.selectedEmojiIndex === undefined ? '!border-purple-500 hover:!border-purple-600' : ''
+        store.selectedEmojiIndex === undefined ? 'border-purple-500! hover:border-purple-600!' : ''
       ]"
       @click="store.clearEmojiSelection()"
       data-tooltip="Clear"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="size-6 text-white"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
+      <X class="size-4 text-white" />
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { X, Palette } from 'lucide-vue-next'
 import { Sortable } from 'sortablejs-vue3'
 import tippy from 'tippy.js'
 

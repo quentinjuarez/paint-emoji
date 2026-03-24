@@ -16,7 +16,7 @@
         @keydown.escape="focus = false"
       />
       <button v-if="query" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white" @click="query = ''">
-        ✕
+        <X class="size-3.5" />
       </button>
     </div>
 
@@ -70,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+import { X } from 'lucide-vue-next'
 import tippy from 'tippy.js'
 import Fuse from 'fuse.js'
 import customEmojisRaw from '@/assets/data/custom-emojis.json'

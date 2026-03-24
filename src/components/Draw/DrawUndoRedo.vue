@@ -7,7 +7,7 @@
       :class="{ 'bg-white/20': active === 'undo' }"
       @click="handleUndo"
     >
-      ↩
+      <Undo2 class="size-4" />
       <Shortcut shortcut="z" ctrl @confirm="handleUndo" />
     </UiButton>
     <UiButton
@@ -17,13 +17,15 @@
       :class="{ 'bg-white/20': active === 'redo' }"
       @click="handleRedo"
     >
-      ↪
+      <Redo2 class="size-4" />
       <Shortcut shortcut="y" ctrl @confirm="handleRedo" />
     </UiButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Undo2, Redo2 } from 'lucide-vue-next'
+
 const store = useStore()
 
 const active = ref<undefined | 'undo' | 'redo'>()
