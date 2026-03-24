@@ -4,16 +4,10 @@
 
     <DrawCanvas :sliceStyle="sliceStyle">
       <div class="flex justify-center">
-        <button
-          @click="handleCopy"
-          class="flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-        >
-          <span>
-            {{ copy ? '✅ Copied!' : 'Copy' }}
-          </span>
-
+        <UiButton @click="handleCopy" class="w-48">
+          {{ copy ? '✅ Copied!' : 'Copy' }}
           <Shortcut shortcut="c" ctrl @confirm="handleCopy" />
-        </button>
+        </UiButton>
       </div>
     </DrawCanvas>
   </div>

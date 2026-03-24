@@ -1,45 +1,23 @@
 <template>
   <div v-show="store.tab === 'draw'" class="space-y-4">
-    <h2 class="text-xl font-bold">Tools</h2>
-
+    <UiSectionTitle>Tools</UiSectionTitle>
     <DrawUndoRedo />
 
-    <h2 class="text-xl font-bold">Files</h2>
-
+    <UiSectionTitle>Files</UiSectionTitle>
     <EmojiFiles />
 
-    <h2 class="text-xl font-bold">Community</h2>
-
+    <UiSectionTitle>Community</UiSectionTitle>
     <CommunityTools v-if="useOnlineStore().isAuthenticated" />
+    <p v-else class="text-xs text-white/40">Sign in to access community tools.</p>
 
-    <div v-else>
-      <p class="text-sm">Sign in to access community tools.</p>
-    </div>
-
-    <h2 class="text-xl font-bold">Canvas</h2>
-
-    <div class="flex flex-col gap-2">
-      <button
-        @click="handleClear"
-        class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-      >
-        Clear Canvas
-      </button>
-
-      <button
-        @click="handleClick"
-        class="w-full rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-      >
-        Upload Image
-      </button>
+    <UiSectionTitle>Canvas</UiSectionTitle>
+    <div class="flex flex-col gap-1.5">
+      <UiButton class="w-full" @click="handleClear">Clear Canvas</UiButton>
+      <UiButton class="w-full" @click="handleClick">Upload Image</UiButton>
     </div>
 
     <input class="hidden" type="file" accept="image/*" ref="fileInputRef" @change="handleUpload" />
-
-    <!-- DEV MODE -->
-    <div class="w-full">
-      <img v-if="devSrc" :src="devSrc" alt="placeholder" class="mx-auto size-24" />
-    </div>
+    <img v-if="devSrc" :src="devSrc" alt="preview" class="mx-auto size-24" />
   </div>
 </template>
 

@@ -3,9 +3,8 @@
     <div class="h-[646px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">Browse</h2>
       <div>
-        <input
+        <UiInput
           v-model="query"
-          class="w-full rounded border border-transparent bg-slate-800 px-2 py-1"
           placeholder="Search"
           @input="debounceSearch"
         />
@@ -30,56 +29,17 @@
       </div>
 
       <div class="flex items-center justify-center gap-2 py-4">
-        <button
-          class="flex size-8 items-center justify-center rounded bg-white/10 transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:select-none disabled:opacity-50 disabled:hover:!bg-white/10"
-          :disabled="offset === 0"
-          @click="handlePrev"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.707 3.293a1 1 0 010 1.414L6.414 9H16a1 1 0 010 2H6.414l4.293 4.293a1 1 0 11-1.414 1.414l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <span>{{ page }} / {{ pages }}</span>
-        <button
-          class="flex size-8 items-center justify-center rounded bg-white/10 transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:select-none disabled:opacity-50 disabled:hover:!bg-white/10"
-          :disabled="offset + LIMIT >= onlineStore.search.total"
-          @click="handleNext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M9.293 16.707a1 1 0 010-1.414L13.586 11H4a1 1 0 010-2h9.586l-4.293-4.293a1 1 0 111.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <UiButton size="icon" :disabled="offset === 0" @click="handlePrev">←</UiButton>
+        <span class="text-sm">{{ page }} / {{ pages }}</span>
+        <UiButton size="icon" :disabled="offset + LIMIT >= onlineStore.search.total" @click="handleNext">→</UiButton>
       </div>
     </div>
 
     <div ref="tooltipRef" class="hidden space-y-4 p-2" id="browse-tooltip">
       <h3 class="text-lg font-bold">Import this drawing?</h3>
-      <div>
-        <label class="cursor-pointer items-center text-sm">
-          <input v-model="importEmojis" type="checkbox" class="mr-2" />
-          <span>Import emojis</span>
-        </label>
-      </div>
+      <UiCheckbox id="import-emojis" v-model="importEmojis">Import emojis</UiCheckbox>
       <div class="flex items-center justify-center gap-2">
-        <button @click="handleSelect" class="rounded-lg bg-green-500 p-2 text-white">Import</button>
+        <UiButton class="bg-green-600 hover:bg-green-500" @click="handleSelect">Import</UiButton>
       </div>
     </div>
   </BaseModal>

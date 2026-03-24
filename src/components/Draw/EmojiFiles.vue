@@ -1,23 +1,7 @@
 <template>
-  <div class="flex justify-center gap-2">
-    <button
-      id="download-button"
-      class="rounded bg-white/10 p-1 transition-colors hover:bg-white/20"
-      :data-tooltip="'Save as file'"
-      @click="downloadTextFile"
-    >
-      💾
-    </button>
-
-    <button
-      id="upload-button"
-      class="rounded bg-white/10 p-1 transition-colors hover:bg-white/20"
-      :data-tooltip="'Load from file'"
-      @click="clickFileInput"
-    >
-      📂
-    </button>
-
+  <div class="flex justify-center gap-1.5">
+    <UiButton size="icon" :data-tooltip="'Save as file'" @click="downloadTextFile">💾</UiButton>
+    <UiButton size="icon" :data-tooltip="'Load from file'" @click="clickFileInput">📂</UiButton>
     <input ref="fileRef" type="file" class="hidden" @change="loadTextFile" accept=".emoji" />
   </div>
 </template>

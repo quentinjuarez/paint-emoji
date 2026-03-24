@@ -1,26 +1,20 @@
 <template>
   <div class="mt-8 space-y-4">
-    <div class="flex items-center gap-4">
-      <input type="text" v-model="store.text" class="w-full rounded bg-white/10 px-2 py-1" />
-      <button
+    <div class="flex items-center gap-3">
+      <UiInput v-model="store.text" placeholder="Type something..." />
+      <UiButton
         :disabled="!store.text"
         @click="handleCopyText"
-        class="flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-        :class="{
-          'cursor-not-allowed hover:!bg-white/10': !store.text
-        }"
+        class="w-48 shrink-0"
       >
-        <span>
-          {{ copy ? '✅ Copied!' : 'Copy' }}
-        </span>
-
+        {{ copy ? '✅ Copied!' : 'Copy' }}
         <Shortcut shortcut="c" ctrl @confirm="handleCopyText" />
-      </button>
+      </UiButton>
     </div>
 
     <div
       v-show="displayWriteArr.length > 0"
-      class="flex max-w-[65vw] flex-wrap gap-y-1 overflow-auto p-4"
+      class="flex max-w-[65vw] flex-wrap gap-y-1 overflow-auto rounded-lg p-4"
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"

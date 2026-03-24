@@ -6,20 +6,13 @@
     <Transition name="fade">
       <div
         v-if="open"
-        class="absolute right-0 top-[calc(100%+0.5rem)] z-10 flex w-80 items-center gap-2 rounded bg-slate-800 p-2 shadow-lg"
+        class="absolute right-0 top-[calc(100%+0.5rem)] z-10 w-64 rounded-lg border border-white/10 bg-slate-800 p-3 shadow-xl"
       >
-        <div class="w-full">
-          <div>{{ onlineStore.me?.username }}</div>
-
-          <hr class="my-2 border-slate-700" />
-
-          <RouterLink
-            to="/logout"
-            class="flex w-full items-center justify-center rounded bg-red-500 px-3 py-2 transition-colors hover:bg-red-600 active:bg-red-700"
-          >
-            Logout
-          </RouterLink>
-        </div>
+        <p class="mb-2 text-sm text-white/70">{{ onlineStore.me?.username }}</p>
+        <hr class="mb-3 border-white/10" />
+        <RouterLink to="/logout">
+          <UiButton variant="destructive" class="w-full">Logout</UiButton>
+        </RouterLink>
       </div>
     </Transition>
   </div>

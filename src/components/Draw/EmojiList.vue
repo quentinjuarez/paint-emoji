@@ -1,64 +1,42 @@
 <template>
-  <Col>
-    <div class="relative flex w-full flex-col space-y-4 lg:w-[calc(176px+15px)]">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-bold">Emoji</h2>
-        <Shortcut shortcut="k" ctrl @confirm="handleFocus" />
-      </div>
+  <div class="flex h-full w-full shrink-0 flex-col gap-3 border-r border-white/10 p-4 lg:w-52">
+    <div class="flex items-center justify-between">
+      <UiSectionTitle>Emoji</UiSectionTitle>
+      <Shortcut shortcut="k" ctrl @confirm="handleFocus" />
+    </div>
 
-      <div
-        class="flex items-center gap-2 rounded border border-slate-500 bg-slate-800 px-3 py-2 transition-all focus:border-purple-500"
-        :class="{ 'border-purple-500': focus }"
-      >
-        <input
-          name="search"
-          class="m-0 w-full bg-transparent p-0 outline-none"
-          ref="searchInputRef"
-          v-model="query"
-          type="text"
-          placeholder="Search emoji"
-          @focus="focus = true"
-          @blur="focus = false"
-          @keydown.escape="focus = false"
-        />
+    <div class="relative">
+      <UiInput
+        ref="searchInputRef"
+        v-model="query"
+        name="search"
+        placeholder="Search emoji"
+        @focus="focus = true"
+        @blur="focus = false"
+        @keydown.escape="focus = false"
+      />
+      <button v-if="query" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white" @click="query = ''">
+        ✕
+      </button>
+    </div>
 
-        <button v-if="query" @click="query = ''">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="size-4 text-slate-500 transition-all hover:text-slate-100"
-            fill="none"
-            viewBox="0 0 16 16"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 14L14 4M4 4l10 10"
-            ></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- WRAPPER -->
-      <div
-        class="overflow-auto"
-        :class="[
-          {
-            'max-h-[calc(100vh-164px)]': isLarge,
-            'absolute inset-x-0 top-20 z-50 max-h-[50vh] rounded bg-slate-950 p-2 shadow':
-              !isLarge && focus,
-            'pointer-events-none !h-0 opacity-0': !isLarge && !focus
-          }
-        ]"
-      >
-        <div v-if="frequentEmojisCategory.emojis.length > 0 && !query">
-          <h3 class="text-lg font-bold">{{ frequentEmojisCategory.name }}</h3>
+    <div
+      class="min-h-0 flex-1 overflow-y-auto"
+      :class="[
+        {
+          'absolute inset-x-0 top-20 z-50 max-h-[50vh] rounded bg-slate-950 p-2 shadow':
+            !isLarge && focus,
+          'pointer-events-none h-0! opacity-0': !isLarge && !focus
+        }
+      ]"
+    >
+        <div v-if="frequentEmojisCategory.emojis.length > 0 && !query" class="mb-2">
+          <p class="mb-1 text-xs font-medium text-white/40">{{ frequentEmojisCategory.name }}</p>
           <div class="flex flex-wrap gap-1">
             <button
               v-for="e in frequentEmojisCategory.emojis"
               :key="e.name"
-              class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
+              class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
               @click.prevent.stop="handleSelect(e)"
             >
               <BaseEmoji :emoji="e" size="md" />
@@ -70,13 +48,14 @@
           v-for="category in filteredCategories"
           :key="category.key"
           v-show="category.emojis.length > 0"
+          class="mb-2"
         >
-          <h3 class="text-lg font-bold">{{ category.name }}</h3>
+          <p class="mb-1 text-xs font-medium text-white/40">{{ category.name }}</p>
           <div class="flex flex-wrap gap-1">
             <button
               v-for="e in category.emojis"
               :key="e.name"
-              class="flex size-8 items-center justify-center rounded border border-transparent bg-white/10 transition-all hover:border-white"
+              class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
               @click.prevent.stop="handleSelect(e)"
               v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
             >
@@ -88,7 +67,6 @@
         </div>
       </div>
     </div>
-  </Col>
 </template>
 
 <script setup lang="ts">

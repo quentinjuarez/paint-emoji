@@ -2,33 +2,27 @@
   <div class="mt-8 space-y-4">
     <button
       v-if="store.textEmoji"
-      class="group relative size-8 rounded border-2 !border-purple-500 bg-white/10 transition-all"
+      class="group relative size-8 rounded ring-2 ring-purple-500 bg-white/10"
     >
       <span v-if="store.textEmoji.type === 'slack'"> {{ store.textEmoji.value }}</span>
       <img class="rounded" v-else :src="store.textEmoji.value" :alt="store.textEmoji.name" />
     </button>
 
-    <div class="flex items-center gap-4">
-      <input type="text" v-model="store.text" class="w-full rounded bg-white/10 px-2 py-1" />
-      <button
+    <div class="flex items-center gap-3">
+      <UiInput v-model="store.text" placeholder="Type something..." />
+      <UiButton
         :disabled="!store.textEmoji"
         @click="handleCopyText"
-        class="flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-        :class="{
-          'cursor-not-allowed hover:!bg-white/10': !store.textEmoji
-        }"
+        class="w-48 shrink-0"
       >
-        <span>
-          {{ copy ? '✅ Copied!' : 'Copy' }}
-        </span>
-
+        {{ copy ? '✅ Copied!' : 'Copy' }}
         <Shortcut shortcut="c" ctrl @confirm="handleCopyText" />
-      </button>
+      </UiButton>
     </div>
 
     <div
       v-if="displaySplittedPatterns[0].length > 2"
-      class="w-fit max-w-[65vw] overflow-auto p-4"
+      class="w-fit max-w-[65vw] overflow-auto rounded-lg p-4"
       :style="{
         backgroundColor: store.darkMode ? 'rgb(27, 29, 33)' : 'white'
       }"
@@ -37,9 +31,7 @@
         v-for="(line, index) in displaySplittedPatterns"
         :key="index"
         class="flex w-fit"
-        :class="{
-          'mb-4': (index + 1) % 7 === 0
-        }"
+        :class="{ 'mb-4': (index + 1) % 7 === 0 }"
       >
         <div v-for="(char, index) in line" :key="index" class="size-4">
           <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" size="sm" />

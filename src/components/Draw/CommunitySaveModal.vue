@@ -6,21 +6,20 @@
       <h2 class="text-xl font-bold">Save</h2>
       <div class="mt-4 flex flex-col gap-2">
         <label class="text-sm" for="title">Title <span class="text-red-500">*</span></label>
-        <input
+        <UiInput
           v-model="title"
           ref="titleInput"
           id="title"
           name="title"
-          class="w-full rounded border border-transparent bg-slate-800 px-2 py-1"
-          :class="[isValid ? 'focus:border-green-500' : 'focus:border-red-500']"
           placeholder="Title"
+          :class="[isValid ? 'focus:border-green-500' : 'focus:border-red-500']"
         />
         <label class="text-sm" for="description">Description </label>
         <textarea
           v-model="description"
           id="description"
           name="description"
-          class="w-full resize-none rounded border border-transparent bg-slate-800 px-2 py-1 transition-colors focus:border-slate-300"
+          class="w-full resize-none rounded-md border border-white/20 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 transition-colors focus:border-purple-500"
           placeholder="Description"
           rows="4"
         ></textarea>
@@ -36,14 +35,14 @@
           </label>
         </button>
 
-        <button
-          class="flex w-full items-center justify-center gap-2 rounded bg-slate-800 px-2 py-1 transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:!bg-slate-800"
+        <UiButton
+          class="w-full"
           :disabled="!isValid || !payload.canvas"
           @click="handleSave"
         >
           <BaseLoader class="size-4" v-if="loading" />
           <span>Save</span>
-        </button>
+        </UiButton>
       </div>
     </div>
   </BaseModal>

@@ -37,13 +37,10 @@
       <div class="space-y-2">
         <DragAndDrop accept="image/*" @file="onDropFile" />
         <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onInputChange" />
-        <button
-          @click="browseFiles"
-          class="flex w-full items-center justify-center gap-2 rounded bg-white/10 px-3 py-2 text-sm transition-colors hover:bg-white/20"
-        >
-          <span>{{ file ? 'Change Image' : 'Upload Image' }}</span>
+        <UiButton class="w-full" @click="browseFiles">
+          {{ file ? 'Change Image' : 'Upload Image' }}
           <Shortcut shortcut="f" ctrl @confirm="browseFiles" />
-        </button>
+        </UiButton>
         <p v-if="file" class="truncate text-center text-xs text-white/50">{{ file.name }}</p>
       </div>
 
@@ -51,12 +48,7 @@
       <div class="space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-sm font-semibold">Settings</span>
-          <button
-            @click="resetOptions"
-            class="rounded bg-white/10 px-2 py-0.5 text-xs transition-colors hover:bg-white/20"
-          >
-            Reset
-          </button>
+          <UiButton variant="ghost" size="sm" @click="resetOptions">Reset</UiButton>
         </div>
         <div class="space-y-0.5">
           <div class="flex justify-between text-xs text-white/60">
@@ -140,20 +132,15 @@
 
       <!-- Actions -->
       <div v-if="file" class="space-y-2">
-        <button
-          @click="downloadPng"
-          class="flex w-full items-center justify-center gap-2 rounded bg-white/10 px-3 py-2 text-sm transition-colors hover:bg-white/20"
-        >
-          Download PNG
-        </button>
-        <button
+        <UiButton class="w-full" @click="downloadPng">Download PNG</UiButton>
+        <UiButton
           v-if="currentMask?.animated"
+          class="w-full bg-purple-600 hover:bg-purple-500"
           @click="handleGenerate"
           :disabled="generating || !gifFrames.length"
-          class="flex w-full items-center justify-center gap-2 rounded bg-purple-600 px-3 py-2 text-sm transition-colors hover:bg-purple-500 disabled:opacity-40"
         >
           {{ generating ? 'Generating…' : 'Generate GIF' }}
-        </button>
+        </UiButton>
         <p v-if="generating" class="text-center text-xs text-white/40">This may take a moment…</p>
       </div>
     </div>

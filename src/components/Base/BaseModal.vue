@@ -1,13 +1,17 @@
 <template>
-  <div
-    class="fixed inset-0 z-50 !m-0 flex cursor-pointer items-center justify-center bg-black/40 p-10 opacity-0 transition-opacity"
-    :class="{ 'opacity-100': isOpen }"
-    @mousedown.left.self="emit('close')"
-  >
-    <div class="flex cursor-default items-center justify-center">
-      <slot></slot>
+  <Teleport to="body">
+  <Transition name="fade">
+    <div
+      v-if="isOpen"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-10"
+      @mousedown.left.self="emit('close')"
+    >
+      <div class="cursor-default">
+        <slot />
+      </div>
     </div>
-  </div>
+  </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">

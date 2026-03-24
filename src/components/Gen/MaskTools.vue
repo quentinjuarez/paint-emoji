@@ -1,17 +1,16 @@
 <template>
   <div class="flex h-full flex-col gap-3">
-      <h2 class="shrink-0 text-sm font-semibold text-white/70">Masks</h2>
-      <!-- Search bar -->
-      <div class="relative">
-        <input
+      <UiSectionTitle>Masks</UiSectionTitle>
+
+      <div class="relative shrink-0">
+        <UiInput
           v-model="search"
-          type="text"
           placeholder="Search masks..."
-          class="w-full rounded border border-slate-600 bg-slate-800 px-3 py-2 pr-8 text-sm text-white outline-none placeholder:text-white/40 transition-colors focus:border-purple-500"
+          class="pr-8"
         />
         <button
           v-if="search"
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+          class="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
           @click="search = ''"
         >
           ✕
