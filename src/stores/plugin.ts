@@ -1,4 +1,5 @@
-import { createPinia, Pinia } from 'pinia'
+import { createPinia } from 'pinia'
+import type { Pinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { PiniaSharedState } from 'pinia-shared-state'
 import { markRaw } from 'vue'

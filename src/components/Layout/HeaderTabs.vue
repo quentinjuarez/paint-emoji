@@ -1,15 +1,18 @@
 <template>
-  <nav class="mx-auto flex w-2/3 items-center gap-2 lg:w-1/2">
+  <nav class="flex gap-0.5 rounded-xl bg-white/5 p-0.5">
     <a
       v-for="tab in tabs"
       :key="tab.name"
       :href="`#${tab.name}`"
-      class="flex w-full cursor-pointer items-center justify-center rounded bg-white/10 p-1 text-center transition-colors hover:bg-white/20"
-      :class="{
-        '!bg-purple-500 hover:!bg-purple-600': tab.name === props.tab
-      }"
+      class="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all"
+      :class="
+        tab.name === props.tab
+          ? 'bg-white/15 text-white shadow-sm'
+          : 'text-white/50 hover:bg-white/10 hover:text-white'
+      "
     >
-      {{ tab.label }}
+      <span>{{ tab.icon }}</span>
+      <span>{{ tab.label }}</span>
     </a>
   </nav>
 </template>
@@ -20,21 +23,8 @@ const props = defineProps<{
 }>()
 
 const tabs = [
-  {
-    name: 'draw',
-    label: 'Draw'
-  },
-  {
-    name: 'text',
-    label: 'Text'
-  },
-  {
-    name: 'write',
-    label: 'Write'
-  },
-  {
-    name: 'gif',
-    label: 'GIF'
-  }
+  { name: 'draw', icon: '✏️', label: 'Draw' },
+  { name: 'text', icon: '💬', label: 'Text' },
+  { name: 'write', icon: '📝', label: 'Write' }
 ]
 </script>

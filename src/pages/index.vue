@@ -1,21 +1,42 @@
 <template>
-  <div class="flex flex-col gap-0 lg:flex-row lg:gap-4">
-    <EmojiList />
+  <div class="flex min-h-screen flex-col">
+    <AppHeader />
 
-    <div class="mt-4 w-full">
-      <HeaderTabs :tab="store.tab" />
+    <!-- ─── Emojis section ─────────────────────────────────────── -->
+    <div
+      v-if="store.section === 'emojis'"
+      class="flex flex-1 flex-col gap-4 p-4 lg:flex-row lg:items-start"
+    >
+      <!-- Left: emoji picker sidebar -->
+      <EmojiList />
 
-      <DrawPanel v-if="store.tab === 'draw'" />
-      <TextPanel v-if="store.tab === 'text'" />
-      <WritePanel v-if="store.tab === 'write'" />
-      <Gif v-if="store.tab === 'gif'" />
+      <!-- Center: sub-tabs + panel -->
+      <div class="flex min-w-0 flex-1 flex-col gap-3">
+        <HeaderTabs :tab="store.tab" />
+
+        <DrawPanel v-if="store.tab === 'draw'" />
+        <TextPanel v-if="store.tab === 'text'" />
+        <WritePanel v-if="store.tab === 'write'" />
+      </div>
+
+      <!-- Right: draw/text tools sidebar (desktop only) -->
+      <Tools />
     </div>
 
-    <Tools />
+    <!-- ─── Image Generation section ─────────────────────────── -->
+    <div
+      v-else-if="store.section === 'gif'"
+      class="flex flex-1 flex-col gap-4 p-4 lg:flex-row lg:items-start"
+    >
+      <!-- Left: mask browser sidebar -->
+      <Col>
+        <MaskTools />
+      </Col>
 
-    <!-- VERSION -->
-    <div class="fixed bottom-0 m-1">
-      <p class="text-xs text-gray-500">{{ version }}</p>
+      <!-- Center: compositor -->
+      <div class="flex min-w-0 flex-1 items-start justify-center">
+        <Gif />
+      </div>
     </div>
   </div>
 </template>
@@ -38,8 +59,6 @@ const handleHashChange = () => {
 
 const route = useRoute()
 
-const version = computed(() => `v${__VERSION__}`)
-
 watch(
   () => route.hash,
   () => {
@@ -50,3 +69,4 @@ watch(
   }
 )
 </script>
+

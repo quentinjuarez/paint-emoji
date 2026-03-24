@@ -1,4 +1,4 @@
-import { NavigationGuardWithThis, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import type { NavigationGuardWithThis, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
 function evaluateGuards(
   guards: NavigationGuardWithThis<any>[],

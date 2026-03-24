@@ -57,6 +57,9 @@ export const useStore = defineStore('shape-to-emoji', {
     lastFrame(state) {
       if (state.historyIndex < -1) return
       return state.history[state.historyIndex]
+    },
+    section(state): 'emojis' | 'gif' {
+      return state.tab === 'gif' ? 'gif' : 'emojis'
     }
   },
   actions: {
