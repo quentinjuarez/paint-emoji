@@ -3,10 +3,7 @@
     <AppHeader />
 
     <!-- ─── Emojis section ─────────────────────────────────────── -->
-    <div
-      v-if="store.section === 'emojis'"
-      class="flex flex-1 overflow-hidden flex-col lg:flex-row"
-    >
+    <div v-if="store.section === 'emojis'" class="flex flex-1 flex-col overflow-hidden lg:flex-row">
       <EmojiList />
 
       <div class="flex min-w-0 flex-1 flex-col gap-3 overflow-y-auto p-4">
@@ -21,10 +18,7 @@
     </div>
 
     <!-- ─── Image Generation section ─────────────────────────── -->
-    <div
-      v-else-if="store.section === 'gif'"
-      class="flex flex-1 overflow-hidden"
-    >
+    <div v-else-if="store.section === 'gif'" class="flex flex-1 overflow-hidden">
       <!-- Resizable mask sidebar -->
       <UiResizablePanel :size="sidebarWidth" class="border-r border-white/10 p-4">
         <MaskTools />
@@ -45,7 +39,10 @@ const store = useStore()
 
 const handleHashChange = () => {
   const hash = window.location.hash
-  if (!hash) { store.tab = 'draw'; return }
+  if (!hash) {
+    store.tab = 'draw'
+    return
+  }
   store.tab = hash.slice(1)
 }
 
@@ -54,4 +51,3 @@ watch(() => route.hash, handleHashChange, { immediate: true })
 
 const sidebarWidth = ref(256)
 </script>
-

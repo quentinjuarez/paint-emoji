@@ -19,18 +19,14 @@
           v-model="description"
           id="description"
           name="description"
-          class="w-full resize-none rounded-md border border-white/20 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/40 transition-colors focus:border-purple-500"
+          class="w-full resize-none rounded-md border border-white/20 bg-white/5 px-3 py-2 text-sm text-white transition-colors outline-none placeholder:text-white/40 focus:border-purple-500"
           placeholder="Description"
           rows="4"
         ></textarea>
 
         <UiCheckbox id="isPublic" v-model="isPublic">Public</UiCheckbox>
 
-        <UiButton
-          class="w-full"
-          :disabled="!isValid || !payload.canvas"
-          @click="handleSave"
-        >
+        <UiButton class="w-full" :disabled="!isValid || !payload.canvas" @click="handleSave">
           <BaseLoader class="size-4" v-if="loading" />
           <span>Save</span>
         </UiButton>

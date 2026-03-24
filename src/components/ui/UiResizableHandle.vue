@@ -5,7 +5,7 @@
     @mousedown.prevent="startDrag"
   >
     <!-- wider hit area -->
-    <div class="absolute inset-y-0 -left-1.5 -right-1.5" />
+    <div class="absolute inset-y-0 -right-1.5 -left-1.5" />
   </div>
 </template>
 

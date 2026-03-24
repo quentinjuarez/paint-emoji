@@ -27,7 +27,7 @@
       </div>
 
       <!-- TOOLS -->
-      <div class="absolute -right-12 top-22 z-10 flex flex-col gap-2 lg:top-40">
+      <div class="absolute top-22 -right-12 z-10 flex flex-col gap-2 lg:top-40">
         <UiButton
           size="icon"
           :class="{ 'ring-2 ring-purple-500': !isErasing }"

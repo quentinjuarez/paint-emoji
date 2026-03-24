@@ -15,7 +15,7 @@
 }
 
 .emoji-mart-category-label h3 {
-  @apply !bg-slate-900  !text-slate-200;
+  @apply !bg-slate-900 !text-slate-200;
 }
 
 .emoji-mart-skin-swatch-selected:after {

@@ -23,7 +23,7 @@
           <!-- TRASH -->
           <button
             v-if="!disabledHover && element.type !== 'empty'"
-            class="absolute -right-2 -top-2 flex cursor-pointer items-center justify-center rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
+            class="absolute -top-2 -right-2 flex cursor-pointer items-center justify-center rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100"
             @click.stop="handleRemove(index)"
           >
             <X class="size-3 text-white" />

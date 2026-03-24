@@ -3400,10 +3400,7 @@
       "user_display_name": "Alex",
       "avatar_hash": "a0a0c4e86b14",
       "can_delete": false,
-      "synonyms": [
-        "eggplant",
-        "marc-antoine"
-      ]
+      "synonyms": ["eggplant", "marc-antoine"]
     },
     {
       "name": "mario-tennis",
@@ -9731,10 +9728,7 @@
       "user_display_name": "Lucas",
       "avatar_hash": "cf2f231a23e3",
       "can_delete": false,
-      "synonyms": [
-        "angelic",
-        "angélique"
-      ]
+      "synonyms": ["angelic", "angélique"]
     },
     {
       "name": "celebrate",
@@ -9748,10 +9742,7 @@
       "user_display_name": "Lucas",
       "avatar_hash": "cf2f231a23e3",
       "can_delete": false,
-      "synonyms": [
-        "celebrate",
-        "fête"
-      ]
+      "synonyms": ["celebrate", "fête"]
     },
     {
       "name": "angélique",
@@ -9765,10 +9756,7 @@
       "user_display_name": "Victor Revnic",
       "avatar_hash": "edb02773e18e",
       "can_delete": false,
-      "synonyms": [
-        "angelic",
-        "angélique"
-      ]
+      "synonyms": ["angelic", "angélique"]
     },
     {
       "name": "fête",
@@ -9782,10 +9770,7 @@
       "user_display_name": "Agathe",
       "avatar_hash": "ca85392d9e97",
       "can_delete": false,
-      "synonyms": [
-        "celebrate",
-        "fête"
-      ]
+      "synonyms": ["celebrate", "fête"]
     },
     {
       "name": "agathe-monster",

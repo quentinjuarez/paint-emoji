@@ -6,7 +6,7 @@
     <Transition name="fade">
       <div
         v-if="open"
-        class="absolute right-0 top-[calc(100%+0.5rem)] z-10 w-64 rounded-lg border border-white/10 bg-slate-800 p-3 shadow-xl"
+        class="absolute top-[calc(100%+0.5rem)] right-0 z-10 w-64 rounded-lg border border-white/10 bg-slate-800 p-3 shadow-xl"
       >
         <p class="mb-2 text-sm text-white/70">{{ onlineStore.me?.username }}</p>
         <hr class="mb-3 border-white/10" />

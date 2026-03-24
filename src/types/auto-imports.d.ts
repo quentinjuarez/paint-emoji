@@ -94,7 +94,25 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
+  export type {
+    Component,
+    Slot,
+    Slots,
+    ComponentPublicInstance,
+    ComputedRef,
+    DirectiveBinding,
+    ExtractDefaultPropTypes,
+    ExtractPropTypes,
+    ExtractPublicPropTypes,
+    InjectionKey,
+    PropType,
+    Ref,
+    ShallowRef,
+    MaybeRef,
+    MaybeRefOrGetter,
+    VNode,
+    WritableComputedRef
+  } from 'vue'
   import('vue')
   // @ts-ignore
   export type { GifFrame, GifOptions } from '../utils/gif'
@@ -106,87 +124,91 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
-    readonly DEFAULT_GIF_OPTIONS: UnwrapRef<typeof import('../utils/gif')['DEFAULT_GIF_OPTIONS']>
-    readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly computed: UnwrapRef<typeof import('vue')['computed']>
-    readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
-    readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
-    readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
-    readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
-    readonly download: UnwrapRef<typeof import('../utils/download')['default']>
-    readonly drawUserImage: UnwrapRef<typeof import('../utils/gif')['drawUserImage']>
-    readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
-    readonly extractGifFrames: UnwrapRef<typeof import('../utils/gif')['extractGifFrames']>
-    readonly generateAndDownloadGif: UnwrapRef<typeof import('../utils/gif')['generateAndDownloadGif']>
-    readonly generateGif: UnwrapRef<typeof import('../utils/gif')['generateGif']>
-    readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
-    readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
-    readonly getVersion: UnwrapRef<typeof import('../utils/getVersion')['default']>
-    readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly initEmojis: UnwrapRef<typeof import('../utils/initEmojis')['default']>
-    readonly inject: UnwrapRef<typeof import('vue')['inject']>
-    readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
-    readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
-    readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
-    readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
-    readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
-    readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
-    readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
-    readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
-    readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
-    readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
-    readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
-    readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
-    readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
-    readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
-    readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
-    readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
-    readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
-    readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
-    readonly onWatcherCleanup: UnwrapRef<typeof import('vue')['onWatcherCleanup']>
-    readonly plugin: UnwrapRef<typeof import('../stores/plugin')['default']>
-    readonly provide: UnwrapRef<typeof import('vue')['provide']>
-    readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
-    readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
-    readonly ref: UnwrapRef<typeof import('vue')['ref']>
-    readonly removeDiacritics: UnwrapRef<typeof import('../utils/removeDiacritics')['default']>
-    readonly renderFrame: UnwrapRef<typeof import('../utils/gif')['renderFrame']>
-    readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
-    readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
-    readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
-    readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
-    readonly sleep: UnwrapRef<typeof import('../utils/sleep')['default']>
-    readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
-    readonly stringColor: UnwrapRef<typeof import('../utils/stringColor')['default']>
-    readonly stringFromCodePoint: UnwrapRef<typeof import('../utils/stringFromCodePoint')['default']>
-    readonly textToBounce: UnwrapRef<typeof import('../utils/textToBounce')['default']>
-    readonly textToPatterns: UnwrapRef<typeof import('../utils/textToPatterns')['default']>
-    readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
-    readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
-    readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
-    readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
-    readonly unref: UnwrapRef<typeof import('vue')['unref']>
-    readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
-    readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
-    readonly useDevice: UnwrapRef<typeof import('../composables/useDevice')['default']>
-    readonly useId: UnwrapRef<typeof import('vue')['useId']>
-    readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
-    readonly useOnlineStore: UnwrapRef<typeof import('../stores/online')['useOnlineStore']>
-    readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
-    readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useScreen: UnwrapRef<typeof import('../composables/useScreen')['default']>
-    readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
-    readonly useStore: UnwrapRef<typeof import('../stores/index')['useStore']>
-    readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
-    readonly useTooltips: UnwrapRef<typeof import('../composables/useTooltips')['default']>
-    readonly watch: UnwrapRef<typeof import('vue')['watch']>
-    readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
-    readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
-    readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
+    readonly DEFAULT_GIF_OPTIONS: UnwrapRef<(typeof import('../utils/gif'))['DEFAULT_GIF_OPTIONS']>
+    readonly EffectScope: UnwrapRef<(typeof import('vue'))['EffectScope']>
+    readonly computed: UnwrapRef<(typeof import('vue'))['computed']>
+    readonly createApp: UnwrapRef<(typeof import('vue'))['createApp']>
+    readonly customRef: UnwrapRef<(typeof import('vue'))['customRef']>
+    readonly defineAsyncComponent: UnwrapRef<(typeof import('vue'))['defineAsyncComponent']>
+    readonly defineComponent: UnwrapRef<(typeof import('vue'))['defineComponent']>
+    readonly download: UnwrapRef<(typeof import('../utils/download'))['default']>
+    readonly drawUserImage: UnwrapRef<(typeof import('../utils/gif'))['drawUserImage']>
+    readonly effectScope: UnwrapRef<(typeof import('vue'))['effectScope']>
+    readonly extractGifFrames: UnwrapRef<(typeof import('../utils/gif'))['extractGifFrames']>
+    readonly generateAndDownloadGif: UnwrapRef<
+      (typeof import('../utils/gif'))['generateAndDownloadGif']
+    >
+    readonly generateGif: UnwrapRef<(typeof import('../utils/gif'))['generateGif']>
+    readonly getCurrentInstance: UnwrapRef<(typeof import('vue'))['getCurrentInstance']>
+    readonly getCurrentScope: UnwrapRef<(typeof import('vue'))['getCurrentScope']>
+    readonly getCurrentWatcher: UnwrapRef<(typeof import('vue'))['getCurrentWatcher']>
+    readonly getVersion: UnwrapRef<(typeof import('../utils/getVersion'))['default']>
+    readonly h: UnwrapRef<(typeof import('vue'))['h']>
+    readonly initEmojis: UnwrapRef<(typeof import('../utils/initEmojis'))['default']>
+    readonly inject: UnwrapRef<(typeof import('vue'))['inject']>
+    readonly isProxy: UnwrapRef<(typeof import('vue'))['isProxy']>
+    readonly isReactive: UnwrapRef<(typeof import('vue'))['isReactive']>
+    readonly isReadonly: UnwrapRef<(typeof import('vue'))['isReadonly']>
+    readonly isRef: UnwrapRef<(typeof import('vue'))['isRef']>
+    readonly isShallow: UnwrapRef<(typeof import('vue'))['isShallow']>
+    readonly markRaw: UnwrapRef<(typeof import('vue'))['markRaw']>
+    readonly nextTick: UnwrapRef<(typeof import('vue'))['nextTick']>
+    readonly onActivated: UnwrapRef<(typeof import('vue'))['onActivated']>
+    readonly onBeforeMount: UnwrapRef<(typeof import('vue'))['onBeforeMount']>
+    readonly onBeforeUnmount: UnwrapRef<(typeof import('vue'))['onBeforeUnmount']>
+    readonly onBeforeUpdate: UnwrapRef<(typeof import('vue'))['onBeforeUpdate']>
+    readonly onDeactivated: UnwrapRef<(typeof import('vue'))['onDeactivated']>
+    readonly onErrorCaptured: UnwrapRef<(typeof import('vue'))['onErrorCaptured']>
+    readonly onMounted: UnwrapRef<(typeof import('vue'))['onMounted']>
+    readonly onRenderTracked: UnwrapRef<(typeof import('vue'))['onRenderTracked']>
+    readonly onRenderTriggered: UnwrapRef<(typeof import('vue'))['onRenderTriggered']>
+    readonly onScopeDispose: UnwrapRef<(typeof import('vue'))['onScopeDispose']>
+    readonly onServerPrefetch: UnwrapRef<(typeof import('vue'))['onServerPrefetch']>
+    readonly onUnmounted: UnwrapRef<(typeof import('vue'))['onUnmounted']>
+    readonly onUpdated: UnwrapRef<(typeof import('vue'))['onUpdated']>
+    readonly onWatcherCleanup: UnwrapRef<(typeof import('vue'))['onWatcherCleanup']>
+    readonly plugin: UnwrapRef<(typeof import('../stores/plugin'))['default']>
+    readonly provide: UnwrapRef<(typeof import('vue'))['provide']>
+    readonly reactive: UnwrapRef<(typeof import('vue'))['reactive']>
+    readonly readonly: UnwrapRef<(typeof import('vue'))['readonly']>
+    readonly ref: UnwrapRef<(typeof import('vue'))['ref']>
+    readonly removeDiacritics: UnwrapRef<(typeof import('../utils/removeDiacritics'))['default']>
+    readonly renderFrame: UnwrapRef<(typeof import('../utils/gif'))['renderFrame']>
+    readonly resolveComponent: UnwrapRef<(typeof import('vue'))['resolveComponent']>
+    readonly shallowReactive: UnwrapRef<(typeof import('vue'))['shallowReactive']>
+    readonly shallowReadonly: UnwrapRef<(typeof import('vue'))['shallowReadonly']>
+    readonly shallowRef: UnwrapRef<(typeof import('vue'))['shallowRef']>
+    readonly sleep: UnwrapRef<(typeof import('../utils/sleep'))['default']>
+    readonly storeToRefs: UnwrapRef<(typeof import('pinia'))['storeToRefs']>
+    readonly stringColor: UnwrapRef<(typeof import('../utils/stringColor'))['default']>
+    readonly stringFromCodePoint: UnwrapRef<
+      (typeof import('../utils/stringFromCodePoint'))['default']
+    >
+    readonly textToBounce: UnwrapRef<(typeof import('../utils/textToBounce'))['default']>
+    readonly textToPatterns: UnwrapRef<(typeof import('../utils/textToPatterns'))['default']>
+    readonly toRaw: UnwrapRef<(typeof import('vue'))['toRaw']>
+    readonly toRef: UnwrapRef<(typeof import('vue'))['toRef']>
+    readonly toRefs: UnwrapRef<(typeof import('vue'))['toRefs']>
+    readonly toValue: UnwrapRef<(typeof import('vue'))['toValue']>
+    readonly triggerRef: UnwrapRef<(typeof import('vue'))['triggerRef']>
+    readonly unref: UnwrapRef<(typeof import('vue'))['unref']>
+    readonly useAttrs: UnwrapRef<(typeof import('vue'))['useAttrs']>
+    readonly useCssModule: UnwrapRef<(typeof import('vue'))['useCssModule']>
+    readonly useCssVars: UnwrapRef<(typeof import('vue'))['useCssVars']>
+    readonly useDevice: UnwrapRef<(typeof import('../composables/useDevice'))['default']>
+    readonly useId: UnwrapRef<(typeof import('vue'))['useId']>
+    readonly useModel: UnwrapRef<(typeof import('vue'))['useModel']>
+    readonly useOnlineStore: UnwrapRef<(typeof import('../stores/online'))['useOnlineStore']>
+    readonly useRoute: UnwrapRef<(typeof import('vue-router'))['useRoute']>
+    readonly useRouter: UnwrapRef<(typeof import('vue-router'))['useRouter']>
+    readonly useScreen: UnwrapRef<(typeof import('../composables/useScreen'))['default']>
+    readonly useSlots: UnwrapRef<(typeof import('vue'))['useSlots']>
+    readonly useStore: UnwrapRef<(typeof import('../stores/index'))['useStore']>
+    readonly useTemplateRef: UnwrapRef<(typeof import('vue'))['useTemplateRef']>
+    readonly useTooltips: UnwrapRef<(typeof import('../composables/useTooltips'))['default']>
+    readonly watch: UnwrapRef<(typeof import('vue'))['watch']>
+    readonly watchEffect: UnwrapRef<(typeof import('vue'))['watchEffect']>
+    readonly watchPostEffect: UnwrapRef<(typeof import('vue'))['watchPostEffect']>
+    readonly watchSyncEffect: UnwrapRef<(typeof import('vue'))['watchSyncEffect']>
   }
 }

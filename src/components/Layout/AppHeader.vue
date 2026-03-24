@@ -1,7 +1,7 @@
 <template>
   <header class="flex h-12 shrink-0 items-stretch border-b border-white/10 bg-slate-900 px-4">
     <!-- Brand -->
-    <div class="flex shrink-0 select-none items-center border-r border-white/10 pr-4">
+    <div class="flex shrink-0 items-center border-r border-white/10 pr-4 select-none">
       <span class="text-sm font-semibold tracking-tight text-white">Shape Emoji</span>
     </div>
 

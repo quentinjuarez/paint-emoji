@@ -1,5 +1,8 @@
 <template>
-  <button :class="cn(buttonVariants({ variant, size }), $attrs.class as string)" v-bind="filteredAttrs">
+  <button
+    :class="cn(buttonVariants({ variant, size }), $attrs.class as string)"
+    v-bind="filteredAttrs"
+  >
     <slot />
   </button>
 </template>

@@ -6,7 +6,7 @@
       alt="Profile cover"
       class="size-full rounded-full object-cover"
     />
-    <span v-else class="bg-purple-500 font-bold uppercase text-white">{{ initials }}</span>
+    <span v-else class="bg-purple-500 font-bold text-white uppercase">{{ initials }}</span>
   </div>
 </template>
 

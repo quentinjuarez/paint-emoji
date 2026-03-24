@@ -1,13 +1,14 @@
-@import "tailwindcss";
-@import "tippy.js/dist/tippy.css";
-@import "tippy.js/themes/light.css";
+@import 'tailwindcss';
+@import 'tippy.js/dist/tippy.css';
+@import 'tippy.js/themes/light.css';
 
 /* Class-based dark mode (equivalent to v3's darkMode: 'class') */
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Font families */
-  --font-custom: Inter, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-custom:
+    Inter, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   /* Custom transition properties */
   --transition-property-height: height, max-height, min-height;
@@ -15,8 +16,6 @@
 
   /* Default transition duration */
   --default-transition-duration: 250ms;
-
-
 }
 
 html {
@@ -78,7 +77,9 @@ code {
 
 /* DIALOG CONTENT */
 .dialog-content-enter-active {
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
 }
 
 .dialog-content-enter-from {

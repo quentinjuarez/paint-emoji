@@ -15,7 +15,11 @@
         @blur="focus = false"
         @keydown.escape="focus = false"
       />
-      <button v-if="query" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white" @click="query = ''">
+      <button
+        v-if="query"
+        class="absolute top-1/2 right-2.5 -translate-y-1/2 text-white/40 hover:text-white"
+        @click="query = ''"
+      >
         <X class="size-3.5" />
       </button>
     </div>
@@ -30,43 +34,43 @@
         }
       ]"
     >
-        <div v-if="frequentEmojisCategory.emojis.length > 0 && !query" class="mb-2">
-          <p class="mb-1 text-xs font-medium text-white/40">{{ frequentEmojisCategory.name }}</p>
-          <div class="flex flex-wrap gap-1">
-            <button
-              v-for="e in frequentEmojisCategory.emojis"
-              :key="e.name"
-              class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
-              @click.prevent.stop="handleSelect(e)"
-            >
-              <BaseEmoji :emoji="e" size="md" />
-            </button>
-          </div>
+      <div v-if="frequentEmojisCategory.emojis.length > 0 && !query" class="mb-2">
+        <p class="mb-1 text-xs font-medium text-white/40">{{ frequentEmojisCategory.name }}</p>
+        <div class="flex flex-wrap gap-1">
+          <button
+            v-for="e in frequentEmojisCategory.emojis"
+            :key="e.name"
+            class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
+            @click.prevent.stop="handleSelect(e)"
+          >
+            <BaseEmoji :emoji="e" size="md" />
+          </button>
         </div>
+      </div>
 
-        <div
-          v-for="category in filteredCategories"
-          :key="category.key"
-          v-show="category.emojis.length > 0"
-          class="mb-2"
-        >
-          <p class="mb-1 text-xs font-medium text-white/40">{{ category.name }}</p>
-          <div class="flex flex-wrap gap-1">
-            <button
-              v-for="e in category.emojis"
-              :key="e.name"
-              class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
-              @click.prevent.stop="handleSelect(e)"
-              v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
-            >
-              <BaseEmoji :emoji="e" size="md" />
-            </button>
+      <div
+        v-for="category in filteredCategories"
+        :key="category.key"
+        v-show="category.emojis.length > 0"
+        class="mb-2"
+      >
+        <p class="mb-1 text-xs font-medium text-white/40">{{ category.name }}</p>
+        <div class="flex flex-wrap gap-1">
+          <button
+            v-for="e in category.emojis"
+            :key="e.name"
+            class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
+            @click.prevent.stop="handleSelect(e)"
+            v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
+          >
+            <BaseEmoji :emoji="e" size="md" />
+          </button>
 
-            <!-- <p v-if="filteredEmoji.length === 0" class="text-sm text-gray-500">No emoji found</p> -->
-          </div>
+          <!-- <p v-if="filteredEmoji.length === 0" class="text-sm text-gray-500">No emoji found</p> -->
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">

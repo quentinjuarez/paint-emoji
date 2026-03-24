@@ -10,7 +10,7 @@
         alt="Profile cover"
         class="size-full rounded-full object-cover"
       />
-      <span v-else class="p-2 uppercase text-white">{{ initials }}</span>
+      <span v-else class="p-2 text-white uppercase">{{ initials }}</span>
     </span>
   </button>
 </template>

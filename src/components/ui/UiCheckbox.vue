@@ -7,7 +7,7 @@
       @change="emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
       class="size-4 cursor-pointer rounded border-white/20 bg-white/5 accent-purple-500"
     />
-    <label :for="id" class="cursor-pointer select-none text-sm text-white/80">
+    <label :for="id" class="cursor-pointer text-sm text-white/80 select-none">
       <slot />
     </label>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="m-0 select-none p-0 leading-none"
+    class="m-0 p-0 leading-none select-none"
     :class="style"
     :data-name="emoji?.name"
     :data-value="emoji?.value"
@@ -11,7 +11,7 @@
     <img
       v-else-if="displayEmoji.type === 'custom'"
       :draggable="false"
-      class="select-none object-contain"
+      class="object-contain select-none"
       :class="imageSize"
       :src="displayEmoji.value"
       :alt="displayEmoji.name"

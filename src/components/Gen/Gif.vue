@@ -5,7 +5,7 @@
       <div class="relative" style="width: 384px; height: 384px">
         <canvas
           ref="canvasRef"
-          class="absolute left-0 top-0 origin-top-left scale-[3] cursor-grab rounded border border-white/20 active:cursor-grabbing"
+          class="absolute top-0 left-0 origin-top-left scale-[3] cursor-grab rounded border border-white/20 active:cursor-grabbing"
           :width="options.size"
           :height="options.size"
           @wheel.prevent="onWheel"

@@ -2,7 +2,7 @@
   <div class="mt-8 space-y-4">
     <button
       v-if="store.textEmoji"
-      class="group relative size-8 rounded ring-2 ring-purple-500 bg-white/10"
+      class="group relative size-8 rounded bg-white/10 ring-2 ring-purple-500"
     >
       <span v-if="store.textEmoji.type === 'slack'"> {{ store.textEmoji.value }}</span>
       <img class="rounded" v-else :src="store.textEmoji.value" :alt="store.textEmoji.name" />
@@ -10,11 +10,7 @@
 
     <div class="flex items-center gap-3">
       <UiInput v-model="store.text" placeholder="Type something..." />
-      <UiButton
-        :disabled="!store.textEmoji"
-        @click="handleCopyText"
-        class="w-48 shrink-0"
-      >
+      <UiButton :disabled="!store.textEmoji" @click="handleCopyText" class="w-48 shrink-0">
         {{ copy ? '✅ Copied!' : 'Copy' }}
         <Shortcut shortcut="c" ctrl @confirm="handleCopyText" />
       </UiButton>

@@ -3,11 +3,7 @@
     <div class="h-[646px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">Browse</h2>
       <div>
-        <UiInput
-          v-model="query"
-          placeholder="Search"
-          @input="debounceSearch"
-        />
+        <UiInput v-model="query" placeholder="Search" @input="debounceSearch" />
       </div>
       <div class="flex h-[calc(216px+216px+24px)] flex-wrap gap-4 overflow-auto">
         <div
@@ -29,9 +25,16 @@
       </div>
 
       <div class="flex items-center justify-center gap-2 py-4">
-        <UiButton size="icon" :disabled="offset === 0" @click="handlePrev"><ChevronLeft class="size-4" /></UiButton>
+        <UiButton size="icon" :disabled="offset === 0" @click="handlePrev"
+          ><ChevronLeft class="size-4"
+        /></UiButton>
         <span class="text-sm">{{ page }} / {{ pages }}</span>
-        <UiButton size="icon" :disabled="offset + LIMIT >= onlineStore.search.total" @click="handleNext"><ChevronRight class="size-4" /></UiButton>
+        <UiButton
+          size="icon"
+          :disabled="offset + LIMIT >= onlineStore.search.total"
+          @click="handleNext"
+          ><ChevronRight class="size-4"
+        /></UiButton>
       </div>
     </div>
 
