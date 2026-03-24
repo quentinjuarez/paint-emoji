@@ -30,7 +30,7 @@ import fog from '@/assets/masks/fog.gif'
 import fourK from '@/assets/masks/fourK.gif'
 import gun from '@/assets/masks/gun.gif'
 import hyperglass from '@/assets/masks/hyperglass.gif'
-// import icant from '@/assets/masks/icant.png'
+import icant from '@/assets/masks/icant.png'
 import kawaii from '@/assets/masks/kawaii.gif'
 import lagging from '@/assets/masks/lagging.gif'
 import lighting from '@/assets/masks/lighting.gif'
@@ -38,7 +38,7 @@ import moneyRain from '@/assets/masks/money-rain.gif'
 import pet from '@/assets/masks/pet.gif'
 import photo from '@/assets/masks/photo.gif'
 import poof from '@/assets/masks/poof.gif'
-// import rave from '@/assets/masks/rave.gif'
+import rave from '@/assets/masks/rave.gif'
 import saiyan from '@/assets/masks/saiyan.gif'
 import shiny from '@/assets/masks/shiny.gif'
 import shy from '@/assets/masks/shy.gif'
@@ -53,7 +53,7 @@ import zzz from '@/assets/masks/zzz.gif'
 import sixSeven from '@/assets/masks/67.gif'
 
 const masks = [
-  // { name: 'icant', src: icant, animate: false },
+  { name: 'icant', src: icant, animate: false },
   { name: 'arms', src: arms, animate: true },
   { name: 'bonk', src: bonk, animate: true },
   { name: 'censored', src: censored, animate: true },
@@ -72,6 +72,7 @@ const masks = [
   { name: 'pet', src: pet, animate: true },
   { name: 'photo', src: photo, animate: true },
   { name: 'poof', src: poof, animate: true },
+  { name: 'rave', src: rave, animate: true },
   { name: 'saiyan', src: saiyan, animate: true },
   { name: 'shiny', src: shiny, animate: true },
   { name: 'shy', src: shy, animate: true },

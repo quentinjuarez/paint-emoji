@@ -12,6 +12,7 @@ export interface GifOptions {
   translateX: number
   translateY: number
   rotation: number
+  frameOpacity: number
   input: string
   mask: string
 }
@@ -23,6 +24,7 @@ export const DEFAULT_GIF_OPTIONS: GifOptions = {
   translateX: 0,
   translateY: 0,
   rotation: 0,
+  frameOpacity: 1,
   input: '',
   mask: 'clean'
 }
@@ -121,7 +123,10 @@ export const renderFrame = (
   if (image) {
     drawUserImage(ctx, image, options)
   }
+  ctx.save()
+  ctx.globalAlpha = options.frameOpacity
   ctx.drawImage(frame.canvas, 0, 0, options.size, options.size)
+  ctx.restore()
 }
 
 /**

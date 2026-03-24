@@ -1,11 +1,29 @@
 export {}
 
+class GIFType {
+  constructor(_options: {
+    quality: number
+    workers: number
+    workerScript: string
+    width: number
+    height: number
+  }) {}
+  on(_event: 'finished', _callback: (blob: Blob) => void): void {}
+  addFrame(_ctx: CanvasRenderingContext2D, _options: { delay: number; copy: boolean }): void {}
+  render(): void {}
+}
+
+declare global {}
+
 declare global {
   const __DEV__: boolean
   const __VERSION__: string
   const __BASE_URL__: string
   const __API_URL__: string
 
+  interface Window {
+    GIF: typeof GIFType
+  }
   interface CustomEmoji {
     name: string
     url: string

@@ -90,6 +90,17 @@
               v-model.number="options.rotation"
             />
           </div>
+          <div>
+            <label>Frame Opacity: </label>
+            <input
+              class="accent-purple-500"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              v-model.number="options.frameOpacity"
+            />
+          </div>
         </div>
 
         <button

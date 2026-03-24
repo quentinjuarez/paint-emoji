@@ -38,6 +38,10 @@ module.exports = {
       {
         whitelist: ['draggable']
       }
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
     ]
   },
   env: {
