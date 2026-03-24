@@ -9,11 +9,6 @@
   /* Font families */
   --font-custom: Inter, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  /* Border radius (overrides where TW v4 defaults differ from v3 config) */
-  --radius-xs: 1px;
-  --radius-xl: 10px;
-  --radius-2xl: 12px;
-
   /* Custom transition properties */
   --transition-property-height: height, max-height, min-height;
   --transition-property-width: width, max-width, min-width;
@@ -21,23 +16,7 @@
   /* Default transition duration */
   --default-transition-duration: 250ms;
 
-  /* Half-step spacing values not in TW v4 defaults */
-  --spacing-4_5: 18px;
-  --spacing-5_5: 22px;
-  --spacing-6_5: 26px;
-  --spacing-7_5: 30px;
-  --spacing-8_5: 34px;
-  --spacing-9_5: 38px;
-  --spacing-10_5: 42px;
-  --spacing-11_5: 46px;
-  --spacing-12_5: 50px;
-  --spacing-13_5: 54px;
-  --spacing-14_5: 58px;
-  --spacing-15_5: 62px;
-  --spacing-16_5: 66px;
-  --spacing-17_5: 70px;
-  --spacing-18_5: 74px;
-  --spacing-19_5: 78px;
+
 }
 
 html {
@@ -95,6 +74,16 @@ code {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* DIALOG CONTENT */
+.dialog-content-enter-active {
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.dialog-content-enter-from {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.96);
 }
 
 /* width */

@@ -24,16 +24,7 @@
           rows="4"
         ></textarea>
 
-        <button @click="isPublic = !isPublic">
-          <label
-            class="pointer-events-none flex cursor-pointer items-center gap-2"
-            for="isPublic"
-            aria-hidden="true"
-          >
-            <input type="checkbox" class="cursor-pointer" id="isPublic" v-model="isPublic" />
-            <span class="text-sm">Public</span>
-          </label>
-        </button>
+        <UiCheckbox id="isPublic" v-model="isPublic">Public</UiCheckbox>
 
         <UiButton
           class="w-full"

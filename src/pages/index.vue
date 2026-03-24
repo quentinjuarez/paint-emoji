@@ -24,25 +24,13 @@
     <div
       v-else-if="store.section === 'gif'"
       class="flex flex-1 overflow-hidden"
-      :class="{ 'select-none': isResizing }"
     >
       <!-- Resizable mask sidebar -->
-      <div
-        class="flex h-full shrink-0 flex-col border-r border-white/10 p-4"
-        :style="{ width: sidebarWidth + 'px' }"
-      >
+      <UiResizablePanel :size="sidebarWidth" class="border-r border-white/10 p-4">
         <MaskTools />
-      </div>
+      </UiResizablePanel>
 
-      <!-- Resize handle -->
-      <div
-        class="group relative w-px shrink-0 cursor-col-resize bg-white/10 transition-colors hover:bg-purple-500/60"
-        :class="{ 'bg-purple-500/60': isResizing }"
-        @mousedown.prevent="startResize"
-      >
-        <!-- wider hit area -->
-        <div class="absolute inset-y-0 -left-1.5 -right-1.5" />
-      </div>
+      <UiResizableHandle v-model:panel-size="sidebarWidth" :min="180" :max="480" />
 
       <!-- Main compositor -->
       <div class="flex min-w-0 flex-1 items-center justify-center p-4">
@@ -64,24 +52,6 @@ const handleHashChange = () => {
 const route = useRoute()
 watch(() => route.hash, handleHashChange, { immediate: true })
 
-// Resizable sidebar
 const sidebarWidth = ref(256)
-const isResizing = ref(false)
-
-const startResize = (e: MouseEvent) => {
-  isResizing.value = true
-  const startX = e.clientX
-  const startWidth = sidebarWidth.value
-  const onMove = (e: MouseEvent) => {
-    sidebarWidth.value = Math.max(180, Math.min(480, startWidth + e.clientX - startX))
-  }
-  const onUp = () => {
-    isResizing.value = false
-    window.removeEventListener('mousemove', onMove)
-    window.removeEventListener('mouseup', onUp)
-  }
-  window.addEventListener('mousemove', onMove)
-  window.addEventListener('mouseup', onUp)
-}
 </script>
 

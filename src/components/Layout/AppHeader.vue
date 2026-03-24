@@ -6,30 +6,10 @@
     </div>
 
     <!-- Section nav -->
-    <nav class="flex items-stretch pl-1">
-      <a
-        :href="emojiHref"
-        class="flex items-center px-4 text-sm font-medium transition-colors border-b-2"
-        :class="
-          store.section === 'emojis'
-            ? 'border-purple-500 text-white'
-            : 'border-transparent text-white/40 hover:text-white/70'
-        "
-      >
-        Emojis
-      </a>
-      <a
-        href="#gif"
-        class="flex items-center px-4 text-sm font-medium transition-colors border-b-2"
-        :class="
-          store.section === 'gif'
-            ? 'border-purple-500 text-white'
-            : 'border-transparent text-white/40 hover:text-white/70'
-        "
-      >
-        Génération
-      </a>
-    </nav>
+    <UiTabs class="pl-1">
+      <UiTabsTrigger :href="emojiHref" :active="store.section === 'emojis'">Emojis</UiTabsTrigger>
+      <UiTabsTrigger href="#gif" :active="store.section === 'gif'">Génération</UiTabsTrigger>
+    </UiTabs>
 
     <!-- Spacer -->
     <div class="flex-1" />
