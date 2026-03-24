@@ -1,99 +1,102 @@
 <template>
   <div>
-    <div class="flex flex-col space-y-4">
+    <div class="flex flex-col space-y-3">
       <h2 class="text-lg font-bold">Masks</h2>
-      <div class="flex max-h-[calc(100vh-180px)] w-[272px] flex-wrap gap-4 overflow-auto">
+      <!-- Search bar -->
+      <div class="relative">
+        <input
+          v-model="search"
+          type="text"
+          placeholder="Search masks..."
+          class="w-full rounded bg-white/10 px-3 py-1.5 pr-8 text-sm text-white placeholder-white/40 outline-none focus:ring-1 focus:ring-purple-500"
+        />
         <button
-          v-for="mask in masks"
+          v-if="search"
+          class="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+          @click="search = ''"
+        >
+          ✕
+        </button>
+      </div>
+      <!-- Scale selector -->
+      <div class="flex gap-1">
+        <button
+          v-for="scale in SCALES"
+          :key="scale"
+          class="flex-1 rounded px-2 py-1 text-xs font-medium transition-colors"
+          :class="[
+            store.selectedMaskScale === scale
+              ? 'bg-purple-500 text-white'
+              : 'bg-white/10 text-white/60 hover:bg-white/20 hover:text-white',
+            !currentMaskHasScale(scale) ? 'cursor-not-allowed opacity-30' : ''
+          ]"
+          :disabled="!currentMaskHasScale(scale)"
+          @click="store.selectedMaskScale = scale"
+        >
+          x{{ scale }}
+        </button>
+      </div>
+      <!-- Grid -->
+      <div class="flex max-h-[calc(100vh-260px)] w-[272px] flex-wrap gap-3 overflow-auto">
+        <button
+          v-for="mask in filteredMasks"
           :key="mask.name"
           class="flex size-30 flex-col items-center justify-center rounded border-2 border-transparent transition-colors hover:bg-white/10"
           :class="{ '!border-purple-500': mask.name === currentMask?.name }"
-          @click="currentMask = mask"
+          @click="selectMask(mask)"
         >
-          <img :src="mask.src" class="size-18" />
-          <span>{{ mask.name }}</span>
+          <img :src="mask.images[0].url" class="size-18" />
+          <span class="max-w-[100px] truncate text-xs">{{ mask.name }}</span>
         </button>
+        <p v-if="filteredMasks.length === 0" class="w-full text-center text-sm text-white/40">
+          No masks found
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import arms from '@/assets/masks/arms.gif'
-import bonk from '@/assets/masks/bonk.gif'
-import censored from '@/assets/masks/censored.gif'
-import clean from '@/assets/masks/clean.gif'
-import confetti from '@/assets/masks/confetti.gif'
-import congrats from '@/assets/masks/congrats.gif'
-import explosion from '@/assets/masks/explosion.gif'
-import fog from '@/assets/masks/fog.gif'
-import fourK from '@/assets/masks/fourK.gif'
-import gun from '@/assets/masks/gun.gif'
-import hyperglass from '@/assets/masks/hyperglass.gif'
-import icant from '@/assets/masks/icant.png'
-import kawaii from '@/assets/masks/kawaii.gif'
-import lagging from '@/assets/masks/lagging.gif'
-import lighting from '@/assets/masks/lighting.gif'
-import moneyRain from '@/assets/masks/money-rain.gif'
-import pet from '@/assets/masks/pet.gif'
-import photo from '@/assets/masks/photo.gif'
-import poof from '@/assets/masks/poof.gif'
-import rave from '@/assets/masks/rave.gif'
-import saiyan from '@/assets/masks/saiyan.gif'
-import shiny from '@/assets/masks/shiny.gif'
-import shy from '@/assets/masks/shy.gif'
-import spank from '@/assets/masks/spank.gif'
-import speed from '@/assets/masks/speed.gif'
-import steer from '@/assets/masks/steer.gif'
-import tnt from '@/assets/masks/tnt.gif'
-import touchGrass from '@/assets/masks/touch-grass.gif'
-import wave from '@/assets/masks/wave.gif'
-import yap from '@/assets/masks/yap.gif'
-import zzz from '@/assets/masks/zzz.gif'
-import sixSeven from '@/assets/masks/67.gif'
+import masksData from '@/assets/data/masks.json'
 
-const masks = [
-  { name: 'icant', src: icant, animate: false },
-  { name: 'arms', src: arms, animate: true },
-  { name: 'bonk', src: bonk, animate: true },
-  { name: 'censored', src: censored, animate: true },
-  { name: 'clean', src: clean, animate: true },
-  { name: 'confetti', src: confetti, animate: true },
-  { name: 'congrats', src: congrats, animate: true },
-  { name: 'explosion', src: explosion, animate: true },
-  { name: 'fog', src: fog, animate: true },
-  { name: 'fourK', src: fourK, animate: true },
-  { name: 'gun', src: gun, animate: true },
-  { name: 'hyperglass', src: hyperglass, animate: true },
-  { name: 'kawaii', src: kawaii, animate: true },
-  { name: 'lagging', src: lagging, animate: true },
-  { name: 'lighting', src: lighting, animate: true },
-  { name: 'moneyRain', src: moneyRain, animate: true },
-  { name: 'pet', src: pet, animate: true },
-  { name: 'photo', src: photo, animate: true },
-  { name: 'poof', src: poof, animate: true },
-  { name: 'rave', src: rave, animate: true },
-  { name: 'saiyan', src: saiyan, animate: true },
-  { name: 'shiny', src: shiny, animate: true },
-  { name: 'shy', src: shy, animate: true },
-  { name: 'spank', src: spank, animate: true },
-  { name: 'speed', src: speed, animate: true },
-  { name: 'steer', src: steer, animate: true },
-  { name: 'tnt', src: tnt, animate: true },
-  { name: 'touchGrass', src: touchGrass, animate: true },
-  { name: 'wave', src: wave, animate: true },
-  { name: 'yap', src: yap, animate: true },
-  { name: 'zzz', src: zzz, animate: true },
-  { name: '67', src: sixSeven, animate: true }
-]
+const SCALES = [1, 2, 3, 4]
+
+const masks = masksData as {
+  id: string
+  name: string
+  tags: string[]
+  animated: boolean
+  images: { scale: number; url: string; width: number; frameCount: number; mime: string }[]
+}[]
 
 const store = useStore()
-
 const { currentMask } = storeToRefs(store)
+
+const search = ref('')
+
+const filteredMasks = computed(() => {
+  const q = search.value.trim().toLowerCase()
+  if (!q) return masks
+  return masks.filter((m) => m.name.toLowerCase().includes(q))
+})
+
+const currentMaskHasScale = (scale: number) => {
+  if (!currentMask.value) return scale === 1
+  return currentMask.value.images?.some((i: any) => i.scale === scale) ?? scale === 1
+}
+
+const selectMask = (mask: (typeof masks)[number]) => {
+  store.currentMask = mask
+  // Clamp selected scale to what this mask supports
+  const available = mask.images.map((i) => i.scale)
+  if (!available.includes(store.selectedMaskScale)) {
+    store.selectedMaskScale = available[available.length - 1]
+  }
+}
 
 onMounted(() => {
   if (!currentMask.value) {
-    store.currentMask = masks[0]
+    selectMask(masks[0])
   }
 })
 </script>

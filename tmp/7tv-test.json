@@ -1,0 +1,4081 @@
+{
+  "emotes": [
+    {
+      "id": "01F6MZGCNG000255K4X1K7NTHR",
+      "defaultName": "GIGACHAD",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "MonkeQB",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/2x_static.webp",
+          "mime": "image/webp",
+          "size": 900,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/1x.gif",
+          "mime": "image/gif",
+          "size": 83401,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/3x_static.webp",
+          "mime": "image/webp",
+          "size": 1390,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/1x.webp",
+          "mime": "image/webp",
+          "size": 99794,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/1x_static.png",
+          "mime": "image/png",
+          "size": 1093,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/3x_static.png",
+          "mime": "image/png",
+          "size": 3737,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/1x_static.webp",
+          "mime": "image/webp",
+          "size": 382,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/1x_static.avif",
+          "mime": "image/avif",
+          "size": 728,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/2x.webp",
+          "mime": "image/webp",
+          "size": 252100,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/3x_static.avif",
+          "mime": "image/avif",
+          "size": 1484,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/2x_static.png",
+          "mime": "image/png",
+          "size": 2302,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/2x.gif",
+          "mime": "image/gif",
+          "size": 336324,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/3x.gif",
+          "mime": "image/gif",
+          "size": 693566,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/4x_static.png",
+          "mime": "image/png",
+          "size": 5008,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/4x_static.webp",
+          "mime": "image/webp",
+          "size": 1338,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/4x.gif",
+          "mime": "image/gif",
+          "size": 1213725,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/4x_static.avif",
+          "mime": "image/avif",
+          "size": 1911,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/2x_static.avif",
+          "mime": "image/avif",
+          "size": 1114,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/4x.webp",
+          "mime": "image/webp",
+          "size": 308490,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/3x.webp",
+          "mime": "image/webp",
+          "size": 414348,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/1x.avif",
+          "mime": "image/avif",
+          "size": 19845,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/2x.avif",
+          "mime": "image/avif",
+          "size": 61265,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/3x.avif",
+          "mime": "image/avif",
+          "size": 137527,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 198,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MZGCNG000255K4X1K7NTHR/4x.avif",
+          "mime": "image/avif",
+          "size": 263741,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 198,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6MKTFTG0009C9ZSNZTFV2ZF",
+      "defaultName": "NOOOO",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "JustRogan",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/1x.webp",
+          "mime": "image/webp",
+          "size": 7004,
+          "scale": 1,
+          "width": 34,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/2x.gif",
+          "mime": "image/gif",
+          "size": 12438,
+          "scale": 2,
+          "width": 68,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/4x.gif",
+          "mime": "image/gif",
+          "size": 36198,
+          "scale": 4,
+          "width": 136,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/1x.gif",
+          "mime": "image/gif",
+          "size": 4429,
+          "scale": 1,
+          "width": 34,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/3x.gif",
+          "mime": "image/gif",
+          "size": 23046,
+          "scale": 3,
+          "width": 102,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/2x.webp",
+          "mime": "image/webp",
+          "size": 15240,
+          "scale": 2,
+          "width": 68,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2602,
+          "scale": 2,
+          "width": 68,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/1x_static.png",
+          "mime": "image/png",
+          "size": 2460,
+          "scale": 1,
+          "width": 34,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/1x_static.webp",
+          "mime": "image/webp",
+          "size": 1152,
+          "scale": 1,
+          "width": 34,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/4x_static.avif",
+          "mime": "image/avif",
+          "size": 5496,
+          "scale": 4,
+          "width": 136,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/2x_static.png",
+          "mime": "image/png",
+          "size": 7469,
+          "scale": 2,
+          "width": 68,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/4x.webp",
+          "mime": "image/webp",
+          "size": 31006,
+          "scale": 4,
+          "width": 136,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1627,
+          "scale": 1,
+          "width": 34,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/3x.webp",
+          "mime": "image/webp",
+          "size": 24568,
+          "scale": 3,
+          "width": 102,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/3x_static.png",
+          "mime": "image/png",
+          "size": 14448,
+          "scale": 3,
+          "width": 102,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/3x_static.webp",
+          "mime": "image/webp",
+          "size": 4126,
+          "scale": 3,
+          "width": 102,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/4x_static.png",
+          "mime": "image/png",
+          "size": 22506,
+          "scale": 4,
+          "width": 136,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/2x.avif",
+          "mime": "image/avif",
+          "size": 10420,
+          "scale": 2,
+          "width": 68,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/4x_static.webp",
+          "mime": "image/webp",
+          "size": 5460,
+          "scale": 4,
+          "width": 136,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2935,
+          "scale": 2,
+          "width": 68,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/1x.avif",
+          "mime": "image/avif",
+          "size": 5897,
+          "scale": 1,
+          "width": 34,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/3x_static.avif",
+          "mime": "image/avif",
+          "size": 4336,
+          "scale": 3,
+          "width": 102,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/4x.avif",
+          "mime": "image/avif",
+          "size": 21125,
+          "scale": 4,
+          "width": 136,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MKTFTG0009C9ZSNZTFV2ZF/3x.avif",
+          "mime": "image/avif",
+          "size": 15881,
+          "scale": 3,
+          "width": 102,
+          "frameCount": 6,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6MQ33FG000FFJ97ZB8MWV52",
+      "defaultName": "catJAM",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "pascii_",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/2x_static.webp",
+          "mime": "image/webp",
+          "size": 1318,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/2x_static.png",
+          "mime": "image/png",
+          "size": 5549,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/4x.gif",
+          "mime": "image/gif",
+          "size": 1050253,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/3x_static.png",
+          "mime": "image/png",
+          "size": 10081,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/3x_static.webp",
+          "mime": "image/webp",
+          "size": 2084,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/2x_static.avif",
+          "mime": "image/avif",
+          "size": 1310,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/4x_static.webp",
+          "mime": "image/webp",
+          "size": 2238,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/1x_static.webp",
+          "mime": "image/webp",
+          "size": 606,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/1x_static.png",
+          "mime": "image/png",
+          "size": 1844,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/4x_static.png",
+          "mime": "image/png",
+          "size": 14728,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/2x.webp",
+          "mime": "image/webp",
+          "size": 199384,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/3x_static.avif",
+          "mime": "image/avif",
+          "size": 1891,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/1x_static.avif",
+          "mime": "image/avif",
+          "size": 835,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/3x.webp",
+          "mime": "image/webp",
+          "size": 316206,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/1x.gif",
+          "mime": "image/gif",
+          "size": 108015,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/3x.gif",
+          "mime": "image/gif",
+          "size": 672230,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/2x.gif",
+          "mime": "image/gif",
+          "size": 341720,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/4x_static.avif",
+          "mime": "image/avif",
+          "size": 2443,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/1x.webp",
+          "mime": "image/webp",
+          "size": 94822,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/4x.webp",
+          "mime": "image/webp",
+          "size": 346368,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/1x.avif",
+          "mime": "image/avif",
+          "size": 45921,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/2x.avif",
+          "mime": "image/avif",
+          "size": 97322,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/4x.avif",
+          "mime": "image/avif",
+          "size": 226038,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 158,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MQ33FG000FFJ97ZB8MWV52/3x.avif",
+          "mime": "image/avif",
+          "size": 165511,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 158,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6N31ETR0004P7N4A9PKS5X9",
+      "defaultName": "BOOBA",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "evilmessy",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/2x.webp",
+          "mime": "image/webp",
+          "size": 107490,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/3x.gif",
+          "mime": "image/gif",
+          "size": 180134,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/2x_static.png",
+          "mime": "image/png",
+          "size": 6648,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/4x.webp",
+          "mime": "image/webp",
+          "size": 195802,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/1x.webp",
+          "mime": "image/webp",
+          "size": 51756,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2020,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/3x_static.webp",
+          "mime": "image/webp",
+          "size": 3264,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/1x.gif",
+          "mime": "image/gif",
+          "size": 18728,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/3x_static.png",
+          "mime": "image/png",
+          "size": 12906,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/3x.webp",
+          "mime": "image/webp",
+          "size": 172450,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1232,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2186,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/4x_static.webp",
+          "mime": "image/webp",
+          "size": 3710,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/4x.gif",
+          "mime": "image/gif",
+          "size": 274904,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/2x.gif",
+          "mime": "image/gif",
+          "size": 72383,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/1x_static.webp",
+          "mime": "image/webp",
+          "size": 972,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/1x_static.png",
+          "mime": "image/png",
+          "size": 2228,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/4x_static.png",
+          "mime": "image/png",
+          "size": 19518,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/4x_static.avif",
+          "mime": "image/avif",
+          "size": 4458,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/3x_static.avif",
+          "mime": "image/avif",
+          "size": 3358,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/1x.avif",
+          "mime": "image/avif",
+          "size": 16291,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/2x.avif",
+          "mime": "image/avif",
+          "size": 35408,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/4x.avif",
+          "mime": "image/avif",
+          "size": 101262,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 55,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6N31ETR0004P7N4A9PKS5X9/3x.avif",
+          "mime": "image/avif",
+          "size": 61335,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 55,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 449,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6ME7ADR0000WDA7ERT9H30R",
+      "defaultName": "COPIUM",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "JustRogan",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/3x_static.png",
+          "mime": "image/png",
+          "size": 19420,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/1x.webp",
+          "mime": "image/webp",
+          "size": 188000,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/1x.gif",
+          "mime": "image/gif",
+          "size": 37351,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/4x.gif",
+          "mime": "image/gif",
+          "size": 911831,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/2x_static.png",
+          "mime": "image/png",
+          "size": 9969,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/2x.gif",
+          "mime": "image/gif",
+          "size": 207091,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2966,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/1x_static.webp",
+          "mime": "image/webp",
+          "size": 1126,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/4x_static.webp",
+          "mime": "image/webp",
+          "size": 5472,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2959,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/3x_static.webp",
+          "mime": "image/webp",
+          "size": 5080,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/1x_static.png",
+          "mime": "image/png",
+          "size": 2966,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/3x.gif",
+          "mime": "image/gif",
+          "size": 487270,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/4x_static.png",
+          "mime": "image/png",
+          "size": 30487,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/3x_static.avif",
+          "mime": "image/avif",
+          "size": 4703,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1475,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/2x.webp",
+          "mime": "image/webp",
+          "size": 494980,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/4x_static.avif",
+          "mime": "image/avif",
+          "size": 6053,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/4x.webp",
+          "mime": "image/webp",
+          "size": 889988,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/3x.webp",
+          "mime": "image/webp",
+          "size": 843192,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/1x.avif",
+          "mime": "image/avif",
+          "size": 18460,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/2x.avif",
+          "mime": "image/avif",
+          "size": 72953,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/3x.avif",
+          "mime": "image/avif",
+          "size": 188473,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 177,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6ME7ADR0000WDA7ERT9H30R/4x.avif",
+          "mime": "image/avif",
+          "size": 391089,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 177,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6NACCD80006SZ7ZW5FMWKWK",
+      "defaultName": "Prayge",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "Neowav",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/3x.png",
+          "mime": "image/png",
+          "size": 13051,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/4x.webp",
+          "mime": "image/webp",
+          "size": 4944,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/2x.webp",
+          "mime": "image/webp",
+          "size": 2278,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/1x.webp",
+          "mime": "image/webp",
+          "size": 936,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/1x.png",
+          "mime": "image/png",
+          "size": 2072,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/3x.webp",
+          "mime": "image/webp",
+          "size": 3896,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/2x.png",
+          "mime": "image/png",
+          "size": 6748,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/4x.png",
+          "mime": "image/png",
+          "size": 21103,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/3x.avif",
+          "mime": "image/avif",
+          "size": 3650,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/2x.avif",
+          "mime": "image/avif",
+          "size": 2443,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/1x.avif",
+          "mime": "image/avif",
+          "size": 1289,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NACCD80006SZ7ZW5FMWKWK/4x.avif",
+          "mime": "image/avif",
+          "size": 4926,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 478,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F00Z3A9G0007E4VV006YKSK9",
+      "defaultName": "OMEGALUL",
+      "tags": [
+        "xdddd"
+      ],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "Mauriplss",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/1x.webp",
+          "mime": "image/webp",
+          "size": 1046,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/2x.webp",
+          "mime": "image/webp",
+          "size": 2652,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/3x.webp",
+          "mime": "image/webp",
+          "size": 4586,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/4x.webp",
+          "mime": "image/webp",
+          "size": 7340,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/2x.png",
+          "mime": "image/png",
+          "size": 8736,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/3x.png",
+          "mime": "image/png",
+          "size": 17990,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/1x.png",
+          "mime": "image/png",
+          "size": 2462,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/4x.png",
+          "mime": "image/png",
+          "size": 31101,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/1x.avif",
+          "mime": "image/avif",
+          "size": 1293,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/3x.avif",
+          "mime": "image/avif",
+          "size": 3734,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/4x.avif",
+          "mime": "image/avif",
+          "size": 5702,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F00Z3A9G0007E4VV006YKSK9/2x.avif",
+          "mime": "image/avif",
+          "size": 2437,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F5VW2TKR0003RCV2Z6JBHCST",
+      "defaultName": "catKISS",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "deadYZ",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/2x_static.png",
+          "mime": "image/png",
+          "size": 5925,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/3x_static.webp",
+          "mime": "image/webp",
+          "size": 2754,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/2x_static.webp",
+          "mime": "image/webp",
+          "size": 1790,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/3x_static.png",
+          "mime": "image/png",
+          "size": 11021,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/4x_static.png",
+          "mime": "image/png",
+          "size": 16132,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/1x_static.png",
+          "mime": "image/png",
+          "size": 2078,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/1x.gif",
+          "mime": "image/gif",
+          "size": 35572,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/3x.webp",
+          "mime": "image/webp",
+          "size": 139518,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/4x.webp",
+          "mime": "image/webp",
+          "size": 146510,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/1x.webp",
+          "mime": "image/webp",
+          "size": 40876,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/4x_static.avif",
+          "mime": "image/avif",
+          "size": 3312,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/4x.gif",
+          "mime": "image/gif",
+          "size": 355039,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/1x_static.webp",
+          "mime": "image/webp",
+          "size": 874,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/3x_static.avif",
+          "mime": "image/avif",
+          "size": 2617,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/2x.gif",
+          "mime": "image/gif",
+          "size": 113977,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/4x_static.webp",
+          "mime": "image/webp",
+          "size": 3086,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/2x.webp",
+          "mime": "image/webp",
+          "size": 86982,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/3x.gif",
+          "mime": "image/gif",
+          "size": 223344,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/2x_static.avif",
+          "mime": "image/avif",
+          "size": 1811,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1105,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/1x.avif",
+          "mime": "image/avif",
+          "size": 24237,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/3x.avif",
+          "mime": "image/avif",
+          "size": 79505,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/2x.avif",
+          "mime": "image/avif",
+          "size": 49974,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 51,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F5VW2TKR0003RCV2Z6JBHCST/4x.avif",
+          "mime": "image/avif",
+          "size": 110441,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 51,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 487,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6MXJD8R000F76KNAAV5HDGD",
+      "defaultName": "Bedge",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "PARUNA",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/3x.webp",
+          "mime": "image/webp",
+          "size": 4324,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/1x.png",
+          "mime": "image/png",
+          "size": 2730,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/1x.webp",
+          "mime": "image/webp",
+          "size": 938,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/2x.png",
+          "mime": "image/png",
+          "size": 9113,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/3x.png",
+          "mime": "image/png",
+          "size": 17360,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/4x.webp",
+          "mime": "image/webp",
+          "size": 4476,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/4x.png",
+          "mime": "image/png",
+          "size": 27444,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/2x.webp",
+          "mime": "image/webp",
+          "size": 2482,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/1x.avif",
+          "mime": "image/avif",
+          "size": 1266,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/2x.avif",
+          "mime": "image/avif",
+          "size": 2530,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/4x.avif",
+          "mime": "image/avif",
+          "size": 5066,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MXJD8R000F76KNAAV5HDGD/3x.avif",
+          "mime": "image/avif",
+          "size": 3817,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 343,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6MDFCSR0000WDA7ERT623YT",
+      "defaultName": "NODDERS",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "ethantp",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/1x.gif",
+          "mime": "image/gif",
+          "size": 9836,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/1x_static.png",
+          "mime": "image/png",
+          "size": 1991,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/1x.webp",
+          "mime": "image/webp",
+          "size": 14500,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/3x_static.avif",
+          "mime": "image/avif",
+          "size": 3014,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/2x.webp",
+          "mime": "image/webp",
+          "size": 32714,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2057,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/2x_static.png",
+          "mime": "image/png",
+          "size": 6227,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2056,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/1x_static.webp",
+          "mime": "image/webp",
+          "size": 894,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/2x.gif",
+          "mime": "image/gif",
+          "size": 28626,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/4x.webp",
+          "mime": "image/webp",
+          "size": 54426,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/3x_static.webp",
+          "mime": "image/webp",
+          "size": 3218,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/3x.gif",
+          "mime": "image/gif",
+          "size": 55298,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/4x_static.png",
+          "mime": "image/png",
+          "size": 18843,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/3x_static.png",
+          "mime": "image/png",
+          "size": 12183,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/4x.gif",
+          "mime": "image/gif",
+          "size": 89651,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1157,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/4x_static.webp",
+          "mime": "image/webp",
+          "size": 3558,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/3x.webp",
+          "mime": "image/webp",
+          "size": 52130,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/4x_static.avif",
+          "mime": "image/avif",
+          "size": 4124,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/2x.avif",
+          "mime": "image/avif",
+          "size": 14370,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/3x.avif",
+          "mime": "image/avif",
+          "size": 23591,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/1x.avif",
+          "mime": "image/avif",
+          "size": 7970,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 16,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6MDFCSR0000WDA7ERT623YT/4x.avif",
+          "mime": "image/avif",
+          "size": 36896,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 16,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01EZPG1FN80001SNAW00ADK2DY",
+      "defaultName": "Sadge",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "Mauriplss",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/4x.webp",
+          "mime": "image/webp",
+          "size": 9566,
+          "scale": 4,
+          "width": 168,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/2x.webp",
+          "mime": "image/webp",
+          "size": 3758,
+          "scale": 2,
+          "width": 84,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/1x.webp",
+          "mime": "image/webp",
+          "size": 1420,
+          "scale": 1,
+          "width": 42,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/3x.png",
+          "mime": "image/png",
+          "size": 18755,
+          "scale": 3,
+          "width": 126,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/2x.png",
+          "mime": "image/png",
+          "size": 9496,
+          "scale": 2,
+          "width": 84,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/1x.png",
+          "mime": "image/png",
+          "size": 2933,
+          "scale": 1,
+          "width": 42,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/3x.webp",
+          "mime": "image/webp",
+          "size": 6428,
+          "scale": 3,
+          "width": 126,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/4x.png",
+          "mime": "image/png",
+          "size": 29602,
+          "scale": 4,
+          "width": 168,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/1x.avif",
+          "mime": "image/avif",
+          "size": 1644,
+          "scale": 1,
+          "width": 42,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/4x.avif",
+          "mime": "image/avif",
+          "size": 7189,
+          "scale": 4,
+          "width": 168,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/2x.avif",
+          "mime": "image/avif",
+          "size": 3398,
+          "scale": 2,
+          "width": 84,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01EZPG1FN80001SNAW00ADK2DY/3x.avif",
+          "mime": "image/avif",
+          "size": 5152,
+          "scale": 3,
+          "width": 126,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 426,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01FCX95ZG80009QXBMY7YYTVBJ",
+      "defaultName": "DIESOFCRINGE",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "gartengartengarten",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2400,
+          "scale": 2,
+          "width": 130,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/4x_static.webp",
+          "mime": "image/webp",
+          "size": 5302,
+          "scale": 4,
+          "width": 260,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/3x_static.avif",
+          "mime": "image/avif",
+          "size": 3122,
+          "scale": 3,
+          "width": 195,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/3x_static.png",
+          "mime": "image/png",
+          "size": 21031,
+          "scale": 3,
+          "width": 195,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/2x_static.png",
+          "mime": "image/png",
+          "size": 11456,
+          "scale": 2,
+          "width": 130,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/3x_static.webp",
+          "mime": "image/webp",
+          "size": 3708,
+          "scale": 3,
+          "width": 195,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/1x_static.webp",
+          "mime": "image/webp",
+          "size": 1110,
+          "scale": 1,
+          "width": 65,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/1x_static.png",
+          "mime": "image/png",
+          "size": 3786,
+          "scale": 1,
+          "width": 65,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1291,
+          "scale": 1,
+          "width": 65,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/2x.gif",
+          "mime": "image/gif",
+          "size": 338412,
+          "scale": 2,
+          "width": 130,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/4x_static.png",
+          "mime": "image/png",
+          "size": 31961,
+          "scale": 4,
+          "width": 260,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/1x.gif",
+          "mime": "image/gif",
+          "size": 94404,
+          "scale": 1,
+          "width": 65,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/1x.webp",
+          "mime": "image/webp",
+          "size": 135204,
+          "scale": 1,
+          "width": 65,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/3x.gif",
+          "mime": "image/gif",
+          "size": 713845,
+          "scale": 3,
+          "width": 195,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/4x.gif",
+          "mime": "image/gif",
+          "size": 1257986,
+          "scale": 4,
+          "width": 260,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/4x_static.avif",
+          "mime": "image/avif",
+          "size": 4238,
+          "scale": 4,
+          "width": 260,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/3x.webp",
+          "mime": "image/webp",
+          "size": 529446,
+          "scale": 3,
+          "width": 195,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2226,
+          "scale": 2,
+          "width": 130,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/2x.webp",
+          "mime": "image/webp",
+          "size": 331146,
+          "scale": 2,
+          "width": 130,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/4x.webp",
+          "mime": "image/webp",
+          "size": 714620,
+          "scale": 4,
+          "width": 260,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/1x.avif",
+          "mime": "image/avif",
+          "size": 44520,
+          "scale": 1,
+          "width": 65,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/2x.avif",
+          "mime": "image/avif",
+          "size": 119546,
+          "scale": 2,
+          "width": 130,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/3x.avif",
+          "mime": "image/avif",
+          "size": 211054,
+          "scale": 3,
+          "width": 195,
+          "frameCount": 117,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FCX95ZG80009QXBMY7YYTVBJ/4x.avif",
+          "mime": "image/avif",
+          "size": 352532,
+          "scale": 4,
+          "width": 260,
+          "frameCount": 117,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 479,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6FTE8B80008E39HFFQJ7MWS",
+      "defaultName": "modCheck",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "Laden",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": {
+          "hex": "#FFAA00FF",
+          "__typename": "Color"
+        },
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/1x.webp",
+          "mime": "image/webp",
+          "size": 28504,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/1x.gif",
+          "mime": "image/gif",
+          "size": 19142,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/3x_static.webp",
+          "mime": "image/webp",
+          "size": 3620,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/4x_static.webp",
+          "mime": "image/webp",
+          "size": 3950,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/2x_static.png",
+          "mime": "image/png",
+          "size": 7652,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/2x.gif",
+          "mime": "image/gif",
+          "size": 57896,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/1x_static.webp",
+          "mime": "image/webp",
+          "size": 970,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/1x_static.png",
+          "mime": "image/png",
+          "size": 2363,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/3x.webp",
+          "mime": "image/webp",
+          "size": 100408,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2218,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/3x_static.avif",
+          "mime": "image/avif",
+          "size": 3724,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/4x.webp",
+          "mime": "image/webp",
+          "size": 102988,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/3x.gif",
+          "mime": "image/gif",
+          "size": 107056,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/2x.webp",
+          "mime": "image/webp",
+          "size": 62112,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1313,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/3x_static.png",
+          "mime": "image/png",
+          "size": 15028,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/4x_static.png",
+          "mime": "image/png",
+          "size": 23751,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/4x.gif",
+          "mime": "image/gif",
+          "size": 181945,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2334,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/4x_static.avif",
+          "mime": "image/avif",
+          "size": 4738,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/1x.avif",
+          "mime": "image/avif",
+          "size": 20874,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/3x.avif",
+          "mime": "image/avif",
+          "size": 79210,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/2x.avif",
+          "mime": "image/avif",
+          "size": 48912,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 28,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6FTE8B80008E39HFFQJ7MWS/4x.avif",
+          "mime": "image/avif",
+          "size": 113904,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 28,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 372,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6BN89H80006VBW12DRB1DJ0",
+      "defaultName": "donowall",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "Ttootts",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/3x_static.webp",
+          "mime": "image/webp",
+          "size": 3926,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2272,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/1x_static.webp",
+          "mime": "image/webp",
+          "size": 782,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/4x.gif",
+          "mime": "image/gif",
+          "size": 2345678,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/1x.gif",
+          "mime": "image/gif",
+          "size": 130410,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/1x.webp",
+          "mime": "image/webp",
+          "size": 178944,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/1x_static.png",
+          "mime": "image/png",
+          "size": 2386,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/3x_static.png",
+          "mime": "image/png",
+          "size": 16412,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/2x_static.png",
+          "mime": "image/png",
+          "size": 8298,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/4x_static.png",
+          "mime": "image/png",
+          "size": 27117,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1063,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/4x_static.webp",
+          "mime": "image/webp",
+          "size": 4062,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/3x_static.avif",
+          "mime": "image/avif",
+          "size": 3530,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/4x_static.avif",
+          "mime": "image/avif",
+          "size": 4984,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/3x.gif",
+          "mime": "image/gif",
+          "size": 1275792,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/2x.gif",
+          "mime": "image/gif",
+          "size": 589248,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2230,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/2x.webp",
+          "mime": "image/webp",
+          "size": 517880,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/3x.webp",
+          "mime": "image/webp",
+          "size": 913256,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/4x.webp",
+          "mime": "image/webp",
+          "size": 805330,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/1x.avif",
+          "mime": "image/avif",
+          "size": 55279,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/2x.avif",
+          "mime": "image/avif",
+          "size": 255143,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/4x.avif",
+          "mime": "image/avif",
+          "size": 841702,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 227,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6BN89H80006VBW12DRB1DJ0/3x.avif",
+          "mime": "image/avif",
+          "size": 512863,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 227,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 329,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6NMMEER00015NVG2J8ZH77N",
+      "defaultName": "peepoHey",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "JustRogan",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/4x.gif",
+          "mime": "image/gif",
+          "size": 45326,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2608,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/2x.gif",
+          "mime": "image/gif",
+          "size": 14257,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/4x_static.png",
+          "mime": "image/png",
+          "size": 24292,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/3x_static.webp",
+          "mime": "image/webp",
+          "size": 4394,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/4x_static.webp",
+          "mime": "image/webp",
+          "size": 5204,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/2x.webp",
+          "mime": "image/webp",
+          "size": 15734,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/1x_static.webp",
+          "mime": "image/webp",
+          "size": 1068,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/1x_static.png",
+          "mime": "image/png",
+          "size": 2426,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/4x.webp",
+          "mime": "image/webp",
+          "size": 31712,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/2x_static.png",
+          "mime": "image/png",
+          "size": 7832,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/1x.gif",
+          "mime": "image/gif",
+          "size": 5270,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/3x.avif",
+          "mime": "image/avif",
+          "size": 12574,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/2x.avif",
+          "mime": "image/avif",
+          "size": 8030,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1367,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/3x.webp",
+          "mime": "image/webp",
+          "size": 26980,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/3x.gif",
+          "mime": "image/gif",
+          "size": 27611,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/3x_static.png",
+          "mime": "image/png",
+          "size": 15624,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/1x.webp",
+          "mime": "image/webp",
+          "size": 6460,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/4x_static.avif",
+          "mime": "image/avif",
+          "size": 5802,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2632,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/4x.avif",
+          "mime": "image/avif",
+          "size": 19349,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 6,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/3x_static.avif",
+          "mime": "image/avif",
+          "size": 4223,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6NMMEER00015NVG2J8ZH77N/1x.avif",
+          "mime": "image/avif",
+          "size": 4185,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 6,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01FFWH9WV80000JT8GHDKHJNZC",
+      "defaultName": "Aware",
+      "tags": [
+        "clueless"
+      ],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "MegaKill3",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/1x.gif",
+          "mime": "image/gif",
+          "size": 12766,
+          "scale": 1,
+          "width": 35,
+          "frameCount": 33,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/3x_static.png",
+          "mime": "image/png",
+          "size": 8241,
+          "scale": 3,
+          "width": 105,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/1x_static.png",
+          "mime": "image/png",
+          "size": 1731,
+          "scale": 1,
+          "width": 35,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/1x_static.webp",
+          "mime": "image/webp",
+          "size": 1160,
+          "scale": 1,
+          "width": 35,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/2x_static.png",
+          "mime": "image/png",
+          "size": 4417,
+          "scale": 2,
+          "width": 70,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/3x_static.webp",
+          "mime": "image/webp",
+          "size": 4268,
+          "scale": 3,
+          "width": 105,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/2x_static.webp",
+          "mime": "image/webp",
+          "size": 2598,
+          "scale": 2,
+          "width": 70,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/2x.webp",
+          "mime": "image/webp",
+          "size": 164190,
+          "scale": 2,
+          "width": 70,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/3x.gif",
+          "mime": "image/gif",
+          "size": 122494,
+          "scale": 3,
+          "width": 105,
+          "frameCount": 59,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/1x.webp",
+          "mime": "image/webp",
+          "size": 71976,
+          "scale": 1,
+          "width": 35,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/4x_static.avif",
+          "mime": "image/avif",
+          "size": 4255,
+          "scale": 4,
+          "width": 140,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/4x_static.png",
+          "mime": "image/png",
+          "size": 12265,
+          "scale": 4,
+          "width": 140,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/2x.gif",
+          "mime": "image/gif",
+          "size": 42012,
+          "scale": 2,
+          "width": 70,
+          "frameCount": 49,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/4x.gif",
+          "mime": "image/gif",
+          "size": 182759,
+          "scale": 4,
+          "width": 140,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1210,
+          "scale": 1,
+          "width": 35,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/4x_static.webp",
+          "mime": "image/webp",
+          "size": 5630,
+          "scale": 4,
+          "width": 140,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/4x.webp",
+          "mime": "image/webp",
+          "size": 355046,
+          "scale": 4,
+          "width": 140,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/3x.webp",
+          "mime": "image/webp",
+          "size": 268170,
+          "scale": 3,
+          "width": 105,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/3x_static.avif",
+          "mime": "image/avif",
+          "size": 3227,
+          "scale": 3,
+          "width": 105,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/2x_static.avif",
+          "mime": "image/avif",
+          "size": 2105,
+          "scale": 2,
+          "width": 70,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/1x.avif",
+          "mime": "image/avif",
+          "size": 13635,
+          "scale": 1,
+          "width": 35,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/2x.avif",
+          "mime": "image/avif",
+          "size": 29174,
+          "scale": 2,
+          "width": 70,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/4x.avif",
+          "mime": "image/avif",
+          "size": 66758,
+          "scale": 4,
+          "width": 140,
+          "frameCount": 61,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FFWH9WV80000JT8GHDKHJNZC/3x.avif",
+          "mime": "image/avif",
+          "size": 44686,
+          "scale": 3,
+          "width": 105,
+          "frameCount": 61,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F6T8NM9R0007M5BTFWSP1YSJ",
+      "defaultName": "Clueless",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "100mp",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/2x.webp",
+          "mime": "image/webp",
+          "size": 2736,
+          "scale": 2,
+          "width": 72,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/3x.webp",
+          "mime": "image/webp",
+          "size": 4488,
+          "scale": 3,
+          "width": 108,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/1x.webp",
+          "mime": "image/webp",
+          "size": 1156,
+          "scale": 1,
+          "width": 36,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/4x.png",
+          "mime": "image/png",
+          "size": 17297,
+          "scale": 4,
+          "width": 144,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/2x.avif",
+          "mime": "image/avif",
+          "size": 2449,
+          "scale": 2,
+          "width": 72,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/2x.png",
+          "mime": "image/png",
+          "size": 5705,
+          "scale": 2,
+          "width": 72,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/3x.png",
+          "mime": "image/png",
+          "size": 11128,
+          "scale": 3,
+          "width": 108,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/4x.webp",
+          "mime": "image/webp",
+          "size": 6074,
+          "scale": 4,
+          "width": 144,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/1x.png",
+          "mime": "image/png",
+          "size": 2107,
+          "scale": 1,
+          "width": 36,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/1x.avif",
+          "mime": "image/avif",
+          "size": 1267,
+          "scale": 1,
+          "width": 36,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/3x.avif",
+          "mime": "image/avif",
+          "size": 3979,
+          "scale": 3,
+          "width": 108,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F6T8NM9R0007M5BTFWSP1YSJ/4x.avif",
+          "mime": "image/avif",
+          "size": 5499,
+          "scale": 4,
+          "width": 144,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": null,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F8G9MDAR0009YQPYZYCKHYKQ",
+      "defaultName": "SUSSY",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "EpicDonutDude_",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/2x_static.webp",
+          "mime": "image/webp",
+          "size": 1844,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/3x_static.webp",
+          "mime": "image/webp",
+          "size": 2906,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/3x_static.png",
+          "mime": "image/png",
+          "size": 12034,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/4x_static.png",
+          "mime": "image/png",
+          "size": 17462,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/1x_static.webp",
+          "mime": "image/webp",
+          "size": 860,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/1x.gif",
+          "mime": "image/gif",
+          "size": 80163,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/3x_static.avif",
+          "mime": "image/avif",
+          "size": 2676,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/1x_static.png",
+          "mime": "image/png",
+          "size": 2191,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/3x.gif",
+          "mime": "image/gif",
+          "size": 715404,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/4x_static.avif",
+          "mime": "image/avif",
+          "size": 3611,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/1x.webp",
+          "mime": "image/webp",
+          "size": 145236,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/2x_static.png",
+          "mime": "image/png",
+          "size": 6147,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/1x_static.avif",
+          "mime": "image/avif",
+          "size": 1090,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/4x_static.webp",
+          "mime": "image/webp",
+          "size": 3186,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/2x.gif",
+          "mime": "image/gif",
+          "size": 270542,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/4x.webp",
+          "mime": "image/webp",
+          "size": 558662,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/2x_static.avif",
+          "mime": "image/avif",
+          "size": 1914,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/4x.gif",
+          "mime": "image/gif",
+          "size": 1126150,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/3x.webp",
+          "mime": "image/webp",
+          "size": 526310,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/2x.webp",
+          "mime": "image/webp",
+          "size": 323622,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/1x.avif",
+          "mime": "image/avif",
+          "size": 49082,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/2x.avif",
+          "mime": "image/avif",
+          "size": 116649,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/3x.avif",
+          "mime": "image/avif",
+          "size": 204573,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 163,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F8G9MDAR0009YQPYZYCKHYKQ/4x.avif",
+          "mime": "image/avif",
+          "size": 314301,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 163,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 218,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01FF3R5C30000FF5VVCKV49G6J",
+      "defaultName": "xdd",
+      "tags": [
+        "rat",
+        "laugh",
+        "joy"
+      ],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "niochek_",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/2x.webp",
+          "mime": "image/webp",
+          "size": 2204,
+          "scale": 2,
+          "width": 114,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/3x.webp",
+          "mime": "image/webp",
+          "size": 3538,
+          "scale": 3,
+          "width": 171,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/1x.webp",
+          "mime": "image/webp",
+          "size": 924,
+          "scale": 1,
+          "width": 57,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/1x.png",
+          "mime": "image/png",
+          "size": 3432,
+          "scale": 1,
+          "width": 57,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/4x.png",
+          "mime": "image/png",
+          "size": 33306,
+          "scale": 4,
+          "width": 228,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/2x.png",
+          "mime": "image/png",
+          "size": 10959,
+          "scale": 2,
+          "width": 114,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/1x.avif",
+          "mime": "image/avif",
+          "size": 1093,
+          "scale": 1,
+          "width": 57,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/4x.webp",
+          "mime": "image/webp",
+          "size": 5240,
+          "scale": 4,
+          "width": 228,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/3x.png",
+          "mime": "image/png",
+          "size": 20805,
+          "scale": 3,
+          "width": 171,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/4x.avif",
+          "mime": "image/avif",
+          "size": 3579,
+          "scale": 4,
+          "width": 228,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/3x.avif",
+          "mime": "image/avif",
+          "size": 2622,
+          "scale": 3,
+          "width": 171,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01FF3R5C30000FF5VVCKV49G6J/2x.avif",
+          "mime": "image/avif",
+          "size": 1940,
+          "scale": 2,
+          "width": 114,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 429,
+      "__typename": "Emote"
+    },
+    {
+      "id": "01F61B1440000991F7SWQNMVX7",
+      "defaultName": "KEKW",
+      "tags": [],
+      "owner": {
+        "mainConnection": {
+          "platformDisplayName": "WH0LUV",
+          "__typename": "UserConnection"
+        },
+        "highestRoleColor": null,
+        "__typename": "User"
+      },
+      "deleted": false,
+      "flags": {
+        "defaultZeroWidth": false,
+        "private": false,
+        "publicListed": true,
+        "__typename": "EmoteFlags"
+      },
+      "imagesPending": false,
+      "images": [
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/1x.webp",
+          "mime": "image/webp",
+          "size": 698,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/2x.webp",
+          "mime": "image/webp",
+          "size": 1626,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/1x.png",
+          "mime": "image/png",
+          "size": 2268,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/4x.webp",
+          "mime": "image/webp",
+          "size": 2918,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/3x.webp",
+          "mime": "image/webp",
+          "size": 2500,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/4x.png",
+          "mime": "image/png",
+          "size": 20172,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/3x.png",
+          "mime": "image/png",
+          "size": 13230,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/2x.png",
+          "mime": "image/png",
+          "size": 7020,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/4x.avif",
+          "mime": "image/avif",
+          "size": 2781,
+          "scale": 4,
+          "width": 128,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/1x.avif",
+          "mime": "image/avif",
+          "size": 1006,
+          "scale": 1,
+          "width": 32,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/3x.avif",
+          "mime": "image/avif",
+          "size": 2188,
+          "scale": 3,
+          "width": 96,
+          "frameCount": 1,
+          "__typename": "Image"
+        },
+        {
+          "url": "https://cdn.7tv.app/emote/01F61B1440000991F7SWQNMVX7/2x.avif",
+          "mime": "image/avif",
+          "size": 1598,
+          "scale": 2,
+          "width": 64,
+          "frameCount": 1,
+          "__typename": "Image"
+        }
+      ],
+      "ranking": 299,
+      "__typename": "Emote"
+    }
+  ],
+  "fetchedAt": "2026-03-24T17:07:30.703Z",
+  "total": 20
+}

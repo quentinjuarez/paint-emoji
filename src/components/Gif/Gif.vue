@@ -1,116 +1,160 @@
 <template>
-  <div class="flex h-full items-center justify-center gap-8">
+  <div class="flex h-full items-center justify-center gap-12">
     <!-- CANVAS PREVIEW -->
-    <canvas
-      ref="canvasRef"
-      class="mr-32 scale-[3] rounded border border-gray-300"
-      :width="options.size"
-      :height="options.size"
-      @wheel.prevent="onWheel"
-      @mousedown="onMouseDown"
-    />
+    <div class="flex flex-col items-center gap-3">
+      <div class="relative" style="width: 384px; height: 384px">
+        <canvas
+          ref="canvasRef"
+          class="absolute left-0 top-0 origin-top-left scale-[3] cursor-grab rounded border border-white/20 active:cursor-grabbing"
+          :width="options.size"
+          :height="options.size"
+          @wheel.prevent="onWheel"
+          @mousedown="onMouseDown"
+        />
+      </div>
+      <!-- hints -->
+      <div class="flex gap-4 text-xs text-white/30">
+        <span>scroll → zoom</span>
+        <span>⌘+scroll → rotate</span>
+        <span>drag → move</span>
+      </div>
+      <!-- mask badge -->
+      <div v-if="currentMask" class="flex items-center gap-2 text-xs">
+        <span class="rounded bg-white/10 px-2 py-0.5 text-white/60">{{ currentMask.name }}</span>
+        <span
+          v-if="currentMask.animated"
+          class="rounded bg-purple-500/30 px-2 py-0.5 text-purple-300"
+        >
+          {{ gifFrames.length ? gifFrames.length + ' frames' : 'loading…' }}
+        </span>
+        <span v-else class="rounded bg-white/10 px-2 py-0.5 text-white/40">static</span>
+      </div>
+    </div>
 
-    <div class="space-y-8">
-      <DragAndDrop accept="image/*" @file="onDropFile" />
-      <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onInputChange" />
-
+    <!-- RIGHT PANEL -->
+    <div class="w-60 space-y-5">
+      <!-- Upload -->
       <div class="space-y-2">
+        <DragAndDrop accept="image/*" @file="onDropFile" />
+        <input class="hidden" ref="inputRef" type="file" accept="image/*" @change="onInputChange" />
         <button
           @click="browseFiles"
-          class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
+          class="flex w-full items-center justify-center gap-2 rounded bg-white/10 px-3 py-2 text-sm transition-colors hover:bg-white/20"
         >
           <span>{{ file ? 'Change Image' : 'Upload Image' }}</span>
           <Shortcut shortcut="f" ctrl @confirm="browseFiles" />
         </button>
-        <p class="text-center text-white">{{ file?.name }}</p>
+        <p v-if="file" class="truncate text-center text-xs text-white/50">{{ file.name }}</p>
+      </div>
 
-        <!-- SETTINGS -->
-        <div class="w-full space-y-2">
-          <div class="flex items-center justify-between">
-            <h2>Settings</h2>
-            <button
-              @click="resetOptions"
-              class="flex items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20"
-            >
-              <span>Reset</span>
-            </button>
-          </div>
-          <div>
-            <label>Delay: </label>
-            <input
-              class="accent-purple-500"
-              type="range"
-              min="10"
-              max="200"
-              step="10"
-              v-model.number="options.delay"
-            />
-          </div>
-          <div>
-            <label>Zoom: </label>
-            <input
-              class="accent-purple-500"
-              type="range"
-              min="0.5"
-              max="2"
-              step="0.01"
-              v-model.number="options.zoom"
-            />
-          </div>
-          <div>
-            <label>Translate X: </label>
-            <input
-              class="accent-purple-500"
-              type="range"
-              min="-128"
-              max="128"
-              step="1"
-              v-model.number="options.translateX"
-            />
-          </div>
-          <div>
-            <label>Translate Y: </label>
-            <input
-              class="accent-purple-500"
-              type="range"
-              min="-128"
-              max="128"
-              step="1"
-              v-model.number="options.translateY"
-            />
-          </div>
-          <div>
-            <label>Rotate: </label>
-            <input
-              class="accent-purple-500"
-              type="range"
-              min="0"
-              max="360"
-              step="1"
-              v-model.number="options.rotation"
-            />
-          </div>
-          <div>
-            <label>Frame Opacity: </label>
-            <input
-              class="accent-purple-500"
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              v-model.number="options.frameOpacity"
-            />
-          </div>
+      <!-- Settings -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold">Settings</span>
+          <button
+            @click="resetOptions"
+            class="rounded bg-white/10 px-2 py-0.5 text-xs transition-colors hover:bg-white/20"
+          >
+            Reset
+          </button>
         </div>
+        <div class="space-y-0.5">
+          <div class="flex justify-between text-xs text-white/60">
+            <label>Zoom</label><span>{{ options.zoom.toFixed(2) }}×</span>
+          </div>
+          <input
+            class="w-full accent-purple-500"
+            type="range"
+            min="0.5"
+            max="2"
+            step="0.01"
+            v-model.number="options.zoom"
+          />
+        </div>
+        <div class="space-y-0.5">
+          <div class="flex justify-between text-xs text-white/60">
+            <label>Horizontal</label><span>{{ options.translateX }}px</span>
+          </div>
+          <input
+            class="w-full accent-purple-500"
+            type="range"
+            min="-128"
+            max="128"
+            step="1"
+            v-model.number="options.translateX"
+          />
+        </div>
+        <div class="space-y-0.5">
+          <div class="flex justify-between text-xs text-white/60">
+            <label>Vertical</label><span>{{ options.translateY }}px</span>
+          </div>
+          <input
+            class="w-full accent-purple-500"
+            type="range"
+            min="-128"
+            max="128"
+            step="1"
+            v-model.number="options.translateY"
+          />
+        </div>
+        <div class="space-y-0.5">
+          <div class="flex justify-between text-xs text-white/60">
+            <label>Rotate</label><span>{{ Math.round(options.rotation) }}°</span>
+          </div>
+          <input
+            class="w-full accent-purple-500"
+            type="range"
+            min="0"
+            max="360"
+            step="1"
+            v-model.number="options.rotation"
+          />
+        </div>
+        <div class="space-y-0.5">
+          <div class="flex justify-between text-xs text-white/60">
+            <label>Mask Opacity</label><span>{{ Math.round(options.frameOpacity * 100) }}%</span>
+          </div>
+          <input
+            class="w-full accent-purple-500"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            v-model.number="options.frameOpacity"
+          />
+        </div>
+        <div v-if="currentMask?.animated" class="space-y-0.5">
+          <div class="flex justify-between text-xs text-white/60">
+            <label>Frame Delay</label><span>{{ options.delay }}ms</span>
+          </div>
+          <input
+            class="w-full accent-purple-500"
+            type="range"
+            min="10"
+            max="200"
+            step="10"
+            v-model.number="options.delay"
+          />
+        </div>
+      </div>
 
+      <!-- Actions -->
+      <div v-if="file" class="space-y-2">
         <button
-          v-if="file"
+          @click="downloadPng"
+          class="flex w-full items-center justify-center gap-2 rounded bg-white/10 px-3 py-2 text-sm transition-colors hover:bg-white/20"
+        >
+          Download PNG
+        </button>
+        <button
+          v-if="currentMask?.animated"
           @click="handleGenerate"
           :disabled="generating || !gifFrames.length"
-          class="mx-auto flex w-48 items-center justify-center gap-2 rounded bg-white/10 px-2 py-1 transition-colors hover:bg-white/20 disabled:opacity-50"
+          class="flex w-full items-center justify-center gap-2 rounded bg-purple-600 px-3 py-2 text-sm transition-colors hover:bg-purple-500 disabled:opacity-40"
         >
-          <span>{{ generating ? 'Generating...' : 'Generate GIF' }}</span>
+          {{ generating ? 'Generating…' : 'Generate GIF' }}
         </button>
+        <p v-if="generating" class="text-center text-xs text-white/40">This may take a moment…</p>
       </div>
     </div>
   </div>
@@ -126,11 +170,10 @@ const inputRef = ref<HTMLInputElement | null>(null)
 const file = ref<File>()
 const image = ref<HTMLImageElement | null>(null)
 const gifFrames = ref<GifFrame[]>([])
+const maskImageEl = ref<HTMLImageElement | null>(null)
 const generating = ref(false)
 
 const options = ref<GifOptions>({ ...DEFAULT_GIF_OPTIONS })
-
-// ---- Store ----
 
 const store = useStore()
 const { currentMask } = storeToRefs(store)
@@ -149,7 +192,6 @@ const onDropFile = (droppedFile: File) => loadImage(droppedFile)
 const loadImage = (newFile: File) => {
   file.value = newFile
   options.value.input = newFile.name.replace(/\.[^.]+$/, '')
-
   const reader = new FileReader()
   reader.onload = (e) => {
     const img = new Image()
@@ -168,15 +210,35 @@ const resetOptions = () => {
   options.value = { ...DEFAULT_GIF_OPTIONS, mask, input }
 }
 
-// ---- Mask frames ----
+// ---- Mask loading ----
 
-const loadMaskFrames = async () => {
-  if (!currentMask.value?.animate || !currentMask.value?.src) {
+const getMaskUrl = () => {
+  const mask = currentMask.value
+  if (!mask?.images?.length) return null
+  const entry =
+    mask.images.find((i: any) => i.scale === store.selectedMaskScale) ??
+    mask.images[mask.images.length - 1]
+  return entry?.url ?? null
+}
+
+const loadMask = async () => {
+  const url = getMaskUrl()
+
+  if (url) {
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.src = url
+    maskImageEl.value = img
+  } else {
+    maskImageEl.value = null
+  }
+
+  if (!currentMask.value?.animated || !url) {
     gifFrames.value = []
     return
   }
   try {
-    gifFrames.value = await extractGifFrames(currentMask.value.src)
+    gifFrames.value = await extractGifFrames(url)
     frameIndex = 0
     lastFrameTime = 0
   } catch (err) {
@@ -185,7 +247,7 @@ const loadMaskFrames = async () => {
   }
 }
 
-// ---- Animation loop (requestAnimationFrame) ----
+// ---- Animation loop ----
 
 let animFrameId: number | null = null
 let frameIndex = 0
@@ -202,9 +264,9 @@ const animate = (timestamp: number) => {
   const { size } = options.value
   const frames = gifFrames.value
   const img = image.value
+  const maskEl = maskImageEl.value
 
   if (frames.length > 0) {
-    // Advance frame based on elapsed time
     const elapsed = timestamp - lastFrameTime
     if (elapsed >= options.value.delay) {
       lastFrameTime = timestamp - (elapsed % options.value.delay)
@@ -212,10 +274,15 @@ const animate = (timestamp: number) => {
     }
     renderFrame(ctx, img, frames[frameIndex], options.value)
   } else {
-    // No mask frames loaded yet — show static image preview
     ctx.clearRect(0, 0, size, size)
     if (img?.complete && img.naturalWidth > 0) {
       drawUserImage(ctx, img, options.value)
+    }
+    if (maskEl?.complete && maskEl.naturalWidth > 0) {
+      ctx.save()
+      ctx.globalAlpha = options.value.frameOpacity
+      ctx.drawImage(maskEl, 0, 0, size, size)
+      ctx.restore()
     }
   }
 
@@ -250,15 +317,24 @@ const onMouseUp = () => {
 
 const onWheel = (e: WheelEvent) => {
   if (e.ctrlKey || e.metaKey) {
-    // Rotate
     const newRotation = options.value.rotation + e.deltaY * 0.1
     options.value.rotation = Math.round(Math.min(360, Math.max(0, newRotation)))
   } else {
-    // Zoom
     const delta = -e.deltaY * 0.001
     const newZoom = Math.round((options.value.zoom + delta) * 100) / 100
     options.value.zoom = Math.min(2, Math.max(0.5, newZoom))
   }
+}
+
+// ---- Download ----
+
+const downloadPng = () => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+  const link = document.createElement('a')
+  link.download = `${currentMask.value?.name ?? 'mask'}-${options.value.input || 'image'}.png`
+  link.href = canvas.toDataURL('image/png')
+  link.click()
 }
 
 // ---- Generate GIF ----
@@ -281,7 +357,7 @@ onMounted(() => {
   if (currentMask.value) {
     options.value.mask = currentMask.value.name
   }
-  loadMaskFrames()
+  loadMask()
 
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseup', onMouseUp)
@@ -295,10 +371,10 @@ onUnmounted(() => {
   if (animFrameId !== null) cancelAnimationFrame(animFrameId)
 })
 
-watch(currentMask, () => {
+watch([currentMask, () => store.selectedMaskScale], () => {
   if (currentMask.value) {
     options.value.mask = currentMask.value.name
   }
-  loadMaskFrames()
+  loadMask()
 })
 </script>

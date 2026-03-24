@@ -50,7 +50,8 @@ export const useStore = defineStore('shape-to-emoji', {
     textSettings: {
       tight: false
     },
-    currentMask: undefined as any | undefined
+    currentMask: undefined as any | undefined,
+    selectedMaskScale: 1 as number
   }),
   getters: {
     lastFrame(state) {

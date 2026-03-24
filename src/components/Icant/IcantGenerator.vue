@@ -268,10 +268,16 @@ const onWheel = (e: WheelEvent) => {
 }
 
 watch(
-  () => store.currentMask,
+  [() => store.currentMask, () => store.selectedMaskScale],
   () => {
+    const mask = store.currentMask
+    const imgEntry =
+      mask?.images?.find((i: any) => i.scale === store.selectedMaskScale) ??
+      mask?.images?.[mask.images.length - 1]
+    const src = imgEntry?.url ?? icant
+
     const image = new Image()
-    image.src = icant
+    image.src = src
 
     currentMaskImageElement.value = image
 
@@ -291,7 +297,7 @@ const downloadImage = async () => {
 
   const canvas = document.getElementById('canvas') as HTMLCanvasElement
   const link = document.createElement('a')
-  link.download = `${store.currentMask}-${fileName}.png`
+  link.download = `${store.currentMask?.name ?? 'mask'}-${fileName}.png`
   link.href = canvas.toDataURL('image/png')
   link.click()
 }

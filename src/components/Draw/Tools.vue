@@ -9,7 +9,7 @@
 
       <OptionsTools v-show="store.tab === 'draw'" />
 
-      <ThemeTools v-show="store.tab !== 'icant' && store.tab !== 'gif'" />
+      <ThemeTools v-show="store.tab !== 'gif'" />
 
       <MaskTools v-show="store.tab === 'gif'" />
     </div>
