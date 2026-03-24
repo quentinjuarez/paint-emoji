@@ -108,21 +108,33 @@ function sleep(ms) {
 
 // ── Parse emote from API response ─────────────────────────────────────────────
 function parseEmote(item) {
-  // Group images by scale, keep all scales
-  const images = item.images
-    .filter(
-      (img) => img.mime === 'image/gif' || img.mime === 'image/png' || img.mime === 'image/webp'
-    )
-    .map((img) => ({
-      scale: img.scale,
-      url: img.url,
-      width: img.width,
-      frameCount: img.frameCount,
-      mime: img.mime
-    }))
-    .sort((a, b) => a.scale - b.scale)
+  const animated = item.images.some((img) => img.frameCount > 1)
+  // Target mime: gif for animated, png for static
+  const targetMime = animated ? 'image/gif' : 'image/png'
 
-  const animated = images.some((img) => img.frameCount > 1)
+  // Keep exactly one image per scale — the gif/png variant
+  // Group by scale, pick the matching mime, fallback to first entry for that scale
+  const byScale = {}
+  for (const img of item.images) {
+    const s = img.scale
+    if (!byScale[s]) byScale[s] = []
+    byScale[s].push(img)
+  }
+
+  const images = Object.keys(byScale)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .map((scale) => {
+      const variants = byScale[scale]
+      const pick = variants.find((i) => i.mime === targetMime) ?? variants[0]
+      return {
+        scale: pick.scale,
+        url: pick.url,
+        width: pick.width,
+        frameCount: pick.frameCount,
+        mime: pick.mime
+      }
+    })
 
   return {
     id: item.id,
@@ -135,15 +147,31 @@ function parseEmote(item) {
 
 async function main() {
   console.log(`\n7tv mask scraper`)
+  console.log(`  Filter:  defaultZeroWidth=true (overlay emotes only)`)
   console.log(`  Sort:    ${SORT_BY}`)
   console.log(`  Target:  ${COUNT} emotes`)
   console.log(`  Output:  src/assets/data/masks.json\n`)
 
-  const maxPages = Math.ceil(COUNT / PER_PAGE)
-  const allEmotes = []
+  // Fetch page 1 first to discover totalCount and pageCount from the API
+  process.stdout.write(`Fetching page 1... `)
+  const firstResult = await fetchPage(1)
+  const apiTotal = firstResult.totalCount
+  const apiPageCount = firstResult.pageCount
+  const allEmotes = firstResult.items.map(parseEmote)
+  process.stdout.write(
+    `${allEmotes.length} emotes — API total: ${apiTotal} across ${apiPageCount} pages\n`
+  )
 
-  for (let page = 1; page <= maxPages; page++) {
-    if (page > 1) await sleep(DELAY_MS)
+  // Never request more pages than the API has
+  const wantedPages = Math.ceil(COUNT / PER_PAGE)
+  const maxPages = Math.min(wantedPages, apiPageCount)
+
+  if (maxPages < wantedPages) {
+    console.log(`  ⚠  Only ${apiTotal} emotes available with this filter (requested ${COUNT})`)
+  }
+
+  for (let page = 2; page <= maxPages; page++) {
+    await sleep(DELAY_MS)
     process.stdout.write(`Fetching page ${page}/${maxPages}... `)
     try {
       const result = await fetchPage(page)
