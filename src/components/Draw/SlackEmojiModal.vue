@@ -1,5 +1,5 @@
 <template>
-  <BaseModal @close="emit('close')">
+  <UiDialog @close="emit('close')">
     <Picker
       :data="emojiIndex"
       set="google"
@@ -14,18 +14,18 @@
         'rgba(211,209,255,.7)'
       ]"
     />
-  </BaseModal>
+  </UiDialog>
 </template>
 
 <script setup lang="ts">
 import data from 'emoji-mart-vue-fast/data/google.json'
 import 'emoji-mart-vue-fast/css/emoji-mart.css'
-// @ts-ignore
+// @ts-expect-error
 import { Picker, EmojiIndex } from 'emoji-mart-vue-fast/src'
 
 // Create emoji data index.
 // We can change it (for example, filter by category) before passing to the component.
-let emojiIndex = new EmojiIndex(data)
+const emojiIndex = new EmojiIndex(data)
 
 const selectEmoji = (emoji: { native: string; colons: string }) => {
   const splittedColons = emoji.colons.split(':')

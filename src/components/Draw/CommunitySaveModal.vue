@@ -1,5 +1,5 @@
 <template>
-  <BaseModal @close="emit('close')">
+  <UiDialog @close="emit('close')">
     <div class="relative size-[544px] rounded-lg bg-slate-900 p-4">
       <EmojiPreviewCanvas class="absolute inset-0 -z-10" />
 
@@ -27,12 +27,12 @@
         <UiCheckbox id="isPublic" v-model="isPublic">Public</UiCheckbox>
 
         <UiButton class="w-full" :disabled="!isValid || !payload.canvas" @click="handleSave">
-          <BaseLoader class="size-4" v-if="loading" />
+          <UiLoader class="size-4" v-if="loading" />
           <span>Save</span>
         </UiButton>
       </div>
     </div>
-  </BaseModal>
+  </UiDialog>
 </template>
 
 <script setup lang="ts">

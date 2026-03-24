@@ -1,5 +1,5 @@
 <template>
-  <BaseModal @close="emit('close')">
+  <UiDialog @close="emit('close')">
     <div class="h-[646px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">Browse</h2>
       <div>
@@ -17,7 +17,7 @@
           >
             <img :src="item.preview" class="w-full rounded-lg bg-white" />
             <div class="mt-1 flex items-start gap-2">
-              <BaseAvatar v-if="item.author" v-bind="item.author" />
+              <UiAvatar v-if="item.author" v-bind="item.author" />
               <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
             </div>
           </button>
@@ -45,7 +45,7 @@
         <UiButton class="bg-green-600 hover:bg-green-500" @click="handleSelect">Import</UiButton>
       </div>
     </div>
-  </BaseModal>
+  </UiDialog>
 </template>
 
 <script setup lang="ts">

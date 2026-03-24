@@ -76,13 +76,13 @@ const handleUpload = (e: Event) => {
 
     if (!file) return
 
-    var reader = new FileReader()
+    const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = function () {
       if (reader.result) {
         // Ensure reader.result is valid before setting it as src
 
-        var image = new Image()
+        const image = new Image()
 
         image.src = reader.result as string
         devSrc.value = reader.result as string
@@ -91,10 +91,10 @@ const handleUpload = (e: Event) => {
         image.height = CANVAS_SIZE
 
         image.onload = function () {
-          var canvas = document.createElement('canvas')
+          const canvas = document.createElement('canvas')
           canvas.width = CANVAS_SIZE
           canvas.height = CANVAS_SIZE
-          var context = canvas.getContext('2d', { willReadFrequently: true })
+          const context = canvas.getContext('2d', { willReadFrequently: true })
           context?.drawImage(image, 0, 0, CANVAS_SIZE, CANVAS_SIZE)
           for (let i = 0; i < TILES_PER_ROW; i++) {
             for (let j = 0; j < TILES_PER_ROW; j++) {
@@ -138,7 +138,7 @@ const rgbToPallette = (r: number, g: number, b: number) => {
   let minIndex = 0
 
   for (let i = 0; i < EMOJI.length; i++) {
-    // @ts-ignore
+    // @ts-expect-error
     const [r1, g1, b1] = PALLETTE[EMOJI[i]]
     const dist = distance(r, g, b, r1, g1, b1)
     if (dist < minDistance) {

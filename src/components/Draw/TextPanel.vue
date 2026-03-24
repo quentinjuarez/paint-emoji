@@ -30,7 +30,7 @@
         :class="{ 'mb-4': (index + 1) % 7 === 0 }"
       >
         <div v-for="(char, index) in line" :key="index" class="size-4">
-          <BaseEmoji v-show="char !== '0'" :emoji="store.textEmoji" size="sm" />
+          <UiEmoji v-show="char !== '0'" :emoji="store.textEmoji" size="sm" />
         </div>
       </div>
     </div>

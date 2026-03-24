@@ -13,14 +13,12 @@
 <script setup lang="ts">
 import tippy from 'tippy.js'
 
-type LightUser = {
+const props = defineProps<{
   username: string
   firstName: string
   lastName: string
   profilePicture?: string
-}
-
-const props = defineProps<LightUser>()
+}>()
 
 const initials = computed(() => {
   const { firstName, lastName } = props

@@ -43,7 +43,7 @@
             class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
             @click.prevent.stop="handleSelect(e)"
           >
-            <BaseEmoji :emoji="e" size="md" />
+            <UiEmoji :emoji="e" size="md" />
           </button>
         </div>
       </div>
@@ -63,7 +63,7 @@
             @click.prevent.stop="handleSelect(e)"
             v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
           >
-            <BaseEmoji :emoji="e" size="md" />
+            <UiEmoji :emoji="e" size="md" />
           </button>
 
           <!-- <p v-if="filteredEmoji.length === 0" class="text-sm text-gray-500">No emoji found</p> -->
@@ -82,7 +82,7 @@ import slackEmojisRaw from '@/assets/data/slack-emojis.json'
 
 function codesToValue(unified: string) {
   const codePoints = [`0x${unified.split('-')[0]}`]
-  // @ts-ignore
+  // @ts-expect-error
   return String.fromCodePoint.apply(null, codePoints)
 }
 

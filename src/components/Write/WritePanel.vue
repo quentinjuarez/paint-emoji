@@ -16,7 +16,7 @@
       }"
     >
       <div v-for="(el, index) in displayWriteArr" :key="index" class="size-7">
-        <BaseEmoji :emoji="el" size="lg" />
+        <UiEmoji :emoji="el" size="lg" />
       </div>
     </div>
   </div>

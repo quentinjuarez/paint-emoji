@@ -1,5 +1,5 @@
 <template>
-  <BaseModal @close="emit('close')">
+  <UiDialog @close="emit('close')">
     <div class="h-[530px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">My drawings</h2>
       <div class="flex h-[calc(216px+216px+24px)] flex-wrap gap-4 overflow-auto">
@@ -14,7 +14,7 @@
           >
             <img :src="drawing.preview" class="w-full rounded-lg bg-white" />
             <div class="mt-1 flex items-start gap-2">
-              <BaseAvatar v-if="drawing.author" v-bind="drawing.author" />
+              <UiAvatar v-if="drawing.author" v-bind="drawing.author" />
               <h3 class="line-clamp-2 h-12 text-base font-bold">{{ drawing.title }}</h3>
             </div>
           </button>
@@ -65,7 +65,7 @@
         <button @click="handleSelect" class="rounded-lg bg-green-500 p-2 text-white">Import</button>
       </div>
     </div>
-  </BaseModal>
+  </UiDialog>
 </template>
 
 <script setup lang="ts">

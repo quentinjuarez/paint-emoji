@@ -1,4 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# yarn version-patch && git add package.json && git commit -m "deploy: v$(node -p "require('./package.json').version")"

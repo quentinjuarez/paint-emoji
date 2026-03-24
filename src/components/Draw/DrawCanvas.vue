@@ -18,7 +18,7 @@
           :key="j"
           class="size-3 ring-1 ring-transparent hover:ring-purple-500 md:size-4 lg:size-4"
         >
-          <BaseEmoji
+          <UiEmoji
             v-if="value !== '0'"
             :emoji="store.emojiSelection[valueToIndex(value)]"
             size="sm"

@@ -1,6 +1,5 @@
 <template>
   <span class="flex items-center justify-center">
-    <!-- LOADING SVG -->
     <svg
       class="animate-spin text-white"
       xmlns="http://www.w3.org/2000/svg"
@@ -23,5 +22,3 @@
     </svg>
   </span>
 </template>
-
-<script setup lang="ts"></script>

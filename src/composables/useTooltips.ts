@@ -11,7 +11,7 @@ const useTooltips = () => {
     const tooltipEls = document.querySelectorAll('[data-tooltip]') as NodeListOf<HTMLElement>
 
     tooltipEls.forEach((tooltipEl) => {
-      // @ts-ignore
+      // @ts-expect-error
       const tooltip = tippy(tooltipEl, {
         content(reference) {
           return reference.getAttribute('data-tooltip')

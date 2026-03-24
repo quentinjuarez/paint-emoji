@@ -19,7 +19,7 @@
           ]"
           @click="store.selectedEmojiIndex = index"
         >
-          <BaseEmoji :emoji="element" size="lg" />
+          <UiEmoji :emoji="element" size="lg" />
           <!-- TRASH -->
           <button
             v-if="!disabledHover && element.type !== 'empty'"
