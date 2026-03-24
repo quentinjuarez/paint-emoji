@@ -1,14 +1,14 @@
 <template>
-  <nav class="flex gap-0.5 rounded-xl bg-white/5 p-0.5">
+  <nav class="flex items-center gap-1 border-b border-white/10">
     <a
       v-for="tab in tabs"
       :key="tab.name"
       :href="`#${tab.name}`"
-      class="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all"
+      class="flex items-center gap-1.5 border-b-2 px-4 py-2.5 text-sm font-medium transition-colors"
       :class="
         tab.name === props.tab
-          ? 'bg-white/15 text-white shadow-sm'
-          : 'text-white/50 hover:bg-white/10 hover:text-white'
+          ? '-mb-px border-white/70 text-white'
+          : 'border-transparent text-white/40 hover:border-white/30 hover:text-white'
       "
     >
       <span>{{ tab.icon }}</span>

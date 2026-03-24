@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="min-h-screen bg-slate-900 font-custom text-slate-50 selection:bg-purple-500 selection:text-white"
+      class="h-dvh overflow-hidden bg-slate-900 font-custom text-slate-50 selection:bg-purple-500 selection:text-white"
     >
       <DesktopLayout />
     </div>

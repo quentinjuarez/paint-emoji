@@ -1,46 +1,44 @@
 <template>
-  <header
-    class="sticky top-0 z-20 border-b border-white/10 bg-slate-900/95 shadow-sm backdrop-blur-sm"
-  >
-    <div class="flex items-center gap-3 px-4 py-2.5">
-      <!-- Brand -->
-      <div class="mr-1 select-none">
-        <span class="text-base font-bold tracking-tight">✨ Shape Emoji</span>
-      </div>
+  <header class="flex h-12 shrink-0 items-stretch border-b border-white/10 bg-slate-900 px-4">
+    <!-- Brand -->
+    <div class="flex shrink-0 select-none items-center border-r border-white/10 pr-4">
+      <span class="text-sm font-semibold tracking-tight text-white">Shape Emoji</span>
+    </div>
 
-      <!-- Section nav -->
-      <nav class="flex gap-0.5 rounded-xl bg-white/5 p-0.5">
-        <a
-          :href="emojiHref"
-          class="flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all"
-          :class="
-            store.section === 'emojis'
-              ? 'bg-purple-500 text-white shadow-sm'
-              : 'text-white/50 hover:bg-white/10 hover:text-white'
-          "
-        >
-          🎨 Emojis
-        </a>
-        <a
-          href="#gif"
-          class="flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all"
-          :class="
-            store.section === 'gif'
-              ? 'bg-purple-500 text-white shadow-sm'
-              : 'text-white/50 hover:bg-white/10 hover:text-white'
-          "
-        >
-          🎬 Génération
-        </a>
-      </nav>
+    <!-- Section nav -->
+    <nav class="flex items-stretch pl-1">
+      <a
+        :href="emojiHref"
+        class="flex items-center px-4 text-sm font-medium transition-colors border-b-2"
+        :class="
+          store.section === 'emojis'
+            ? 'border-purple-500 text-white'
+            : 'border-transparent text-white/40 hover:text-white/70'
+        "
+      >
+        Emojis
+      </a>
+      <a
+        href="#gif"
+        class="flex items-center px-4 text-sm font-medium transition-colors border-b-2"
+        :class="
+          store.section === 'gif'
+            ? 'border-purple-500 text-white'
+            : 'border-transparent text-white/40 hover:text-white/70'
+        "
+      >
+        Génération
+      </a>
+    </nav>
 
-      <!-- Spacer -->
-      <div class="flex-1" />
+    <!-- Spacer -->
+    <div class="flex-1" />
 
-      <!-- Version badge -->
-      <span class="hidden text-xs text-white/25 sm:block">v{{ version }}</span>
+    <!-- Version -->
+    <span class="hidden items-center text-xs text-white/20 sm:flex">v{{ version }}</span>
 
-      <!-- User menu -->
+    <!-- User menu -->
+    <div class="flex items-center pl-4">
       <UserMenu />
     </div>
   </header>

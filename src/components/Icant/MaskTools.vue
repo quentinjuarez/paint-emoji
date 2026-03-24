@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <div class="flex flex-col space-y-3">
-      <h2 class="text-lg font-bold">Masks</h2>
+  <div class="flex h-full flex-col gap-3">
+      <h2 class="shrink-0 text-sm font-semibold text-white/70">Masks</h2>
       <!-- Search bar -->
       <div class="relative">
         <input
           v-model="search"
           type="text"
           placeholder="Search masks..."
-          class="w-full rounded bg-white/10 px-3 py-1.5 pr-8 text-sm text-white outline-none placeholder:text-white/40 focus:ring-1 focus:ring-purple-500"
+          class="w-full rounded border border-slate-600 bg-slate-800 px-3 py-2 pr-8 text-sm text-white outline-none placeholder:text-white/40 transition-colors focus:border-purple-500"
         />
         <button
           v-if="search"
@@ -37,29 +36,28 @@
         </button>
       </div>
       <!-- Count -->
-      <p class="text-xs text-white/30">{{ filteredMasks.length }} masks</p>
+      <p class="shrink-0 text-xs text-white/30">{{ filteredMasks.length }} masks</p>
+
       <!-- Virtual grid -->
-      <div
-        ref="scrollEl"
-        class="flex max-h-[calc(100vh-300px)] w-[272px] flex-wrap gap-3 overflow-auto"
-      >
-        <button
-          v-for="mask in visibleMasks"
-          :key="mask.id"
-          class="flex size-30 flex-col items-center justify-center rounded border-2 border-transparent transition-colors hover:bg-white/10"
-          :class="{ '!border-purple-500': mask.id === currentMask?.id }"
-          @click="selectMask(mask)"
-        >
-          <img :src="previewUrl(mask)" class="size-18" loading="lazy" />
-          <span class="max-w-25 truncate text-xs">{{ mask.name }}</span>
-        </button>
-        <!-- Sentinel for infinite loading -->
-        <div ref="sentinelEl" class="w-full" />
-        <p v-if="filteredMasks.length === 0" class="w-full text-center text-sm text-white/40">
-          No masks found
-        </p>
+      <div ref="scrollEl" class="min-h-0 flex-1 overflow-y-auto">
+        <div class="grid grid-cols-3 gap-1.5 content-start pb-2">
+          <button
+            v-for="mask in visibleMasks"
+            :key="mask.id"
+            class="flex aspect-square w-full flex-col items-center justify-center gap-1 rounded border-2 border-transparent p-1 transition-colors hover:bg-white/10"
+            :class="{ 'border-purple-500!': mask.id === currentMask?.id }"
+            @click="selectMask(mask)"
+          >
+            <img :src="previewUrl(mask)" class="size-10 object-contain" loading="lazy" />
+            <span class="w-full truncate text-center text-xs leading-tight">{{ mask.name }}</span>
+          </button>
+          <!-- Sentinel for infinite loading -->
+          <div ref="sentinelEl" class="col-span-3" />
+          <p v-if="filteredMasks.length === 0" class="col-span-3 text-center text-sm text-white/40">
+            No masks found
+          </p>
+        </div>
       </div>
-    </div>
   </div>
 </template>
 
