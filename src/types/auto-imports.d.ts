@@ -8,11 +8,14 @@ export {}
 declare global {
   const DEFAULT_GIF_OPTIONS: typeof import('../utils/gif').DEFAULT_GIF_OPTIONS
   const EffectScope: typeof import('vue').EffectScope
+  const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
+  const createPinia: typeof import('pinia').createPinia
   const customRef: typeof import('vue').customRef
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
+  const defineStore: typeof import('pinia').defineStore
   const download: typeof import('../utils/download').default
   const drawUserImage: typeof import('../utils/gif').drawUserImage
   const effectScope: typeof import('vue').effectScope
@@ -20,6 +23,7 @@ declare global {
   const extractGifFrames: typeof import('../utils/gif').extractGifFrames
   const generateAndDownloadGif: typeof import('../utils/gif').generateAndDownloadGif
   const generateGif: typeof import('../utils/gif').generateGif
+  const getActivePinia: typeof import('pinia').getActivePinia
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
@@ -32,10 +36,17 @@ declare global {
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
   const isShallow: typeof import('vue').isShallow
+  const mapActions: typeof import('pinia').mapActions
+  const mapGetters: typeof import('pinia').mapGetters
+  const mapState: typeof import('pinia').mapState
+  const mapStores: typeof import('pinia').mapStores
+  const mapWritableState: typeof import('pinia').mapWritableState
   const markRaw: typeof import('vue').markRaw
   const nextTick: typeof import('vue').nextTick
   const onActivated: typeof import('vue').onActivated
   const onBeforeMount: typeof import('vue').onBeforeMount
+  const onBeforeRouteLeave: typeof import('vue-router').onBeforeRouteLeave
+  const onBeforeRouteUpdate: typeof import('vue-router').onBeforeRouteUpdate
   const onBeforeUnmount: typeof import('vue').onBeforeUnmount
   const onBeforeUpdate: typeof import('vue').onBeforeUpdate
   const onDeactivated: typeof import('vue').onDeactivated
@@ -56,6 +67,8 @@ declare global {
   const removeDiacritics: typeof import('../utils/removeDiacritics').default
   const renderFrame: typeof import('../utils/gif').renderFrame
   const resolveComponent: typeof import('vue').resolveComponent
+  const setActivePinia: typeof import('pinia').setActivePinia
+  const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
@@ -76,6 +89,7 @@ declare global {
   const useCssVars: typeof import('vue').useCssVars
   const useDevice: typeof import('../composables/useDevice').default
   const useId: typeof import('vue').useId
+  const useLink: typeof import('vue-router').useLink
   const useModel: typeof import('vue').useModel
   const useOnlineStore: typeof import('../stores/online').useOnlineStore
   const useRoute: typeof import('vue-router').useRoute
@@ -108,17 +122,21 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly DEFAULT_GIF_OPTIONS: UnwrapRef<typeof import('../utils/gif')['DEFAULT_GIF_OPTIONS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly download: UnwrapRef<typeof import('../utils/download')['default']>
     readonly drawUserImage: UnwrapRef<typeof import('../utils/gif')['drawUserImage']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extractGifFrames: UnwrapRef<typeof import('../utils/gif')['extractGifFrames']>
     readonly generateAndDownloadGif: UnwrapRef<typeof import('../utils/gif')['generateAndDownloadGif']>
     readonly generateGif: UnwrapRef<typeof import('../utils/gif')['generateGif']>
+    readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
@@ -131,10 +149,17 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
+    readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
+    readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
+    readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
+    readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
+    readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
+    readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
+    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('vue-router')['onBeforeRouteUpdate']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
     readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
     readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
@@ -155,6 +180,8 @@ declare module 'vue' {
     readonly removeDiacritics: UnwrapRef<typeof import('../utils/removeDiacritics')['default']>
     readonly renderFrame: UnwrapRef<typeof import('../utils/gif')['renderFrame']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
+    readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
@@ -175,6 +202,7 @@ declare module 'vue' {
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDevice: UnwrapRef<typeof import('../composables/useDevice')['default']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
+    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useOnlineStore: UnwrapRef<typeof import('../stores/online')['useOnlineStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>

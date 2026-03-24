@@ -1,14 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from './routes'
-import globalMiddleware from '@/middlewares/global'
 
 export default () => {
   const router = createRouter({
-    history: createWebHistory(__BASE_URL__),
-    routes: routes
+    history: createWebHistory(),
+    routes: [
+  {
+    path: '',
+    name: 'index',
+    component: () => import('@/pages/index.vue'),
+    meta: {}
+  },
+  {
+    path: '/oauth/google',
+    name: 'oauth-google',
+    component: () => import('@/pages/oauth/google.vue'),
+    meta: {}
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('@/pages/logout.vue'),
+    meta: {}
+  },
+    {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: () => import('@/pages/error.vue')
+  }
+]
   })
 
-  router.beforeEach(globalMiddleware)
 
   return router
 }

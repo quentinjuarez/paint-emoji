@@ -7,25 +7,19 @@ import vue from '@vitejs/plugin-vue'
 import { version } from './package.json'
 import tailwindcss from '@tailwindcss/vite';
 
-// https://vitejs.dev/config/
-export default ({ command }) => {
-  const isDev = command === 'serve'
-  const baseUrl = '/' //isDev ? '/' : '/shape-to-emoji'
-  const apiUrl = isDev ? 'http://localhost:4001' : 'https://quentinjuarez-server.up.railway.app'
+export default () => {
+  const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4001' : 'https://quentinjuarez-server.up.railway.app'
 
   return defineConfig({
     server: {
       port: 5555
     },
-    base: baseUrl,
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src')
       }
     },
     define: {
-      __BASE_URL__: `'${baseUrl}'`,
-      __DEV__: isDev,
       __VERSION__: `'${version}'`,
       __API_URL__: `'${apiUrl}'`
     },
@@ -35,9 +29,9 @@ export default ({ command }) => {
     plugins: [
       AutoImport({
         imports: [
-          { pinia: ['storeToRefs'] },
+         'pinia',
           'vue',
-          { 'vue-router': ['useRouter', 'useRoute'] }
+          'vue-router'
         ],
         dirs: ['./src/stores', './src/utils', './src/composables'],
         dts: './src/types/auto-imports.d.ts',
