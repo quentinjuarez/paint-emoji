@@ -22,14 +22,14 @@ const initServices = () => {
   })
   // attach token
   apiClient.interceptors.request.use(
-    (config: any) => {
+    (config) => {
       const token = onlineStore.accessToken
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`
       }
       return config
     },
-    (error: any) => {
+    (error) => {
       return Promise.reject(error)
     }
   )

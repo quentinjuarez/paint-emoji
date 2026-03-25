@@ -11,7 +11,7 @@
 import { cn } from '@/components/ui/utils'
 import { cva } from 'class-variance-authority'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     variant?: 'default' | 'ghost' | 'destructive' | 'outline'
     size?: 'default' | 'sm' | 'icon'

@@ -6,7 +6,7 @@
         $attrs.class as string
       )
     "
-    :value="modelValue"
+    :value="props.modelValue"
     v-bind="filteredAttrs"
     @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
   />

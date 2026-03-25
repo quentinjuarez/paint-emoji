@@ -227,7 +227,7 @@ const getMaskUrl = () => {
   const mask = currentMask.value
   if (!mask?.images?.length) return null
   const entry =
-    mask.images.find((i: any) => i.scale === store.selectedMaskScale) ??
+    mask.images.find((i) => i.scale === store.selectedMaskScale) ??
     mask.images[mask.images.length - 1]
   return entry?.url ?? null
 }

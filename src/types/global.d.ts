@@ -1,5 +1,6 @@
 export {}
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class GIFType {
   constructor(_options: {
     quality: number
