@@ -143,6 +143,29 @@
         </UiButton>
         <p v-if="generating" class="text-center text-xs text-white/40">This may take a moment…</p>
       </div>
+
+      <!-- Slack Preview -->
+      <div v-if="file && previewUrl" class="space-y-2">
+        <span class="text-sm font-semibold">Slack Preview</span>
+        <div class="rounded-lg bg-[rgb(26,29,33)] p-3 text-sm">
+          <div class="flex gap-2">
+            <img
+              src="https://ca.slack-edge.com/TSTD7B5L5-U0329SYSH09-36b9d0738769-512"
+              class="mt-0.5 h-9 w-9 shrink-0 rounded object-cover"
+            />
+            <div class="min-w-0">
+              <div class="flex items-baseline gap-2">
+                <span class="font-bold text-white">Quentin</span>
+                <span class="text-xs text-white/40">10 h 37</span>
+              </div>
+              <div class="mt-1 flex flex-wrap items-center gap-x-0.5 text-white/80">
+                <span>Voici un emoji</span>
+                <img :src="previewUrl" class="inline-block h-5 w-5 align-middle" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -155,6 +178,7 @@ const PREVIEW_SCALE = 3
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const inputRef = ref<HTMLInputElement | null>(null)
 const file = ref<File>()
+const previewUrl = ref<string>('')
 const image = ref<HTMLImageElement | null>(null)
 const gifFrames = ref<GifFrame[]>([])
 const maskImageEl = ref<HTMLImageElement | null>(null)
@@ -239,6 +263,7 @@ const loadMask = async () => {
 let animFrameId: number | null = null
 let frameIndex = 0
 let lastFrameTime = 0
+let previewTick = 0
 
 const animate = (timestamp: number) => {
   const canvas = canvasRef.value
@@ -271,6 +296,11 @@ const animate = (timestamp: number) => {
       ctx.drawImage(maskEl, 0, 0, size, size)
       ctx.restore()
     }
+  }
+
+  previewTick++
+  if (previewTick % 8 === 0 && file.value) {
+    previewUrl.value = canvas.toDataURL('image/png')
   }
 
   animFrameId = requestAnimationFrame(animate)
