@@ -12,21 +12,15 @@ export default () => {
         redirect: '/emojis',
         children: [
           {
-            path: 'gif',
-            name: 'gif',
-            component: () => import('@/pages/gif.vue'),
+            path: 'generate',
+            name: 'generate',
+            component: () => import('@/pages/generate.vue'),
             meta: {}
           },
           {
             path: 'emojis',
             name: 'emojis',
             component: () => import('@/pages/emojis.vue'),
-            meta: {}
-          },
-          {
-            path: 'gif-beta',
-            name: 'gif-beta',
-            component: () => import('@/pages/gif-beta.vue'),
             meta: {}
           }
         ]

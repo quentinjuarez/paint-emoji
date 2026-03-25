@@ -29,8 +29,8 @@
         </span>
         <span v-else class="rounded bg-white/10 px-2 py-0.5 text-white/40">static</span>
       </div>
-      <!-- format badge -->
-      <div v-if="inputFormat" class="flex items-center gap-1 text-xs text-white/30">
+      <!-- format badge (beta only) -->
+      <div v-if="store.beta && inputFormat" class="flex items-center gap-1 text-xs text-white/30">
         <span
           class="rounded px-2 py-0.5"
           :class="
@@ -51,12 +51,12 @@
     <div class="w-60 space-y-5">
       <!-- Upload -->
       <div class="space-y-2">
-        <DragAndDrop accept="image/*,.webp" @file="onDropFile" />
+        <DragAndDrop :accept="store.beta ? 'image/*,.webp' : 'image/*'" @file="onDropFile" />
         <input
           class="hidden"
           ref="inputRef"
           type="file"
-          accept="image/*,.webp"
+          :accept="store.beta ? 'image/*,.webp' : 'image/*'"
           @change="onInputChange"
         />
         <UiButton class="w-full" @click="browseFiles">
@@ -137,7 +137,7 @@
             v-model.number="options.frameOpacity"
           />
         </div>
-        <div v-if="isAnimated" class="space-y-0.5">
+        <div v-if="currentMask?.animated" class="space-y-0.5">
           <div class="flex justify-between text-xs text-white/60">
             <label>Frame Delay</label><span>{{ options.delay }}ms</span>
           </div>
@@ -155,11 +155,15 @@
       <!-- Actions -->
       <div v-if="file" class="space-y-2">
         <UiButton class="w-full" @click="downloadPng">Download PNG</UiButton>
-        <UiButton class="w-full bg-green-700 hover:bg-green-600" @click="downloadWebp">
+        <UiButton
+          v-if="store.beta"
+          class="w-full bg-green-700 hover:bg-green-600"
+          @click="downloadWebp"
+        >
           Download WebP
         </UiButton>
         <UiButton
-          v-if="isAnimated"
+          v-if="currentMask?.animated"
           class="w-full bg-purple-600 hover:bg-purple-500"
           @click="handleGenerateGif"
           :disabled="generating || !maskFrames.length"
@@ -167,7 +171,7 @@
           {{ generating ? 'Generating…' : 'Generate GIF' }}
         </UiButton>
         <UiButton
-          v-if="isAnimated"
+          v-if="store.beta && currentMask?.animated"
           class="w-full bg-green-700 hover:bg-green-600"
           @click="handleGenerateWebp"
           :disabled="generatingWebp || !maskFrames.length"
@@ -210,18 +214,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  type AnimFrame,
-  type FrameRenderOptions,
-  DEFAULT_FRAME_OPTIONS,
-  extractAnimatedFrames,
-  drawUserImageOnCtx,
-  renderCompositeFrame,
-  generateGifBlob,
-  generateAnimatedWebpBlob,
-  canvasToWebpBlob
-} from '@/utils/frames'
-
 const PREVIEW_SCALE = 3
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
@@ -242,8 +234,6 @@ const options = ref<FrameRenderOptions>({ ...DEFAULT_FRAME_OPTIONS })
 const store = useStore()
 const { currentMask } = storeToRefs(store)
 
-const isAnimated = computed(() => !!currentMask.value?.animated && maskFrames.value.length > 0)
-
 // ---- File handling ----
 
 const browseFiles = () => inputRef.value?.click()
@@ -259,19 +249,19 @@ const loadImage = async (newFile: File) => {
   file.value = newFile
   options.value.input = newFile.name.replace(/\.[^.]+$/, '')
 
-  // Detect format
-  const ext = newFile.name.split('.').pop()?.toLowerCase() ?? ''
-  inputFormat.value = ext
-
-  // Try extracting animated frames (works for animated WebP & GIF inputs)
-  try {
-    const frames = await extractAnimatedFrames(newFile)
-    inputFrames.value = frames
-  } catch {
+  if (store.beta) {
+    const ext = newFile.name.split('.').pop()?.toLowerCase() ?? ''
+    inputFormat.value = ext
+    try {
+      inputFrames.value = await extractAnimatedFrames(newFile)
+    } catch {
+      inputFrames.value = []
+    }
+  } else {
+    inputFormat.value = ''
     inputFrames.value = []
   }
 
-  // Always load as a static image for the compositing canvas
   const reader = new FileReader()
   reader.onload = (e) => {
     const img = new Image()
@@ -287,20 +277,26 @@ const loadImage = async (newFile: File) => {
 
 const resetOptions = () => {
   const { mask, input } = options.value
-  options.value = { ...DEFAULT_FRAME_OPTIONS, mask, input }
+  if (store.beta) {
+    options.value = { ...DEFAULT_FRAME_OPTIONS, mask, input }
+  } else {
+    options.value = { ...DEFAULT_GIF_OPTIONS, mask, input } as FrameRenderOptions
+  }
 }
 
 // ---- Mask loading ----
 
-const getBetaImages = () => {
+const getMaskImages = () => {
   const mask = currentMask.value
   if (!mask) return null
-  // Prefer imagesBeta (webp), fall back to images (gif/png)
-  return mask.imagesBeta?.length ? mask.imagesBeta : mask.images
+  if (store.beta) {
+    return mask.imagesBeta?.length ? mask.imagesBeta : mask.images
+  }
+  return mask.images
 }
 
 const getMaskUrl = () => {
-  const imgs = getBetaImages()
+  const imgs = getMaskImages()
   if (!imgs?.length) return null
   const entry = imgs.find((i) => i.scale === store.selectedMaskScale) ?? imgs[imgs.length - 1]
   return entry?.url ?? null
@@ -324,9 +320,12 @@ const loadMask = async () => {
   }
 
   try {
-    const frames = await extractAnimatedFrames(url)
-    maskFrames.value = frames
-    options.value.delay = getDelayFromFrameCount(frames.length)
+    if (store.beta) {
+      maskFrames.value = await extractAnimatedFrames(url)
+    } else {
+      maskFrames.value = await extractGifFrames(url)
+    }
+    options.value.delay = getDelayFromFrameCount(maskFrames.value.length)
     frameIndex = 0
     lastFrameTime = 0
   } catch (err) {
@@ -371,11 +370,19 @@ const animate = (timestamp: number) => {
       lastFrameTime = timestamp - (elapsed % options.value.delay)
       frameIndex = (frameIndex + 1) % frames.length
     }
-    renderCompositeFrame(ctx, img, frames[frameIndex], options.value)
+    if (store.beta) {
+      renderCompositeFrame(ctx, img, frames[frameIndex], options.value)
+    } else {
+      renderFrame(ctx, img, frames[frameIndex], options.value as GifOptions)
+    }
   } else {
     ctx.clearRect(0, 0, size, size)
     if (img?.complete && img.naturalWidth > 0) {
-      drawUserImageOnCtx(ctx, img, options.value)
+      if (store.beta) {
+        drawUserImageOnCtx(ctx, img, options.value)
+      } else {
+        drawUserImage(ctx, img, options.value as GifOptions)
+      }
     }
     if (maskEl?.complete && maskEl.naturalWidth > 0) {
       ctx.save()
@@ -435,10 +442,21 @@ const onWheel = (e: WheelEvent) => {
 const downloadPng = () => {
   const canvas = canvasRef.value
   if (!canvas) return
-  canvas.toBlob((blob) => {
-    if (!blob) return
-    download(blob, `${currentMask.value?.name ?? 'mask'}-${options.value.input || 'image'}`, 'png')
-  }, 'image/png')
+  if (store.beta) {
+    canvas.toBlob((blob) => {
+      if (!blob) return
+      download(
+        blob,
+        `${currentMask.value?.name ?? 'mask'}-${options.value.input || 'image'}`,
+        'png'
+      )
+    }, 'image/png')
+  } else {
+    const link = document.createElement('a')
+    link.download = `${currentMask.value?.name ?? 'mask'}-${options.value.input || 'image'}.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+  }
 }
 
 const downloadWebp = async () => {
@@ -458,8 +476,12 @@ const handleGenerateGif = async () => {
   if (!file.value || maskFrames.value.length === 0 || generating.value) return
   generating.value = true
   try {
-    const blob = await generateGifBlob(image.value, maskFrames.value, options.value)
-    download(blob, `${options.value.mask}-${options.value.input}`, 'gif')
+    if (store.beta) {
+      const blob = await generateGifBlob(image.value, maskFrames.value, options.value)
+      download(blob, `${options.value.mask}-${options.value.input}`, 'gif')
+    } else {
+      await generateAndDownloadGif(image.value, maskFrames.value, options.value as GifOptions)
+    }
   } catch (err) {
     console.error('Failed to generate GIF:', err)
   } finally {
@@ -518,4 +540,12 @@ watch([currentMask, () => store.selectedMaskScale], () => {
   }
   loadMask()
 })
+
+// Reload mask when switching engines (images vs imagesBeta)
+watch(
+  () => store.beta,
+  () => {
+    loadMask()
+  }
+)
 </script>

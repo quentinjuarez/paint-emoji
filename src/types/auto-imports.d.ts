@@ -6,11 +6,11 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const DEFAULT_FRAME_OPTIONS: typeof import('../utils/frames').DEFAULT_FRAME_OPTIONS
-  const DEFAULT_GIF_OPTIONS: typeof import('../utils/gif').DEFAULT_GIF_OPTIONS
+  const DEFAULT_FRAME_OPTIONS: typeof import('../utils/webp-engine').DEFAULT_FRAME_OPTIONS
+  const DEFAULT_GIF_OPTIONS: typeof import('../utils/gif-engine').DEFAULT_GIF_OPTIONS
   const EffectScope: typeof import('vue').EffectScope
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
-  const canvasToWebpBlob: typeof import('../utils/frames').canvasToWebpBlob
+  const canvasToWebpBlob: typeof import('../utils/webp-engine').canvasToWebpBlob
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
@@ -19,16 +19,16 @@ declare global {
   const defineComponent: typeof import('vue').defineComponent
   const defineStore: typeof import('pinia').defineStore
   const download: typeof import('../utils/download').default
-  const drawUserImage: typeof import('../utils/gif').drawUserImage
-  const drawUserImageOnCtx: typeof import('../utils/frames').drawUserImageOnCtx
+  const drawUserImage: typeof import('../utils/gif-engine').drawUserImage
+  const drawUserImageOnCtx: typeof import('../utils/webp-engine').drawUserImageOnCtx
   const effectScope: typeof import('vue').effectScope
-  const extractAnimatedFrames: typeof import('../utils/frames').extractAnimatedFrames
+  const extractAnimatedFrames: typeof import('../utils/webp-engine').extractAnimatedFrames
   const extractFrames: (typeof import('../utils/extractGifFrames'))['default']
-  const extractGifFrames: typeof import('../utils/gif').extractGifFrames
-  const generateAndDownloadGif: typeof import('../utils/gif').generateAndDownloadGif
-  const generateAnimatedWebpBlob: typeof import('../utils/frames').generateAnimatedWebpBlob
-  const generateGif: typeof import('../utils/gif').generateGif
-  const generateGifBlob: typeof import('../utils/frames').generateGifBlob
+  const extractGifFrames: typeof import('../utils/gif-engine').extractGifFrames
+  const generateAndDownloadGif: typeof import('../utils/gif-engine').generateAndDownloadGif
+  const generateAnimatedWebpBlob: typeof import('../utils/webp-engine').generateAnimatedWebpBlob
+  const generateGif: typeof import('../utils/gif-engine').generateGif
+  const generateGifBlob: typeof import('../utils/webp-engine').generateGifBlob
   const getActivePinia: typeof import('pinia').getActivePinia
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
@@ -71,8 +71,8 @@ declare global {
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
   const removeDiacritics: typeof import('../utils/removeDiacritics').default
-  const renderCompositeFrame: typeof import('../utils/frames').renderCompositeFrame
-  const renderFrame: typeof import('../utils/gif').renderFrame
+  const renderCompositeFrame: typeof import('../utils/webp-engine').renderCompositeFrame
+  const renderFrame: typeof import('../utils/gif-engine').renderFrame
   const resolveComponent: typeof import('vue').resolveComponent
   const setActivePinia: typeof import('pinia').setActivePinia
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
@@ -118,11 +118,11 @@ declare global {
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { AnimFrame, FrameRenderOptions } from '../utils/frames'
-  import('../utils/frames')
+  export type { GifFrame, GifOptions } from '../utils/gif-engine'
+  import('../utils/gif-engine')
   // @ts-ignore
-  export type { GifFrame, GifOptions } from '../utils/gif'
-  import('../utils/gif')
+  export type { AnimFrame, FrameRenderOptions } from '../utils/webp-engine'
+  import('../utils/webp-engine')
 }
 
 // for vue template auto import
@@ -130,11 +130,11 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
-    readonly DEFAULT_FRAME_OPTIONS: UnwrapRef<typeof import('../utils/frames')['DEFAULT_FRAME_OPTIONS']>
-    readonly DEFAULT_GIF_OPTIONS: UnwrapRef<typeof import('../utils/gif')['DEFAULT_GIF_OPTIONS']>
+    readonly DEFAULT_FRAME_OPTIONS: UnwrapRef<typeof import('../utils/webp-engine')['DEFAULT_FRAME_OPTIONS']>
+    readonly DEFAULT_GIF_OPTIONS: UnwrapRef<typeof import('../utils/gif-engine')['DEFAULT_GIF_OPTIONS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
-    readonly canvasToWebpBlob: UnwrapRef<typeof import('../utils/frames')['canvasToWebpBlob']>
+    readonly canvasToWebpBlob: UnwrapRef<typeof import('../utils/webp-engine')['canvasToWebpBlob']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
@@ -143,15 +143,15 @@ declare module 'vue' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly download: UnwrapRef<typeof import('../utils/download')['default']>
-    readonly drawUserImage: UnwrapRef<typeof import('../utils/gif')['drawUserImage']>
-    readonly drawUserImageOnCtx: UnwrapRef<typeof import('../utils/frames')['drawUserImageOnCtx']>
+    readonly drawUserImage: UnwrapRef<typeof import('../utils/gif-engine')['drawUserImage']>
+    readonly drawUserImageOnCtx: UnwrapRef<typeof import('../utils/webp-engine')['drawUserImageOnCtx']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
-    readonly extractAnimatedFrames: UnwrapRef<typeof import('../utils/frames')['extractAnimatedFrames']>
-    readonly extractGifFrames: UnwrapRef<typeof import('../utils/gif')['extractGifFrames']>
-    readonly generateAndDownloadGif: UnwrapRef<typeof import('../utils/gif')['generateAndDownloadGif']>
-    readonly generateAnimatedWebpBlob: UnwrapRef<typeof import('../utils/frames')['generateAnimatedWebpBlob']>
-    readonly generateGif: UnwrapRef<typeof import('../utils/gif')['generateGif']>
-    readonly generateGifBlob: UnwrapRef<typeof import('../utils/frames')['generateGifBlob']>
+    readonly extractAnimatedFrames: UnwrapRef<typeof import('../utils/webp-engine')['extractAnimatedFrames']>
+    readonly extractGifFrames: UnwrapRef<typeof import('../utils/gif-engine')['extractGifFrames']>
+    readonly generateAndDownloadGif: UnwrapRef<typeof import('../utils/gif-engine')['generateAndDownloadGif']>
+    readonly generateAnimatedWebpBlob: UnwrapRef<typeof import('../utils/webp-engine')['generateAnimatedWebpBlob']>
+    readonly generateGif: UnwrapRef<typeof import('../utils/gif-engine')['generateGif']>
+    readonly generateGifBlob: UnwrapRef<typeof import('../utils/webp-engine')['generateGifBlob']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
@@ -194,8 +194,8 @@ declare module 'vue' {
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly removeDiacritics: UnwrapRef<typeof import('../utils/removeDiacritics')['default']>
-    readonly renderCompositeFrame: UnwrapRef<typeof import('../utils/frames')['renderCompositeFrame']>
-    readonly renderFrame: UnwrapRef<typeof import('../utils/gif')['renderFrame']>
+    readonly renderCompositeFrame: UnwrapRef<typeof import('../utils/webp-engine')['renderCompositeFrame']>
+    readonly renderFrame: UnwrapRef<typeof import('../utils/gif-engine')['renderFrame']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>

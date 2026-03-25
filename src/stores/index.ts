@@ -51,15 +51,16 @@ export const useStore = defineStore('shape-to-emoji', {
       tight: false
     },
     currentMask: undefined as Mask | undefined,
-    selectedMaskScale: 4 as number
+    selectedMaskScale: 4 as number,
+    beta: false
   }),
   getters: {
     lastFrame(state) {
       if (state.historyIndex < -1) return
       return state.history[state.historyIndex]
     },
-    section(state): 'emojis' | 'gif' {
-      return state.tab === 'gif' ? 'gif' : 'emojis'
+    section(state): 'emojis' | 'generate' {
+      return state.tab === 'generate' ? 'generate' : 'emojis'
     }
   },
   actions: {
