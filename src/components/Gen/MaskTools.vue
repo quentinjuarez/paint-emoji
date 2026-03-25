@@ -60,14 +60,6 @@
 import { X } from 'lucide-vue-next'
 import masksData from '@/assets/data/masks.json'
 
-type Mask = {
-  id: string
-  name: string
-  tags: string[]
-  animated: boolean
-  images: { scale: number; url: string; width: number; frameCount: number; mime: string }[]
-}
-
 const SCALES = [1, 2, 3, 4]
 const PAGE_SIZE = 40
 
@@ -102,7 +94,7 @@ const previewUrl = (mask: Mask) =>
 
 const currentMaskHasScale = (scale: number) => {
   if (!currentMask.value) return scale === 1
-  return currentMask.value.images?.some((i: any) => i.scale === scale) ?? scale === 1
+  return currentMask.value.images?.some((i) => i.scale === scale) ?? scale === 1
 }
 
 const selectMask = (mask: Mask) => {

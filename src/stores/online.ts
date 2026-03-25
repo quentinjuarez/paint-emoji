@@ -24,7 +24,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
 
         this.accessToken = accessToken
         return this.getMe()
-      } catch (error) {
+      } catch (_) {
         return false
       }
     },
@@ -40,7 +40,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.me = me
 
         return true
-      } catch (error) {
+      } catch (_) {
         return false
       }
     },
@@ -50,7 +50,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         await this.$api.drawings.saveDrawing(drawing)
 
         return true
-      } catch (error) {
+      } catch (_) {
         return false
       }
     },
@@ -60,7 +60,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.search = search
 
         return true
-      } catch (error) {
+      } catch (_) {
         return false
       }
     },
@@ -82,7 +82,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.search = search
 
         return true
-      } catch (error) {
+      } catch (_) {
         return false
       }
     },
@@ -92,7 +92,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.drawings = items
 
         return true
-      } catch (error) {
+      } catch (_) {
         return false
       }
     },
@@ -103,7 +103,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         await this.getMineDrawings()
 
         return true
-      } catch (error) {
+      } catch (_) {
         return false
       }
     }

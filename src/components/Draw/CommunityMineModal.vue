@@ -1,15 +1,15 @@
 <template>
   <UiDialog @close="emit('close')">
-    <div class="h-[530px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
+    <div class="h-132 w-3xl space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">My drawings</h2>
       <div class="flex h-[calc(216px+216px+24px)] flex-wrap gap-4 overflow-auto">
         <div
           v-for="drawing in onlineStore.drawings"
           :key="drawing._id"
-          class="group relative h-[216px] w-[168px] shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
+          class="group relative h-54 w-42 shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
         >
           <button
-            class="w-[168px] rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
+            class="w-42 rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
             @click="handleClick($event, drawing._id)"
           >
             <img :src="drawing.preview" class="w-full rounded-lg bg-white" />

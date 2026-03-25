@@ -1,6 +1,6 @@
 <template>
   <UiDialog @close="emit('close')">
-    <div class="h-[646px] w-[768px] space-y-4 rounded-lg bg-slate-900 p-4">
+    <div class="h-160 w-3xl space-y-4 rounded-lg bg-slate-900 p-4">
       <h2 class="text-xl font-bold">Browse</h2>
       <div>
         <UiInput v-model="query" placeholder="Search" @input="debounceSearch" />
@@ -9,10 +9,10 @@
         <div
           v-for="item in onlineStore.search.items"
           :key="item._id"
-          class="h-[216px] w-[168px] shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
+          class="h-54 w-42 shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
         >
           <button
-            class="w-[168px] rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
+            class="w-42 rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
             @click="handleClick($event, item._id)"
           >
             <img :src="item.preview" class="w-full rounded-lg bg-white" />
@@ -93,7 +93,7 @@ const handleNext = () => {
   }
 }
 
-const tooltip = ref<any>(null)
+const tooltip = ref<any | null>(null)
 const tooltipRef = ref(null)
 const tooltipId = ref<string>()
 

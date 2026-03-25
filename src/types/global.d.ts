@@ -51,6 +51,14 @@ declare global {
     emojis: Emoji[]
   }
 
+  type Mask = {
+    id: string
+    name: string
+    tags: string[]
+    animated: boolean
+    images: { scale: number; url: string; width: number; frameCount: number; mime: string }[]
+  }
+
   interface LightUser {
     _id: string
     username: string

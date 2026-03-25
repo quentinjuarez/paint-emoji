@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full flex-col">
-    <AppHeader />
+    <LayoutHeader />
 
     <RouterView />
   </div>

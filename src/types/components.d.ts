@@ -11,7 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppHeader: typeof import('./../components/Layout/AppHeader.vue')['default']
+    AppHeader: typeof import('../components/Layout/LayoutHeader.vue')['default']
     BaseAvatar: typeof import('./../components/Base/BaseAvatar.vue')['default']
     BaseEmoji: typeof import('./../components/Base/BaseEmoji.vue')['default']
     BaseLoader: typeof import('./../components/Base/BaseLoader.vue')['default']
@@ -31,7 +31,9 @@ declare module 'vue' {
     EmojiPreviewCanvas: typeof import('./../components/Draw/EmojiPreviewCanvas.vue')['default']
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
     Gif: typeof import('./../components/Gen/Gif.vue')['default']
+    Header: typeof import('../components/Layout/LayoutHeader.vue')['default']
     HeaderTabs: typeof import('./../components/Layout/HeaderTabs.vue')['default']
+    LayoutHeader: typeof import('./../components/Layout/LayoutHeader.vue')['default']
     MaskTools: typeof import('./../components/Gen/MaskTools.vue')['default']
     OptionsTools: typeof import('./../components/Draw/OptionsTools.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
