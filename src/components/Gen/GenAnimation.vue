@@ -154,14 +154,6 @@
 
       <!-- Actions -->
       <div v-if="file" class="space-y-2">
-        <UiButton class="w-full" @click="downloadPng">Download PNG</UiButton>
-        <UiButton
-          v-if="store.beta"
-          class="w-full bg-green-700 hover:bg-green-600"
-          @click="downloadWebp"
-        >
-          Download WebP
-        </UiButton>
         <UiButton
           v-if="currentMask?.animated"
           class="w-full bg-purple-600 hover:bg-purple-500"
@@ -170,6 +162,7 @@
         >
           {{ generating ? 'Generating…' : 'Generate GIF' }}
         </UiButton>
+        <UiButton v-else class="w-full" @click="downloadPng">Download PNG</UiButton>
         <UiButton
           v-if="store.beta && currentMask?.animated"
           class="w-full bg-green-700 hover:bg-green-600"
@@ -182,6 +175,14 @@
               : 'Generate WebP'
           }}
         </UiButton>
+        <UiButton
+          v-else-if="store.beta"
+          class="w-full bg-green-700 hover:bg-green-600"
+          @click="downloadWebp"
+        >
+          Download WebP
+        </UiButton>
+
         <p v-if="generating || generatingWebp" class="text-center text-xs text-white/40">
           This may take a moment…
         </p>
@@ -325,7 +326,7 @@ const loadMask = async () => {
     } else {
       maskFrames.value = await extractGifFrames(url)
     }
-    options.value.delay = getDelayFromFrameCount(maskFrames.value.length)
+    options.value.delay = getAverageDelay(maskFrames.value)
     frameIndex = 0
     lastFrameTime = 0
   } catch (err) {
@@ -334,14 +335,10 @@ const loadMask = async () => {
   }
 }
 
-const getDelayFromFrameCount = (count: number): number => {
-  if (count <= 2) return 200
-  if (count <= 4) return 150
-  if (count <= 10) return 100
-  if (count <= 20) return 70
-  if (count <= 50) return 50
-  if (count <= 100) return 20
-  return 10
+const getAverageDelay = (frames: AnimFrame[]): number => {
+  if (!frames.length) return 50
+  const avg = frames.reduce((sum, f) => sum + f.delay, 0) / frames.length
+  return Math.max(10, Math.round(avg))
 }
 
 // ---- Animation loop ----
