@@ -13,7 +13,7 @@
       </button>
     </div>
     <!-- Scale selector -->
-    <div class="flex gap-1">
+    <div class="flex gap-1" v-if="SHOW">
       <button
         v-for="scale in SCALES"
         :key="scale"
@@ -73,6 +73,8 @@ const visibleCount = ref(PAGE_SIZE)
 const scrollEl = ref<HTMLElement | null>(null)
 const sentinelEl = ref<HTMLElement | null>(null)
 
+const SHOW = false
+
 // Reset visible window when search changes
 watch(search, () => {
   visibleCount.value = PAGE_SIZE
@@ -98,6 +100,10 @@ const currentMaskHasScale = (scale: number) => {
 }
 
 const selectMask = (mask: Mask) => {
+  if (store.currentMask?.id === mask.id) {
+    store.currentMask = undefined
+    return
+  }
   store.currentMask = mask
   const available = mask.images.map((i) => i.scale)
   if (!available.includes(store.selectedMaskScale)) {
@@ -123,7 +129,6 @@ const setupObserver = () => {
 }
 
 onMounted(() => {
-  if (!currentMask.value) selectMask(masks[0])
   nextTick(setupObserver)
 })
 
