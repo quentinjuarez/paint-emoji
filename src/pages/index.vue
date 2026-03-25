@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-
 const store = useStore()
 
 const handleHashChange = () => {
@@ -21,5 +20,4 @@ const handleHashChange = () => {
 
 const route = useRoute()
 watch(() => route.hash, handleHashChange, { immediate: true })
-
 </script>

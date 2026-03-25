@@ -1,6 +1,6 @@
 <template>
   <div
-    class="font-custom h-dvh overflow-hidden bg-slate-900 text-slate-50 selection:bg-purple-500 selection:text-white"
+    class="h-dvh overflow-hidden bg-slate-900 font-custom text-slate-50 selection:bg-purple-500 selection:text-white"
   >
     <RouterView />
 

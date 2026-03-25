@@ -1,4 +1,3 @@
-
 type ClickOutsideElement = HTMLElement & {
   clickOutsideEvent: (event: MouseEvent) => void
 }

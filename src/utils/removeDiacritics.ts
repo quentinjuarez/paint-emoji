@@ -59,7 +59,6 @@ for (let i = 0; i < replacementList.length; i += 1) {
 }
 
 function removeDiacritics(a: string) {
-   
   return a.replace(/[^\u0000-\u007e]/g, function (a) {
     return diacriticsMap[a] || a
   })

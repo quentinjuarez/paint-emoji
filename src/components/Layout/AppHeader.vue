@@ -27,7 +27,5 @@
 <script setup lang="ts">
 const version = computed(() => __VERSION__)
 
-
-
 const route = useRoute()
 </script>
