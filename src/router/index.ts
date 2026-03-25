@@ -9,6 +9,7 @@ export default () => {
         name: 'index',
         component: () => import('@/pages/index.vue'),
         meta: {},
+        redirect: '/emojis',
         children: [
           {
             path: 'gif',
