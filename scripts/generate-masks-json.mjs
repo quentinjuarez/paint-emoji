@@ -107,26 +107,24 @@ function sleep(ms) {
 }
 
 // ── Parse emote from API response ─────────────────────────────────────────────
-function parseEmote(item) {
-  const animated = item.images.some((img) => img.frameCount > 1)
-  // Target mime: gif for animated, png for static
-  const targetMime = animated ? 'image/gif' : 'image/png'
-
-  // Keep exactly one image per scale — the gif/png variant
-  // Group by scale, pick the matching mime, fallback to first entry for that scale
-  const byScale = {}
-  for (const img of item.images) {
-    const s = img.scale
-    if (!byScale[s]) byScale[s] = []
-    byScale[s].push(img)
-  }
-
-  const images = Object.keys(byScale)
+function pickImages(byScale, targetMime, preferAnimated) {
+  return Object.keys(byScale)
     .map(Number)
     .sort((a, b) => a - b)
     .map((scale) => {
       const variants = byScale[scale]
-      const pick = variants.find((i) => i.mime === targetMime) ?? variants[0]
+      const webpVariants = variants.filter((i) => i.mime === targetMime)
+
+      let pick
+      if (webpVariants.length > 1) {
+        // For WebP: prefer animated (frameCount > 1) or static depending on emote type
+        pick = preferAnimated
+          ? (webpVariants.find((i) => i.frameCount > 1) ?? webpVariants[0])
+          : (webpVariants.find((i) => i.frameCount === 1) ?? webpVariants[0])
+      } else {
+        pick = webpVariants[0] ?? variants[0]
+      }
+
       return {
         scale: pick.scale,
         url: pick.url,
@@ -135,13 +133,33 @@ function parseEmote(item) {
         mime: pick.mime
       }
     })
+}
+
+function parseEmote(item) {
+  const animated = item.images.some((img) => img.frameCount > 1)
+
+  // Group by scale
+  const byScale = {}
+  for (const img of item.images) {
+    const s = img.scale
+    if (!byScale[s]) byScale[s] = []
+    byScale[s].push(img)
+  }
+
+  // images: gif for animated, png for static (existing behaviour — no change)
+  const targetMime = animated ? 'image/gif' : 'image/png'
+  const images = pickImages(byScale, targetMime, false)
+
+  // imagesBeta: animated webp for animated emotes, static webp for static emotes
+  const imagesBeta = pickImages(byScale, 'image/webp', animated)
 
   return {
     id: item.id,
     name: item.defaultName,
     tags: item.tags ?? [],
     animated,
-    images
+    images,
+    imagesBeta
   }
 }
 

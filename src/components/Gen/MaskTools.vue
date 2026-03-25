@@ -90,11 +90,11 @@ const filteredMasks = computed(() => {
 const visibleMasks = computed(() => filteredMasks.value.slice(0, visibleCount.value))
 
 const previewUrl = (mask: Mask) =>
-  mask.images.find((i) => i.scale === 1)?.url ?? mask.images[0]?.url ?? ''
+  mask.imagesBeta.find((i) => i.scale === 1)?.url ?? mask.imagesBeta[0]?.url ?? ''
 
 const currentMaskHasScale = (scale: number) => {
   if (!currentMask.value) return scale === 4
-  return currentMask.value.images?.some((i) => i.scale === scale) ?? scale === 4
+  return currentMask.value.imagesBeta?.some((i) => i.scale === scale) ?? scale === 4
 }
 
 const selectMask = (mask: Mask) => {
@@ -103,7 +103,7 @@ const selectMask = (mask: Mask) => {
     return
   }
   store.currentMask = mask
-  const available = mask.images.map((i) => i.scale)
+  const available = mask.imagesBeta.map((i) => i.scale)
   if (!available.includes(store.selectedMaskScale)) {
     store.selectedMaskScale = available[available.length - 1]
   }

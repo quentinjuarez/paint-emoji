@@ -26,6 +26,7 @@ declare module 'vue' {
     EmojiPreviewCanvas: typeof import('./../components/Draw/EmojiPreviewCanvas.vue')['default']
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
     GenGif: typeof import('./../components/Gen/GenGif.vue')['default']
+    GenGifBeta: typeof import('./../components/Gen/GenGifBeta.vue')['default']
     LayoutHeader: typeof import('./../components/Layout/LayoutHeader.vue')['default']
     MaskTools: typeof import('./../components/Gen/MaskTools.vue')['default']
     OptionsTools: typeof import('./../components/Draw/OptionsTools.vue')['default']

@@ -22,6 +22,12 @@ export default () => {
             name: 'emojis',
             component: () => import('@/pages/emojis.vue'),
             meta: {}
+          },
+          {
+            path: 'gif-beta',
+            name: 'gif-beta',
+            component: () => import('@/pages/gif-beta.vue'),
+            meta: {}
           }
         ]
       },

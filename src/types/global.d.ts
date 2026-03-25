@@ -8,9 +8,13 @@ class GIFType {
     workerScript: string
     width: number
     height: number
+    transparent?: number | null
   }) {}
   on(_event: 'finished', _callback: (blob: Blob) => void): void {}
-  addFrame(_ctx: CanvasRenderingContext2D, _options: { delay: number; copy: boolean }): void {}
+  addFrame(
+    _ctx: CanvasRenderingContext2D,
+    _options: { delay: number; copy: boolean; dispose?: number }
+  ): void {}
   render(): void {}
 }
 
@@ -52,12 +56,15 @@ declare global {
     emojis: Emoji[]
   }
 
+  type MaskImage = { scale: number; url: string; width: number; frameCount: number; mime: string }
+
   type Mask = {
     id: string
     name: string
     tags: string[]
     animated: boolean
-    images: { scale: number; url: string; width: number; frameCount: number; mime: string }[]
+    images: MaskImage[]
+    imagesBeta: MaskImage[]
   }
 
   interface LightUser {
