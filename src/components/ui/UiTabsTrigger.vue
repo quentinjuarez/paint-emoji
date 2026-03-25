@@ -1,7 +1,7 @@
 <template>
   <component
-    :is="href ? 'a' : 'button'"
-    :href="href"
+    :is="href ? 'router-link' : 'button'"
+    :to="href"
     :class="
       cn(
         '-mb-px flex items-center gap-1.5 border-b-2 px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors outline-none',

@@ -6,12 +6,17 @@
         $attrs.class as string
       )
     "
+    :value="modelValue"
     v-bind="filteredAttrs"
+    @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
   />
 </template>
 
 <script setup lang="ts">
 import { cn } from '@/components/ui/utils'
+
+const props = defineProps<{ modelValue?: string }>()
+const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
 const attrs = useAttrs()
 const filteredAttrs = computed(() => {

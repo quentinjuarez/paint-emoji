@@ -5,22 +5,21 @@ export default () => {
     history: createWebHistory(),
     routes: [
       {
-        path: '',
+        path: '/',
         name: 'index',
         component: () => import('@/pages/index.vue'),
-        redirect: '/emojis',
         meta: {},
         children: [
           {
-            path: '/emojis',
-            name: 'emojis',
-            component: () => import('@/pages/emojis.vue'),
+            path: 'gif',
+            name: 'gif',
+            component: () => import('@/pages/gif.vue'),
             meta: {}
           },
           {
-            path: '/gif',
-            name: 'gif',
-            component: () => import('@/pages/gif.vue'),
+            path: 'emojis',
+            name: 'emojis',
+            component: () => import('@/pages/emojis.vue'),
             meta: {}
           }
         ]

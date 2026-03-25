@@ -1,7 +1,6 @@
 <template>
   <div class="flex justify-center gap-1.5">
     <UiButton
-      size="icon"
       :data-tooltip="'Undo'"
       :disabled="store.historyIndex === -1"
       :class="{ 'bg-white/20': active === 'undo' }"
@@ -11,7 +10,6 @@
       <Shortcut shortcut="z" ctrl @confirm="handleUndo" />
     </UiButton>
     <UiButton
-      size="icon"
       :data-tooltip="'Redo'"
       :disabled="store.historyIndex === store.history.length - 1"
       :class="{ 'bg-white/20': active === 'redo' }"

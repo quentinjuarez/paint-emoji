@@ -8,7 +8,7 @@
     <UiResizableHandle v-model:panel-size="sidebarWidth" :min="180" :max="480" />
 
     <div class="flex min-w-0 flex-1 items-center justify-center p-4">
-      <Gif />
+      <GenGif />
     </div>
   </div>
 </template>

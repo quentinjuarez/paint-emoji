@@ -30,6 +30,7 @@ declare module 'vue' {
     EmojiList: typeof import('./../components/Draw/EmojiList.vue')['default']
     EmojiPreviewCanvas: typeof import('./../components/Draw/EmojiPreviewCanvas.vue')['default']
     EmojiSelection: typeof import('./../components/Draw/EmojiSelection.vue')['default']
+    GenGif: typeof import('./../components/Gen/GenGif.vue')['default']
     Gif: typeof import('./../components/Gen/Gif.vue')['default']
     Header: typeof import('../components/Layout/LayoutHeader.vue')['default']
     HeaderTabs: typeof import('./../components/Layout/HeaderTabs.vue')['default']

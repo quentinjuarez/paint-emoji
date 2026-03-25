@@ -51,7 +51,7 @@ export const useStore = defineStore('shape-to-emoji', {
       tight: false
     },
     currentMask: undefined as Mask | undefined,
-    selectedMaskScale: 1 as number
+    selectedMaskScale: 4 as number
   }),
   getters: {
     lastFrame(state) {
