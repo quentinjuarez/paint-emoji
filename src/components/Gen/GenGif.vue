@@ -250,12 +250,23 @@ const loadMask = async () => {
   }
   try {
     gifFrames.value = await extractGifFrames(url)
+    options.value.delay = getDelayFromFrameCount(gifFrames.value.length)
     frameIndex = 0
     lastFrameTime = 0
   } catch (err) {
     console.error('Failed to extract GIF frames:', err)
     gifFrames.value = []
   }
+}
+
+const getDelayFromFrameCount = (count: number): number => {
+  if (count <= 2) return 200
+  if (count <= 4) return 150
+  if (count <= 10) return 100
+  if (count <= 20) return 70
+  if (count <= 50) return 50
+  if (count <= 100) return 20
+  return 10
 }
 
 // ---- Animation loop ----
