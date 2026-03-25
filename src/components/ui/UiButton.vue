@@ -8,9 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { cn } from '@/components/ui/utils'
 import { cva } from 'class-variance-authority'
-import { computed, useAttrs } from 'vue'
 
 const props = withDefaults(
   defineProps<{

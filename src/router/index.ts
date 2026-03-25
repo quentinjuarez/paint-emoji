@@ -8,7 +8,22 @@ export default () => {
     path: '',
     name: 'index',
     component: () => import('@/pages/index.vue'),
-    meta: {}
+    redirect: '/emojis',
+    meta: {},
+    children: [
+      {
+        path: '/emojis',
+        name: 'emojis',
+        component: () => import('@/pages/emojis.vue'),
+        meta: {}
+      },
+      {
+        path: '/gif',
+        name: 'gif',
+        component: () => import('@/pages/gif.vue'),
+        meta: {}
+      }
+    ]
   },
   {
     path: '/oauth/google',

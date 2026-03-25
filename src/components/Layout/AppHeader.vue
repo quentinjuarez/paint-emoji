@@ -7,8 +7,8 @@
 
     <!-- Section nav -->
     <UiTabs class="pl-1">
-      <UiTabsTrigger :href="emojiHref" :active="store.section === 'emojis'">Emojis</UiTabsTrigger>
-      <UiTabsTrigger href="#gif" :active="store.section === 'gif'">Génération</UiTabsTrigger>
+      <UiTabsTrigger :href="'/emojis'" :active="route.name === 'emojis'">Emojis</UiTabsTrigger>
+      <UiTabsTrigger :href="'/gif'" :active="route.name === 'gif'">Gif</UiTabsTrigger>
     </UiTabs>
 
     <!-- Spacer -->
@@ -25,12 +25,9 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore()
 const version = computed(() => __VERSION__)
 
-// When switching to emojis, keep current emoji sub-tab (or fallback to draw)
-const emojiHref = computed(() => {
-  const t = store.tab
-  return t === 'gif' ? '#draw' : `#${t}`
-})
+
+
+const route = useRoute()
 </script>

@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { cn } from '@/components/ui/utils'
 
 defineProps<{
   href?: string

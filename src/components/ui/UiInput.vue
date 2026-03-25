@@ -11,8 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
-import { computed, useAttrs } from 'vue'
+import { cn } from '@/components/ui/utils'
 
 const attrs = useAttrs()
 const filteredAttrs = computed(() => {
