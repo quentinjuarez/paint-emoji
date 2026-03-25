@@ -545,4 +545,8 @@ watch(
     loadMask()
   }
 )
+
+onMounted(() => {
+  store.beta = true
+})
 </script>
