@@ -1,6 +1,6 @@
 {
-  "installCommand": "corepack enable && cd ../.. && yarn install",
-  "buildCommand": "corepack enable && cd ../.. && yarn turbo run build --filter=@paint-emoji/legacy",
+  "installCommand": "cd ../.. && yarn install",
+  "buildCommand": "cd ../.. && yarn turbo run build --filter=@paint-emoji/legacy",
   "outputDirectory": "dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

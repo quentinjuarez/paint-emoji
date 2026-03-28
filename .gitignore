@@ -31,7 +31,8 @@ pnpm-debug.log*
 
 .env
 .turbo
-.yarn
+.yarn/*
+!.yarn/releases
 
 # Auto-generated types
 **/src/types/auto-imports.d.ts
