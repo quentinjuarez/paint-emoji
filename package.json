@@ -16,9 +16,9 @@
     "oxlint-tailwindcss": "^0.1.10",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "turbo": "^2.5.0"
+    "turbo": "^2.8.21"
   },
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "yarn@3.8.6",
   "dependencies": {
     "@oxlint/binding-darwin-arm64": "^1.57.0",
     "@rolldown/binding-darwin-arm64": "1.0.0-rc.12"
