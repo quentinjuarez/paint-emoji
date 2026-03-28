@@ -21,11 +21,6 @@ class GIFType {
 declare global {}
 
 declare global {
-  const __DEV__: boolean
-  const __VERSION__: string
-  const __BASE_URL__: string
-  const __API_URL__: string
-
   interface Window {
     GIF: typeof GIFType
   }

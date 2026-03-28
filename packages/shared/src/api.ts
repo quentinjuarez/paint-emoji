@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useOnlineStore } from './stores/online'
 
 const client = axios.create({
-  baseURL: `${__API_URL__}/api`,
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   headers: {
     'Content-Type': 'application/json'
   }

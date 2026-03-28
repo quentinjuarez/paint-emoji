@@ -5,13 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
-export default () => {
-  const apiUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4001'
-      : 'https://quentinjuarez-server.up.railway.app'
-
-  return defineConfig({
+export default defineConfig({
     server: {
       port: 5555
     },
@@ -21,10 +15,6 @@ export default () => {
         '@ui': resolve(__dirname, '../../packages/ui/src'),
         '@shared': resolve(__dirname, '../../packages/shared/src')
       }
-    },
-    define: {
-      __VERSION__: `'1.1.0'`,
-      __API_URL__: `'${apiUrl}'`
     },
     build: {
       outDir: 'dist'
@@ -52,5 +42,4 @@ export default () => {
       tailwindcss(),
       vue()
     ]
-  })
-}
+})

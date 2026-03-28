@@ -8,7 +8,6 @@ const __TILE_SIZE__ = 16
 export const useStore = defineStore('shape-to-emoji', {
   state: () => ({
     error: false,
-    version: __VERSION__,
     emojiSelection: initEmojis(),
     selectedEmojiIndex: 0 as number,
     frequentEmojis: [] as Emoji[],
@@ -161,22 +160,7 @@ export const useStore = defineStore('shape-to-emoji', {
       this.history = []
       this.historyIndex = -1
     },
-    resetStore() {
-      const [major, minor] = getVersion(__VERSION__)
-      const [storedMajor, storedMinor] = getVersion(this.version)
-
-      if (major > storedMajor) {
-        this.$reset()
-        this.version = __VERSION__
-        return
-      }
-
-      if (minor > storedMinor) {
-        this.$reset()
-        this.version = __VERSION__
-        return
-      }
-    }
+    resetStore() {}
   },
   persist: {
     key: `shape-to-emoji`

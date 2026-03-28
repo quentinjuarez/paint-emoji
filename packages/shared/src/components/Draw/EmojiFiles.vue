@@ -22,14 +22,10 @@ const clickFileInput = () => {
 }
 
 const signatureHeader = () => {
-  // DrawMoji;
-  // PaintMoji;
-  // EmojiPaint;
-  const project = 'shape-to-emoji'
+  const project = 'paint-emoji'
   const name = 'Created By: Quentin Juarez'
-  const github = 'GitHub: https://github.com/quentinjuarez/shape-to-emoji'
-  const version = `Version: ${__VERSION__}\n`
-  return [project, name, github, version].join('\n')
+  const github = 'GitHub: https://github.com/quentinjuarez/paint-emoji'
+  return [project, name, github].join('\n')
 }
 
 const downloadTextFile = () => {
@@ -59,12 +55,12 @@ const loadTextFile = (event: Event) => {
       return
     }
 
-    if (!text.startsWith('shape-to-emoji')) {
+    if (!text.startsWith('paint-emoji')) {
       console.warn('Invalid file signature.')
       return
     }
-    // remove 4 first line
-    text = text.split('\n').slice(4).join('\n')
+    // remove 3 first line
+    text = text.split('\n').slice(3).join('\n')
 
     if (!text) return
     store.addFrame(text)

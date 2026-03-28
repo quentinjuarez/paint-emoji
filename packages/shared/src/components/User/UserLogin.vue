@@ -7,5 +7,5 @@
 <script setup lang="ts">
 import googleLogo from '../../assets/icons/web_neutral_sq_ctn.svg'
 
-const authUrl = `${__API_URL__}/api/auth/google`
+const authUrl = `${import.meta.env.VITE_API_URL}/api/auth/google`
 </script>
