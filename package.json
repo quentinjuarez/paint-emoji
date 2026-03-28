@@ -11,10 +11,13 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "turbo": "^2.5.0",
+    "husky": "^9.1.7",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "husky": "^9.1.7"
+    "turbo": "^2.5.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.0",
+  "dependencies": {
+    "@rolldown/binding-darwin-arm64": "1.0.0-rc.12"
+  }
 }
