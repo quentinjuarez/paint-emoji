@@ -36,7 +36,7 @@ export default () => {
           resolve(__dirname, '../../packages/shared/src/stores'),
           resolve(__dirname, '../../packages/shared/src/utils')
         ],
-        dts: './src/types/auto-imports.d.ts',
+        dts: '../../packages/shared/src/types/auto-imports.d.ts',
         vueTemplate: true
       }),
       Components({
@@ -47,7 +47,7 @@ export default () => {
           resolve(__dirname, '../../packages/shared/src/components')
         ],
         extensions: ['vue'],
-        dts: './src/types/components.d.ts'
+        dts: '../../packages/shared/src/types/components.d.ts'
       }),
       tailwindcss(),
       vue()

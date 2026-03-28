@@ -8,16 +8,34 @@
           :key="drawing._id"
           class="group relative h-54 w-42 shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
         >
-          <button
-            class="w-42 rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
-            @click="handleClick($event, drawing._id)"
-          >
-            <img :src="drawing.preview" class="w-full rounded-lg bg-white" />
-            <div class="mt-1 flex items-start gap-2">
-              <UiAvatar v-if="drawing.author" v-bind="drawing.author" />
-              <h3 class="line-clamp-2 h-12 text-base font-bold">{{ drawing.title }}</h3>
-            </div>
-          </button>
+          <VDropdown @show="tooltipId = drawing._id" @hide="tooltipId = undefined">
+            <button class="w-42 rounded-lg p-2 text-left transition-colors hover:bg-slate-800">
+              <img :src="drawing.preview" class="w-full rounded-lg bg-white" />
+              <div class="mt-1 flex items-start gap-2">
+                <UiAvatar v-if="drawing.author" v-bind="drawing.author" />
+                <h3 class="line-clamp-2 h-12 text-base font-bold">{{ drawing.title }}</h3>
+              </div>
+            </button>
+            <template #popper="{ hide }">
+              <div class="space-y-4 p-2">
+                <h3 class="text-lg font-bold">Import this drawing?</h3>
+                <div>
+                  <label class="cursor-pointer items-center text-sm">
+                    <input v-model="importEmojis" type="checkbox" class="mr-2" />
+                    <span>Import emojis</span>
+                  </label>
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                  <button
+                    @click="handleSelect(hide)"
+                    class="rounded-lg bg-green-500 p-2 text-white"
+                  >
+                    Import
+                  </button>
+                </div>
+              </div>
+            </template>
+          </VDropdown>
 
           <!-- DELETE -->
           <i
@@ -52,24 +70,10 @@
         </div>
       </div>
     </div>
-
-    <div ref="tooltipRef" class="hidden space-y-4 p-2" id="browse-tooltip">
-      <h3 class="text-lg font-bold">Import this drawing?</h3>
-      <div>
-        <label class="cursor-pointer items-center text-sm">
-          <input v-model="importEmojis" type="checkbox" class="mr-2" />
-          <span>Import emojis</span>
-        </label>
-      </div>
-      <div class="flex items-center justify-center gap-2">
-        <button @click="handleSelect" class="rounded-lg bg-green-500 p-2 text-white">Import</button>
-      </div>
-    </div>
   </UiDialog>
 </template>
 
 <script setup lang="ts">
-import tippy from 'tippy.js'
 import lzString from 'lz-string'
 
 const emit = defineEmits(['close'])
@@ -81,33 +85,13 @@ onMounted(() => {
 })
 
 // ACTIONS
-const tooltip = ref<any>(null)
-const tooltipRef = ref(null)
 const tooltipId = ref<string>()
-
-const handleClick = (e: Event, id: string) => {
-  tooltip.value?.destroy()
-  tooltipId.value = id
-
-  if (!tooltipRef.value || !e.target) return
-
-  tooltip.value = tippy(e.target as HTMLElement, {
-    content: tooltipRef.value,
-    trigger: 'click',
-    interactive: true,
-    appendTo: document.body,
-    onHidden: () => {
-      tooltipId.value = undefined
-    }
-  })
-
-  e.target.dispatchEvent(new Event('click'))
-}
 
 const importEmojis = ref(false)
 const store = useStore()
 
-const handleSelect = () => {
+const handleSelect = (hide: () => void) => {
+  hide()
   const drawing = onlineStore.search.items.find((item) => item._id === tooltipId.value)
 
   if (!drawing) return
@@ -121,7 +105,6 @@ const handleSelect = () => {
   store.addFrame(decodedText)
   store.textToCanvas(decodedText)
 
-  tooltip.value?.destroy()
   importEmojis.value = false
   tooltipId.value = undefined
   emit('close')

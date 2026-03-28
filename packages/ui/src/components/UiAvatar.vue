@@ -1,5 +1,5 @@
 <template>
-  <div class="flex size-6 flex-none items-center justify-center" ref="avatarRef">
+  <div class="flex size-6 flex-none items-center justify-center" v-tooltip="props.username">
     <img
       v-if="props.profilePicture"
       :src="props.profilePicture"
@@ -11,8 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import tippy from 'tippy.js'
-
 const props = defineProps<{
   username: string
   firstName: string
@@ -24,23 +22,4 @@ const initials = computed(() => {
   const { firstName, lastName } = props
   return `${firstName[0]}${lastName[0]}`
 })
-
-const avatarRef = ref<HTMLElement>()
-
-onMounted(() => {
-  if (!avatarRef.value) return
-
-  tippy(avatarRef.value, {
-    content: props.username,
-    placement: 'bottom',
-    theme: 'light'
-  })
-})
 </script>
-
-<style>
-/* Update the tooltip display property to block */
-div[data-tippy-root] > div.tippy-box > div.tippy-content > #avatar-tooltip {
-  display: block !important;
-}
-</style>

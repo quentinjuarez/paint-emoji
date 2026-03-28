@@ -476,6 +476,7 @@ __metadata:
   resolution: "@paint-emoji/shared@workspace:packages/shared"
   dependencies:
     "@paint-emoji/ui": "workspace:*"
+    "@types/lodash.debounce": 4.0.9
     "@vueuse/components": ^14.2.1
     "@vueuse/core": ^14.2.1
     axios: ^1.13.6
@@ -490,7 +491,6 @@ __metadata:
     pinia: ^3.0.4
     pinia-plugin-persistedstate: ^4.7.1
     pinia-shared-state: ^1.0.1
-    sortablejs: ^1.15.7
     sortablejs-vue3: ^1.3.0
     tippy.js: ^6.3.7
     vue: ^3.5.30
@@ -887,6 +887,22 @@ __metadata:
   version: 1.0.8
   resolution: "@types/estree@npm:1.0.8"
   checksum: bd93e2e415b6f182ec4da1074e1f36c480f1d26add3e696d54fb30c09bc470897e41361c8fd957bf0985024f8fbf1e6e2aff977d79352ef7eb93a5c6dcff6c11
+  languageName: node
+  linkType: hard
+
+"@types/lodash.debounce@npm:4.0.9":
+  version: 4.0.9
+  resolution: "@types/lodash.debounce@npm:4.0.9"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 8183a152e01928e3b97ca773f6ae6038b8695e76493ba8bf6b743ec143948a62294fbc9d49fa4a78b52265b3ba4892ef57534e0c13d04aa0f111671b5a944feb
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.17.24
+  resolution: "@types/lodash@npm:4.17.24"
+  checksum: 2b254973145ecdf9b052d83f00ebaa111245f319d45b217c78f81cea8892fda81180fc749bd50a99c08f4e5efceb834c774d3f74153a50a9c4a28648343dc9f3
   languageName: node
   linkType: hard
 
@@ -2922,7 +2938,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sortablejs@npm:^1.15.0, sortablejs@npm:^1.15.7":
+"sortablejs@npm:^1.15.0":
   version: 1.15.7
   resolution: "sortablejs@npm:1.15.7"
   checksum: dd16bd8b3e65cb47d90a529e946381d33919891dbb555cdd80816624d5973565fc56b1ee73e001f896705b8aba44859c627e2aa90cfc1de277d88b250ecd789a

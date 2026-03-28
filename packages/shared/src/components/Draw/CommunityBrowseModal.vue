@@ -11,16 +11,26 @@
           :key="item._id"
           class="h-54 w-42 shrink-0 grow-0 basis-[calc(25%-16px)] flex-col gap-2"
         >
-          <button
-            class="w-42 rounded-lg p-2 text-left transition-colors hover:bg-slate-800"
-            @click="handleClick($event, item._id)"
-          >
-            <img :src="item.preview" class="w-full rounded-lg bg-white" />
-            <div class="mt-1 flex items-start gap-2">
-              <UiAvatar v-if="item.author" v-bind="item.author" />
-              <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
-            </div>
-          </button>
+          <VDropdown @show="tooltipId = item._id" @hide="tooltipId = undefined">
+            <button class="w-42 rounded-lg p-2 text-left transition-colors hover:bg-slate-800">
+              <img :src="item.preview" class="w-full rounded-lg bg-white" />
+              <div class="mt-1 flex items-start gap-2">
+                <UiAvatar v-if="item.author" v-bind="item.author" />
+                <h3 class="line-clamp-2 h-12 text-base font-bold">{{ item.title }}</h3>
+              </div>
+            </button>
+            <template #popper="{ hide }">
+              <div class="space-y-4 p-2">
+                <h3 class="text-lg font-bold">Import this drawing?</h3>
+                <UiCheckbox id="import-emojis" v-model="importEmojis">Import emojis</UiCheckbox>
+                <div class="flex items-center justify-center gap-2">
+                  <UiButton class="bg-green-600 hover:bg-green-500" @click="handleSelect(hide)"
+                    >Import</UiButton
+                  >
+                </div>
+              </div>
+            </template>
+          </VDropdown>
         </div>
       </div>
 
@@ -37,20 +47,14 @@
         /></UiButton>
       </div>
     </div>
-
-    <div ref="tooltipRef" class="hidden space-y-4 p-2" id="browse-tooltip">
-      <h3 class="text-lg font-bold">Import this drawing?</h3>
-      <UiCheckbox id="import-emojis" v-model="importEmojis">Import emojis</UiCheckbox>
-      <div class="flex items-center justify-center gap-2">
-        <UiButton class="bg-green-600 hover:bg-green-500" @click="handleSelect">Import</UiButton>
-      </div>
-    </div>
   </UiDialog>
 </template>
 
 <script setup lang="ts">
+import { useStore } from '../../stores/index'
+import { useOnlineStore } from '../../stores/online'
+import { onMounted, ref, computed } from 'vue'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import tippy from 'tippy.js'
 import debounce from 'lodash.debounce'
 import lzString from 'lz-string'
 
@@ -64,10 +68,6 @@ const query = ref('')
 
 onMounted(() => {
   onlineStore.getDrawings()
-})
-
-onUnmounted(() => {
-  tooltip.value?.destroy()
 })
 
 const handleSearch = () => {
@@ -93,33 +93,13 @@ const handleNext = () => {
   }
 }
 
-const tooltip = ref<any | null>(null)
-const tooltipRef = ref(null)
 const tooltipId = ref<string>()
-
-const handleClick = (e: Event, id: string) => {
-  tooltip.value?.destroy()
-  tooltipId.value = id
-
-  if (!tooltipRef.value || !e.target) return
-
-  tooltip.value = tippy(e.target as HTMLElement, {
-    content: tooltipRef.value,
-    trigger: 'click',
-    interactive: true,
-    appendTo: document.body,
-    onHidden: () => {
-      tooltipId.value = undefined
-    }
-  })
-
-  e.target.dispatchEvent(new Event('click'))
-}
 
 const importEmojis = ref(false)
 const store = useStore()
 
-const handleSelect = () => {
+const handleSelect = (hide: () => void) => {
+  hide()
   const drawing = onlineStore.search.items.find((item) => item._id === tooltipId.value)
 
   if (!drawing) return
@@ -133,16 +113,8 @@ const handleSelect = () => {
   store.addFrame(decodedText)
   store.textToCanvas(decodedText)
 
-  tooltip.value?.destroy()
   importEmojis.value = false
   tooltipId.value = undefined
   emit('close')
 }
 </script>
-
-<style>
-/* Update the tooltip display property to block */
-div[data-tippy-root] > div.tippy-box > div.tippy-content > #browse-tooltip {
-  display: block !important;
-}
-</style>

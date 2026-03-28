@@ -14,10 +14,6 @@ export { default as stringFromCodePoint } from './utils/stringFromCodePoint'
 export { default as textToBounce } from './utils/textToBounce'
 export { default as textToPatterns } from './utils/textToPatterns'
 
-// Composables
-
-// Directives
-
 // Plugins
 export { api } from './api'
 

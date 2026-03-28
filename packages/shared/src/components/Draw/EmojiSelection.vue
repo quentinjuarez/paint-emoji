@@ -32,36 +32,39 @@
       </template>
     </Sortable>
 
-    <button
-      ref="paintButtonRef"
-      class="group relative flex size-8 items-center justify-center rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
-    >
-      <Palette class="size-4 text-white" />
-    </button>
+    <VDropdown>
+      <button
+        class="group relative flex size-8 items-center justify-center rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
+      >
+        <Palette class="size-4 text-white" />
+      </button>
 
-    <div ref="paintTooltipRef" class="hidden space-y-2 p-1" id="paint-tooltip">
-      <h3 class="text-center text-base font-bold">Emojis</h3>
-      <div class="flex items-center justify-center gap-2">
-        <button
-          @click="store.resetEmojiSelection('largeSquares')"
-          class="flex size-6 items-center justify-center rounded border border-transparent transition-colors hover:border-purple-500"
-        >
-          🟥
-        </button>
-        <button
-          @click="store.resetEmojiSelection('hearts')"
-          class="flex size-6 items-center justify-center rounded border border-transparent transition-colors hover:border-purple-500"
-        >
-          ❤️
-        </button>
-        <button
-          @click="store.resetEmojiSelection('circles')"
-          class="flex size-6 items-center justify-center rounded border border-transparent transition-colors hover:border-purple-500"
-        >
-          🔴
-        </button>
-      </div>
-    </div>
+      <template #popper>
+        <div class="space-y-2 p-1">
+          <h3 class="text-center text-base font-bold">Emojis</h3>
+          <div class="flex items-center justify-center gap-2">
+            <button
+              @click="store.resetEmojiSelection('largeSquares')"
+              class="flex size-6 items-center justify-center rounded border border-transparent transition-colors hover:border-purple-500"
+            >
+              🟥
+            </button>
+            <button
+              @click="store.resetEmojiSelection('hearts')"
+              class="flex size-6 items-center justify-center rounded border border-transparent transition-colors hover:border-purple-500"
+            >
+              ❤️
+            </button>
+            <button
+              @click="store.resetEmojiSelection('circles')"
+              class="flex size-6 items-center justify-center rounded border border-transparent transition-colors hover:border-purple-500"
+            >
+              🔴
+            </button>
+          </div>
+        </div>
+      </template>
+    </VDropdown>
 
     <button
       id="clear-button"
@@ -80,7 +83,6 @@
 <script setup lang="ts">
 import { X, Palette } from 'lucide-vue-next'
 import { Sortable } from 'sortablejs-vue3'
-import tippy from 'tippy.js'
 
 const disabledHover = ref(false)
 const options = ref({
@@ -103,27 +105,6 @@ function onUpdate(event: any): void {
   store.emojiSelection.splice(event.newIndex, 0, element)
 }
 
-const paintTooltip = ref<any>(null)
-const paintButtonRef = ref(null)
-const paintTooltipRef = ref(null)
-
-onMounted(() => {
-  paintTooltip.value?.destroy()
-
-  if (!paintTooltipRef.value || !paintButtonRef.value) return
-
-  paintTooltip.value = tippy(paintButtonRef.value as HTMLElement, {
-    content: paintTooltipRef.value,
-    trigger: 'click',
-    interactive: true,
-    appendTo: document.body
-  })
-})
-
-onUnmounted(() => {
-  paintTooltip.value?.destroy()
-})
-
 const list = computed(() =>
   store.emojiSelection.map((e, index) => ({
     ...e,
@@ -131,10 +112,3 @@ const list = computed(() =>
   }))
 )
 </script>
-
-<style>
-/* Update the tooltip display property to block */
-div[data-tippy-root] > div.tippy-box > div.tippy-content > #paint-tooltip {
-  display: block !important;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <UiDialog @close="emit('close')">
-    <div class="relative size-[544px] rounded-lg bg-slate-900 p-4">
+    <div class="relative size-136 rounded-lg bg-slate-900 p-4">
       <EmojiPreviewCanvas class="absolute inset-0 -z-10" />
 
       <h2 class="text-xl font-bold">Save</h2>
