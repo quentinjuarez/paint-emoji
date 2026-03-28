@@ -1,0 +1,6 @@
+{
+  "installCommand": "cd ../.. && yarn install",
+  "buildCommand": "cd ../.. && yarn turbo run build --filter=@paint-emoji/emojis",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

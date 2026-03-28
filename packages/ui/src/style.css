@@ -2,6 +2,9 @@
 @import 'tippy.js/dist/tippy.css';
 @import 'tippy.js/themes/light.css';
 
+@source './**/*.{vue,ts}';
+@source '../../shared/src/**/*.{vue,ts}';
+
 /* Class-based dark mode (equivalent to v3's darkMode: 'class') */
 @variant dark (&:where(.dark, .dark *));
 
