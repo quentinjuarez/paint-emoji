@@ -18,6 +18,8 @@
 </template>
 
 <script setup lang="ts">
+import { breakpointsTailwind } from '@vueuse/core'
+
 const props = defineProps<{
   shortcut: string
   ctrl?: boolean

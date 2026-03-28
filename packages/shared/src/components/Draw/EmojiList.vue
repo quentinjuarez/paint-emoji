@@ -74,6 +74,7 @@
 </template>
 
 <script setup lang="ts">
+import { breakpointsTailwind } from '@vueuse/core'
 import { X } from 'lucide-vue-next'
 import Fuse from 'fuse.js'
 import customEmojisRaw from '../../assets/data/custom-emojis.json'

@@ -51,6 +51,7 @@
 </template>
 
 <script setup lang="ts">
+import { breakpointsTailwind } from '@vueuse/core'
 import { Pencil, Eraser } from 'lucide-vue-next'
 
 const props = defineProps<{
