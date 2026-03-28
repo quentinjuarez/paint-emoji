@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+@import 'tippy.js/dist/tippy.css';
+@import 'tippy.js/themes/light.css';
+
+/* Class-based dark mode (equivalent to v3's darkMode: 'class') */
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Font families */
+  --font-custom:
+    Inter, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* Custom transition properties */
+  --transition-property-height: height, max-height, min-height;
+  --transition-property-width: width, max-width, min-width;
+
+  /* Default transition duration */
+  --default-transition-duration: 250ms;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#app {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+a {
+  display: inline-block;
+}
+
+input {
+  outline: none;
+}
+
+textarea {
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  word-break: normal;
+}
+
+ol {
+  list-style: decimal !important;
+}

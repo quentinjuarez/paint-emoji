@@ -1,0 +1,48 @@
+import axios from 'axios'
+import UserService from '../services/api/user'
+import AuthService from '../services/api/auth'
+import DrawingService from '../services/api/drawing'
+import { useOnlineStore } from '../stores/online'
+
+export interface ApiInterface {
+  auth: AuthService
+  users: UserService
+  drawings: DrawingService
+}
+
+const initServices = () => {
+  const onlineStore = useOnlineStore()
+
+  // custom axios instance
+  const apiClient = axios.create({
+    baseURL: `${__API_URL__}/api`,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Client-Origin': 'JUKEPHONE_APP'
+    }
+  })
+  // attach token
+  apiClient.interceptors.request.use(
+    (config) => {
+      const token = onlineStore.accessToken
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`
+      }
+      return config
+    },
+    (error) => {
+      return Promise.reject(error)
+    }
+  )
+
+  // services
+  const api = {
+    auth: new AuthService(apiClient),
+    users: new UserService(apiClient),
+    drawings: new DrawingService(apiClient)
+  }
+
+  return api
+}
+
+export default initServices
