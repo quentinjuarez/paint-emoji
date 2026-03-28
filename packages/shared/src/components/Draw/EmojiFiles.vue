@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-center gap-1.5">
-    <UiButton size="icon" :data-tooltip="'Save as file'" @click="downloadTextFile"
+    <UiButton size="icon" v-tooltip="'Save as file'" @click="downloadTextFile"
       ><Save class="size-4"
     /></UiButton>
-    <UiButton size="icon" :data-tooltip="'Load from file'" @click="clickFileInput"
+    <UiButton size="icon" v-tooltip="'Load from file'" @click="clickFileInput"
       ><FolderOpen class="size-4"
     /></UiButton>
     <input ref="fileRef" type="file" class="hidden" @change="loadTextFile" accept=".emoji" />

@@ -15,15 +15,11 @@ export { default as textToBounce } from './utils/textToBounce'
 export { default as textToPatterns } from './utils/textToPatterns'
 
 // Composables
-export { default as useDevice } from './composables/useDevice'
-export { default as useScreen } from './composables/useScreen'
-export { default as useTooltips } from './composables/useTooltips'
 
 // Directives
-export { default as vClickOutside } from './directives/vClickOutside'
 
 // Plugins
-export { default as initServices } from './plugins/services'
+export { api } from './api'
 
 // Engines
 export * from './utils/gif-engine'

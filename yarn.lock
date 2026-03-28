@@ -95,7 +95,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.7.5":
+"@floating-ui/core@npm:^1.1.0, @floating-ui/core@npm:^1.7.5":
   version: 1.7.5
   resolution: "@floating-ui/core@npm:1.7.5"
   dependencies:
@@ -111,6 +111,15 @@ __metadata:
     "@floating-ui/core": ^1.7.5
     "@floating-ui/utils": ^0.2.11
   checksum: 0c1ba371a2e5b8cdbd6a88daafd8bb22cc415a5b50dbf23d829842c1551efe8e74fed5d34c89644fa8ee5dcf9b0470f9b2e9a3f82f91622abe6e1284b272d1c1
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:~1.1.1":
+  version: 1.1.1
+  resolution: "@floating-ui/dom@npm:1.1.1"
+  dependencies:
+    "@floating-ui/core": ^1.1.0
+  checksum: 8b7f3b98ed7ec0b634e4a0b735253b0442358c5cea8302935fc185b2bd882202a053622abe9248c76d0908645dd35f93adeaed2d64371b2ab76b36725ce3f7d3
   languageName: node
   linkType: hard
 
@@ -460,8 +469,11 @@ __metadata:
   resolution: "@paint-emoji/shared@workspace:packages/shared"
   dependencies:
     "@paint-emoji/ui": "workspace:*"
+    "@vueuse/components": ^14.2.1
+    "@vueuse/core": ^14.2.1
     axios: ^1.13.6
     emoji-mart-vue-fast: ^15.0.5
+    floating-vue: ^5.2.2
     fuse.js: ^7.1.0
     gifuct-js: ^2.1.2
     html2canvas: ^1.4.1
@@ -887,6 +899,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/web-bluetooth@npm:^0.0.21":
+  version: 0.0.21
+  resolution: "@types/web-bluetooth@npm:0.0.21"
+  checksum: 85a957d52263607d26236b1748771fdcfc0791f2c20373370e6c725410067dee6a5ec425b0e25ec85db2908dd59415079070655fd3277841cbbd3a557d1f7777
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-vue@npm:^6.0.5":
   version: 6.0.5
   resolution: "@vitejs/plugin-vue@npm:6.0.5"
@@ -1136,6 +1155,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/components@npm:^14.2.1":
+  version: 14.2.1
+  resolution: "@vueuse/components@npm:14.2.1"
+  dependencies:
+    "@vueuse/core": 14.2.1
+    "@vueuse/shared": 14.2.1
+  peerDependencies:
+    vue: ^3.5.0
+  checksum: 473e50a769c308b7331a3a13d976b0f9a9d339d64865959ef9da4be15a6610d3bfdea476b6f6a597027a78529734794939e4eab62f207154c1417c807b1a9cac
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:14.2.1, @vueuse/core@npm:^14.2.1":
+  version: 14.2.1
+  resolution: "@vueuse/core@npm:14.2.1"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.21
+    "@vueuse/metadata": 14.2.1
+    "@vueuse/shared": 14.2.1
+  peerDependencies:
+    vue: ^3.5.0
+  checksum: 9645eaf716ac94364e02f996f5e498064eb04caa7043a91396964f7d11e2dadb34d1280797770811e01df7589cc702a5f286d8eb6f617833ccd10887f06935eb
+  languageName: node
+  linkType: hard
+
 "@vueuse/core@npm:^10.11.0":
   version: 10.11.1
   resolution: "@vueuse/core@npm:10.11.1"
@@ -1155,12 +1199,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/metadata@npm:14.2.1":
+  version: 14.2.1
+  resolution: "@vueuse/metadata@npm:14.2.1"
+  checksum: cd53da50fbb6919d80478554ed49ae81099584484e7cec92d6fd8f06852618fe33326011ceb6a25141463de48fd6efe063215ed85469bed7f49fe8029c04646d
+  languageName: node
+  linkType: hard
+
 "@vueuse/shared@npm:10.11.1, @vueuse/shared@npm:^10.11.0":
   version: 10.11.1
   resolution: "@vueuse/shared@npm:10.11.1"
   dependencies:
     vue-demi: ">=0.14.8"
   checksum: c8553126ba2a260fee6bc1798c67f6d90295021bb25c72218c87e169f7d7374bac0777a9f64670f4126f5c7e9c2ec603286ed1810cb8c7961f4b44e4cd4d6f4f
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:14.2.1":
+  version: 14.2.1
+  resolution: "@vueuse/shared@npm:14.2.1"
+  peerDependencies:
+    vue: ^3.5.0
+  checksum: d50d7cca4bfe70e37f9830eff332a6a3eaeef977f7a61ce88a6a5754a616d812b018e0609cc69fa6f5b5306bf2f30d8b87de2b416aead191b70c9c2904b41e59
   languageName: node
   linkType: hard
 
@@ -1610,6 +1670,22 @@ __metadata:
     picomatch:
       optional: true
   checksum: bd537daa9d3cd53887eed35efa0eab2dbb1ca408790e10e024120e7a36c6e9ae2b33710cb8381e35def01bc9c1d7eaba746f886338413e68ff6ebaee07b9a6e8
+  languageName: node
+  linkType: hard
+
+"floating-vue@npm:^5.2.2":
+  version: 5.2.2
+  resolution: "floating-vue@npm:5.2.2"
+  dependencies:
+    "@floating-ui/dom": ~1.1.1
+    vue-resize: ^2.0.0-alpha.1
+  peerDependencies:
+    "@nuxt/kit": ^3.2.0
+    vue: ^3.2.0
+  peerDependenciesMeta:
+    "@nuxt/kit":
+      optional: true
+  checksum: 9f8067eba9650c9015747919619240a13f886b55f721b0d20ee47bb52f7d3dc07d214bd869398b14078a9a8342d3f1c66be945637ca85fb586191a9a985ab937
   languageName: node
   linkType: hard
 
@@ -3211,6 +3287,15 @@ __metadata:
     vue-demi-fix: bin/vue-demi-fix.js
     vue-demi-switch: bin/vue-demi-switch.js
   checksum: 9b4106f99be3b0c1dd4a6dc5725f5e8f79c6b98d1eeb849bf2c54416cd77f4aa344960b202768865245cfa82d57f49a9d96f67f5d8e256604b9dac1c5df9a8d6
+  languageName: node
+  linkType: hard
+
+"vue-resize@npm:^2.0.0-alpha.1":
+  version: 2.0.0-alpha.1
+  resolution: "vue-resize@npm:2.0.0-alpha.1"
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 574321cc4792a393fe8f698a840cd6f11c8524da7869cffa8dc17a342521ee17579e14c243510bba96ef197f9a99ef8c57c22e9320c1486f62150f01f7a17ebe
   languageName: node
   linkType: hard
 

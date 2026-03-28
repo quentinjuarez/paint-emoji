@@ -26,19 +26,22 @@
 </template>
 
 <script setup lang="ts">
-const { handleResize } = useScreen()
+const { height } = useWindowSize()
+watch(
+  height,
+  (h) => {
+    document.documentElement.style.setProperty('--vh', `${h * 0.01}px`)
+  },
+  { immediate: true }
+)
 
 const store = useStore()
 
 const error = ref<Error>()
 
-useTooltips()
-
 onMounted(() => {
   store.error = false
   store.resetStore()
-  window.addEventListener('resize', handleResize)
-  handleResize()
 
   window.onerror = (_msg, _src, _line, _col, _error) => {
     error.value = _error
@@ -47,7 +50,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', handleResize)
   window.onerror = null
 })
 

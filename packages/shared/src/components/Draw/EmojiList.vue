@@ -61,7 +61,7 @@
             :key="e.name"
             class="flex size-7 items-center justify-center rounded bg-white/5 transition-colors hover:bg-white/15"
             @click.prevent.stop="handleSelect(e)"
-            v-bind="category.key === 'custom' ? { 'data-tooltip-list': e.name } : {}"
+            v-tooltip="category.key === 'custom' ? e.name : undefined"
           >
             <UiEmoji :emoji="e" size="md" />
           </button>
@@ -75,7 +75,6 @@
 
 <script setup lang="ts">
 import { X } from 'lucide-vue-next'
-import tippy from 'tippy.js'
 import Fuse from 'fuse.js'
 import customEmojisRaw from '../../assets/data/custom-emojis.json'
 import slackEmojisRaw from '../../assets/data/slack-emojis.json'
@@ -162,28 +161,6 @@ const filteredCategories = computed(() => {
 })
 
 // Handle tooltip initialization and destruction more efficiently
-let tooltips: any[] = []
-
-const initializeTooltips = () => {
-  tooltips.forEach((tooltip) => tooltip.destroy())
-  tooltips = []
-
-  document.querySelectorAll('[data-tooltip-list]').forEach((element) => {
-    const tooltip = tippy(element, {
-      content: (reference) => reference.getAttribute('data-tooltip-list') as string,
-      theme: 'light'
-    })
-    tooltips.push(tooltip)
-  })
-}
-
-onMounted(initializeTooltips)
-
-watch(query, initializeTooltips)
-
-onUnmounted(() => {
-  tooltips.forEach((tooltip) => tooltip.destroy())
-})
 
 const handleSelect = (emoji: Emoji) => {
   store.selectEmoji(emoji)
@@ -193,5 +170,5 @@ const handleFocus = () => {
   searchInputRef.value?.focus()
 }
 
-const { isLarge } = useScreen()
+const isLarge = useBreakpoints(breakpointsTailwind).greaterOrEqual('lg')
 </script>

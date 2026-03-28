@@ -31,7 +31,7 @@
         <UiButton
           size="icon"
           :class="{ 'ring-2 ring-purple-500': !isErasing }"
-          :data-tooltip="'Pencil'"
+          v-tooltip="'Pencil'"
           @click="isErasing = false"
         >
           <Pencil class="size-4" />
@@ -39,7 +39,7 @@
         <UiButton
           size="icon"
           :class="{ 'ring-2 ring-purple-500': isErasing }"
-          :data-tooltip="'Eraser'"
+          v-tooltip="'Eraser'"
           @click="isErasing = true"
         >
           <Eraser class="size-4" />
@@ -73,7 +73,9 @@ const valueToIndex = (value: string) => {
   return parseInt(value, 10) - 1
 }
 
-const { isMedium, isLarge } = useScreen()
+const _bp = useBreakpoints(breakpointsTailwind)
+const isMedium = _bp.greaterOrEqual('md')
+const isLarge = _bp.greaterOrEqual('lg')
 
 onMounted(() => {
   if (!canvasRef.value) {

@@ -20,8 +20,6 @@ export const useStore = defineStore('shape-to-emoji', {
   state: () => ({
     error: false,
     version: __VERSION__,
-    screenWidth: document.documentElement.clientWidth,
-    screenHeight: document.documentElement.clientHeight,
     emojiSelection: initEmojis(),
     selectedEmojiIndex: 0 as number,
     frequentEmojis: [] as Emoji[],

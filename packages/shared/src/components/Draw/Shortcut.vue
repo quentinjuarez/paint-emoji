@@ -26,7 +26,9 @@ const props = defineProps<{
 
 const emit = defineEmits(['confirm'])
 
-const { isWindows, isApple, isMobile } = useDevice()
+const isWindows = computed(() => /win/i.test(navigator.userAgent))
+const isApple = computed(() => /mac/i.test(navigator.userAgent))
+const isMobile = useBreakpoints(breakpointsTailwind).smaller('md')
 
 const ctrlKey = computed(() => (isApple.value ? 'metaKey' : 'ctrlKey'))
 

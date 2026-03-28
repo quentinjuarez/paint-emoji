@@ -23,7 +23,7 @@
           <i
             class="absolute top-3 right-3 z-10 cursor-pointer rounded-full bg-red-500 p-0.5 opacity-0 transition-all group-hover:opacity-100 hover:bg-red-600"
             @click="onlineStore.deleteDrawing(drawing._id)"
-            :data-tooltip="'Delete'"
+            v-tooltip="'Delete'"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@
           <p
             v-if="drawing.isPublic"
             class="absolute top-3 left-3 z-10 flex size-5 cursor-pointer items-center justify-center rounded-full transition-all"
-            :data-tooltip="'Public'"
+            v-tooltip="'Public'"
           >
             🌐
           </p>
@@ -79,8 +79,6 @@ const onlineStore = useOnlineStore()
 onMounted(() => {
   onlineStore.getMineDrawings()
 })
-
-useTooltips()
 
 // ACTIONS
 const tooltip = ref<any>(null)

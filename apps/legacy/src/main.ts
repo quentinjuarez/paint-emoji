@@ -1,8 +1,10 @@
 import '@paint-emoji/ui/style.css'
+import 'floating-vue/dist/style.css'
 import App from './App.vue'
 import { createApp } from 'vue'
+import FloatingVue from 'floating-vue'
 import initRouter from './router'
-import { initPinia, vClickOutside } from '@paint-emoji/shared'
+import { initPinia } from '@paint-emoji/shared'
 
 const app = createApp(App)
 
@@ -11,7 +13,6 @@ app.use(router)
 
 const pinia = initPinia(router)
 app.use(pinia)
-
-app.directive('click-outside', vClickOutside)
+app.use(FloatingVue)
 
 app.mount('#app')

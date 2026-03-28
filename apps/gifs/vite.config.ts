@@ -31,11 +31,10 @@ export default () => {
     },
     plugins: [
       AutoImport({
-        imports: ['pinia', 'vue', 'vue-router'],
+        imports: ['pinia', 'vue', 'vue-router', '@vueuse/core'],
         dirs: [
           resolve(__dirname, '../../packages/shared/src/stores'),
-          resolve(__dirname, '../../packages/shared/src/utils'),
-          resolve(__dirname, '../../packages/shared/src/composables')
+          resolve(__dirname, '../../packages/shared/src/utils')
         ],
         dts: './src/types/auto-imports.d.ts',
         vueTemplate: true

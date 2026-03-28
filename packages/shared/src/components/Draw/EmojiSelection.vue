@@ -35,7 +35,6 @@
     <button
       ref="paintButtonRef"
       class="group relative flex size-8 items-center justify-center rounded border-2 border-transparent bg-white/10 transition-all hover:border-white"
-      data-tooltip="Paint"
     >
       <Palette class="size-4 text-white" />
     </button>
@@ -71,7 +70,7 @@
         store.selectedEmojiIndex === undefined ? 'border-purple-500! hover:border-purple-600!' : ''
       ]"
       @click="store.clearEmojiSelection()"
-      data-tooltip="Clear"
+      v-tooltip="'Clear'"
     >
       <X class="size-4 text-white" />
     </button>

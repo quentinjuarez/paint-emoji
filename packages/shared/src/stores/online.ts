@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { api } from '../api'
 
 export const useOnlineStore = defineStore('shape-to-emoji-online', {
   state: () => ({
@@ -19,7 +20,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     async loginGoogle({ code }: { code: string }) {
       try {
         this.$reset()
-        const accessToken = await this.$api.auth.loginGoogle(code)
+        const accessToken = await api.auth.loginGoogle(code)
         if (!accessToken) return null
 
         this.accessToken = accessToken
@@ -35,7 +36,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
       try {
         if (!this.accessToken) return false
 
-        const me = await this.$api.users.getMe()
+        const me = await api.users.getMe()
 
         this.me = me
 
@@ -47,7 +48,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     // DRAWINGS
     async saveDrawing(drawing: DrawingDTO) {
       try {
-        await this.$api.drawings.saveDrawing(drawing)
+        await api.drawings.save(drawing)
 
         return true
       } catch (_) {
@@ -56,7 +57,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     },
     async getDrawings() {
       try {
-        const search = await this.$api.drawings.getDrawings()
+        const search = await api.drawings.getAll()
         this.search = search
 
         return true
@@ -74,7 +75,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
       offset: number
     }) {
       try {
-        const search = await this.$api.drawings.searchDrawings({
+        const search = await api.drawings.search({
           query,
           limit,
           offset
@@ -88,7 +89,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     },
     async getMineDrawings() {
       try {
-        const { items } = await this.$api.drawings.getMineDrawings()
+        const { items } = await api.drawings.getMine()
         this.drawings = items
 
         return true
@@ -98,7 +99,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     },
     async deleteDrawing(id: string) {
       try {
-        await this.$api.drawings.deleteDrawing(id)
+        await api.drawings.delete(id)
 
         await this.getMineDrawings()
 
