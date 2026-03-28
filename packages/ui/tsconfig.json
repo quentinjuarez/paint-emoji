@@ -20,5 +20,10 @@
       "@ui/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "../shared/src/types/auto-imports.d.ts", "../shared/src/types/components.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "../shared/src/types/auto-imports.d.ts",
+    "../shared/src/types/components.d.ts"
+  ]
 }

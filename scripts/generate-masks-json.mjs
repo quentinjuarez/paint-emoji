@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Fetches trending emotes from 7tv.app API and generates src/assets/data/masks.json
+ * Fetches trending emotes from 7tv.app API and generates packages/shared/src/assets/data/masks.json
  *
  * Usage:
  *   node scripts/generate-masks-json.mjs
@@ -18,7 +18,7 @@ import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_FILE = resolve(__dirname, '../src/assets/data/masks.json')
+const OUT_FILE = resolve(__dirname, '../packages/shared/src/assets/data/masks.json')
 
 const args = process.argv.slice(2)
 const getArg = (flag, fallback) => {
