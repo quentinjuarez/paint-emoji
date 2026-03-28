@@ -15,6 +15,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@oxlint/plugins": "^1.57.0",
     "husky": "^9.1.7",
     "oxlint": "^1.57.0",
     "oxlint-tailwindcss": "^0.1.10",

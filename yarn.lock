@@ -401,6 +401,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@oxlint/plugins@npm:^1.57.0":
+  version: 1.57.0
+  resolution: "@oxlint/plugins@npm:1.57.0"
+  checksum: c2f97295b4cc8ce9081a2cd0ed300c5752b565e816f3ae76f9752d68a8882b54ae13f6eb4815a7cad60dec7fca050a596c675e507ee3b9d3898941fa09587ee8
+  languageName: node
+  linkType: hard
+
 "@paint-emoji/emojis@workspace:apps/emojis":
   version: 0.0.0-use.local
   resolution: "@paint-emoji/emojis@workspace:apps/emojis"
@@ -2528,6 +2535,7 @@ __metadata:
   resolution: "paint-emoji@workspace:."
   dependencies:
     "@oxlint/binding-darwin-arm64": ^1.57.0
+    "@oxlint/plugins": ^1.57.0
     "@rolldown/binding-darwin-arm64": 1.0.0-rc.12
     husky: ^9.1.7
     oxlint: ^1.57.0
