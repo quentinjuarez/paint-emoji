@@ -48,8 +48,8 @@ const loadTextFile = (event: Event) => {
 
   const reader = new FileReader()
 
-  reader.onload = async (e: any) => {
-    let text = e.target.result
+  reader.onload = async (e: ProgressEvent<FileReader>) => {
+    let text = e.target?.result
     if (!text || typeof text !== 'string') {
       console.warn('Invalid file content.')
       return

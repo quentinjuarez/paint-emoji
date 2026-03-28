@@ -10,6 +10,10 @@
     "./components/*": "./src/components/*",
     "./layout/*": "./src/layout/*"
   },
+  "scripts": {
+    "lint": "oxlint . --format=stylish --fix",
+    "lint:check": "oxlint . --format=github"
+  },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

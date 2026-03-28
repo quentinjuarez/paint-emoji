@@ -1,28 +1,10 @@
 export {}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-class GIFType {
-  constructor(_options: {
-    quality: number
-    workers: number
-    workerScript: string
-    width: number
-    height: number
-    transparent?: number | null
-  }) {}
-  on(_event: 'finished', _callback: (blob: Blob) => void): void {}
-  addFrame(
-    _ctx: CanvasRenderingContext2D,
-    _options: { delay: number; copy: boolean; dispose?: number }
-  ): void {}
-  render(): void {}
-}
-
 declare global {}
 
 declare global {
   interface Window {
-    GIF: typeof GIFType
+    GIF: unknown
   }
   interface CustomEmoji {
     name: string

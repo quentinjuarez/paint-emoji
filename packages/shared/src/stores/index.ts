@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import initEmojis from '../utils/initEmojis'
-import getVersion from '../utils/getVersion'
 
 const __TILES_PER_ROW__ = 32
 const __TILE_SIZE__ = 16

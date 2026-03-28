@@ -96,7 +96,7 @@ const handleRemove = (index: number) => {
   store.removeEmoji(index)
 }
 
-function onUpdate(event: any): void {
+function onUpdate(event: { oldIndex?: number; newIndex?: number }): void {
   if (event.oldIndex === undefined || event.newIndex === undefined) return
 
   // switch the elements in the array

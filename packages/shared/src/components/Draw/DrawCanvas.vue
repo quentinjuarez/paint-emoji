@@ -55,7 +55,7 @@ import { breakpointsTailwind } from '@vueuse/core'
 import { Pencil, Eraser } from 'lucide-vue-next'
 
 const props = defineProps<{
-  sliceStyle: any
+  sliceStyle: Record<string, string>
 }>()
 
 const store = useStore()

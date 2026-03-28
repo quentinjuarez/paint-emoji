@@ -59,6 +59,7 @@ for (let i = 0; i < replacementList.length; i += 1) {
 }
 
 function removeDiacritics(a: string) {
+  // oxlint-disable-next-line no-control-regex
   return a.replace(/[^\u0000-\u007e]/g, function (a) {
     return diacriticsMap[a] || a
   })

@@ -5,8 +5,9 @@
     "**/dist/**",
     "**/node_modules/**",
     "**/.turbo/**",
-    "**/src/types/auto-imports.d.ts",
-    "**/src/types/components.d.ts"
+    "**/types/auto-imports.d.ts",
+    "**/types/components.d.ts",
+    "**/gifjs/**"
   ],
   "jsPlugins": ["oxlint-tailwindcss"],
   "settings": {
@@ -15,7 +16,7 @@
     }
   },
   "rules": {
-    "no-unused-vars": "warn",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
     "no-console": "off",
     "typescript/no-explicit-any": "warn",
     "vue/no-unused-vars": "warn",

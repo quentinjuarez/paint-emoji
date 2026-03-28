@@ -18,6 +18,10 @@
     "./assets/*": "./src/assets/*",
     "./components/*": "./src/components/*"
   },
+  "scripts": {
+    "lint": "oxlint . --format=stylish --fix",
+    "lint:check": "oxlint . --format=github"
+  },
   "dependencies": {
     "@paint-emoji/ui": "workspace:*",
     "@types/lodash.debounce": "4.0.9",

@@ -9,6 +9,6 @@ packages/shared/src/types/components.d.ts
 packages/shared/src/types/auto-imports.d.ts
 packages/shared/src/assets/data/masks.json
 # Ignore vendor files:
-public/vendor/gif.js
-public/vendor/gif.worker.js
+public/vendor/gifjs/gif.js
+public/vendor/gifjs/gif.worker.js
 

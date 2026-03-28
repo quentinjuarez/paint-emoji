@@ -4,7 +4,7 @@ import { api } from '../api'
 export const useOnlineStore = defineStore('shape-to-emoji-online', {
   state: () => ({
     accessToken: undefined as string | undefined,
-    me: undefined as any | undefined,
+    me: undefined as User | undefined,
     search: {
       items: [] as Drawing[],
       total: 0,
@@ -25,7 +25,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
 
         this.accessToken = accessToken
         return this.getMe()
-      } catch (_) {
+      } catch {
         return false
       }
     },
@@ -41,7 +41,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.me = me
 
         return true
-      } catch (_) {
+      } catch {
         return false
       }
     },
@@ -51,7 +51,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         await api.drawings.save(drawing)
 
         return true
-      } catch (_) {
+      } catch {
         return false
       }
     },
@@ -61,7 +61,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.search = search
 
         return true
-      } catch (_) {
+      } catch {
         return false
       }
     },
@@ -83,7 +83,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.search = search
 
         return true
-      } catch (_) {
+      } catch {
         return false
       }
     },
@@ -93,7 +93,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         this.drawings = items
 
         return true
-      } catch (_) {
+      } catch {
         return false
       }
     },
@@ -104,7 +104,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         await this.getMineDrawings()
 
         return true
-      } catch (_) {
+      } catch {
         return false
       }
     }
