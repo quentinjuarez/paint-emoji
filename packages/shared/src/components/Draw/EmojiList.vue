@@ -5,6 +5,21 @@
       <Shortcut shortcut="k" ctrl @confirm="handleFocus" />
     </div>
 
+    <!-- Slack connection -->
+    <div v-if="!onlineStore.slack" class="flex items-center gap-2">
+      <a :href="slackOAuthUrl" class="block flex-1">
+        <UiButton variant="outline" class="w-full" size="sm"> 🔗 Connect Slack </UiButton>
+      </a>
+    </div>
+    <div v-else class="flex items-center gap-2">
+      <span class="min-w-0 flex-1 truncate text-xs text-white/50">{{
+        onlineStore.slack.teamName
+      }}</span>
+      <UiButton variant="ghost" size="sm" :disabled="syncing" @click="syncEmojis">
+        <RefreshCw class="size-3.5" :class="{ 'animate-spin': syncing }" />
+      </UiButton>
+    </div>
+
     <div class="relative">
       <UiInput
         ref="searchInputRef"
@@ -75,7 +90,7 @@
 
 <script setup lang="ts">
 import { breakpointsTailwind } from '@vueuse/core'
-import { X } from 'lucide-vue-next'
+import { X, RefreshCw } from 'lucide-vue-next'
 import Fuse from 'fuse.js'
 import slackEmojisRaw from '../../assets/data/slack-emojis.json'
 
@@ -109,9 +124,23 @@ const slackEmojisCategories = slackCategories.map((category) => ({
 const store = useStore()
 const onlineStore = useOnlineStore()
 
+const slackOAuthUrl = `${import.meta.env.VITE_API_URL}/api/slack/oauth`
+const syncing = ref(false)
+
 onMounted(() => {
-  onlineStore.fetchCustomEmojis()
+  if (onlineStore.slack) {
+    onlineStore.fetchCustomEmojis()
+  }
 })
+
+async function syncEmojis() {
+  syncing.value = true
+  try {
+    await onlineStore.syncCustomEmojis()
+  } finally {
+    syncing.value = false
+  }
+}
 
 const frequentEmojisCategory = computed(() => {
   return {

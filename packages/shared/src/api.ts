@@ -47,14 +47,19 @@ export const api = {
     delete: (id: string) => client.delete<boolean>(`/drawings/${id}`).then((r) => r.data)
   },
   slack: {
-    getOAuthUrl: () => client.get<{ url: string }>('/slack/oauth-url').then((r) => r.data.url),
-    getCustomEmojis: () =>
-      client.get<{ name: string; url: string }[]>('/slack/emojis').then((r) => r.data),
-    getWorkspaces: () =>
+    getEmojis: (accessToken: string, teamId: string) =>
       client
-        .get<{ teamId: string; teamName: string; lastSynced: string }[]>('/slack/workspaces')
+        .get<{ name: string; url: string }[]>('/slack/emojis', {
+          params: { teamId },
+          headers: { 'X-Slack-Token': accessToken }
+        })
         .then((r) => r.data),
-    syncWorkspace: (teamId: string) =>
-      client.post<{ ok: boolean }>(`/slack/workspaces/${teamId}/sync`).then((r) => r.data)
+    syncEmojis: (accessToken: string, teamId: string) =>
+      client
+        .post<{ name: string; url: string }[]>('/slack/emojis/sync', null, {
+          params: { teamId },
+          headers: { 'X-Slack-Token': accessToken }
+        })
+        .then((r) => r.data)
   }
 }

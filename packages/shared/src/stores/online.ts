@@ -6,6 +6,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
     accessToken: undefined as string | undefined,
     me: undefined as User | undefined,
     customEmojis: [] as Emoji[],
+    slack: undefined as { accessToken: string; teamId: string; teamName: string } | undefined,
     search: {
       items: [] as Drawing[],
       total: 0,
@@ -110,9 +111,14 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
       }
     },
     // SLACK
+    connectSlack(data: { accessToken: string; teamId: string; teamName: string }) {
+      this.slack = data
+      this.customEmojis = []
+    },
     async fetchCustomEmojis() {
       try {
-        const emojis = await api.slack.getCustomEmojis()
+        if (!this.slack) return false
+        const emojis = await api.slack.getEmojis(this.slack.accessToken, this.slack.teamId)
         this.customEmojis = emojis.map((e) => ({
           name: `:${e.name}:`,
           value: e.url,
@@ -124,11 +130,19 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         return false
       }
     },
-    async getSlackOAuthUrl() {
+    async syncCustomEmojis() {
       try {
-        return await api.slack.getOAuthUrl()
+        if (!this.slack) return false
+        const emojis = await api.slack.syncEmojis(this.slack.accessToken, this.slack.teamId)
+        this.customEmojis = emojis.map((e) => ({
+          name: `:${e.name}:`,
+          value: e.url,
+          type: 'custom' as const,
+          search: `:${e.name}:`
+        }))
+        return true
       } catch {
-        return null
+        return false
       }
     }
   },

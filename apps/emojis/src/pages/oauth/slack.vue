@@ -42,6 +42,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
+const onlineStore = useOnlineStore()
 
 type Status = 'loading' | 'success' | 'error'
 
@@ -50,20 +51,29 @@ const teamName = ref<string | undefined>(undefined)
 const errorMessage = ref('Something went wrong. Please try again.')
 
 onMounted(async () => {
-  const { success, error, team } = route.query as {
-    success?: string
-    error?: string
-    team?: string
+  const { token, error } = route.query as { token?: string; error?: string }
+
+  if (error || !token) {
+    errorMessage.value = error ?? 'Connection failed'
+    status.value = 'error'
+    setTimeout(() => router.push('/'), 3000)
+    return
   }
 
-  if (success === 'true') {
-    teamName.value = team
+  try {
+    const parsed = JSON.parse(atob(token)) as {
+      accessToken: string
+      teamId: string
+      teamName: string
+    }
+    onlineStore.connectSlack(parsed)
+    teamName.value = parsed.teamName
     status.value = 'success'
-  } else {
-    errorMessage.value = error ?? 'Connection failed'
+  } catch {
+    errorMessage.value = 'Invalid token data'
     status.value = 'error'
   }
 
-  setTimeout(() => router.push('/'), 3000)
+  setTimeout(() => router.push('/'), 2000)
 })
 </script>
