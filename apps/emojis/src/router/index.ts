@@ -26,6 +26,12 @@ export default () => {
         meta: {}
       },
       {
+        path: '/oauth/slack',
+        name: 'oauth-slack',
+        component: () => import('@/pages/oauth/slack.vue'),
+        meta: {}
+      },
+      {
         path: '/logout',
         name: 'logout',
         component: () => import('@/pages/logout.vue'),

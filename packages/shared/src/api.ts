@@ -45,5 +45,16 @@ export const api = {
     getMine: () =>
       client.get<{ items: Drawing[]; total: number }>('/drawings/me').then((r) => r.data),
     delete: (id: string) => client.delete<boolean>(`/drawings/${id}`).then((r) => r.data)
+  },
+  slack: {
+    getOAuthUrl: () => client.get<{ url: string }>('/slack/oauth-url').then((r) => r.data.url),
+    getCustomEmojis: () =>
+      client.get<{ name: string; url: string }[]>('/slack/emojis').then((r) => r.data),
+    getWorkspaces: () =>
+      client
+        .get<{ teamId: string; teamName: string; lastSynced: string }[]>('/slack/workspaces')
+        .then((r) => r.data),
+    syncWorkspace: (teamId: string) =>
+      client.post<{ ok: boolean }>(`/slack/workspaces/${teamId}/sync`).then((r) => r.data)
   }
 }

@@ -77,7 +77,6 @@
 import { breakpointsTailwind } from '@vueuse/core'
 import { X } from 'lucide-vue-next'
 import Fuse from 'fuse.js'
-import customEmojisRaw from '../../assets/data/custom-emojis.json'
 import slackEmojisRaw from '../../assets/data/slack-emojis.json'
 
 function codesToValue(unified: string) {
@@ -87,27 +86,11 @@ function codesToValue(unified: string) {
 }
 
 // Destructure imported data directly
-const { emojis: customEmojisData } = customEmojisRaw
 const { emojis: slackEmojisData, categories: slackCategories } = slackEmojisRaw
 
 const searchInputRef = ref<HTMLInputElement>()
 const focus = ref(false)
 const query = ref('')
-
-// Transform emoji data into standardized format
-const customEmojisCategory = {
-  key: 'custom',
-  name: 'Custom',
-  emojis: customEmojisData.map(
-    (e) =>
-      ({
-        name: `:${e.name}:`,
-        value: e.url,
-        type: 'custom',
-        search: `:${e.name}:`
-      }) as Emoji
-  )
-}
 
 const slackEmojisCategories = slackCategories.map((category) => ({
   key: category.id,
@@ -124,6 +107,11 @@ const slackEmojisCategories = slackCategories.map((category) => ({
 }))
 
 const store = useStore()
+const onlineStore = useOnlineStore()
+
+onMounted(() => {
+  onlineStore.fetchCustomEmojis()
+})
 
 const frequentEmojisCategory = computed(() => {
   return {
@@ -133,29 +121,38 @@ const frequentEmojisCategory = computed(() => {
   }
 })
 
-const categories = [customEmojisCategory, ...slackEmojisCategories]
+const customEmojisCategory = computed(() => ({
+  key: 'custom',
+  name: 'Custom (Slack)',
+  emojis: onlineStore.customEmojis
+}))
 
-// Fuse instance should be created once
-const fuse = new Fuse(
-  categories.flatMap((c) => c.emojis),
-  {
-    keys: [
-      { name: 'name', weight: 0.7 },
-      { name: 'search', weight: 0.3 }
-    ],
-    threshold: 0.3,
-    distance: 100
-  }
+const categories = computed(() => [customEmojisCategory.value, ...slackEmojisCategories])
+
+// Fuse instance rebuilt when custom emojis change
+const fuse = computed(
+  () =>
+    new Fuse(
+      categories.value.flatMap((c) => c.emojis),
+      {
+        keys: [
+          { name: 'name', weight: 0.7 },
+          { name: 'search', weight: 0.3 }
+        ],
+        threshold: 0.3,
+        distance: 100
+      }
+    )
 )
 
 // Use a reactive computed property to avoid re-filtering on every query change
 const filteredCategories = computed(() => {
-  if (!query.value) return categories
+  if (!query.value) return categories.value
 
-  const items = fuse.search(query.value).map((r) => r.item)
+  const items = fuse.value.search(query.value).map((r) => r.item)
   const itemsNames = new Set(items.map((i) => i.name))
 
-  return categories.map((category) => ({
+  return categories.value.map((category) => ({
     ...category,
     emojis: category.emojis.filter((emoji) => itemsNames.has(emoji.name))
   }))

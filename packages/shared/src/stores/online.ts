@@ -5,6 +5,7 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
   state: () => ({
     accessToken: undefined as string | undefined,
     me: undefined as User | undefined,
+    customEmojis: [] as Emoji[],
     search: {
       items: [] as Drawing[],
       total: 0,
@@ -106,6 +107,28 @@ export const useOnlineStore = defineStore('shape-to-emoji-online', {
         return true
       } catch {
         return false
+      }
+    },
+    // SLACK
+    async fetchCustomEmojis() {
+      try {
+        const emojis = await api.slack.getCustomEmojis()
+        this.customEmojis = emojis.map((e) => ({
+          name: `:${e.name}:`,
+          value: e.url,
+          type: 'custom' as const,
+          search: `:${e.name}:`
+        }))
+        return true
+      } catch {
+        return false
+      }
+    },
+    async getSlackOAuthUrl() {
+      try {
+        return await api.slack.getOAuthUrl()
+      } catch {
+        return null
       }
     }
   },
