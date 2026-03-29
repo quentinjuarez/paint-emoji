@@ -6,18 +6,20 @@
     </div>
 
     <!-- Slack connection -->
-    <div v-if="!onlineStore.slack" class="flex items-center gap-2">
-      <a :href="slackOAuthUrl" class="block flex-1">
-        <UiButton variant="outline" class="w-full" size="sm"> 🔗 Connect Slack </UiButton>
-      </a>
-    </div>
-    <div v-else class="flex items-center gap-2">
-      <span class="min-w-0 flex-1 truncate text-xs text-white/50">{{
-        onlineStore.slack.teamName
-      }}</span>
-      <UiButton variant="ghost" size="sm" :disabled="syncing" @click="syncEmojis">
-        <RefreshCw class="size-3.5" :class="{ 'animate-spin': syncing }" />
-      </UiButton>
+    <div v-if="!isLegacy">
+      <div v-if="!onlineStore.slack" class="flex items-center gap-2">
+        <a :href="slackOAuthUrl" class="block flex-1">
+          <UiButton variant="outline" class="w-full" size="sm"> 🔗 Connect Slack </UiButton>
+        </a>
+      </div>
+      <div v-else class="flex items-center gap-2">
+        <span class="min-w-0 flex-1 truncate text-xs text-white/50">{{
+          onlineStore.slack.teamName
+        }}</span>
+        <UiButton variant="ghost" size="sm" :disabled="syncing" @click="syncEmojis">
+          <RefreshCw class="size-3.5" :class="{ 'animate-spin': syncing }" />
+        </UiButton>
+      </div>
     </div>
 
     <div class="relative">
@@ -93,6 +95,7 @@ import { breakpointsTailwind } from '@vueuse/core'
 import { X, RefreshCw } from 'lucide-vue-next'
 import Fuse from 'fuse.js'
 import slackEmojisRaw from '../../assets/data/slack-emojis.json'
+import customEmojisRaw from '../../assets/data/custom-emojis.json'
 
 function codesToValue(unified: string) {
   const codePoints = [`0x${unified.split('-')[0]}`]
@@ -100,8 +103,11 @@ function codesToValue(unified: string) {
   return String.fromCodePoint.apply(null, codePoints)
 }
 
+const isLegacy = __LEGACY__
+
 // Destructure imported data directly
 const { emojis: slackEmojisData, categories: slackCategories } = slackEmojisRaw
+const { emojis: customEmojisData } = customEmojisRaw
 
 const searchInputRef = ref<HTMLInputElement>()
 const focus = ref(false)
@@ -150,11 +156,29 @@ const frequentEmojisCategory = computed(() => {
   }
 })
 
-const customEmojisCategory = computed(() => ({
-  key: 'custom',
-  name: 'Custom (Slack)',
-  emojis: onlineStore.customEmojis
-}))
+const customEmojisCategory = computed(() => {
+  if (isLegacy) {
+    return {
+      key: 'custom',
+      name: 'Custom',
+      emojis: customEmojisData.map(
+        (e) =>
+          ({
+            name: `:${e.name}:`,
+            value: e.url,
+            type: 'custom',
+            search: `:${e.name}:`
+          }) as Emoji
+      )
+    }
+  }
+
+  return {
+    key: 'custom',
+    name: 'Custom (Slack)',
+    emojis: onlineStore.customEmojis
+  }
+})
 
 const categories = computed(() => [customEmojisCategory.value, ...slackEmojisCategories])
 

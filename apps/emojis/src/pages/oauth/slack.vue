@@ -35,7 +35,6 @@
       <span class="text-4xl">⚠️</span>
       <p class="text-lg font-semibold text-white">Connection failed</p>
       <p class="text-sm text-white/60">{{ errorMessage }}</p>
-      <p class="mt-2 font-mono text-xs text-white/30">{{ debugInfo }}</p>
     </div>
   </div>
 </template>
@@ -50,13 +49,9 @@ type Status = 'loading' | 'success' | 'error'
 const status = ref<Status>('loading')
 const teamName = ref<string | undefined>(undefined)
 const errorMessage = ref('Something went wrong. Please try again.')
-const debugInfo = ref('')
 
 onMounted(async () => {
   const { token, error } = route.query as { token?: string; error?: string }
-
-  console.log('[Slack OAuth] query params:', { token: token?.slice(0, 20) + '...', error })
-  debugInfo.value = `token: ${token ? 'present' : 'missing'}, error: ${error ?? 'none'}`
 
   if (error || !token) {
     errorMessage.value = error ?? 'Connection failed (no token received)'
@@ -79,15 +74,13 @@ onMounted(async () => {
       hasToken: !!parsed.accessToken
     })
     onlineStore.connectSlack(parsed)
-    console.log('[Slack OAuth] store after connectSlack:', onlineStore.slack)
     teamName.value = parsed.teamName
     status.value = 'success'
   } catch (e) {
-    console.error('[Slack OAuth] parse error:', e)
     errorMessage.value = `Invalid token data: ${e}`
     status.value = 'error'
   }
 
-  setTimeout(() => router.push('/'), 3000)
+  setTimeout(() => router.push('/'), 2000)
 })
 </script>

@@ -16,6 +16,9 @@ export default defineConfig({
       '@shared': resolve(__dirname, '../../packages/shared/src')
     }
   },
+  define: {
+    __LEGACY__: JSON.stringify(true)
+  },
   build: {
     outDir: 'dist'
   },

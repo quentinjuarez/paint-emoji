@@ -1,6 +1,8 @@
 export {}
 
 declare global {
+  const __LEGACY__: boolean
+
   interface Window {
     GIF: unknown
   }
